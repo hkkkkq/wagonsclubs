@@ -1,16 +1,27 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+    <button v-on:click='func1'>发送请求</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'hello',
-  data () {
+  data:function () {
     return {
       msg: 'wangos前端小组'
+    }
+  },
+  methods:{
+    func1:function(){
+      this.$ajax.get('http://www.baidu.com')
+      .then(function(data){
+        alert(data)
+      })
+      .catch(function(data){
+        alert(data)
+      })
     }
   }
 }
@@ -21,6 +32,7 @@ export default {
 h1, h2 {
   font-weight: normal;
   font-size: 50px;
+  color: red;
 }
 
 ul {
