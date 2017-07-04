@@ -3,7 +3,7 @@
 		<h1>{{msg}}</h1>
 		<router-view></router-view>
 		<router-link to='/test/foo'>to foo</router-link>
-		<router-link to='/test/bar'>to bar</router-link>
+		<router-link to='/test/ven'>to bar</router-link>
 	</div>
 </template>
 <script type="text/javascript">
