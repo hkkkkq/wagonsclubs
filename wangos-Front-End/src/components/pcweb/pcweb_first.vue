@@ -88,6 +88,11 @@
           <span @click="gonext" class="down"></span>
         </div>
       </div>
+      <div v-if="qr_show" class="qr_code">
+        <a @click="close" href="javascript:;" class="cclose"></a>
+        <img src="../../assets/car_gongzhonghao.png" alt="" class="qr"/>
+        <p>扫码即刻体验</p>
+      </div>
       <div class="brand">
         <p class="brandname1">BRAND</p>
         <p class="brandname2">品牌</p>
@@ -118,7 +123,8 @@
             haschoose:[1],
             cars:[],
             currentcar:{car:''},
-            currentcarimg:''
+            currentcarimg:'',
+            qr_show:true,
           }
       },
     computed: {
@@ -158,6 +164,9 @@
             .catch(resolve =>{console.log(resolve)});
           this.haschoose[index] = 1;
 //          console.log(this.$refs.menuItem[index].id)
+      },
+      close:function(){
+          this.qr_show = false;
       }
     }
   }
@@ -375,5 +384,34 @@
     margin: auto;
     display: block;
     padding-top: 6px;
+  }
+  .qr_code{
+    z-index: 100;
+    position: fixed;
+    right:18%;
+    top:30%;
+    width:173px;
+    height:234px;
+    background-color: #333333;
+  }
+  .qr_code .cclose{
+    position: absolute;
+    top:15px;
+    right:15px;
+    width:14px;
+    height:14px;
+    background:url("../../assets/car_close.png") no-repeat;
+    background-size:100% 100%;
+  }
+  .qr_code .qr{
+    display:block;
+    margin:45px auto 13px;
+    width:128px;
+    height:128px;
+  }
+  .qr_code p{
+    font-size:14px;
+    color:#f4f4f4;
+    text-align: center;
   }
 </style>

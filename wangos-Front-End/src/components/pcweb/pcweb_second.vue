@@ -1,89 +1,164 @@
 <template>
   <div>
-    <swiper class="swip1" :options="swiperOption" ref="mySwiper">
-      <!-- slides -->
-      <swiper-slide class="swip2">I'm Slide 1</swiper-slide>
-      <swiper-slide class="swip2">I'm Slide 2</swiper-slide>
-      <swiper-slide class="swip2">I'm Slide 3</swiper-slide>
-      <swiper-slide class="swip2">I'm Slide 4</swiper-slide>
-      <swiper-slide class="swip2">I'm Slide 5</swiper-slide>
-      <swiper-slide class="swip2">I'm Slide 6</swiper-slide>
-      <swiper-slide class="swip2">I'm Slide 7</swiper-slide>
-      <!-- Optional controls -->
-      <div class="swiper-pagination"  slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
-      <div class="swiper-scrollbar"   slot="scrollbar"></div>
-    </swiper>
+    <div class="s_banner"></div>
+    <div class="con_1">
+      <div class="intro">
+        <p>WAGONS是北京玄铁科技有限公司旗下超跑俱乐部，面向高端用户群体提供自驾出行、高端商务接待、高端静展等用车服务。WAGONS门店位于北京高端商区当代MOMA商务中心，自有车辆涵盖世界各顶级品牌超跑经典车型，拉风小跑、炸街超跑、奢华商务座驾供您尽享顶级驾驭体验。同时，WAGONS还精心定制五星会员服务，让您尽享会员尊宠礼遇。</p>
+        <h5>地址：北京市东城区香河园路1号当代MOMA商务中心</h5>
+        <div style="width:255px;">
+          <img src="../../assets/car_gongzhonghao.png" alt="" class="gongzhonghao" />
+          <h4>关注微信 即刻体验</h4>
+        </div>
+      </div>
+      <div class="condition">
+        <div class="no1">
+          <span>谁能用车</span>
+          <p>试营业期间Wagons的用车服务<i>仅覆盖北京地区</i>用户。</p>
+        </div>
+        <div class="no2">
+          <span class="lc">用车流程</span>
+          <div class="lct">
+            <h5 style="margin-top:-4px;">
+              <p>-选车</p>
+              <p>线上选车并拨打官方客服电话咨询预约，或直接到店选车</p>
+            </h5>
+            <h5>
+              <p>-用车</p>
+              <p>到店出示本人身份证、驾驶证，签订用车协议，交付用车费用</p>
+            </h5>
+            <h5>
+              <p>-还车</p>
+              <p>到店还车，接受车辆检查及交通违规查询，退还相应费用</p>
+            </h5>
+          </div>
+        </div>
+        <div class="no3">
+          <span>会员申请方式</span>
+          <p>1、缴纳会费
+            <br/><br/>
+            2、选择合作伙伴投资产品：私募、公募
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-  // swiper options example:
-  export default {
-    name: 'carrousel',
-    data() {
-      return {
-        swiperOption: {
-          // NotNextTick is a component's own property, and if notNextTick is set to true, the component will not instantiate the swiper through NextTick, which means you can get the swiper object the first time (if you need to use the get swiper object to do what Things, then this property must be true)
-          // notNextTick是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
-          notNextTick: true,
-          // swiper configs 所有的配置同swiper官方api配置
-          autoplay: 3000,
-          direction : 'horizontal',
-          grabCursor : true,
-          setWrapperSize :true,
-          autoHeight: true,
-          slidesPerView : 4,
-          pagination : '.swiper-pagination',
-          paginationClickable :true,
-          prevButton:'.swiper-button-prev',
-          nextButton:'.swiper-button-next',
-          scrollbar:'.swiper-scrollbar',
-          mousewheelControl : true,
-          observeParents:true,
-          // if you need use plugins in the swiper, you can config in here like this
-          // 如果自行设计了插件，那么插件的一些配置相关参数，也应该出现在这个对象中，如下debugger
-          debugger: true,
-          // swiper callbacks
-          // swiper的各种回调函数也可以出现在这个对象中，和swiper官方一样
-          onTransitionStart(swiper){
-            console.log(swiper)
-          },
-          // more Swiper configs and callbacks...
-          // ...
-        }
-      }
-    },
-    // you can find current swiper instance object like this, while the notNextTick property value must be true
-    // 如果你需要得到当前的swiper对象来做一些事情，你可以像下面这样定义一个方法属性来获取当前的swiper对象，同时notNextTick必须为true
-    computed: {
-      swiper() {
-        return this.$refs.mySwiper.swiper
-      }
-    },
-    mounted() {
-      // you can use current swiper instance object to do something(swiper methods)
-      // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-      console.log('this is current swiper instance object', this.swiper)
-      this.swiper.slideTo(3, 1000, false)
-    }
-  }
+
 </script>
 <style>
-  .swip1{
-    width: 1000px;
-    height: 100px;
+  .s_banner{
+    width: 100%;
+    min-width: 1000px;
+    height: 217px;
+    background: url('../../assets/car_guide_banner.png') center center no-repeat;
   }
-  .swip2{
-    background: pink;
-    border: 1px solid black;
+  .con_1{
+    width:1000px;
+    height:550px;
+    margin:0 auto;
+    overflow: hidden;
   }
-  .swiper-button-prev{
-    background: url("../../assets/car_left_jiantou.png");
-    background-repeat: no-repeat;
+  .con_1 .intro{
+    float: left;
+    width: 366px;
+    height:550px;
+    padding-top:70px;
+    box-sizing: border-box;
+    border-right:1px solid #dddddf;
   }
-  .swiper-button-next{
-    background: url("../../assets/car_right_jiantou.png");
-    background-repeat: no-repeat;
+  .con_1 .intro p{
+    padding-right:49px;
+    font-size:14px;
+    line-height:30px;
+    color:#7a7a7a;
+    margin-bottom:30px;
+  }
+  .con_1 .intro h5{
+    height:30px;
+    font-size:14px;
+    color:#717171;
+  }
+  .con_1 .intro .gongzhonghao{
+    display:block;
+    width:145px;
+    height:143px;
+    margin:0 auto;
+  }
+  .con_1 .intro h4{
+    text-align: center;
+    font-size:16px;
+    color:#3d3d3d;
+    line-height:22px;
+  }
+  .con_1 .condition{
+    float: left;
+    box-sizing: border-box;
+    width:634px;
+    height:550px;
+    padding:75px 0 0 86px;
+  }
+  .con_1 .condition .no1{
+    height:50px;
+    border-bottom: 1px solid #dddddf;
+    overflow: hidden;
+  }
+  .con_1 .condition .no1 span{
+    float:left;
+    width:122px;
+    font-size:18px;
+    color:#06060b;
+  }
+  .con_1 .condition .no1 p{
+    float:left;
+    width:420px;
+    font-size:14px;
+    color:#717171;
+  }
+  .con_1 .condition .no1 p i{
+    color:#e41b06;
+  }
+
+  .con_1 .condition .no2{
+    height:256px;
+    border-bottom: 1px solid #dddddf;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-top:34px;
+  }
+  .con_1 .condition .no2 .lc{
+    float:left;
+    width:122px;
+    font-size:18px;
+    color:#06060b;
+  }
+  .con_1 .condition .no2 .lct{
+    float:left;
+    width:420px;
+    font-size:14px;
+    color:#717171;
+  }
+  .con_1 .condition .no2 .lct h5{
+    margin-bottom:18px;
+  }
+  .con_1 .condition .no2 .lct h5 p{
+    line-height:26px;
+  }
+  .con_1 .condition .no3{
+    overflow: hidden;
+    padding-top:34px;
+  }
+  .con_1 .condition .no3 span{
+    float:left;
+    width:122px;
+    font-size:18px;
+    color:#06060b;
+  }
+  .con_1 .condition .no3 p{
+    float:left;
+    width:420px;
+    line-height:20px;
+    font-size:14px;
+    color:#717171;
   }
 </style>
