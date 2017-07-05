@@ -8,7 +8,7 @@
       </h5>
       <div class="intro">
         <div class="left">
-          <img :src="currentcarimg">
+          <img :src="currentcar.car.carImages">
         </div>
         <div class="right">
           <p class="p1">
@@ -80,7 +80,7 @@
           <span @click="goprev" class="up"></span>
           <swiper class="swip1" :options="swiperOption" ref="mySwiper">
             <swiper-slide v-for="(item,index) in cars" :key="item.id"  class="swip2">
-              <i>
+              <i :class="{shadow:haschoose[index]}">
                 <img :class="{active:haschoose[index]}" :num="index" :id="item.id" @click="choose(index,item.id)" ref="menuItem" :src='item.carImages' />
               </i>
             </swiper-slide>
@@ -136,7 +136,7 @@
       this.$ajax('https://www.huoqiu.cn/car/cars')
         .then((resolve)=>{
           this.cars = resolve.data.cars;
-          this.currentcarimg = this.cars[0].carImages;
+//          this.currentcarimg = this.cars[0].carImages;
           for(let i = 1;i<this.cars.length;i++){
             this.haschoose.push(0);
           }
@@ -156,11 +156,15 @@
           this.swiper.slideNext();
       },
       choose:function(index,id){
+
           for(let i = 0;i<this.cars.length;i++){
             this.haschoose[i]=0;
           }
           this.$ajax.get('https://www.huoqiu.cn/car/carDetail?',{params:{carId:id}})
-            .then(resolve => {this.currentcar = resolve.data;this.currentcarimg = this.cars[index].carImages})
+            .then(resolve => {
+                this.currentcar = resolve.data;
+//                this.currentcarimg = this.cars[index].carImages
+            })
             .catch(resolve =>{console.log(resolve)});
           this.haschoose[index] = 1;
 //          console.log(this.$refs.menuItem[index].id)
@@ -225,7 +229,7 @@
   .right p{
     font-size: 14px;
     line-height: 37px;
-    margin: 12px;
+    margin: 0px 15px;
     border-bottom: 1px solid #626263;
   }
   .right p i {
@@ -366,7 +370,6 @@
   .swip2{
   }
   .swip2 i{
-    box-shadow:1px 7px 7px rgba(0,0,0,0.1);
     background: white;
     width: 207px;
     height: 128px;
@@ -413,5 +416,8 @@
     font-size:14px;
     color:#f4f4f4;
     text-align: center;
+  }
+  .shadow{
+    box-shadow:1px 7px 7px rgba(0,0,0,0.1);
   }
 </style>
