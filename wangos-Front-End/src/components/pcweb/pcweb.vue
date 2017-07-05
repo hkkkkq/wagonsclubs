@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pcweb">
     <div class="header">
       <router-link v-on:click.native="changecolor1" class="router-link" v-bind:class="{'active':homeactive}" to="/pcweb/first">
         <i>首页</i>
@@ -7,7 +7,7 @@
       </router-link>
       <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':!homeactive}" to="/pcweb/second">
         <i>用车须知</i>
-        <b>GUIDE</b>
+        <b style="margin-left: 1em">GUIDE</b>
       </router-link>
       <span class="phone">4008-625-700</span>
     </div>
@@ -38,6 +38,10 @@
   }
 </script>
 <style type="text/css">
+  .pcweb {
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+    background-color: #fff;
+  }
   .active{
     color: #090405!important;
   }
@@ -85,9 +89,11 @@
   }
   .router-link i {
     display: block;
+    font-size: 17px;
   }
   .router-link b {
     display: block;
+    font-size: 11px;
   }
   .phone{
     color: #797979;
