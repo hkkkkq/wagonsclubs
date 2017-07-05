@@ -27,7 +27,7 @@ export default new Router({
     	]
     },
     //重写首页
-    { path: '/pcweb',component: pcweb,redirect: '/pcweb/first',
+    { path: '/',component: pcweb,redirect: '/first',
       children:[
         { path: 'first',component:pcweb_first },
         { path: 'second',component:pcweb_second }
