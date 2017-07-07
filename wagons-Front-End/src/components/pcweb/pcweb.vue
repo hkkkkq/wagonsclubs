@@ -1,11 +1,11 @@
 <template>
   <div class="pcweb">
     <div class="header">
-      <router-link v-on:click.native="changecolor1" class="router-link" v-bind:class="{'active':homeactive}" to="/pcweb/first">
+      <router-link v-on:click.native="changecolor1" class="router-link" v-bind:class="{'active':homeactive}" to="/first">
         <i>首页</i>
         <b>HOME</b>
       </router-link>
-      <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':!homeactive}" to="/pcweb/second">
+      <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':!homeactive}" to="/second">
         <i>用车须知</i>
         <b style="margin-left: 1em">GUIDE</b>
       </router-link>
