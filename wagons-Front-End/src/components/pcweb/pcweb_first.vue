@@ -133,7 +133,7 @@
       }
     },
     created(){
-      this.$ajax('https://www.huoqiu.cn/car/cars')
+      this.$ajax(BASE_URL+'/car/cars')
         .then((resolve)=>{
           this.cars = resolve.data.cars;
 //          this.currentcarimg = this.cars[0].carImages;
@@ -143,7 +143,7 @@
         })
         .catch((err)=>console.log(err));
 
-      this.$ajax('https://www.huoqiu.cn/car/carDetail?carId=14')
+      this.$ajax(BASE_URL+'/car/carDetail?carId=14')
         .then((resolve)=>{this.currentcar = resolve.data;})
     },
     mounted() {
@@ -160,7 +160,7 @@
           for(let i = 0;i<this.cars.length;i++){
             this.haschoose[i]=0;
           }
-          this.$ajax.get('https://www.huoqiu.cn/car/carDetail?',{params:{carId:id}})
+          this.$ajax.get(BASE_URL+'/car/carDetail?',{params:{carId:id}})
             .then(resolve => {
                 this.currentcar = resolve.data;
 //                this.currentcarimg = this.cars[index].carImages

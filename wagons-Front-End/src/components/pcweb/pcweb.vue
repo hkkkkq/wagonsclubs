@@ -33,6 +33,7 @@
     methods:{
       changecolor1:function(){
           this.homeactive = true;
+          console.log(BASE_URL)
       },
       changecolor2:function(){
           this.homeactive = false;
