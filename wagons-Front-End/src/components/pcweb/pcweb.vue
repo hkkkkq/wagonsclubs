@@ -13,7 +13,12 @@
     </div>
     <router-view></router-view>
     <div class="footer">
-      <p class="no1">合作伙伴：火球理财 搬运工</p>
+      <!-- <p class="no1">合作伙伴：火球理财 搬运工</p> -->
+      <p class="no1">合作伙伴：搬运工&nbsp;&nbsp;
+            <a href="https://www.huoqiu.cn" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">火球理财</a>&nbsp;&nbsp;
+            <a href="http://www.quhuanqian.cn/" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">趣还钱</a>&nbsp;&nbsp;
+            <a href="https://www.leverfun.com/" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">炒饭</a>&nbsp;&nbsp;
+        </p>
       <p class="no2">京ICP备17029862号-1  铭博顺通（北京）科技发展有限公司版权所有©2017</p>
     </div>
   </div>

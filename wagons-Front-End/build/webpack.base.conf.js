@@ -2,7 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
-
+var PrerenderSpaPlugin = require('prerender-spa-plugin')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -11,6 +11,14 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  plugins: [
+   new PrerenderSpaPlugin(
+     // Absolute path to compiled SPA
+     path.join(__dirname, '../dist'),
+     // List of routes to prerender
+     [ '/' ]
+   )
+ ],
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
