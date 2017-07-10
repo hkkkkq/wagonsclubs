@@ -27,7 +27,17 @@ export default new Router({
     	]
     },
     //重写首页
-    { path: '/',component: pcweb,redirect: '/first',
+    { path: '/',
+      beforeEnter: (to, from, next) => {
+        // console.log(navigator.userAgent)
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+          window.location.href = 'http://www.wagonsclub.com/car/index'
+        } else {
+          next();
+        }
+      },
+      component: pcweb,
+      redirect: '/first',
       children:[
         { path: 'first',component:pcweb_first },
         { path: 'second',component:pcweb_second }
