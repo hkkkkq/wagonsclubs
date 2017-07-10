@@ -14,6 +14,7 @@ Vue.use(VueAwesomeSwiper)
 Vue.use(Router);
 
 export default new Router({
+   mode: 'history',
   routes: [
     //hello页
     {	path: '/hello',component: Hello	},
@@ -31,7 +32,7 @@ export default new Router({
       beforeEnter: (to, from, next) => {
         // console.log(navigator.userAgent)
         if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-          window.location.href = 'http://www.wagonsclub.com/car/index'
+          window.location.href = 'https://www.huoqiu.cn/car/index'
         } else {
           next();
         }
