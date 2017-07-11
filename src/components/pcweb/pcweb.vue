@@ -32,8 +32,7 @@
           },
     methods:{
       changecolor1:function(){
-          this.homeactive = true;
-          console.log(BASE_URL)
+          this.homeactive = true
       },
       changecolor2:function(){
           this.homeactive = false;
