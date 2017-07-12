@@ -149,7 +149,6 @@
           for(let i = 1;i<this.cars.length;i++){
             this.haschoose.push(0);
           }
-
         })
         .catch((err)=>console.log(err));
 
