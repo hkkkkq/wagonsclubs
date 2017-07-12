@@ -10,6 +10,15 @@ const ven = resolve => require(['../components/test/ven.vue'],resolve);
 const pcweb = resolve => require(['../components/pcweb/pcweb.vue'],resolve);
 const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'],resolve);
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'],resolve);
+
+
+//for spider
+const news1 = resolve => require(['../components/spider/news1.vue'],resolve);
+const news2 = resolve => require(['../components/spider/news2.vue'],resolve);
+const news3 = resolve => require(['../components/spider/news3.vue'],resolve);
+
+
+
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router);
 
@@ -43,7 +52,13 @@ export default new Router({
         { path: 'first',component:pcweb_first },
         { path: 'second',component:pcweb_second }
       ]
-    }
+    },
+
+    //for spider
+{ path: '/supercarnews/1',component: news1},
+{ path: '/supercarnews/2',component: news2},
+{ path: '/supercarnews/3',component: news3},
+
 
 
 
