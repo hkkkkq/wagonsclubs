@@ -10,7 +10,7 @@ const ven = resolve => require(['../components/test/ven.vue'],resolve);
 const pcweb = resolve => require(['../components/pcweb/pcweb.vue'],resolve);
 const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'],resolve);
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'],resolve);
-
+const mobileweb = resolve => require(['../components/mobileweb/index.vue'],resolve);
 
 //for spider
 const news1 = resolve => require(['../components/spider/news1.vue'],resolve);
@@ -36,7 +36,7 @@ export default new Router({
     		// {	path: '',component: page	},
     	]
     },
-    //重写首页
+    //重写pc端首页
     { path: '/',
       beforeEnter: (to, from, next) => {
         // console.log(navigator.userAgent)
@@ -54,6 +54,11 @@ export default new Router({
       ]
     },
 
+    //移动端首页
+    {
+      path: '/mobile',
+      component: mobileweb
+    },
     //for spider
 { path: '/supercarnews/1',component: news1},
 { path: '/supercarnews/2',component: news2},

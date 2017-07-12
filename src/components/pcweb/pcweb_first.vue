@@ -125,6 +125,7 @@
             currentcar:{car:''},
             currentcarimg:'',
             qr_show:true,
+            firstid:''
           }
       },
     computed: {
@@ -132,19 +133,26 @@
         return this.$refs.mySwiper.swiper
       }
     },
+
     created(){
       this.$ajax(BASE_URL+'/car/cars')
         .then((resolve)=>{
-          this.cars = resolve.data.cars;
-//          this.currentcarimg = this.cars[0].carImages;
+          let firstid
+          this.cars = resolve.data.data.cars;
+          firstid = resolve.data.data.cars[0].id;
+
+          this.$ajax(BASE_URL+'/car/carDetail?carId='+firstid)
+          .then((resolve)=>{
+            this.currentcar = resolve.data.data;
+          })
+
           for(let i = 1;i<this.cars.length;i++){
             this.haschoose.push(0);
           }
+          
         })
         .catch((err)=>console.log(err));
 
-      this.$ajax(BASE_URL+'/car/carDetail?carId=14')
-        .then((resolve)=>{this.currentcar = resolve.data;})
     },
     mounted() {
     },
@@ -162,12 +170,10 @@
           }
           this.$ajax.get(BASE_URL+'/car/carDetail?',{params:{carId:id}})
             .then(resolve => {
-                this.currentcar = resolve.data;
-//                this.currentcarimg = this.cars[index].carImages
+                this.currentcar = resolve.data.data;
             })
             .catch(resolve =>{console.log(resolve)});
           this.haschoose[index] = 1;
-//          console.log(this.$refs.menuItem[index].id)
       },
       close:function(){
           this.qr_show = false;
