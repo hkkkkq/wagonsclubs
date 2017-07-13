@@ -3,7 +3,7 @@
     <div class="s_banner"></div>
     <div class="con_1">
       <div class="intro">
-        <p>WAGONS是北京玄铁科技有限公司旗下超跑俱乐部，面向高端用户群体提供自驾出行、高端商务接待、高端静展等用车服务。WAGONS门店位于北京高端商区当代MOMA商务中心，自有车辆涵盖世界各顶级品牌超跑经典车型，拉风小跑、炸街超跑、奢华商务座驾供您尽享顶级驾驭体验。同时，WAGONS还精心定制五星会员服务，让您尽享会员尊宠礼遇。</p>
+        <p>WAGONS光速超跑是北京玄铁科技有限公司旗下超跑俱乐部，面向高端用户群体提供自驾出行、高端商务接待、高端静展等用车服务。WAGONS光速超跑门店位于北京高端商区当代MOMA商务中心，自有车辆涵盖世界各顶级品牌超跑经典车型，拉风小跑、炸街超跑、奢华商务座驾供您尽享顶级驾驭体验。同时，WAGONS光速超跑还精心定制五星会员服务，让您尽享会员尊宠礼遇。</p>
         <h5>地址：北京市东城区香河园路1号当代MOMA商务中心</h5>
         <div style="width:255px;">
           <img src="../../assets/car_gongzhonghao.png" alt="" class="gongzhonghao" />
@@ -13,7 +13,7 @@
       <div class="condition">
         <div class="no1">
           <span>谁能用车</span>
-          <p>试营业期间Wagons的用车服务<i>仅覆盖北京地区</i>用户。</p>
+          <p>试营业期间WAGONS光速超跑的用车服务<i>仅覆盖北京地区</i>用户。</p>
         </div>
         <div class="no2">
           <span class="lc">用车流程</span>
