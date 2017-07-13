@@ -1,16 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 const VueAwesomeSwiper = require('vue-awesome-swiper');
-import Hello from '@/components/Hello';
 // import test from '../components/test/test.vue' //直接加载方式，组件写在公共js里，如果这种方式过多会是的文件提过大，首次加载变慢
 // import page from '../components/test/page.vue'
-const test = resolve => require(['../components/test/test.vue'], resolve);
-const page = resolve => require(['../components/test/page.vue'], resolve); //懒加载方式，组件不会被打包进公共js ，而是另外请求
-const ven = resolve => require(['../components/test/ven.vue'], resolve);
 const pcweb = resolve => require(['../components/pcweb/pcweb.vue'], resolve);
 const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], resolve);
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
-const mobileweb = resolve => require(['../components/mobileweb/index.vue'], resolve);
 
 //for spider
 const news1 = resolve => require(['../components/spider/news1.vue'], resolve);
@@ -57,11 +52,6 @@ export default new Router({
             ]
         },
 
-        //移动端首页
-        {
-            path: '/mobile',
-            component: mobileweb
-        },
         //for spider
         { path: '/supercarnews/1', component: news1 },
         { path: '/supercarnews/2', component: news2 },
