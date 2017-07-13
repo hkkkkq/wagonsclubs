@@ -20,19 +20,6 @@ Vue.use(Router);
 export default new Router({
     mode: 'history',
     routes: [
-        //hello页
-        { path: '/hello', component: Hello },
-        //test嵌套路由测试
-        {
-            path: '/test',
-            component: test,
-            children: [
-                { path: 'ven', component: ven },
-
-                { path: 'foo', component: page },
-                // {	path: '',component: page	},
-            ]
-        },
         //重写pc端首页
         {
             path: '/',
