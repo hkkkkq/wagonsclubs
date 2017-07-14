@@ -42,7 +42,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // http://vuejs.github.io/vue-loader/en/workflow/production.html
         new webpack.DefinePlugin({
             'process.env': env,
-            'BASE_URL': '"http://api.wagonsclub.com"'
+            'BASE_URL': '"/prd"'
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {

@@ -133,7 +133,7 @@
       }
     },
     created(){
-      this.$ajax(BASE_URL+'/car/cars')
+      this.$ajax(BASE_URL+'/car/discount')
         .then((resolve)=>{
           this.cars = resolve.data.cars;
 //          this.currentcarimg = this.cars[0].carImages;
