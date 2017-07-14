@@ -7,10 +7,14 @@ const pcweb = resolve => require(['../components/pcweb/pcweb.vue'], resolve);
 const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], resolve);
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
 
+
 //for spider
 const news1 = resolve => require(['../components/spider/news1.vue'], resolve);
 const news2 = resolve => require(['../components/spider/news2.vue'], resolve);
 const news3 = resolve => require(['../components/spider/news3.vue'], resolve);
+const news4 = resolve => require(['../components/spider/news4.vue'], resolve);
+const news5 = resolve => require(['../components/spider/news5.vue'], resolve);
+const news6 = resolve => require(['../components/spider/news6.vue'], resolve);
 
 
 
@@ -20,7 +24,7 @@ Vue.use(Router);
 export default new Router({
     mode: 'history',
     routes: [
-        //重写pc端首页
+        //重写首页
         {
             path: '/',
             beforeEnter: (to, from, next) => {
@@ -43,6 +47,9 @@ export default new Router({
         { path: '/supercarnews/1', component: news1 },
         { path: '/supercarnews/2', component: news2 },
         { path: '/supercarnews/3', component: news3 },
+        { path: '/supercarnews/4', component: news4 },
+        { path: '/supercarnews/5', component: news5 },
+        { path: '/supercarnews/6', component: news6 },
 
 
 
