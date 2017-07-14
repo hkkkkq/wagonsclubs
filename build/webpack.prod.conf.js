@@ -36,7 +36,7 @@ var webpackConfig = merge(baseWebpackConfig, {
                 '/supercarnews/3',
                 '/supercarnews/4',
                 '/supercarnews/5',
-                '/supercarnews/6'
+                '/supercarnews/5'
             ]
         ),
         // http://vuejs.github.io/vue-loader/en/workflow/production.html
