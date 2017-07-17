@@ -6,8 +6,11 @@ yarn-debug.log*
 yarn-error.log*
 .package-lock.json
 # Editor directories and files
-.idea
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
+.project
+manifest.json
+unpackage/
