@@ -13,44 +13,46 @@
           <input v-model="idCard" class="text" placeholder="身份证号码" type="text"><span class="must">*</span>
           <div :class="{black:!show11,shadow:show1}" @click="choose1" class="text select" placeholder="">
               {{maritalStatus}}
-              <span v-show="show11" class="choose">{{pleasechoose}}</span>              
-          </div>
-          <div v-show="show1" style="top: 91.2%;" class="drop">
-              <p @click="click1(1,'未婚',0)">未婚</p>
-              <p @click="click1(1,'已婚',1)">已婚</p>
-              <p @click="click1(1,'离异',2)">离异</p>
+              <span v-show="show11" class="choose">{{pleasechoose}}</span> 
+              <div v-show="show1" class="drop">
+                <p @click="click1(1,'未婚',0)">未婚</p>
+                <p @click="click1(1,'已婚',1)">已婚</p>
+                <p @click="click1(1,'离异',2)">离异</p>
+              </div>             
           </div>
           <div :class="{black:!show12,shadow:show2}" @click="choose2" class="text select" placeholder="">
               {{career}}
-              <span v-show="show12" class="choose">{{pleasechoose}}</span>              
+              <span v-show="show12" class="choose">{{pleasechoose}}</span>     
+              <div v-show="show2" class="drop">
+                  <p @click="click1(2,'国家机关/事业单位')">国家机关/事业单位</p>
+                  <p @click="click1(2,'金融业')">金融业</p>
+                  <p @click="click1(2,'建筑业')">建筑业</p>
+                  <p @click="click1(2,'服务业')">服务业</p>
+                  <p @click="click1(2,'批发零售')">批发零售</p>
+                  <p @click="click1(2,'文体教育')">文体教育</p>
+                  <p @click="click1(2,'生产制造')">生产制造</p>
+                  <p @click="click1(2,'交通运输')">交通运输</p>
+                  <p @click="click1(2,'文化传媒')">文化传媒</p>
+                  <p @click="click1(2,'能源环保')">能源环保</p>
+                  <p @click="click1(2,'农／林／牧／渔业')">农／林／牧／渔业</p>
+                  <p @click="click1(2,'无')">无</p>
+              </div>         
           </div>
-          <div v-show="show2" style="top: 99.5%;" class="drop">
-              <p @click="click1(2,'国家机关/事业单位')">国家机关/事业单位</p>
-              <p @click="click1(2,'金融业')">金融业</p>
-              <p @click="click1(2,'建筑业')">建筑业</p>
-              <p @click="click1(2,'服务业')">服务业</p>
-              <p @click="click1(2,'批发零售')">批发零售</p>
-              <p @click="click1(2,'文体教育')">文体教育</p>
-              <p @click="click1(2,'生产制造')">生产制造</p>
-              <p @click="click1(2,'交通运输')">交通运输</p>
-              <p @click="click1(2,'文化传媒')">文化传媒</p>
-              <p @click="click1(2,'能源环保')">能源环保</p>
-              <p @click="click1(2,'农／林／牧／渔业')">农／林／牧／渔业</p>
-              <p @click="click1(2,'无')">无</p>
-          </div>
+          
           <div :class="{black:!show13,shadow:show3}" @click="choose3" class="text select" placeholder="">
               {{duty}}
               <span v-show="show13" class="choose">{{pleasechoose}}</span>
+              <div v-show="show3" class="drop">
+                    <p @click="click1(3,'企业所有者')">企业所有者</p>
+                    <p @click="click1(3,'高管')">高管</p>
+                    <p @click="click1(3,'经理')">经理</p>
+                    <p @click="click1(3,'主管')">主管</p>
+                    <p @click="click1(3,'一般职员')">一般职员</p>
+                    <p @click="click1(3,'自由职业')">自由职业</p>
+                    <p @click="click1(3,'学生')">学生</p>
+            </div>
           </div>
-          <div v-show="show3" style="top: 107%;" class="drop">
-              <p @click="click1(3,'企业所有者')">企业所有者</p>
-              <p @click="click1(3,'高管')">高管</p>
-              <p @click="click1(3,'经理')">经理</p>
-              <p @click="click1(3,'主管')">主管</p>
-              <p @click="click1(3,'一般职员')">一般职员</p>
-              <p @click="click1(3,'自由职业')">自由职业</p>
-              <p @click="click1(3,'学生')">学生</p>
-          </div>
+          
           <input v-model="address" class="text" placeholder="通讯地址" type="select">
           <div @click="submit" class="submit">提交资料</div>
           <p class="into">我们还将对申请用户进行抽奖活动，请务必确保以上资料正确以便邮寄奖品。</p>
@@ -160,7 +162,7 @@ export default {
             career:"职业",
             duty:"职务",
             pleasechoose:"请选择",
-            iserr:false,
+            iserr:true,
             errmessage:''
         }
     },
@@ -288,6 +290,7 @@ export default {
     outline: none;
 }
 .select{
+    position:relative;
     font-size: 14px;
     border-radius: 3px;    
     box-shadow:1px solid #008aff;    
@@ -386,6 +389,9 @@ export default {
     line-height: 32px;
 }
 .drop{
+    position:absolute;
+    left:0;
+    top:41px;
     z-index: 10;
     position: absolute;
     border: 1px solid #dddddf;
@@ -412,7 +418,7 @@ export default {
     box-shadow: 0px 0px 10px #008aff;    
 }
 .err{
-    left: 13.5%;
+    left: 22.5%;
     position: absolute;
     background: black;
     opacity: 0.8;
