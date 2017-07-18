@@ -1,11 +1,11 @@
 <template>
 <div>
-<transition name="fade">
-<div v-show="iserr"  class='err'>{{errmessage}}</div>
-</transition>
 <div class="s_banner"></div>
   <div class="con">
       <div class="sqhy">
+          <transition name="fade">
+              <div v-show="iserr"  class='err'>{{errmessage}}</div>
+          </transition>
           <p>申请会员</p>
           <div class="clear2"></div>
           <input v-model="name" class="text" placeholder="姓名" type="text"><span class="must">*</span>
@@ -162,7 +162,7 @@ export default {
             career:"职业",
             duty:"职务",
             pleasechoose:"请选择",
-            iserr:true,
+            iserr:false,
             errmessage:''
         }
     },
@@ -230,6 +230,8 @@ export default {
                         that.err(res.data.message);
                         that.iserr = true;
                         return false;
+                    }else{
+                        err("提交成功")
                     }
                 })
         }
@@ -256,6 +258,7 @@ export default {
     height: 72px;
 }
 .sqhy{
+    position: relative;
     padding: 0;
     width: 366px;
     display: inline-block;
@@ -418,7 +421,8 @@ export default {
     box-shadow: 0px 0px 10px #008aff;    
 }
 .err{
-    left: 22.5%;
+    z-index: 100;
+    left: 34px;
     position: absolute;
     background: black;
     opacity: 0.8;
@@ -428,7 +432,7 @@ export default {
     display: block;
     height: 50px;
     width: 220px;
-    top: 81%;
+    top: 270px;
     font-size: 16px;
     text-align: center;
     line-height: 49px;
