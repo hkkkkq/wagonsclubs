@@ -1,7 +1,7 @@
 <template>
 <div>
 <transition name="fade">
-<div v-show="iserr" class='err'>{{errmessage}}</div>
+<div v-show="iserr"  class='err'>{{errmessage}}</div>
 </transition>
 <div class="s_banner"></div>
   <div class="con">
@@ -15,7 +15,7 @@
               {{maritalStatus}}
               <span v-show="show11" class="choose">{{pleasechoose}}</span>              
           </div>
-          <div v-show="show1" style="top: 668px;" class="drop">
+          <div v-show="show1" style="top: 69%;" class="drop">
               <p @click="click1(1,'未婚',0)">未婚</p>
               <p @click="click1(1,'已婚',1)">已婚</p>
               <p @click="click1(1,'离异',2)">离异</p>
@@ -24,7 +24,7 @@
               {{career}}
               <span v-show="show12" class="choose">{{pleasechoose}}</span>              
           </div>
-          <div v-show="show2" style="top: 724px;" class="drop">
+          <div v-show="show2" style="top: 74.8%;" class="drop">
               <p @click="click1(2,'国家机关/事业单位')">国家机关/事业单位</p>
               <p @click="click1(2,'金融业')">金融业</p>
               <p @click="click1(2,'建筑业')">建筑业</p>
@@ -42,7 +42,7 @@
               {{duty}}
               <span v-show="show13" class="choose">{{pleasechoose}}</span>
           </div>
-          <div v-show="show3" style="top: 780px;" class="drop">
+          <div v-show="show3" style="top: 80.5%;" class="drop">
               <p @click="click1(3,'企业所有者')">企业所有者</p>
               <p @click="click1(3,'高管')">高管</p>
               <p @click="click1(3,'经理')">经理</p>
@@ -277,6 +277,8 @@ export default {
     background: url("../../assets/car_member_banner.png") center center no-repeat;
 }
 .text{
+    text-indent: 12px;
+    font-size: 14px;
     border-radius: 3px;
     margin-bottom: 16px;
     width: 313px;
@@ -286,6 +288,7 @@ export default {
     outline: none;
 }
 .select{
+    font-size: 14px;
     border-radius: 3px;    
     box-shadow:1px solid #008aff;    
     line-height: 40px;
@@ -293,6 +296,7 @@ export default {
     cursor: pointer;
 }
 .choose{
+    text-indent: 0;
     display: inline-block;
     width: 60px;
     background: url("../../assets/car_member_arrow.png") center right no-repeat;
@@ -313,15 +317,16 @@ export default {
     height: 50px;
     vertical-align: middle;
     line-height: 52px;
+    border-radius: 3px;
 }
 .into{
     margin-top: 28px;
     font-size: 14px!important;
-    color: #676767;
+    color: #676767!important;
     width: 313px;
 }
 .jihuaname{
-    margin-left: 70px;
+    margin-left: 80px;
     font-size: 18px;
     color: #06060b
 }
@@ -359,6 +364,7 @@ export default {
     padding-top: 1px;
 }
 .line .right{
+    font-size: 14px;
     line-height: 19px;
     display: inline-block;
     margin-left: 12px;
@@ -406,7 +412,7 @@ export default {
     box-shadow: 0px 0px 10px #008aff;    
 }
 .err{
-    left: 381px;
+    left: 22.5%;
     position: absolute;
     background: black;
     opacity: 0.8;
@@ -416,7 +422,7 @@ export default {
     display: block;
     height: 50px;
     width: 220px;
-    top: 588px;
+    top: 62%;
     font-size: 16px;
     text-align: center;
     line-height: 49px;

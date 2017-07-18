@@ -119,7 +119,7 @@
     letter-spacing:1px;
     color: #797979;
     float: right;
-    line-height: 43px;
+    line-height: 30px;
     text-indent: 2em;
     background: url('../../assets/car_tel.png') 0 5px no-repeat;
     cursor: text;
