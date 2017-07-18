@@ -231,7 +231,7 @@ export default {
                         that.iserr = true;
                         return false;
                     }else{
-                        err("提交成功")
+                        that.err("提交成功")
                     }
                 })
         }
