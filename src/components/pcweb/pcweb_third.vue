@@ -15,7 +15,7 @@
               {{maritalStatus}}
               <span v-show="show11" class="choose">{{pleasechoose}}</span>              
           </div>
-          <div v-show="show1" style="top: 69%;" class="drop">
+          <div v-show="show1" style="top: 91.2%;" class="drop">
               <p @click="click1(1,'未婚',0)">未婚</p>
               <p @click="click1(1,'已婚',1)">已婚</p>
               <p @click="click1(1,'离异',2)">离异</p>
@@ -24,7 +24,7 @@
               {{career}}
               <span v-show="show12" class="choose">{{pleasechoose}}</span>              
           </div>
-          <div v-show="show2" style="top: 74.8%;" class="drop">
+          <div v-show="show2" style="top: 107%;" class="drop">
               <p @click="click1(2,'国家机关/事业单位')">国家机关/事业单位</p>
               <p @click="click1(2,'金融业')">金融业</p>
               <p @click="click1(2,'建筑业')">建筑业</p>
@@ -412,7 +412,7 @@ export default {
     box-shadow: 0px 0px 10px #008aff;    
 }
 .err{
-    left: 22.5%;
+    left: 13.5%;
     position: absolute;
     background: black;
     opacity: 0.8;
@@ -422,7 +422,7 @@ export default {
     display: block;
     height: 50px;
     width: 220px;
-    top: 62%;
+    top: 81%;
     font-size: 16px;
     text-align: center;
     line-height: 49px;
