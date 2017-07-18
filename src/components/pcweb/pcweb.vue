@@ -1,13 +1,14 @@
 <template>
   <div class="pcweb">
     <div class="header">
-      <router-link v-on:click.native="changecolor1" class="router-link" v-bind:class="{'active':homeactive}" to="/first">
+      <router-link v-on:click.native="changecolor1" class="router-link" v-bind:class="{'active':homeactive1}" to="/first">
         <i>首页</i>
-        <b>HOME</b>
       </router-link>
-      <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':!homeactive}" to="/second">
+      <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':homeactive2}" to="/second">
         <i>用车须知</i>
-        <b style="margin-left: 1em">GUIDE</b>
+      </router-link>
+      <router-link v-on:click.native="changecolor3" class="router-link" v-bind:class="{'active':homeactive3}" to="/third">
+        <i>会员说明</i>
       </router-link>
       <span class="phone">4008-625-700</span>
     </div>
@@ -27,16 +28,27 @@
   export default {
       data(){
           return{
-              homeactive:true
+              homeactive1:true,
+              homeactive2:false,
+              homeactive3:false
           }
           },
     methods:{
       changecolor1:function(){
-          this.homeactive = true
+          this.homeactive1 = true
+          this.homeactive2 = false
+          this.homeactive3 = false
       },
       changecolor2:function(){
-          this.homeactive = false;
+          this.homeactive1 = false
+          this.homeactive2 = true
+          this.homeactive3 = false
       },
+      changecolor3:function(){
+          this.homeactive1 = false
+          this.homeactive2 = false
+          this.homeactive3 = true
+      }
     }
 
 
@@ -53,11 +65,12 @@
   .header{
     width: 1000px;
     height: 100px;
-    background: url("../../assets/carRental_logo.png") no-repeat center 34px;
+    background: url("../../assets/carRental_logo.png") no-repeat left 34px;
     padding-top: 49px;
     background-size: 248px 48px;
     box-sizing: border-box;
     margin: auto;
+    padding-left: 348px;
   }
   .footer{
     width: 100%;
@@ -87,6 +100,7 @@
     margin: 0 auto;
   }
   .router-link{
+    line-height: 33px;
     display: inline-block;
     width: 110px;
     text-decoration: none;

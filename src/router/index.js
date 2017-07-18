@@ -6,6 +6,7 @@ const VueAwesomeSwiper = require('vue-awesome-swiper');
 const pcweb = resolve => require(['../components/pcweb/pcweb.vue'], resolve);
 const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], resolve);
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
+const pcweb_third = resolve => require(['../components/pcweb/pcweb_third.vue'], resolve);
 const notfound = resolve => require(['../components/404.vue'], resolve);
 
 
@@ -44,7 +45,8 @@ export default new Router({
             redirect: '/first',
             children: [
                 { path: 'first', component: pcweb_first },
-                { path: 'second', component: pcweb_second }
+                { path: 'second', component: pcweb_second },
+                { path: 'third', component: pcweb_third }
             ]
         },
 
