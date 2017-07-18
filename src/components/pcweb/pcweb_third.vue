@@ -24,7 +24,7 @@
               {{career}}
               <span v-show="show12" class="choose">{{pleasechoose}}</span>              
           </div>
-          <div v-show="show2" style="top: 107%;" class="drop">
+          <div v-show="show2" style="top: 99.5%;" class="drop">
               <p @click="click1(2,'国家机关/事业单位')">国家机关/事业单位</p>
               <p @click="click1(2,'金融业')">金融业</p>
               <p @click="click1(2,'建筑业')">建筑业</p>
@@ -42,7 +42,7 @@
               {{duty}}
               <span v-show="show13" class="choose">{{pleasechoose}}</span>
           </div>
-          <div v-show="show3" style="top: 80.5%;" class="drop">
+          <div v-show="show3" style="top: 107%;" class="drop">
               <p @click="click1(3,'企业所有者')">企业所有者</p>
               <p @click="click1(3,'高管')">高管</p>
               <p @click="click1(3,'经理')">经理</p>
