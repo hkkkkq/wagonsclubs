@@ -6,6 +6,7 @@ const VueAwesomeSwiper = require('vue-awesome-swiper');
 const pcweb = resolve => require(['../components/pcweb/pcweb.vue'], resolve);
 const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], resolve);
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
+const notfound = resolve => require(['../components/404.vue'], resolve);
 
 
 //for spider
@@ -15,6 +16,9 @@ const news3 = resolve => require(['../components/spider/news3.vue'], resolve);
 const news4 = resolve => require(['../components/spider/news4.vue'], resolve);
 const news5 = resolve => require(['../components/spider/news5.vue'], resolve);
 const news6 = resolve => require(['../components/spider/news6.vue'], resolve);
+const news7 = resolve => require(['../components/spider/news7.vue'], resolve);
+const news8 = resolve => require(['../components/spider/news8.vue'], resolve);
+const news9 = resolve => require(['../components/spider/news9.vue'], resolve);
 
 
 
@@ -24,7 +28,8 @@ Vue.use(Router);
 export default new Router({
     mode: 'history',
     routes: [
-        //重写首页
+
+        //重写pc首页
         {
             path: '/',
             beforeEnter: (to, from, next) => {
@@ -50,9 +55,15 @@ export default new Router({
         { path: '/supercarnews/4', component: news4 },
         { path: '/supercarnews/5', component: news5 },
         { path: '/supercarnews/6', component: news6 },
+        { path: '/supercarnews/7', component: news7 },
+        { path: '/supercarnews/8', component: news8 },
+        { path: '/supercarnews/9', component: news9 },
 
-
-
+        //404
+        {
+            path: '/*',
+            component: notfound
+        },
 
 
     ]
