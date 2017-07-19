@@ -8,6 +8,10 @@ const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], 
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
 const notfound = resolve => require(['../components/404.vue'], resolve);
 
+//mobile
+const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
+
+
 
 //for spider
 const news1 = resolve => require(['../components/spider/news1.vue'], resolve);
