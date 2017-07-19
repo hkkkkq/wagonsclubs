@@ -40,14 +40,14 @@ export default new Router({
         //重写pc首页
         {
             path: '/',
-            beforeEnter: (to, from, next) => {
-                // console.log(navigator.userAgent)
-                if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-                    window.location.href = 'https://www.huoqiu.cn/car/index'
-                } else {
-                    next();
-                }
-            },
+            // beforeEnter: (to, from, next) => {
+            //     // console.log(navigator.userAgent)
+            //     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            //         window.location.href = 'https://www.huoqiu.cn/car/index'
+            //     } else {
+            //         next();
+            //     }
+            // },
             component: pcweb,
             redirect: '/first',
             children: [
@@ -57,6 +57,11 @@ export default new Router({
             ]
         },
 
+        //重写移动端
+        {
+            path: '/mobile',
+            component: mobile
+        },
         //for spider
         { path: '/supercarnews/1', component: news1 },
         { path: '/supercarnews/2', component: news2 },
