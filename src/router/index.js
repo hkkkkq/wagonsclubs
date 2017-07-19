@@ -6,6 +6,7 @@ const VueAwesomeSwiper = require('vue-awesome-swiper');
 const pcweb = resolve => require(['../components/pcweb/pcweb.vue'], resolve);
 const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], resolve);
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
+const pcweb_third = resolve => require(['../components/pcweb/pcweb_third.vue'], resolve);
 const notfound = resolve => require(['../components/404.vue'], resolve);
 
 //mobile
@@ -23,6 +24,9 @@ const news6 = resolve => require(['../components/spider/news6.vue'], resolve);
 const news7 = resolve => require(['../components/spider/news7.vue'], resolve);
 const news8 = resolve => require(['../components/spider/news8.vue'], resolve);
 const news9 = resolve => require(['../components/spider/news9.vue'], resolve);
+const news10 = resolve => require(['../components/spider/news10.vue'], resolve);
+const news11 = resolve => require(['../components/spider/news11.vue'], resolve);
+const news12 = resolve => require(['../components/spider/news12.vue'], resolve);
 
 
 
@@ -48,7 +52,8 @@ export default new Router({
             redirect: '/first',
             children: [
                 { path: 'first', component: pcweb_first },
-                { path: 'second', component: pcweb_second }
+                { path: 'second', component: pcweb_second },
+                { path: 'third', component: pcweb_third }
             ]
         },
 
@@ -62,6 +67,9 @@ export default new Router({
         { path: '/supercarnews/7', component: news7 },
         { path: '/supercarnews/8', component: news8 },
         { path: '/supercarnews/9', component: news9 },
+        { path: '/supercarnews/10', component: news10 },
+        { path: '/supercarnews/11', component: news11 },
+        { path: '/supercarnews/12', component: news12 },
 
         //404
         {

@@ -1,6 +1,6 @@
 <template>
   <div>
-			
+
 
 			<table width="100%">
 
@@ -8,7 +8,7 @@
 
 <div style=" float:right; width:305px; height:255px;"></div>
 
-<p>    [ wagons光速超跑广州行情]  近日，编者从广东中奥汽车销售服务有限公司获悉，新近上市的奥迪A5 Sportback有部分车型到店，并且有人已经购买并提走了现车。感兴趣的朋友可以致电经销商了解现有的车型和颜色。</p><p align="center"></p><div align="center"></div><table style="TEXT-ALIGN: center; BORDER-COLLAPSE: collapse; FONT-SIZE: 13px" id="_DevelopTable" border="1" cellspacing="0" bordercolor="#000000" cellpadding="0" width="500" align="center"><tbody><tr height="35"><td style="FONT-WEIGHT: bold" bgcolor="#d6ebff" width="500" colspan="4" isshow="false">奥迪A5车型最新价格变化报价</td></tr><tr height="35"><td style="FONT-WEIGHT: bold" width="124" isshow="false">车型</td><td style="FONT-WEIGHT: bold" width="124" isshow="false">指导价<br>(万元)</td><td style="FONT-WEIGHT: bold" width="124" isshow="false">现价<br>(万元)</td><td style="FONT-WEIGHT: bold" width="124" isshow="false">现车情况</td></tr><tr height="35"><td width="124" isshow="false">2.0T Sportback <br>舒适型</td><td width="124" isshow="false">49.39</td><td width="124" isshow="false">49.39</td><td width="124" isshow="false">有现车</td></tr><tr><td height="35" width="124" isshow="false">2.0T Coupe</td><td height="35" width="124" isshow="false">52.50</td><td height="35" width="124" isshow="false">52.50</td><td height="35" width="124" isshow="false">无现车</td></tr><tr><td height="35" width="124" isshow="false">2.0T Sportback <br>技术型</td><td height="35" width="124" isshow="false">52.80</td><td height="35" width="124" isshow="false">52.80</td><td height="35" width="124" isshow="false">有现车</td></tr><tr><td height="35" width="124" isshow="false">2.0T Sportback <br>豪华型</td><td height="35" width="124" isshow="false">57.80</td><td height="35" width="124" isshow="false">57.80</td><td height="35" width="124" isshow="false">有现车</td></tr><tr><td height="35" width="124" isshow="false">2.0T Cabriolet</td><td height="35" width="124" isshow="false">59.80</td><td height="35" width="124" isshow="false">59.80</td><td height="35" width="124" isshow="false">有现车</td></tr><tr><td height="35" width="124" isshow="false">3.0T S5 Sportback</td><td height="35" width="124" isshow="false">71.80</td><td height="35" width="124" isshow="false">71.80</td><td height="35" width="124" isshow="false">无现车</td></tr><tr><td height="35" width="124" isshow="false">3.0T S5 Cabriolet</td><td height="35" width="124" isshow="false">84.80</td><td height="35" width="124" isshow="false">84.80</td><td height="35" width="124" isshow="false">无现车</td></tr><tr><td height="35" width="124" isshow="false">3.2 coupe quattro</td><td height="35" width="124" isshow="false">67.00</td><td height="35" width="124" isshow="false">67.00</td><td height="35" width="124" isshow="false">无现车</td></tr><tr><td height="35" width="124" isshow="false">4.2 S5 Coupe</td><td height="35" width="124" isshow="false">99.80</td><td height="35" width="124" isshow="false">99.80</td><td height="35" width="124" isshow="false">无现车</td></tr><tr height="35"><td width="500" colspan="4" isshow="false">感兴趣的朋友可到店了解</td></tr><tr height="35"><td style="FONT-WEIGHT: bold" id="DevelopTableParentYear" width="500" colspan="4" isshow="false">2010年06月09日行情 车辆价格随时变动，敬请关注当地市场</td>
+<p>    [ wagons光速超跑南京行情]  从江苏华兴深蓝汽车有限公司了解到，近期奥迪A5敞篷版和四门版白色款展车到店，对该车感兴趣的朋友可以到店预定，提车周期3个月，订金为5万元。</p><p align="center"></p><div align="center"></div><table style="TEXT-ALIGN: center; BORDER-COLLAPSE: collapse; FONT-SIZE: 13px" id="_DevelopTable" border="1" cellspacing="0" bordercolor="#000000" cellpadding="0" width="500" align="center"><tbody><tr height="35"><td style="FONT-WEIGHT: bold" bgcolor="#d6ebff" width="500" colspan="5" isshow="false">奥迪A5最新价格变化报价</td></tr><tr height="35"><td style="FONT-WEIGHT: bold" width="99" isshow="false">车型</td><td style="FONT-WEIGHT: bold" width="99" isshow="false">指导价<br>(万元)</td><td style="FONT-WEIGHT: bold" width="99" isshow="false">现价<br>(万元)</td><td style="FONT-WEIGHT: bold" width="99" isshow="false">优惠金额<br>(万元)</td><td style="FONT-WEIGHT: bold" width="99" isshow="false">现车情况</td></tr><tr height="35"><td width="99" isshow="false">2010款 2.0TSI Sportback<br>舒适型</td><td width="99" isshow="false">49.39 </td><td width="99" isshow="false">49.39 </td><td width="99" isshow="false">无现金优惠</td><td width="99" isshow="false">有现车</td></tr><tr><td height="35" width="99" isshow="false">2010款 2.0TSI Coupe</td><td height="35" width="99" isshow="false">52.50 </td><td height="35" width="99" isshow="false">52.50 </td><td height="35" width="99" isshow="false">无现金优惠</td><td height="35" width="99" isshow="false">有现车</td></tr><tr><td height="35" width="99" isshow="false">2010款 2.0TSI <br>Sportback <br>技术型</td><td height="35" width="99" isshow="false">52.80 </td><td height="35" width="99" isshow="false">52.80 </td><td height="35" width="99" isshow="false">无现金优惠</td><td height="35" width="99" isshow="false">有现车</td></tr><tr><td height="35" width="99" isshow="false">2010款 2.0TSI Coupe 风尚版</td><td height="35" width="99" isshow="false">56.80 </td><td height="35" width="99" isshow="false">56.80 </td><td height="35" width="99" isshow="false">无现金优惠</td><td height="35" width="99" isshow="false">有现车</td></tr><tr><td height="35" width="99" isshow="false">2010款 2.0TSI <br>Sportback <br>豪华型</td><td height="35" width="99" isshow="false">57.80 </td><td height="35" width="99" isshow="false">57.80 </td><td height="35" width="99" isshow="false">无现金优惠</td><td height="35" width="99" isshow="false">有现车</td></tr><tr><td height="35" width="99" isshow="false">2010款 2.0TSI Cabriolet</td><td height="35" width="99" isshow="false">59.80 </td><td height="35" width="99" isshow="false">59.80 </td><td height="35" width="99" isshow="false">无现金优惠</td><td height="35" width="99" isshow="false">有现车</td></tr><tr><td height="35" width="99" isshow="false">2010款 3.0T S5 Sportback</td><td height="35" width="99" isshow="false">71.80 </td><td height="35" width="99" isshow="false">71.80 </td><td height="35" width="99" isshow="false">无现金优惠</td><td height="35" width="99" isshow="false">有现车</td></tr><tr><td height="35" width="99" isshow="false">2010款 3.0T S5 Cabriolet</td><td height="35" width="99" isshow="false">84.80 </td>
 
  
 
@@ -33,7 +33,7 @@
 
 			<div class="newdigg" id="newdigg">
 
-				<div class="diggbox digg_good" onmousemove="this.style.backgroundPosition='left bottom';" onmouseout="this.style.backgroundPosition='left top';" onclick="javascript:postDigg('good',7241)">
+				<div class="diggbox digg_good" onmousemove="this.style.backgroundPosition='left bottom';" onmouseout="this.style.backgroundPosition='left top';" onclick="javascript:postDigg('good',7273)">
 
 					<div class="digg_act">顶一下</div>
 
@@ -49,7 +49,7 @@
 
 				</div>
 
-				<div class="diggbox digg_bad" onmousemove="this.style.backgroundPosition='right bottom';" onmouseout="this.style.backgroundPosition='right top';" onclick="javascript:postDigg('bad',7241)">
+				<div class="diggbox digg_bad" onmousemove="this.style.backgroundPosition='right bottom';" onmouseout="this.style.backgroundPosition='right top';" onclick="javascript:postDigg('bad',7273)">
 
 					<div class="digg_act">踩一下</div>
 
@@ -83,6 +83,7 @@
 				<div class="context">
 
 					<ul>
+
 
 					</ul>
 
@@ -129,7 +130,7 @@
 
           <input type="hidden" name="comtype" value="comments">
 
-          <input type="hidden" name="aid" value="7241">
+          <input type="hidden" name="aid" value="7273">
 
           <input type="hidden" name="fid" id="feedbackfid" value="0">
 
@@ -260,15 +261,6 @@
 -->
 
 
-
-
-
-<!-- //左边内容结束 -->
-
-
-
-<!-- //右边内容开始 -->
-
 <div class="pright">
 
  		
@@ -330,8 +322,6 @@
 
 					<ul class="c1 ico2">
 
-
-
 					</ul>
 
 				</dd>
@@ -354,10 +344,6 @@
 
     <div class="footer_body">
 
-	<p class="powered">    
-
-		Powered by  © 2004-2010  Inc.<br></p><div class="copyright">Copyright © 2002-2010 Ipaoche.com. 爱跑车网 版权所有</div><p></p>        
-
 <!-- /powered -->
 
    </div>
@@ -365,14 +351,6 @@
    <div class="footer_right"></div>
 
 </div>
-
-
-
-<!-- /footer -->
-
-
-
-
 
 
 
