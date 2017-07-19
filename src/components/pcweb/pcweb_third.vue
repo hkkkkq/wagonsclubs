@@ -395,6 +395,7 @@ export default {
     border: 1px solid #dddddf;
 }
 .drop p{
+    text-indent: 10px;
     cursor: pointer;
     width: 311px;
     font-size: 14px;
