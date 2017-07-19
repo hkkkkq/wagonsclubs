@@ -22,7 +22,6 @@
 
 				<ul class="pagelist">
 
-          <li><a>共3页: </a></li><li><a href="#">上一页</a></li><li class="thisclass"><a href="#">1</a></li><li><a href="7195_2.html">2</a></li><li><a href="7195_3.html">3</a></li><li><a href="7195_2.html">下一页</a></li>
 
 				</ul>
 
@@ -85,9 +84,6 @@
 
 					<ul>
 
-						<li>上一篇：<a href="http://www.ipaoche.com/hangqing/2010/0725/7194.html">速迈让1000元 预定后提车周期需要1个月</a> </li>
-
-						<li>下一篇：<a href="http://www.ipaoche.com/hangqing/2010/0725/7196.html">进口奔驰SLK广州贷款购车享受O利率优惠</a> </li>
 
 					</ul>
 
@@ -97,29 +93,11 @@
 
 					<ul>
 
-						<li id="act-fav"><a href="http://www.ipaoche.com/plus/stow.php?aid=7195" target="_blank">收藏</a></li>
-
-						<li id="act-err"><a href="http://www.ipaoche.com/plus/erraddsave.php?aid=7195&title=奥迪A5 Sportback五门轿跑展车已到店" target="_blank">挑错</a></li>
-
-						<li id="act-pus"><a href="http://www.ipaoche.com/plus/recommend.php?aid=7195" target="_blank">推荐</a></li>
-
-						<li id="act-pnt"><a href="#" onclick="window.print();">打印</a></li>
-
 					</ul>
 
 				</div><!-- /actbox -->
 
 			</div><!-- /handle -->
-
-		<!-- /viewbox -->
-
-
-
-<!-- //AJAX评论区 -->
-
-<!-- //主模板必须要引入http://www.ipaoche.com/include/dedeajax2.js -->
-
-<a name="postform"></a>
 
 <div class="mt1">
 
@@ -243,7 +221,6 @@
 
 <!-- //评论内容区 -->
 
-	<a name="commettop"></a>
 
 	<div class="mt1">
 
@@ -253,7 +230,6 @@
 
 					<strong>最新评论</strong>
 
-					<span class="more"><a href="http://www.ipaoche.com/plus/feedback.php?aid=7195">进入详细评论页>></a></span>
 
 				</dt>
 
@@ -315,9 +291,6 @@
 
 					<ul class="d4">
 
-          <li><a href="http://www.ipaoche.com/hangqing/2010/0724/3957.html">奥迪兄弟A7 A1齐上阵 对抗奔驰CLS和</a>
-
-            </li>
 
 
 					</ul>
@@ -340,16 +313,6 @@
 
 					<ul class="c1 ico2">
 
-             <li><a href="http://www.ipaoche.com/hangqing/2010/0725/5777.html">奔驰SLK200K西安有一台现车</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/5583.html">奔驰SLK200西安有一台现车</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/5782.html">上海有福特野马54.8万元现</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/6411.html">凯迪拉克XLR盈凯到店实拍</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/5728.html">[广州车展]南汽名爵MG TF现</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/5648.html">南京保时捷4S店</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/5724.html">奥迪S5、R8亮相广州车展</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/6276.html">奔驰多款新车成都上市 售</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0724/3957.html">奥迪兄弟A7 A1齐上阵 对抗</a></li>
-<li><a href="http://www.ipaoche.com/hangqing/2010/0725/5640.html">酷派最高优惠2.3万元</a></li>
 
 
 					</ul>
@@ -376,7 +339,7 @@
 
 	<p class="powered">    
 
-		Powered by <a href="/" title="跑车网" target="_blank"><strong>爱跑车网</strong></a> © 2004-2010 <a href="/" target="_blank">跑车</a> Inc.<br></p><div class="copyright">Copyright © 2002-2010 Ipaoche.com. 爱跑车网 版权所有</div><p></p>        
+		Powered by Inc.<br></p><div class="copyright">Copyright © 2002-2010 Ipaoche.com. 爱跑车网 版权所有</div><p></p>        
 
 <!-- /powered -->
 
