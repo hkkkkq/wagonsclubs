@@ -26,17 +26,17 @@
           </div>
           <div v-show="show2" style="top:404px" class="drop">
                   <p @click="click1(2,'国家机关/事业单位')">国家机关/事业单位</p>
+                  <p @click="click1(2,'计算机／互联网')">计算机／互联网</p>
                   <p @click="click1(2,'金融业')">金融业</p>
                   <p @click="click1(2,'建筑业')">建筑业</p>
-                  <p @click="click1(2,'服务业')">服务业</p>
                   <p @click="click1(2,'批发零售')">批发零售</p>
                   <p @click="click1(2,'文体教育')">文体教育</p>
                   <p @click="click1(2,'生产制造')">生产制造</p>
                   <p @click="click1(2,'交通运输')">交通运输</p>
-                  <p @click="click1(2,'文化传媒')">文化传媒</p>
+                  <p @click="click1(2,'文化传媒')">文化娱乐</p>
                   <p @click="click1(2,'能源环保')">能源环保</p>
                   <p @click="click1(2,'农／林／牧／渔业')">农／林／牧／渔业</p>
-                  <p @click="click1(2,'无')">无</p>
+                  <p @click="click1(2,'其他')">其他</p>
               </div> 
           <div :class="{black:!show13,shadow:show3}" @click="choose3" class="text select" placeholder="">
               {{duty}}
@@ -50,6 +50,7 @@
                     <p @click="click1(3,'一般职员')">一般职员</p>
                     <p @click="click1(3,'自由职业')">自由职业</p>
                     <p @click="click1(3,'学生')">学生</p>
+                    <p @click="click1(3,'其他')">其他</p>
             </div>
           <input v-model="address" class="text" placeholder="通讯地址" type="select">
           <div @click="submit" class="submit">提交资料</div>
@@ -100,7 +101,7 @@
                   <p class='price'>358000元／年</p>
               </div>           
               <div class='clear1'></div>
-              <p class="line"><span class="left">1</span><span class="right">每月5天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下 月，本年度未使用完的天数可在下一年度继续使用</span></p>
+              <p class="line"><span class="left">1</span><span class="right">每月5天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span></p>
               <p class="line"><span class="left">2</span><span class="right">获俱乐部价值100万白金会员资格，享有白金会员所有权益</span></p>
               <p class="line"><span class="left">3</span><span class="right">至尊计划权益外用车，可享受白金会员折扣，即基础价6折</span></p>
               <p class="line"><span class="left">4</span><span class="right">长租折上折，周租白金价格9折，月租白金价格7折</span></p>
@@ -129,12 +130,13 @@
               <p class="tips1">备注</p>
               <div class="cars">
                   <p>乐潮计划支持车型:</p>
-                  兰博基尼 Gallardo 、阿斯顿马丁 V8 Vantage、法拉利 California、奥迪 R8 、奔驰 SLS AMG、奔驰 G55 AMG,、奔驰 AMG GT、玛莎拉蒂  GranCabrio 、玛莎拉蒂 GranTurismo、保时捷 911 、宝马 i8、宝马 640i、宝马 z4、科尔维特、科迈罗等
+                  兰博基尼 Gallardo 、阿斯顿马丁 V8 Vantage、法拉利 California、奥迪 R8 、奔驰 SLS AMG、奔驰 G55 AMG、奔驰 AMG GT、玛莎拉蒂  GranCabrio 、玛莎拉蒂 GranTurismo、保时捷 911 、宝马 i8、宝马 640i、宝马 z4、科尔维特、科迈罗等
               </div>
               <div class="cars">
                   <p>优享计划／至尊计划支持车型:</p>
                   除乐潮计划计划车型外，还包括兰博基尼LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 DB9、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦 570s、迈凯伦 720s、KTM X-BOW、摩根4-4等
               </div>
+              <p style="margin-top: 23px;" >乐潮计划/优享计划/至尊计划经典、稀有超跑车型持续增加中...</p>
               <div class="clear3"></div>
           </div>
       </div>
@@ -348,7 +350,7 @@ export default {
     color: red;
 }
 .jihua1{
-    margin-top: 72px;
+    margin-top: 52px;
 }
 .line{
     margin-top: 20px;
