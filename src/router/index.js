@@ -12,6 +12,7 @@ const notfound = resolve => require(['../components/404.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
+const memberitro = resolve => require(['../components/mobile/memberitro.vue'], resolve);
 
 
 
@@ -59,14 +60,9 @@ export default new Router({
         },
 
         //重写移动端
-        {
-            path: '/mobile',
-            component: mobile
-        },
-        {
-            path: '/mobile/join',
-            component: join
-        },
+        { path: '/mobile', component: mobile },
+        { path: '/mobile/join', component: join },
+        { path: '/mobile/memberitro', component: memberitro },
         //for spider
         { path: '/supercarnews/1', component: news1 },
         { path: '/supercarnews/2', component: news2 },

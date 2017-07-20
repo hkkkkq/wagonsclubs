@@ -156,7 +156,7 @@
             </div>
         </div>
         <div class="none_box"></div>
-        <div class="more">
+        <div @click="tomemberitro" class="more">
             查看更多会员说明<span></span>
         </div>
         <div class="none_box"></div>
@@ -193,6 +193,9 @@ export default {
         },
         close:function(){
             this.show1 = this.show2 = this.show3 = false
+        },
+        tomemberitro:function(){
+            this.$router.push('/mobile/memberitro')
         }
     }
 }
