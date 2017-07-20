@@ -19,15 +19,19 @@
             </div>
             <div class="process_frame">
                 <div class="clear"></div>
-                <span class="rad" :class="{'rad-s':s1}" style="margin-left: 0.5rem;">1</span>
+                <span class="rad" :class="{'rad-s':s1}" style="">1</span>
+                <span class="text" :class="{'text-s':s1}">加入WAGONS</span>
+                <i :class="{'line-s':s1}" class="line"></i>
+                <i :class="{'line-s':s2}" class="line"></i>
+                <span class="rad" :class="{'rad-s':s1}">2</span>
                 <span class="text" :class="{'text-s':s1}">选车</span>
                 <i :class="{'line-s':s1}" class="line"></i>
                 <i :class="{'line-s':s2}" class="line"></i>
-                <span class="rad" :class="{'rad-s':s2}">2</span>
+                <span class="rad" :class="{'rad-s':s2}">3</span>
                 <span class="text" :class="{'text-s':s2}">用车</span>                
                 <i :class="{'line-s':s2}" class="line"></i>
                 <i :class="{'line-s':s3}" class="line"></i>
-                <span class="rad" :class="{'rad-s':s3}">3</span>
+                <span class="rad" :class="{'rad-s':s3}">4</span>
                 <span class="text" :class="{'text-s':s3}">还车</span>  
                 <div class="clear2"></div>  
                 <p v-if="s1" class="tips">线上选车并拨打官方客服电话咨询预约，或直接到店选车</p>
@@ -35,7 +39,7 @@
                 <p v-else class="tips">到店还车，接收车辆检查及交通违规查询，退还相应费用</p>
             </div>
       </div>
-      <div class="member">
+      <!-- <div class="member">
             <div class="member_head">
                 <span class="headM_left"></span>
                 <p class="application_ch">会员申请方式</p>
@@ -45,7 +49,7 @@
             <p class="method_1"><i></i>&nbsp;&nbsp;方式一 缴纳会费</p>
             <p class="method_2"><i></i>&nbsp;&nbsp;方式二 选择合作伙伴投资产品：私募、公募</p>
             <div class="detial">查看详情</div>
-        </div>
+        </div> -->
         <div class="contact_info">
             <div class="contact_head">
                 <span class="headC_left"></span>
@@ -75,6 +79,7 @@ export default {
         }
     },
     mounted(){
+        return false;
         setInterval(()=>{
             if(this.s1 == true){
                 this.s1 = false
@@ -268,11 +273,12 @@ export default {
     font-size: 0.23rem;
 }
 .line{
-    margin-top: 0.24rem;
-    width: 0.5rem;
-    float: left;
+    margin-left: 0.21rem;
+    /* margin-top: 0.24rem; */
+    width: 2px;
+    /* float: left; */
     display: block;
-    height: 2px;
+    height: 0.3rem;
     /* background-color: #ffcd34; */
     background-color: #d7d7d7;
 }
@@ -280,10 +286,6 @@ export default {
     background-color: #ffcd34!important;     
 }
 .text{
-    margin-right: 0.1rem;
-    margin-left: 0.1rem;
-    line-height: 0.5rem;
-    float: left;
     font-size: 0.23rem;
 }
 .text-s{
@@ -342,7 +344,7 @@ export default {
     background-color: white;
     padding: 0 0.42rem 0.65rem;
     width: 6.66rem;
-    height: 3.08rem;
+    height: 6rem;
 }
 .rent_car {
     height: 0.26rem;
@@ -371,11 +373,10 @@ export default {
 .process_frame {
     position: relative;
     width: 6.66rem;
-    height: 2.82rem;
+    height: 5.57rem;
     border: 1px solid #dcdcdc;
 }
 .rad{
-    margin-left: 0.1rem;
     width: 0.5rem;
     height: 0.5rem;
     line-height: 0.5rem;
@@ -384,8 +385,8 @@ export default {
     background: #d7d7d7;
     color: #fff;
     font-size: 0.22rem;
-    /* display: block; */
-    float: left;
+     display: inline-block; 
+    /* float: left; */
 }
 .rad-s{
     background-color: #ffcd34;
