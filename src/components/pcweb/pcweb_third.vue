@@ -37,11 +37,7 @@
                   <p @click="click1(2,'能源环保')">能源环保</p>
                   <p @click="click1(2,'农／林／牧／渔业')">农／林／牧／渔业</p>
                   <p @click="click1(2,'其他')">其他</p>
-<<<<<<< HEAD
-              </div> 
-=======
               </div>
->>>>>>> 472e98c90d2241915488dd23a851daadd289d14e
           <div :class="{black:!show13,shadow:show3}" @click="choose3" class="text select" placeholder="">
               {{duty}}
               <span v-show="show13" class="choose">{{pleasechoose}}</span>
