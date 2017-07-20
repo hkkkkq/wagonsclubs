@@ -13,16 +13,16 @@
           <input v-model="idCard" class="text" placeholder="身份证号码" type="text"><span class="must">*</span>
           <div :class="{black:!show11,shadow:show1}" @click="choose1" class="text select" placeholder="">
               {{maritalStatus}}
-              <span v-show="show11" class="choose">{{pleasechoose}}</span> 
+              <span v-show="show11" class="choose">{{pleasechoose}}</span>
           </div>
           <div v-show="show1" style="top:349px" class="drop">
                 <p @click="click1(1,'未婚',0)">未婚</p>
                 <p @click="click1(1,'已婚',1)">已婚</p>
                 <p @click="click1(1,'离异',2)">离异</p>
-              </div>  
+              </div>
           <div :class="{black:!show12,shadow:show2}" @click="choose2" class="text select" placeholder="">
               {{career}}
-              <span v-show="show12" class="choose">{{pleasechoose}}</span>                   
+              <span v-show="show12" class="choose">{{pleasechoose}}</span>
           </div>
           <div v-show="show2" style="top:404px" class="drop">
                   <p @click="click1(2,'国家机关/事业单位')">国家机关/事业单位</p>
@@ -36,8 +36,8 @@
                   <p @click="click1(2,'文化传媒')">文化传媒</p>
                   <p @click="click1(2,'能源环保')">能源环保</p>
                   <p @click="click1(2,'农／林／牧／渔业')">农／林／牧／渔业</p>
-                  <p @click="click1(2,'无')">无</p>
-              </div> 
+                  <p @click="click1(2,'其他')">其他</p>
+              </div>
           <div :class="{black:!show13,shadow:show3}" @click="choose3" class="text select" placeholder="">
               {{duty}}
               <span v-show="show13" class="choose">{{pleasechoose}}</span>
@@ -50,6 +50,7 @@
                     <p @click="click1(3,'一般职员')">一般职员</p>
                     <p @click="click1(3,'自由职业')">自由职业</p>
                     <p @click="click1(3,'学生')">学生</p>
+                    <p @click="click1(3,'其他')">其他</p>
             </div>
           <input v-model="address" class="text" placeholder="通讯地址" type="select">
           <div @click="submit" class="submit">提交资料</div>
@@ -59,11 +60,11 @@
 
       <div class="jihua">
           <div class="jihua1">
-              <p class="jihuaname">乐潮计划</p>   
+              <p class="jihuaname">乐潮计划</p>
               <div class="jihuaname1">
-                  <p class='detail'>权益细则</p>           
+                  <p class='detail'>权益细则</p>
                   <p class='price'>98000元／年</p>
-              </div>           
+              </div>
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">每月3天超跑使用权，每天可在指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用（具体车型见备注）</span></p>
               <p class="line"><span class="left">2</span><span class="right">乐潮计划权益外用车，可享受金卡会员折扣，即基础价7折</span></p>
@@ -74,11 +75,11 @@
               <p class="line"><span class="left">7</span><span class="right">俱乐部组织的高端定制游等自费活动，享受9折优惠</span></p>
           </div>
           <div class="jihua1">
-              <p class="jihuaname">优享计划</p>   
+              <p class="jihuaname">优享计划</p>
               <div class="jihuaname1">
-                  <p class='detail'>权益细则</p>           
+                  <p class='detail'>权益细则</p>
                   <p class='price'>218000元／年</p>
-              </div>           
+              </div>
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">每月3天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span></p>
               <p class="line"><span class="left">2</span><span class="right">获俱乐部价值100万白金会员资格，享有白金会员所有权益</span></p>
@@ -94,11 +95,11 @@
               <p class="line"><span class="left">12</span><span class="right">俱乐部组织的高端定制游等自费活动，享受8折优惠</span></p>
           </div>
           <div class="jihua1">
-              <p class="jihuaname">至尊计划</p>   
+              <p class="jihuaname">至尊计划</p>
               <div class="jihuaname1">
-                  <p class='detail'>权益细则</p>           
+                  <p class='detail'>权益细则</p>
                   <p class='price'>358000元／年</p>
-              </div>           
+              </div>
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">每月5天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下 月，本年度未使用完的天数可在下一年度继续使用</span></p>
               <p class="line"><span class="left">2</span><span class="right">获俱乐部价值100万白金会员资格，享有白金会员所有权益</span></p>
@@ -115,9 +116,9 @@
               <p class="line"><span class="left">13</span><span class="right">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span></p>
           </div>
           <div class="jihua1">
-              <p class="jihuaname">散租</p>   
+              <p class="jihuaname">散租</p>
               <!-- <div class="jihuaname1">
-                  <p class='detail'>权益细则</p>           
+                  <p class='detail'>权益细则</p>
                   <p class='price'>98000元／年</p>
               </div>            -->
               <div class='clear1'></div>
@@ -177,13 +178,13 @@ export default {
         },
         choose2:function(){
             this.show1=false
-            this.show2==true?this.show2 = false:this.show2=true            
+            this.show2==true?this.show2 = false:this.show2=true
             this.show3=false
         },
         choose3:function(){
             this.show1=false
             this.show2=false
-            this.show3==true?this.show3 = false:this.show3=true            
+            this.show3==true?this.show3 = false:this.show3=true
         },
         click1:function(i,str,d){
             if(i == 1){
@@ -201,7 +202,7 @@ export default {
         },
         err:function(str){
             this.errmessage = str
-            
+
             setTimeout(()=>{this.iserr = false},1000);
         },
         submit:function(){
@@ -237,20 +238,20 @@ export default {
 }
 </script>
 <style scoped>
-::-moz-placeholder{color:#bebebe;}   
-::-webkit-input-placeholder{color:#bebebe;}   
-:-ms-input-placeholder{color:#bebebe;} 
+::-moz-placeholder{color:#bebebe;}
+::-webkit-input-placeholder{color:#bebebe;}
+:-ms-input-placeholder{color:#bebebe;}
 .con{
     width: 1000px;
     margin: auto;
 }
 .clear2{
     height: 52px;
-} 
+}
 .clear1{
     margin-left: 80px;
     height: 24px;
-    border-bottom: 1px solid #ddddde;    
+    border-bottom: 1px solid #ddddde;
 }
 .clear3{
     height: 72px;
@@ -265,7 +266,7 @@ export default {
 .jihua{
     margin: 0;
     width: 628px;
-    display: inline-block;    
+    display: inline-block;
     border-left: 1px solid #ddddde;
     vertical-align: top;
 }
@@ -293,8 +294,8 @@ export default {
 .select{
     position:relative;
     font-size: 14px;
-    border-radius: 3px;    
-    box-shadow:1px solid #008aff;    
+    border-radius: 3px;
+    box-shadow:1px solid #008aff;
     line-height: 40px;
     color: #bebebe;
     cursor: pointer;
@@ -379,7 +380,7 @@ export default {
     margin-top: 72px;
     margin-left: 80px;
     color: #676767;
-    font-size: 14px;    
+    font-size: 14px;
 }
 .tips1{
     border-bottom: 1px solid #dddddf;
@@ -414,7 +415,7 @@ export default {
     box-shadow: 0px 0px 10px #008aff;
 }
 .text:focus {
-    box-shadow: 0px 0px 10px #008aff;    
+    box-shadow: 0px 0px 10px #008aff;
 }
 .err{
     z-index: 100;
