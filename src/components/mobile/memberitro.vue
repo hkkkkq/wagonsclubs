@@ -4,27 +4,40 @@
         <a @click="goback" class="goback" id="goback"></a>
         <p>会员说明</p>    
         <div class="tab">
-            <span class="no1"><b class="active">会员权益</b></span>
-            <span class="no2"><b class="">如何加入</b></span>
+            <span @click="select(1)" class="no1"><b :class="{active:show1}">会员权益</b></span>
+            <span @click="select(2)" class="no2"><b :class="{active:show2}">如何加入</b></span>
             <i class="line"></i>
         </div>
         <div class="none_box"></div>
     </div>
     <div class="empty"></div>
+    <m-member v-if="show1"></m-member>
+    <m-howjoin v-else></m-howjoin>
 </div>
 </template>
 <script>
-require('./rem.js')(window,document)
+require('./rem.js')(window,document);
+import memberright from './memberright.vue'
+import howjoin from './howjoin.vue'
 export default {
     data(){
         return{
-
+            show1:true,
+            show2:false
         }
     },
     methods:{
         goback:function(){
             this.$router.go(-1);
         },
+        select:function(i){
+            if(i == 1){this.show1 = true;this.show2 = false}
+            if(i == 2){this.show2 = true;this.show1 = false}
+        }
+    },
+    components:{
+        'm-member':memberright,
+        'm-howjoin':howjoin
     }
 }
 </script>

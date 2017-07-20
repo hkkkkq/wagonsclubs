@@ -11,7 +11,7 @@ export default {
   
 }
 </script>
-<style>
+<style scoped>
 .head-1{
     position: relative;
     height: 1.25rem;
