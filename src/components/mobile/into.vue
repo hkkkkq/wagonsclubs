@@ -39,17 +39,6 @@
                 <p v-else class="tips">到店还车，接收车辆检查及交通违规查询，退还相应费用</p>
             </div>
       </div>
-      <!-- <div class="member">
-            <div class="member_head">
-                <span class="headM_left"></span>
-                <p class="application_ch">会员申请方式</p>
-                <span class="headM_right"></span>
-                <p class="application_en">APPLICATION</p>
-            </div>
-            <p class="method_1"><i></i>&nbsp;&nbsp;方式一 缴纳会费</p>
-            <p class="method_2"><i></i>&nbsp;&nbsp;方式二 选择合作伙伴投资产品：私募、公募</p>
-            <div class="detial">查看详情</div>
-        </div> -->
         <div class="contact_info">
             <div class="contact_head">
                 <span class="headC_left"></span>
