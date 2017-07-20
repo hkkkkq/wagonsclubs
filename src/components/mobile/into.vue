@@ -20,7 +20,7 @@
             <div class="process_frame">
                 <div class="q">
                 <div class="clear"></div>
-                <p class="join">如何加入</p>
+                <router-link to="/mobile/join" class="join">如何加入</router-link>
                 <span class="rad" :class="{'rad-s':s1}" style="">1</span>
                 <span class="text" :class="{'text-s':s1}">加入WAGONS</span>
                 <i :class="{'line-s':s1}" class="line"></i>
@@ -106,6 +106,7 @@ export default {
 </script>
 <style>
 .join {
+    text-decoration-line: none;
     position: absolute;
     top: 0.8rem;
     right: 0.3rem;

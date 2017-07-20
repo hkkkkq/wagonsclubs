@@ -11,6 +11,7 @@ const notfound = resolve => require(['../components/404.vue'], resolve);
 
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
+const join = resolve => require(['../components/mobile/join.vue'], resolve);
 
 
 
@@ -61,6 +62,10 @@ export default new Router({
         {
             path: '/mobile',
             component: mobile
+        },
+        {
+            path: '/mobile/join',
+            component: join
         },
         //for spider
         { path: '/supercarnews/1', component: news1 },
