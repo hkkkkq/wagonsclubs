@@ -33,7 +33,7 @@
                   <p @click="click1(2,'文体教育')">文体教育</p>
                   <p @click="click1(2,'生产制造')">生产制造</p>
                   <p @click="click1(2,'交通运输')">交通运输</p>
-                  <p @click="click1(2,'文化传媒')">文化娱乐</p>
+                  <p @click="click1(2,'文化娱乐')">文化娱乐</p>
                   <p @click="click1(2,'能源环保')">能源环保</p>
                   <p @click="click1(2,'农／林／牧／渔业')">农／林／牧／渔业</p>
                   <p @click="click1(2,'其他')">其他</p>
@@ -48,7 +48,7 @@
                     <p @click="click1(3,'经理')">经理</p>
                     <p @click="click1(3,'主管')">主管</p>
                     <p @click="click1(3,'一般职员')">一般职员</p>
-                    <p @click="click1(3,'自由职业')">自由职业</p>
+                    <p @click="click1(3,'自由职业者')">自由职业者</p>
                     <p @click="click1(3,'学生')">学生</p>
                     <p @click="click1(3,'其他')">其他</p>
             </div>
