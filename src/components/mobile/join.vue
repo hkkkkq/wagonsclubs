@@ -1,6 +1,5 @@
 <template>
   <div>
-      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
       <div class="head_xz">
             <a @click="goback" class="goback"></a>
             <p class="wagons_logo">如何加入WAGONS</p>
@@ -17,7 +16,7 @@
             </div>
             <div class="card_grade">
                 <h4>乐潮计划</h4>
-                <p>98000元／年<span class="support_car le">支持车型一览<img src="../../assets/gt.jpg" alt=""></span></p>
+                <p>98000元／年<span @click="showcars(1)" class="support_car le">支持车型一览<img src="../../assets/gt.jpg" alt=""></span></p>
                 <h6>权益细则:</h6>
                 <ul class="list">
                     <li>
@@ -46,7 +45,7 @@
 
             <div class="card_grade">
                 <h4>优享计划</h4>
-                <p>218000元／年<span class="support_car you">支持车型一览<img src="../../assets/gt.jpg" alt=""></span></p>
+                <p>218000元／年<span @click="showcars(2)" class="support_car you">支持车型一览<img src="../../assets/gt.jpg" alt=""></span></p>
                 <h6>权益细则:</h6>
                 <ul class="list">
                     <li>
@@ -90,7 +89,7 @@
 
             <div class="card_grade" style="border-bottom: none">
                 <h4>至尊计划</h4>
-                <p>358000元／年<span class="support_car zhi">支持车型一览<img src="../../assets/gt.jpg" alt=""></span></p>
+                <p>358000元／年<span @click="showcars(3)" class="support_car zhi">支持车型一览<img src="../../assets/gt.jpg" alt=""></span></p>
                 <h6>权益细则:</h6>
                 <ul class="list">
                     <li>
@@ -165,27 +164,66 @@
         <div class="apply">
             立即申请
         </div>
-
-
-
-
-
+        <div v-show="show1||show2||show3" class="mask youxiang">
+            <img v-if="show1" class="im1" src="../../assets/lechao.jpg">
+            <img v-else-if="show2" class="im1" src="../../assets/youxiang.jpg">
+            <img v-else class="im1" src="../../assets/zhizun.jpg">
+            <img @click="close" src="../../assets/close.png" class="close">
+        </div>
   </div>
 </template>
 <script>
 require('./rem.js')(window,document)
 export default {
     data(){
-        return {}
+        return {
+            show1:false,
+            show2:false,
+            show3:false
+        }
     },
     methods:{
         goback:function(){
-            this.$router.go(-1)
+            this.$router.go(-1);
+        },
+        showcars:function(i){
+            if(i == 1){this.show1 = true}
+            if(i == 2){this.show2 = true}
+            if(i == 3){this.show3 = true}
+        },
+        close:function(){
+            this.show1 = this.show2 = this.show3 = false
         }
     }
 }
 </script>
 <style scoped>
+.mask img.close {
+    position: absolute;
+    width: 0.72rem;
+    height: 0.72rem;
+    left: 50%;
+    margin-left: -0.36rem;
+    bottom: 2.5rem;
+}
+.mask .im1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -2.59rem;
+    margin-top: -3.06rem;
+    width: 5.17rem;
+    height: 6.12rem;
+}
+.mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(1,1,1,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
 .scatter {
     width: 6rem;
     margin: 0 auto;
@@ -206,7 +244,7 @@ export default {
 }
 .more span {
     display: inline-block;
-    margin-left: 4.02rem;
+    margin-left: 3.8rem;
     width: 0.11rem;
     height: 0.2rem;
     background: url('../../assets/tiaozhuan.png') no-repeat;
@@ -217,7 +255,7 @@ export default {
     height: 0.8rem;
     line-height: 0.8rem;
     padding: 0 0.76rem;
-    font-size: 0.24rem;
+    font-size: 0.25rem;
     box-sizing: border-box;
 }
 .none_box {
