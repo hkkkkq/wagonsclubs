@@ -13,7 +13,7 @@ const notfound = resolve => require(['../components/404.vue'], resolve);
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
 const memberitro = resolve => require(['../components/mobile/memberitro.vue'], resolve);
-
+const apply = resolve => require(['../components/mobile/apply.vue'], resolve);
 
 
 //for spider
@@ -63,6 +63,8 @@ export default new Router({
         { path: '/mobile', component: mobile },
         { path: '/mobile/join', component: join },
         { path: '/mobile/memberitro', component: memberitro },
+        { path: '/mobile/apply', component: apply },
+
         //for spider
         { path: '/supercarnews/1', component: news1 },
         { path: '/supercarnews/2', component: news2 },
