@@ -18,25 +18,28 @@
                 <p class="rent_en">PROCESS</p>
             </div>
             <div class="process_frame">
+                <div class="q">
                 <div class="clear"></div>
+                <p class="join">如何加入</p>
                 <span class="rad" :class="{'rad-s':s1}" style="">1</span>
                 <span class="text" :class="{'text-s':s1}">加入WAGONS</span>
                 <i :class="{'line-s':s1}" class="line"></i>
                 <i :class="{'line-s':s2}" class="line"></i>
-                <span class="rad" :class="{'rad-s':s1}">2</span>
-                <span class="text" :class="{'text-s':s1}">选车</span>
-                <i :class="{'line-s':s1}" class="line"></i>
-                <i :class="{'line-s':s2}" class="line"></i>
-                <span class="rad" :class="{'rad-s':s2}">3</span>
-                <span class="text" :class="{'text-s':s2}">用车</span>                
+                <span class="rad" :class="{'rad-s':s2}">2</span>
+                <span class="text" :class="{'text-s':s2}">选车 —</span>
+                <p class="qq" :class="{'text-s':s2}">线上选车并拨打官方客服电话咨询预约，或直接到店选车</p>
                 <i :class="{'line-s':s2}" class="line"></i>
                 <i :class="{'line-s':s3}" class="line"></i>
-                <span class="rad" :class="{'rad-s':s3}">4</span>
-                <span class="text" :class="{'text-s':s3}">还车</span>  
+                <span class="rad" :class="{'rad-s':s3}">3</span>
+                <span class="text" :class="{'text-s':s3}">用车 —</span>    
+                <p class="qq" :class="{'text-s':s3}">到店出示本人身份证、驾驶证、签订用车合同，交付用车费用</p>            
+                <i :class="{'line-s':s3}" class="line"></i>
+                <i :class="{'line-s':s4}" class="line"></i>
+                <span class="rad" :class="{'rad-s':s4}">4</span>
+                <span class="text" :class="{'text-s':s4}">还车 —</span>  
+                <p class="qq" :class="{'text-s':s4}">到店还车，接收车辆检查及交通违规查询，退还相应费用</p>
                 <div class="clear2"></div>  
-                <p v-if="s1" class="tips">线上选车并拨打官方客服电话咨询预约，或直接到店选车</p>
-                <p v-else-if="s2" class="tips">到店出示本人身份证、驾驶证，签订用车合同，交付用车费用</p>
-                <p v-else class="tips">到店还车，接收车辆检查及交通违规查询，退还相应费用</p>
+                </div>
             </div>
       </div>
         <div class="contact_info">
@@ -65,35 +68,75 @@ export default {
             s1:true,
             s2:false,
             s3:false,
+            s4:false
         }
     },
     mounted(){
-        return false;
         setInterval(()=>{
             if(this.s1 == true){
                 this.s1 = false
                 this.s2 = true
                 this.s3 = false
+                this.s4 = false
                 // alert(1)
                 return
             }else if(this.s2 == true){
                 this.s1 = false
                 this.s2 = false
                 this.s3 = true
+                this.s4 = false
                 // alert(2)                
                 return
+            }else if(this.s3 == true){
+                this.s1 = false
+                this.s2 = false
+                this.s3 = false
+                this.s4 = true
+                // alert(3)
+                return                
             }else{
                 this.s1 = true
                 this.s2 = false
                 this.s3 = false
-                // alert(3)
-                return                
+                this.s4 = false
             }
         },1500)
     }
 }
 </script>
 <style>
+.join {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.3rem;
+    width: 1.52rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    font-size: 0.24rem;
+    color: #fff;
+    background: url("../../assets/m-join.png") no-repeat;
+    background-size: 1.52rem 0.5rem;
+}
+.qq{
+    margin-left: 0.1rem;
+    display: inline-block;
+    width: 4.6rem;
+    font-size: 0.24rem;
+    vertical-align: -webkit-baseline-middle;
+}
+.line2{
+    position: relative;
+    width: 0.2rem;
+    height: 1px;
+    background-color: #d7d7d7;
+    display: inline-block;
+    margin: 0 0.1rem;
+    top: -0.06rem;
+}
+.q{
+    margin-left: 0.2rem;
+}
 .moma p {
     position: absolute;
     left: 0.16rem;
@@ -262,7 +305,7 @@ export default {
     font-size: 0.23rem;
 }
 .line{
-    margin-left: 0.21rem;
+    margin-left: 0.31rem;
     /* margin-top: 0.24rem; */
     width: 2px;
     /* float: left; */
@@ -281,7 +324,7 @@ export default {
     color: #9a7504!important; 
 }
 .clear{
-    height: 1rem;
+    height: 0.8rem;
 }
 .about_ban {
     width: 7.5rem;
@@ -360,15 +403,18 @@ export default {
     color: #69696b;
 }
 .process_frame {
+    padding-left: 0.3;
     position: relative;
     width: 6.66rem;
     height: 5.57rem;
     border: 1px solid #dcdcdc;
+    font-size: 0;
 }
 .rad{
+    margin: 0.05rem 0.1rem;
     width: 0.5rem;
     height: 0.5rem;
-    line-height: 0.5rem;
+    line-height: 0.55rem;
     text-align: center;
     border-radius: 50%;
     background: #d7d7d7;
