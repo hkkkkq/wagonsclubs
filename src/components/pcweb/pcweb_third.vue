@@ -235,8 +235,8 @@ export default {
                         telephone:this.telephone,
                         address:this.address,
                         maritalStatus:this.MS,
-                        career:this.career,
-                        duty:this.duty
+                        career:this.career == '职业'?'':this.career,
+                        duty:this.duty== '职务'?'':this.duty
                     }
                 })
                 .then(function(res){
