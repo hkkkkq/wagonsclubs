@@ -54,7 +54,7 @@
 
   }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
   .pcweb {
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
     background-color: #fff;

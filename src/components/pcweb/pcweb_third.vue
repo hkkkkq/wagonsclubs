@@ -1,6 +1,7 @@
 <template>
 <div>
 <div class="s_banner"></div>
+
   <div class="con">
       <div class="sqhy">
           <transition name="fade">
@@ -141,6 +142,16 @@
           </div>
       </div>
   </div>
+  <div v-if="issuccess" class="mask">
+    <div class="alert">
+        <p class="p1">申请提交成功</p>
+        <img class="x" @click="close" src="../../assets/pc-x.png">
+        <img class="success" src="../../assets/pc-success.png">
+        <p class="p2">您的申请已提交，待工作人员审核后会及时与您沟通办理事宜</p>
+        <p class="p3">如有疑问，您可以随时拨打客服热线4008-625-700</p>
+        <p @click="close" class="p4">确认</p>
+    </div>
+</div>
   </div>
 </template>
 <<script>
@@ -170,6 +181,9 @@ export default {
     computed:{
     },
     methods:{
+        close:function(){
+            this.issuccess = false
+        },
         nochoose:function(){
             this.show1=this.show2=this.show3=false
         },
@@ -240,6 +254,65 @@ export default {
 }
 </script>
 <style scoped>
+.alert .p4{
+    font-size: 18px;
+    color: #090405;
+    background: #ffd302;
+    width: 130px;
+    height: 34px;
+    text-align: center;
+    margin: auto;
+    margin-top: 28px;
+    padding-top: 16px;
+} 
+.alert .p3{
+    text-align: center;
+    font-size: 14px;
+    color: #676767;
+    margin-top: 14px;
+}
+.alert .p2{
+    color: #090405;
+    text-align: center;
+    font-size: 14px;
+}
+.alert .success{
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.alert .x{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.alert .p1{
+    margin-top: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #d7d7d7;
+    font-size: 18px;
+    text-align: center;
+}
+.alert{
+    position: fixed;
+    display: block;
+    width: 500px;
+    height: 300px;
+    background: white;
+    margin: auto;
+    top: 340px;
+    left: 33%;
+}
+.mask{
+    z-index: 1111;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(76,76,76,0.6);
+    width: 100%;
+    height: 296%;
+}
 ::-moz-placeholder{color:#bebebe;}
 ::-webkit-input-placeholder{color:#bebebe;}
 :-ms-input-placeholder{color:#bebebe;}
