@@ -241,7 +241,7 @@ export default {
                 })
                 .then(function(res){
                     console.log(res.data)
-                    if(res.data.retCode !== 200){
+                    if(res.data.success !== true){
                         that.err(res.data.message);
                         that.iserr = true;
                         return false;
