@@ -161,9 +161,9 @@
         </div>
         <div class="none_box"></div>
         <div style="height:1rem;"></div>
-        <div class="apply">
+        <router-link to='/mobile/apply' class="apply">
             立即申请
-        </div>
+        </router-link>
         <div v-show="show1||show2||show3" class="mask youxiang">
             <img v-if="show1" class="im1" src="../../assets/lechao.jpg">
             <img v-else-if="show2" class="im1" src="../../assets/youxiang.jpg">
@@ -234,6 +234,8 @@ export default {
     box-sizing: border-box;
 }
 .apply {
+    text-decoration-line: none;
+    color: black;
     position: fixed;
     left: 0;
     bottom: 0;

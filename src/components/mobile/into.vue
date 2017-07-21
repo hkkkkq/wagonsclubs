@@ -104,7 +104,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .join {
     text-decoration-line: none;
     position: absolute;

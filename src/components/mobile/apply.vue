@@ -17,29 +17,29 @@
         </div>
             <div class="none_box"></div>
         
-        <div style="display:none" class="tianxie">
+        <div style="" class="tianxie">
             <div class="inputbox">
                 <div class="box">
                     <span class="p1">真实姓名</span>
-                    <input type="text" placeholder="请填写真实姓名" class="p2" />
+                    <input v-model="userinfo.name" type="text" placeholder="请填写真实姓名" class="p2" />
                 </div>
                 <div class="box">
                     <span class="p1">身份证号</span>
-                    <input type="text" placeholder="请填写身份证号" class="p2" />
+                    <input v-model="userinfo.idCard" type="text" placeholder="请填写身份证号" class="p2" />
                 </div>
                 <div class="box">
                     <span class="p1">手机号</span>
-                    <input type="text" placeholder="请填写手机号" class="p2" />
+                    <input v-model="userinfo.telephone" type="text" placeholder="请填写手机号" class="p2" />
                 </div>
-                <div class="box">
+                <div @click="select(1)" class="box">
                     <span class="p1">婚姻状况</span>
-                    <span class="p3">请选择</span>
+                    <span class="p3" style="color:black; text-align:right; background:''">请选择</span>
                 </div>
-                <div class="box">
+                <div @click="select(2)" class="box">
                     <span class="p1">职业</span>
                     <span class="p3">请选择</span>
                 </div>
-                <div class="box">
+                <div @click="select(3)" class="box">
                     <span class="p1">职务</span>
                     <span class="p3">请选择</span>
                 </div>
@@ -47,13 +47,10 @@
             <div class="b1">
                 <div class="apply">提交申请</div>
             </div>
-            <div style="display:none" class="mask">
-                <div style="position:absolute;left:0;bottom:0;width:100%;background:#fff">
-                    <p>国家机关</p>
-                    <p>国家机关</p>
-                    <p>国家机关</p>
-                    <p>国家机关</p>
-                    <p>国家机关1</p>
+            <div @click="close" v-show="mask" class="mask">
+                <div class="nu">
+                    <p v-for="(item,index) in currlist" @click="choose(item,index)">{{item}}</p>
+                    <p @click="close" style="color:#d7d7d7">取消</p>
                 </div>
             </div>
         </div>
@@ -61,7 +58,7 @@
         <!-- success -->
 
 
-        <div class="success">
+        <div style="display:none" class="success">
             <div class="complate">
                 <img src="../../assets/apply.jpg" alt="">
                 <div class="text">您的申请已经提交，工作人员审核后会及时联系您沟通办理事宜。</div>
@@ -83,11 +80,59 @@
 <script>
 require('./rem.js')(window,document);
 export default {
-
+    data(){
+        return {
+            which:'',
+            mask:false,
+            hunyinlist:["未婚","已婚","离异"],
+            zhiyelist:["国家机关／事业单位","计算机／互联网","金融业","建筑业","批发零售","文体教育","生产制造","交通运输","文化娱乐","能源环保","农／林／牧／渔业","其他"],
+            zhiwulist:["企业所有者","高管","经理","主管","一般职员","自由职业","学生","其他"],
+            currlist:'',
+            userinfo:{
+                name:'',
+                maritalStatus:'',
+                name:"",
+                telephone:"",
+                idCard:"",
+                career:"",
+                duty:"",
+            }
+        }
+    },
+    methods:{
+        select:function(i){
+            if(i == 1){ this.currlist = this.hunyinlist; this.which = 1}
+            else if(i == 2){ this.currlist = this.zhiyelist; this.which = 2}
+            else{ this.currlist = this.zhiwulist; this.which = 3}
+            this.mask = true;
+        },
+        close:function(){
+            this.mask =false;
+        },
+        choose:function(item,index){
+            if(this.which == 1){
+                this.userinfo.maritalStatus = index
+            }else if(this.which == 2){
+                this.userinfo.career = item
+            }else if(this.which == 3){
+                this.userinfo.duty = item
+            }else{
+                this.err('一定是什么地方除了问题!')
+            }
+        }
+    }
 }
 </script>
 
 <style scoped>
+.nu{
+    position:absolute;
+    left:0;bottom:0;
+    width:100%;
+    background:#fff;
+    height: 3.8rem;
+    overflow-y: auto;
+}
 .tel p {
     margin: 0 auto 0.05rem;
     text-align: center;
