@@ -163,7 +163,8 @@ export default {
             duty:"职务",
             pleasechoose:"请选择",
             iserr:false,
-            errmessage:''
+            errmessage:'',
+            issuccess:false
         }
     },
     computed:{
@@ -231,7 +232,7 @@ export default {
                         that.iserr = true;
                         return false;
                     }else{
-                        that.err("提交成功")
+                        that.isuccess = true;
                     }
                 })
         }
