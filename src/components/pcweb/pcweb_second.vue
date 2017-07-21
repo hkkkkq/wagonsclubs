@@ -46,7 +46,7 @@
 <script>
 
 </script>
-<style>
+<style scoped>
   .s_banner{
     width: 100%;
     min-width: 1000px;
