@@ -240,13 +240,12 @@ export default {
                     }
                 })
                 .then(function(res){
-                    console.log(res.data)
-                    if(res.data.success !== true){
+                    if(res.data.success  == true){
+                        that.issuccess = true;
+                    }else{
                         that.err(res.data.message);
                         that.iserr = true;
                         return false;
-                    }else{
-                        that.isuccess = true;
                     }
                 })
         }
