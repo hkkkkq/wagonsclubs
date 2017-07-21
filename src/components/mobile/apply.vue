@@ -1,11 +1,11 @@
 <template>
   <div>
       <div class="head_xz">
-            <a class="goback"></a>
+            <a @click="goback" class="goback"></a>
             <p>快速申请</p>
       </div>
       <div style="width:100%;height:1.27rem;"></div>
-      <div class="tab">
+      <div class="tab" :class="{tabse:!tianxie}">
             <div class="left">
                 <i>1</i>
                 <span>填写信息</span>
@@ -17,7 +17,7 @@
         </div>
             <div class="none_box"></div>
         
-        <div style="" class="tianxie">
+        <div v-if="tianxie" class="tianxie">
             <div class="inputbox">
                 <div class="box">
                     <span class="p1">真实姓名</span>
@@ -53,14 +53,14 @@
                     <p @click="close" style="color:#d7d7d7">取消</p>
                 </div>
             </div>
-            <div class="alert_err">sads</div>
+            <div v-show="iserr" class="alert_err">{{errmsg}}</div>
             <!-- <div class="alert_msg">请您填写姓名！</div> -->
         </div>
         
         <!-- success -->
 
 
-        <div style="display:none" class="success">
+        <div v-if="!tianxie" class="success">
             <div class="complate">
                 <img src="../../assets/apply.jpg" alt="">
                 <div class="text">您的申请已经提交，工作人员审核后会及时联系您沟通办理事宜。</div>
@@ -70,7 +70,7 @@
                 为了答谢您对WAGONS的支持，您有机会获得一份精美礼品，请写下正确的收件地址以方便我们寄送。
             </div>
             <textarea id="address" placeholder="请填写详细地址"></textarea>
-            <div class="ok">完成</div>
+            <div @click="ok" class="ok">完成</div>
             <div class="tel">
                 <p>如有疑问，您可以随时拨打客服热线</p>
                 <p>4008-625-700进行咨询</p>
@@ -84,6 +84,11 @@ require('./rem.js')(window,document);
 export default {
     data(){
         return {
+            address:'',
+            id:'',
+            tianxie:true,
+            iserr:false,
+            errmsg:'',
             please1:'请选择',
             please2:'请选择',
             please3:'请选择',
@@ -94,14 +99,13 @@ export default {
             zhiwulist:["企业所有者","高管","经理","主管","一般职员","自由职业","学生","其他"],
             currlist:'',
             userinfo:{
-                name:'',
                 maritalStatus:'',
-                name:"",
-                telephone:"",
-                idCard:"",
-                career:"",
-                duty:"",
-                type:"3"
+                name:'',
+                telephone:'',
+                idCard:'',
+                career:'',
+                duty:'',
+                type:'3'
             }
         }
     },
@@ -111,6 +115,25 @@ export default {
         a3(){ return this.please3!=='请选择' },
     },
     methods:{
+        ok:function(){
+            if(this.address == ''){
+                this.$router.push('/mobile')
+            }else{
+                this.$ajax(
+                    BASE_URL+'/regist',{
+                        params:{
+                            id:this.id,
+                            address:this.address
+                            }
+                    }
+                ).then((res)=>{
+                    this.$router.push('/mobile');
+                })
+            }
+        },
+        goback:function(){
+            this.$router.go(-1)
+        },
         select:function(i){
             if(i == 1){ this.currlist = this.hunyinlist; this.which = 1}
             else if(i == 2){ this.currlist = this.zhiyelist; this.which = 2}
@@ -134,13 +157,27 @@ export default {
                 this.err('一定是什么地方除了问题!')
             }
         },
+        err:function(str){
+            this.errmsg = str;
+            this.iserr = true;
+            setTimeout(()=>{ this.iserr = false},1500)
+        },
         submit:function(){
-            console.log(this.userinfo);
+            if(this.userinfo.name == ''){ this.err('姓名不能为空'); return false }
+            if(this.userinfo.idCard == ''){ this.err('身份证号不能为空'); return false  }
+            if(this.userinfo.telephone == ''){ this.err('电话号不能为空'); return false  }
+            console.log(this.userinfo)
             this.$ajax(
-                BASE_URL+"/regist",
-                this.userinfo
+                BASE_URL+"/regist",{
+                    params:this.userinfo
+                }
             ).then((res)=>{
-                console.log(res.data)
+                if(res.data.success == true){
+                    this.tianxie = false;
+                    this.id = res.data.data.id;
+                }else{
+                    this.err(res.data.message)
+                }
             })
         }
     }
@@ -148,10 +185,12 @@ export default {
 </script>
 
 <style scoped>
+.tabse{
+    background-image: url('../../assets/right.png')!important;
+}
 .alert_err{
     position: fixed;
-    z-index: 1000000;
-    top: 1rem;
+    top: 5rem;
     width: 6.8rem;
     height: 1.2rem;
     border-radius: 0.2rem;
@@ -160,25 +199,7 @@ export default {
     text-align: center;
     line-height: 1.2rem;
     font-size: 0.28rem;
-    margin: auto;
-}
-.alert_msg {
-    display: block;
-    position: fixed;
-    width: 6.8rem;
-    height: 1.2rem;
-    border-radius: 0.2rem;
-    top: 50%;
-    left: 50%;
-    margin-top: -0.6rem;
-    margin-left: -3.4rem;
-    background-color: rgba(0,0,0,0.6);
-    text-align: center;
-    line-height: 1.2rem;
-    font-size: 0.28rem;
-    color: white;
-    z-index: 10000;
-    display: none;
+    left: 0.4rem;
 }
 .p3se{
     width: 2.3rem!important;
