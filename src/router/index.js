@@ -39,7 +39,7 @@ export default new Router({
             beforeEnter: (to, from, next) => {
                 // console.log(navigator.userAgent)
                 if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-                    window.location.href = 'https://www.huoqiu.cn/car/index'
+                    window.location.href = 'http://wap.wagonsclub.com/car/index'
                 } else {
                     next();
                 }

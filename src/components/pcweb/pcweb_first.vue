@@ -175,7 +175,7 @@
     }
   }
 </script>
-<style>
+<style scoped> 
   .banner {
     width: 100%;
     min-width: 1000px;
@@ -209,19 +209,19 @@
   }
   .intro .right{
     vertical-align: top;
-    width: 25%;
+    width: 248px;
     display: inline-block;
     height: 504px;
     background-color: #404040;
   }
   .intro .left{
-    width: 75%;
+    width: 752px;
     font-size: 0;
     display: inline-block;
   }
   .intro .left img{
     width: 100%;
-    height: 475px;
+    height: 461px;
   }
   .p1{
     margin-top: 122px!important;
@@ -371,7 +371,7 @@
   }
   .swip2 i{
     background: white;
-    width: 207px;
+    width: 209px;
     height: 128px;
     margin: auto;
     display: block;
