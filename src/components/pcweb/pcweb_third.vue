@@ -210,18 +210,16 @@ export default {
             if(this.telephone == ''){this.err("电话不能为空");this.iserr = true;return false}
             if(this.idCard == ''){this.err("身份证不能为空");this.iserr = true;return false}
             let that = this
-            this.$ajax(
+            this.$ajax.post(
                 BASE_URL+"/regist",
                 {
-                    params:{
-                        idCard:this.idCard,
-                        name:this.name,
-                        telephone:this.telephone,
-                        address:this.address,
-                        maritalStatus:this.MS,
-                        career:this.career,
-                        duty:this.duty
-                    }
+                  idCard:this.idCard,
+                  name:this.name,
+                  telephone:this.telephone,
+                  address:this.address,
+                  maritalStatus:this.MS,
+                  career:this.career,
+                  duty:this.duty
                 })
                 .then(function(res){
                     console.log(res.data)
