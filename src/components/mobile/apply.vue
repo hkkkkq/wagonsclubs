@@ -33,19 +33,19 @@
                 </div>
                 <div @click="select(1)" class="box">
                     <span class="p1">婚姻状况</span>
-                    <span class="p3" style="color:black; text-align:right; background:''">请选择</span>
+                    <span class="p3" :class="{'p3se':a1}">{{please1}}</span>
                 </div>
                 <div @click="select(2)" class="box">
                     <span class="p1">职业</span>
-                    <span class="p3">请选择</span>
+                    <span class="p3" :class="{p3se:a2}">{{please2}}</span>
                 </div>
                 <div @click="select(3)" class="box">
                     <span class="p1">职务</span>
-                    <span class="p3">请选择</span>
+                    <span class="p3" :class="{p3se:a3}">{{please3}}</span>
                 </div>
             </div>
             <div class="b1">
-                <div class="apply">提交申请</div>
+                <div class="apply" @click='submit'>提交申请</div>
             </div>
             <div @click="close" v-show="mask" class="mask">
                 <div class="nu">
@@ -53,6 +53,8 @@
                     <p @click="close" style="color:#d7d7d7">取消</p>
                 </div>
             </div>
+            <div class="alert_err">sads</div>
+            <!-- <div class="alert_msg">请您填写姓名！</div> -->
         </div>
         
         <!-- success -->
@@ -82,6 +84,9 @@ require('./rem.js')(window,document);
 export default {
     data(){
         return {
+            please1:'请选择',
+            please2:'请选择',
+            please3:'请选择',
             which:'',
             mask:false,
             hunyinlist:["未婚","已婚","离异"],
@@ -96,8 +101,14 @@ export default {
                 idCard:"",
                 career:"",
                 duty:"",
+                type:"3"
             }
         }
+    },
+    computed:{
+        a1(){ return this.please1!=='请选择' },
+        a2(){ return this.please2!=='请选择' },
+        a3(){ return this.please3!=='请选择' },
     },
     methods:{
         select:function(i){
@@ -112,19 +123,69 @@ export default {
         choose:function(item,index){
             if(this.which == 1){
                 this.userinfo.maritalStatus = index
+                this.please1 = item
             }else if(this.which == 2){
                 this.userinfo.career = item
+                this.please2 = item
             }else if(this.which == 3){
                 this.userinfo.duty = item
+                this.please3 = item
             }else{
                 this.err('一定是什么地方除了问题!')
             }
+        },
+        submit:function(){
+            console.log(this.userinfo);
+            this.$ajax(
+                BASE_URL+"/regist",
+                this.userinfo
+            ).then((res)=>{
+                console.log(res.data)
+            })
         }
     }
 }
 </script>
 
 <style scoped>
+.alert_err{
+    position: fixed;
+    z-index: 1000000;
+    top: 1rem;
+    width: 6.8rem;
+    height: 1.2rem;
+    border-radius: 0.2rem;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    text-align: center;
+    line-height: 1.2rem;
+    font-size: 0.28rem;
+    margin: auto;
+}
+.alert_msg {
+    display: block;
+    position: fixed;
+    width: 6.8rem;
+    height: 1.2rem;
+    border-radius: 0.2rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -0.6rem;
+    margin-left: -3.4rem;
+    background-color: rgba(0,0,0,0.6);
+    text-align: center;
+    line-height: 1.2rem;
+    font-size: 0.28rem;
+    color: white;
+    z-index: 10000;
+    display: none;
+}
+.p3se{
+    width: 2.3rem!important;
+    color:black!important; 
+    text-align:right;
+    background:url('')!important;
+}
 .nu{
     position:absolute;
     left:0;bottom:0;
