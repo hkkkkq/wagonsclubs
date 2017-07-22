@@ -89,7 +89,7 @@
         </div>
       </div>
       <div v-if="qr_show" class="qr_code">
-        <a @click="close" href="javascript:;" class="cclose"></a>
+        <a @click="closeqr" href="javascript:;" class="cclose"></a>
         <img src="../../assets/car_gongzhonghao.png" alt="" class="qr"/>
         <p>扫码即刻体验</p>
       </div>
@@ -169,7 +169,7 @@
           this.haschoose[index] = 1;
 //          console.log(this.$refs.menuItem[index].id)
       },
-      close:function(){
+      closeqr:function(){
           this.qr_show = false;
       }
     }

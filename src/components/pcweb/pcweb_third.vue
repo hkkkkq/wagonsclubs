@@ -1,7 +1,11 @@
 <template>
 <div>
 <div class="s_banner"></div>
-
+<div v-if="qr_show" class="qr_code">
+        <a @click="closeqr" href="javascript:;" class="cclose"></a>
+        <img src="../../assets/car_gongzhonghao.png" alt="" class="qr"/>
+        <p>扫码即刻体验</p>
+      </div>
   <div class="con">
       <div class="sqhy">
           <transition name="fade">
@@ -158,6 +162,7 @@
 export default {
     data(){
         return{
+            qr_show:true,
             name:"",
             telephone:"",
             idCard:"",
@@ -221,6 +226,9 @@ export default {
 
             setTimeout(()=>{this.iserr = false},1000);
         },
+        closeqr:function(){
+            this.qr_show = false;
+        },
         submit:function(){
             if(this.name == ''){this.err("姓名不能为空");this.iserr = true;return false}
             if(this.telephone == ''){this.err("电话不能为空");this.iserr = true;return false}
@@ -251,6 +259,35 @@ export default {
 }
 </script>
 <style scoped>
+ .qr_code{
+    z-index: 100;
+    position: fixed;
+    right:18%;
+    top:30%;
+    width:173px;
+    height:234px;
+    background-color: #333333;
+  }
+  .qr_code .cclose{
+    position: absolute;
+    top:15px;
+    right:15px;
+    width:14px;
+    height:14px;
+    background:url("../../assets/car_close.png") no-repeat;
+    background-size:100% 100%;
+  }
+  .qr_code .qr{
+    display:block;
+    margin:45px auto 13px;
+    width:128px;
+    height:128px;
+  }
+  .qr_code p{
+    font-size:14px;
+    color:#f4f4f4;
+    text-align: center;
+  }
 .alert .p4{
     font-size: 18px;
     color: #090405;
