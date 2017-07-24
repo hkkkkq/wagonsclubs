@@ -15,21 +15,21 @@
           <span>用车条件</span>
           <i>{{currentcar.car.conditionText}}</i>
         </p>
-          <p>
+          <!-- <p>
           <span>市场价</span>
           <i>{{currentcar.car.dailyRentPrice}}元／天</i>
-        </p>
-          <p>
+        </p> -->
+          <!-- <p>
           <span>{{currentcar.memberNick3}}</span>
           <i>{{currentcar.level3?currentcar.level3:''}}元／天</i>
         </p>
           <p>
           <span>{{currentcar.memberNick4}}</span>
           <i>{{currentcar.level4?currentcar.level4:''}}元／天</i>
-        </p>
+        </p> -->
           <p>
-          <span>{{currentcar.memberNick4}}</span>
-          <i>{{currentcar.level4?currentcar.level4:''}}元／天</i>
+          <span>{{currentcar.memberNick5}}</span>
+          <i>{{currentcar.level5?currentcar.level5:''}}元／天</i>
         </p>
         </div>
         <h2 class="car_name" id="carName">{{currentcar.car.carName}}</h2>

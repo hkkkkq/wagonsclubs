@@ -6,6 +6,7 @@
             <p>页面找不到了</p>
             <p style="padding-top:20px">这里的跑车早被别人捷足先登啦</p>
         </div> 
+        <router-link class="back" to="/first">返回首页</router-link>
     </div>  
 </template>
 <script>
@@ -21,10 +22,17 @@ export default {
         } else {
             this.ish5 = false
             }
+    },
+    methods:{
     }
 }
 </script>
 <style scoped>
+.back{
+    margin: auto;
+    text-align: center;
+    display: block;
+}
 .pc p{
     position: relative;
     top:-100px;
