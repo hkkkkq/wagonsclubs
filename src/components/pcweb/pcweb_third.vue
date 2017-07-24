@@ -237,14 +237,14 @@ export default {
             this.$ajax.post(
                 BASE_URL+"/regist",
                 {
-                  idCard:this.idCard,
-                  name:this.name,
-                  telephone:this.telephone,
-                  address:this.address,
-                  maritalStatus:this.MS,
-                  career:this.career,
-                  duty:this.duty,
-                  type:2
+                    idCard:this.idCard,
+                    name:this.name,
+                    telephone:this.telephone,
+                    address:this.address,
+                    maritalStatus:this.MS,
+                    career:this.career == '职业'?'':this.career,
+                    duty:this.duty== '职务'?'':this.duty,
+                    type:2
                 })
                 .then(function(res){
                     if(res.data.success  == true){
