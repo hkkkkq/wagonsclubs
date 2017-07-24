@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import axios from 'axios';
+<<<<<<< HEAD
 import vuex from 'vuex';
 Vue.prototype.$ajax = axios; //将axios写入vue的原型方法
 Vue.use(vuex)
@@ -24,12 +25,18 @@ const store = new vuex.Store({
     }
 })
 
+=======
+Vue.prototype.$ajax = axios; //将axios写入vue的原型方法
+>>>>>>> master
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+<<<<<<< HEAD
     store,
+=======
+>>>>>>> master
     router,
     template: '<App/>',
     components: { App }
