@@ -158,7 +158,8 @@
 </div>
   </div>
 </template>
-<<script>
+<script>
+import qs from 'qs';
 export default {
     data(){
         return{
@@ -234,9 +235,10 @@ export default {
             if(this.telephone == ''){this.err("电话不能为空");this.iserr = true;return false}
             if(this.idCard == ''){this.err("身份证不能为空");this.iserr = true;return false}
             let that = this
-            this.$ajax.post(
-                BASE_URL+"/regist",
-                {
+            this.$ajax({
+                method:'POST',
+                url:BASE_URL+"/regist",
+                data:qs.stringify({
                     idCard:this.idCard,
                     name:this.name,
                     telephone:this.telephone,
@@ -245,6 +247,10 @@ export default {
                     career:this.career == '职业'?'':this.career,
                     duty:this.duty== '职务'?'':this.duty,
                     type:2
+                    }),
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        },
                 })
                 .then(function(res){
                     if(res.data.success  == true){
