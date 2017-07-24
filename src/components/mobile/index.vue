@@ -18,6 +18,12 @@ export default {
 
         }
     },
+    mounted(){
+        window.addEventListener('scroll',()=>{
+            this.scroll = document.body.scrollTop;
+            console.log(this.scroll)
+        })
+    },
     computed:{
         foot_left(){return this.$store.state.foot_left},
         foot_right(){return this.$store.state.foot_right},
