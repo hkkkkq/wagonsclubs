@@ -243,7 +243,8 @@ export default {
                   address:this.address,
                   maritalStatus:this.MS,
                   career:this.career,
-                  duty:this.duty
+                  duty:this.duty,
+                  type:2
                 })
                 .then(function(res){
                     if(res.data.success  == true){
