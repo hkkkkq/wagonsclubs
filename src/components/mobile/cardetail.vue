@@ -2,7 +2,7 @@
 <div>
     <router-link to="/mobile" class="back"></router-link>
     <div class="lunbo">
-        <div class="swiper-pagination"></div>    
+        <div class="swiper-pagination ssss"></div>    
         <swiper class="swip1" :options="swiperOption" ref="mySwiper">
             <swiper-slide :key="item.id" v-for="item in info.carImgShows" class="swip2">
                 <img :src="item" />
@@ -126,6 +126,7 @@ export default {
               autoplay: 2000,
               autoplayDisableOnInteraction:false,
               pagination : '.swiper-pagination',
+              paginationType:'fraction',
               direction : 'horizontal',
               grabCursor : true,
               setWrapperSize :true,
@@ -171,6 +172,10 @@ export default {
 </script>
 
 <style scoped>
+.ssss{
+    color: #F3F3F3!important;
+    font-size: 0.16rem!important;
+}
 .alert_msg {
     position: fixed;
     width: 6.8rem;
@@ -265,6 +270,7 @@ export default {
     background: rgba(0,0,0,0.6);
 }
 .link{
+    text-decoration:none;
     text-decoration-line: none;
     text-decoration-style: none;
     color: #7abefd;
@@ -366,7 +372,7 @@ export default {
     display: inline-block;
     width: 1.14rem;
     height: 0.28rem;
-    line-height: 0.15rem;
+    line-height: 0.28rem;
     text-align: center;
     padding-top: 0.05rem;
     margin: 0.1rem 0.2rem 0 0;
@@ -405,14 +411,6 @@ export default {
 .lunbo{
     position: relative;
     height: 5.7rem;
-}
-.swiper-pagination-bullet{
-    margin-left: 10px!important;
-    margin-right: 10px!important;
-}
-.swiper-pagination{
-    top: 4.4rem;
-    left: 40%;
 }
 .swip2 img{
     display: block;

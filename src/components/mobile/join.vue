@@ -205,13 +205,14 @@ export default {
     position: absolute;
     width: 0.72rem;
     height: 0.72rem;
+    top:70%;
     left: 50%;
     margin-left: -0.36rem;
     bottom: 2.5rem;
 }
 .mask .im1{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     margin-left: -2.59rem;
     margin-top: -3.06rem;
@@ -234,6 +235,7 @@ export default {
     box-sizing: border-box;
 }
 .apply {
+    text-decoration:none;
     text-decoration-line: none;
     color: black;
     position: fixed;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="">
       <div class="head_xz">
             <a @click="goback" class="goback"></a>
             <p>快速申请</p>
@@ -44,6 +44,7 @@
                     <span class="p3" :class="{p3se:a3}">{{please3}}</span>
                 </div>
             </div>
+            <div class="none_box"></div>            
             <div class="b1">
                 <div class="apply" @click='submit'>提交申请</div>
             </div>
@@ -185,6 +186,9 @@ export default {
 </script>
 
 <style scoped>
+html{
+    background-color: #f6f6f6;
+}
 .tabse{
     background-image: url('../../assets/right.png')!important;
 }
@@ -308,10 +312,10 @@ export default {
     background: rgba(76,76,76,0.6);
 }
 .b1{
-    padding-top: 0.6rem;
+    margin-top: 0.6rem;
     width: 100%;
-    height: 3.67rem;
-    background: #f6f6f6;
+    /* height: 3.67rem; */
+    /* background: #f6f6f6; */
 }
 .apply {
     width: 6rem;
@@ -347,6 +351,7 @@ input::-webkit-input-placeholder{
      background: url("../../assets/arrow01.png") right no-repeat ; 
 }
 .p2{
+    border: 0px;
     outline-style: none;
     text-align: right;
     font-size: 0.29rem;

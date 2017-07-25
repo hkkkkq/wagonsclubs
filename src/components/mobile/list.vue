@@ -1,6 +1,6 @@
 <template>
 <div>
-    <img class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
+    <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
     <div class="but"></div>
     <div class="type">
         <div @click='select(1)' class="lafeng typeselect">拉风小跑
@@ -79,6 +79,9 @@ export default {
             // router.push({ name: 'user', params: { userId: 123 }})
             // this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':i}})
             // .then((res)=>{console.log(res.data)})
+        },
+        whoweare:function(){
+            this.$router.push('/mobile/whoweare')
         }
     }
 }
