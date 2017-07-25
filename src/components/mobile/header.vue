@@ -3,7 +3,6 @@
     <div class="head">
         <img class="logo" src="../../assets/m-logo.png">
     </div>
-    <div class="head-1"></div>
 </div>
 </template>
 <script>

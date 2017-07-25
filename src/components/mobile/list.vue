@@ -15,7 +15,7 @@
             <img v-show="type3" src="../../assets/m-typeselect.png">            
         </div>
     </div>
-    <div class="content">
+    <div v-if="loading == false" class="content">
         <ul>
             <li v-for="car in currentlist.carsList" class="car_details">
                 <img :src="car.carImages" class="car_img">
@@ -27,8 +27,11 @@
             </li>
         </ul>
     </div>
+    <div style="height:5.1rem" v-else>
+        <img class="loadgif" src="../../assets/loading_3.gif">
+    </div>
     <div class="foot_logo">
-        <img src="../../assets/m-foot_logo.png">
+        <img class="loadgif" src="../../assets/m-foot_logo.png">
     </div>
 </div>
 </template>
@@ -43,18 +46,27 @@ export default {
             carlist3:'',
             carlist2:'',
             carlist1:'',
+            loading:true
         }
     },
     created(){
+        var i = 0;
         this.$ajax(BASE_URL+'/car/carsList?type=3')
-            .then((res)=>{this.carlist3 = res.data; console.log(this.carlist3);console.log(res.data)})
+            .then((res)=>{this.carlist3 = res.data; i=i+1;i==3?this.loading = false:{}})
             .catch(()=>{alert('一定是什么地方出问题了')})
         this.$ajax(BASE_URL+'/car/carsList?type=2')
-            .then((res)=>{this.carlist2 = res.data;this.currentlist = res.data;console.log(this.carlist3);console.log(res.data)})
+            .then((res)=>{this.carlist2 = res.data;this.currentlist = res.data;i=i+1;i==3?this.loading = false:{}})
             .catch(()=>{alert('一定是什么地方出问题了')})
         this.$ajax(BASE_URL+'/car/carsList?type=1')
-            .then((res)=>{this.carlist1 = res.data;console.log(this.carlist3);console.log(res.data)})
+            .then((res)=>{this.carlist1 = res.data;i=i+1;i==3?this.loading = false:{}})
             .catch(()=>{alert('一定是什么地方出问题了')})
+        // i == 3?{this.loading = false }:{alert("一定是什么地方出问题了")}
+        // console.log(i)
+        // if( i ==3){
+        //     this.loading = false
+        // }else{
+        //     alert('4')
+        // }
     },
     methods:{
         select:function(i){
@@ -66,6 +78,12 @@ export default {
 }
 </script>
 <style scoped>
+.loadgif{
+    display: block;
+    margin: auto;
+    margin-top: 1rem;
+    width: 1.5rem;
+}
 .banner{
     font-size: 0;
     width: 7.5rem;
