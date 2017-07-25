@@ -26,6 +26,9 @@ export default {
             show2:false
         }
     },
+    created(){
+        window.scrollTo(0,0);
+    },
     methods:{
         goback:function(){
             this.$router.go(-1);

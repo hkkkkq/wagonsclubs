@@ -17,7 +17,7 @@
     </div>
     <div v-if="loading == false" class="content">
         <ul>
-            <li v-for="car in currentlist.carsList" class="car_details">
+            <li @click="details(car.id)" v-for="car in currentlist.data.carsList" class="car_details">
                 <img :src="car.carImages" class="car_img">
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
@@ -52,7 +52,7 @@ export default {
     created(){
         var i = 0;
         this.$ajax(BASE_URL+'/car/carsList?type=3')
-            .then((res)=>{this.carlist3 = res.data; i=i+1;i==3?this.loading = false:{}})
+            .then((res)=>{this.carlist3 = res.data; console.log(res.data); i=i+1;i==3?this.loading = false:{}})
             .catch(()=>{alert('一定是什么地方出问题了')})
         this.$ajax(BASE_URL+'/car/carsList?type=2')
             .then((res)=>{this.carlist2 = res.data;this.currentlist = res.data;i=i+1;i==3?this.loading = false:{}})
@@ -73,6 +73,12 @@ export default {
             if(i == 1){this.type1 = true;this.type2=this.type3=false;this.currentlist = this.carlist1}
             if(i == 2){this.type2 = true;this.type1=this.type3=false;this.currentlist = this.carlist2}
             if(i == 3){this.type3 = true;this.type2=this.type1=false;this.currentlist = this.carlist3}
+        },
+        details:function(i){
+            this.$router.push({path:'/mobile/cardetail',query:{carId:i}})
+            // router.push({ name: 'user', params: { userId: 123 }})
+            // this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':i}})
+            // .then((res)=>{console.log(res.data)})
         }
     }
 }

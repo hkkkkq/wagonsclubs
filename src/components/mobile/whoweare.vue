@@ -1,0 +1,47 @@
+<template>
+  <div>
+      <m-header></m-header>
+      <router-link to="/mobile" class="goback"></router-link>
+      <div class="empty"></div>
+      <div class="content"></div>
+  </div>
+</template>
+
+<script>
+require('./rem.js')(window,document);
+import header from './header.vue'
+export default {
+    data(){
+        return{
+
+        }
+    },
+    components:{
+        'm-header':header,
+    }
+}
+</script>
+
+<style scoped>
+.goback {
+    z-index: 1000;
+    position: absolute;
+    left: 0.06rem;
+    top: 0.37rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url('../../assets/m-goback.png') no-repeat center center;
+    background-size: 0.3rem 0.3rem;
+}
+.content {
+    width: 7.5rem;
+    height: 52.85rem;
+    margin: 0 auto;
+    background: url('../../assets/groundBJ.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+.empty {
+    width: 7.5rem;
+    height: 1.27rem;
+}
+</style>

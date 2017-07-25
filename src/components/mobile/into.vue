@@ -72,6 +72,7 @@ export default {
         }
     },
     mounted(){
+        window.scrollTo(0,0);
         setInterval(()=>{
             if(this.s1 == true){
                 this.s1 = false

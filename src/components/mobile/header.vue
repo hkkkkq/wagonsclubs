@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="head">
-        <img class="logo" src="../../assets/m-logo.png">
+        <img class="logo" src="../../assets/newlogo.png">
     </div>
 </div>
 </template>
@@ -29,9 +29,9 @@ export default {
     box-sizing: content-box;
 }
 .head .logo{
-    width: 4.09rem;
-    height: 0.31rem;
+    width: 2.86rem;
+    height: 0.28rem;
     display: block;
-    margin: 0.17rem 0 0 1.68rem;
+    margin: 0.2rem 0 0 2.3rem;;
 }
 </style>
