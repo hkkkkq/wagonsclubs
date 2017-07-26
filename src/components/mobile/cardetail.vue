@@ -5,7 +5,7 @@
         <div class="swiper-pagination ssss"></div>    
         <swiper class="swip1" :options="swiperOption" ref="mySwiper">
             <swiper-slide :key="item.id" v-for="item in info.carImgShows" class="swip2">
-                <img :src="item" />
+                <img v-lazy="item" />
             </swiper-slide>
             <!-- <swiper-slide class="swip2">
                 <img src="../../assets/car_gongzhonghao.png" />            
@@ -172,6 +172,68 @@ export default {
 </script>
 
 <style scoped>
+img[lazy=error]{
+    /* //your code */
+    background-image: url('../../assets/loading12.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 0.5rem;
+     animation: mysecond 1s; 
+    animation-iteration-count: infinite;  
+    animation-timing-function:linear;
+  
+}
+img[lazy=loading]{
+    /* //your code */
+    background-image: url('../../assets/loading12.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 0.5rem;
+    animation: mysecond 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function:linear;
+}
+@keyframes mysecond
+{
+0%   {transform:rotate()}
+50%  {transform:rotate(-180deg)}
+100% {transform:rotate(-360deg)}
+}
+
+@-moz-keyframes mysecond /* Firefox */
+{
+0%   {transform:rotate()}
+50%  {transform:rotate(-180deg)}
+100% {transform:rotate(-360deg)}
+}
+
+@-webkit-keyframes mysecond /* Safari 和 Chrome */
+{
+0%   {transform:rotate()}
+50%  {transform:rotate(-180deg)}
+100% {transform:rotate(-360deg)}
+}
+
+@-o-keyframes mysecond /* Opera */
+{
+0%   {transform:rotate()}
+50%  {transform:rotate(-180deg)}
+100% {transform:rotate(-360deg)}
+}
+img[lazy=loaded]{
+    /* //your code */
+  animation:fade 0.5s;
+}
+@keyframes fade {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+
 .ssss{
     color: #F3F3F3!important;
     font-size: 0.16rem!important;
