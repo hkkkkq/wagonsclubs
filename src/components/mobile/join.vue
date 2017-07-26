@@ -251,7 +251,9 @@ export default {
 }
 .more span {
     display: inline-block;
-    margin-left: 3.8rem;
+    /* margin-left: 3.8rem; */
+    float: right;
+    margin-top: 0.3rem;
     width: 0.11rem;
     height: 0.2rem;
     background: url('../../assets/tiaozhuan.png') no-repeat;
