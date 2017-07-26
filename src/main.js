@@ -5,6 +5,22 @@ import App from './App';
 import router from './router';
 import axios from 'axios';
 import vuex from 'vuex';
+
+import VueLazyload from 'vue-lazyload'
+
+//use custom directive
+Vue.use(VueLazyload)
+
+// use options
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: '/assets/3.png',
+    loading: 'http://cdn.uehtml.com/201402/1392662591495_1140x0.gif',
+    attempt: 1,
+    listenEvents: ['scroll', 'mousewheel']
+})
+
+
 Vue.prototype.$ajax = axios; //将axios写入vue的原型方法
 Vue.use(vuex)
 const store = new vuex.Store({

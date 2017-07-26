@@ -2,7 +2,7 @@
 <div>
     <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
     <div class="but"></div>
-    <div class="type">
+    <!-- <div class="type">
         <div @click='select(1)' class="lafeng typeselect">拉风小跑
             <img v-show="type1" src="../../assets/m-typeselect.png">
         </div>
@@ -14,14 +14,30 @@
         <div @click='select(3)' class="jingbao">惊爆眼球
             <img v-show="type3" src="../../assets/m-typeselect.png">            
         </div>
-    </div>
+    </div> -->
     <div v-if="loading == false" class="content">
         <ul>
-            <li @click="details(car.id)" v-for="car in currentlist.data.carsList" class="car_details">
-                <img :src="car.carImages" class="car_img">
+            <li @click="details(car.id)" v-for="car in carlist2.data.carsList" class="car_details">
+                <img v-lazy="car.carImages" class="car_img">
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
-                    <p class="car_price">¥<i>420</i>／天起</p>
+                    <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
+                    <p class="member_cut">{{car.starLevel}}星级</p>
+                </div>
+            </li>
+            <li @click="details(car.id)" v-for="car in carlist3.data.carsList" class="car_details">
+                <img v-lazy="car.carImages" class="car_img">
+                <p class="carName">{{car.carName}}</p>
+                <div class="rentPrice">
+                    <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
+                    <p class="member_cut">{{car.starLevel}}星级</p>
+                </div>
+            </li>
+            <li @click="details(car.id)" v-for="car in carlist1.data.carsList" class="car_details">
+                <img v-lazy="car.carImages" class="car_img">
+                <p class="carName">{{car.carName}}</p>
+                <div class="rentPrice">
+                    <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
                     <p class="member_cut">{{car.starLevel}}星级</p>
                 </div>
             </li>
@@ -87,6 +103,26 @@ export default {
 }
 </script>
 <style scoped>
+img[lazy=error]{
+    /* //your code */
+    background-color: black;
+}
+img[lazy=loading]{
+    /* //your code */
+    background-color: pink;
+}
+img[lazy=loaded]{
+    /* //your code */
+  animation:fade 0.5s;
+}
+@keyframes fade {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 .loadgif{
     display: block;
     margin: auto;
@@ -146,7 +182,7 @@ export default {
 }
 .content{
     width: 7.12rem;
-    margin: 0.08rem 0.16rem 0.06rem 0.22rem;
+    margin: 0.20rem 0.16rem 0.06rem 0.22rem;
     min-height: 7rem;
     overflow: hidden;
     position: relative;
@@ -170,6 +206,10 @@ export default {
 }
 .car_details .car_img {
     width: 3.5rem;
+    height: 2.66rem;
+}
+img[lazy=loading] {
+    width: 20rem;
     height: 2.66rem;
 }
 .car_details .carName {
