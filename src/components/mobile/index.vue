@@ -91,6 +91,9 @@ export default {
     -webkit-animation: myfirst 0.8s;
     -webkit-animation-fill-mode:forwards;
     -webkit-animation-timing-function: ease;
+    -khtml-animation: myfirst 0.8s;
+    -khtml-animation-fill-mode:forwards;
+    -khtml-animation-timing-function: ease;
 
 }
 .toend{
@@ -102,6 +105,8 @@ export default {
      -webkit-animation-timing-function: ease;
      -o-animation: mysecond 0.8s;
      -o-animation-timing-function: ease;
+     -khtml-animation: mysecond 0.8s;
+     -khtml-animation-timing-function: ease;
 }
 @keyframes mysecond
 {
@@ -126,7 +131,11 @@ export default {
 0%   {right:45%}
 100% {right: 100%}
 }
-
+@-khtml-keyframes mysecond
+{
+0%   {right:45%}
+100% {right: 100%}
+}
 
 
 @keyframes myfirst
@@ -134,7 +143,11 @@ export default {
 0%   {right:0%}
 100% {right: 45%}
 }
-
+@-khtml-keyframes myfirst /* Firefox */
+{
+0%   {right:0%}
+100% {right: 45%}
+}
 @-moz-keyframes myfirst /* Firefox */
 {
 0%   {right:0%}
