@@ -8,16 +8,65 @@
 </template>
 <script>
 require('./rem.js')(window,document)
+// require('./ground.js')
 import NativeShare from 'nativeshare'
-        var nativeShare = new NativeShare()
-
+var wx = require('weixin-js-sdk');
 export default {
     data(){
         return{
+            weichat:{
 
+            }
         }
     },
     created(){
+        this.$ajax(BASE_URL+'/car/weixinShare')
+        .then((res)=>{
+            wx.config({
+                        debug: false,
+                        appId: res.data.sign.appId,
+                        timestamp: res.data.sign.timestamp,
+                        nonceStr: res.data.sign.nonceStr,
+                        signature: res.data.sign.signature,
+                        jsApiList: [
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage',
+                            'onMenuShareQQ',
+                            'onMenuShareWeibo'
+                        ]
+                    });
+            var locationHref = window.location.href;
+            wx.ready(function () {
+                        wx.onMenuShareTimeline({
+                            title: 'WAGONS超跑俱乐部',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareAppMessage({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareQQ({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareWeibo({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+                    });
+            console.log(window.ground)
+            })
+        var nativeShare = new NativeShare()        
         var shareData = {
             title: 'WAGONS光速超跑-专业超跑运营商',
             desc: '客服热线：4008-625-700，WAGONS光速超跑为您提供超跑租赁、高端商务接待、高端静展、高端婚庆等用车服务。汇聚兰博基尼、法拉利、奔驰、迈凯伦、保时捷、宝马、玛莎拉蒂、劳斯莱斯、宾利等世界顶级品牌,精心定制奢享级会员服务,让您尽享至尊驾驭体验。',
@@ -36,12 +85,15 @@ export default {
     },
     methods:{
         call(command) {
-            try {
-                nativeShare.call(command)
-            } catch (err) {
-                // 如果不支持，你可以在这里做降级处理
-                alert(err.message)
-            }
+            alert(1)
+            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagon_logo.png', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            alert(1)
+            // try {
+            //     nativeShare.call(command)
+            // } catch (err) {
+            //     // 如果不支持，你可以在这里做降级处理
+            //     alert(err.message)
+            // }
         }
     }
 }
