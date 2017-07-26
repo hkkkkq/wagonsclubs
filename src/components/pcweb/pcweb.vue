@@ -65,12 +65,13 @@
   .header{
     width: 1000px;
     height: 100px;
-    background: url("../../assets/carRental_logo.png") no-repeat left 34px;
+    background: url("../../assets/carRental_logo3.png") no-repeat left 34px;
     padding-top: 49px;
-    background-size: 248px 48px;
+    background-size: 231px 24px;
     box-sizing: border-box;
     margin: auto;
-    padding-left: 348px;
+    padding-left: 314px;
+    background-position: 0 53px;
   }
   .footer{
     width: 100%;
@@ -102,9 +103,9 @@
   .router-link{
     line-height: 33px;
     display: inline-block;
-    width: 110px;
     text-decoration: none;
     color: #797979;
+    margin-right: 80px;
   }
   .router-link i {
     display: block;

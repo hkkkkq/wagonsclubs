@@ -43,6 +43,9 @@ var webpackConfig = merge(baseWebpackConfig, {
                 '/supercarnews/10',
                 '/supercarnews/11',
                 '/supercarnews/12',
+                '/supercarnews/13',
+                '/supercarnews/14',
+                '/supercarnews/15',
             ]
         ),
         // http://vuejs.github.io/vue-loader/en/workflow/production.html
