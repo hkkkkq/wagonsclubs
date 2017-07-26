@@ -19,6 +19,7 @@
         <ul>
             <li @click="details(car.id)" v-for="car in carlist2.data.carsList" class="car_details">
                 <img v-lazy="car.carImages" class="car_img">
+                <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
                     <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
@@ -27,6 +28,8 @@
             </li>
             <li @click="details(car.id)" v-for="car in carlist3.data.carsList" class="car_details">
                 <img v-lazy="car.carImages" class="car_img">
+                <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
+
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
                     <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
@@ -35,6 +38,7 @@
             </li>
             <li @click="details(car.id)" v-for="car in carlist1.data.carsList" class="car_details">
                 <img v-lazy="car.carImages" class="car_img">
+                <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
                     <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
@@ -103,6 +107,23 @@ export default {
 }
 </script>
 <style scoped>
+.carShadow img {
+    width: 1.46rem;
+    height: 1.46rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -0.73rem;
+    margin-top: -0.73rem;
+}
+.carShadow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3.5rem;
+    height: 2.66rem;
+    background: rgba(1,1,1,0.3);
+}
 img[lazy=error]{
     /* //your code */
     background-image: url('../../assets/loading12.png');

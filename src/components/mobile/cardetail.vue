@@ -91,12 +91,15 @@
         </div>
         <div style="height:1.2rem"></div>
         <div class="fix">
-            <div @click="open" class="can_rent">
+            <div v-if="info.car.rentingStatus == true" @click="open" class="can_rent">
+                今日已租
+            </div>
+            <div v-else @click="open" class="can_rent">
                 我要用车
             </div>
         </div>
         <div v-show="show1" class="shadow_rent">
-            <div class="lock">
+            <div v-if="info.car.rentingStatus == false" class="lock">
                 <img src="../../assets/car_Identification3.png" alt="" class="Identification">
                 <h4>我要用车</h4>
                 <p class="con_text" style="margin-bottom: 0.3rem;">坐骑就位&nbsp;恭候大驾</p>
@@ -107,6 +110,15 @@
                     <span @click="call">呼叫</span>
                 </p>
                 <a @click="close" class="cclose"></a>
+            </div>
+            <div v-else class="lock">
+                <img src="../../assets/car_Identification3.png" alt="" class="Identification">
+                <h4>今日已租</h4>
+                <p class="con_text" style="margin-top: 0.5rem;">宝马已赠英雄，客官明日再看</p>
+                <p class="call">
+                    <img src="../../assets/call.png">
+                    <span @click="close">好的</span>
+                </p>
             </div>
         </div>
         <div v-show="show2" class="alert_msg">当前版本不支持此功能，请升级到最新版本</div>
@@ -143,7 +155,8 @@ export default {
             info:{
                 car:{
                     carName:'',
-                    starLevel:''
+                    starLevel:'',
+                    rentingStatus:''
                 },
             },
         }
@@ -172,6 +185,7 @@ export default {
 </script>
 
 <style scoped>
+
 img[lazy=error]{
     /* //your code */
     background-image: url('../../assets/loading12.png');
