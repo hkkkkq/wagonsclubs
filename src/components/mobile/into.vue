@@ -52,12 +52,16 @@
             <p class="tel">Tel. &nbsp;&nbsp;4008-625-700</p>
             <p class="add">Add. 北京市东城区香河园路1号当代MOMA商务中心</p>
             <img src="../../assets/map.png" class="map">
-            <div class="moma">
+            <div @click="show" class="moma">
                 <img src="../../assets/map_click.png" class="map_click">
                 <img src="../../assets/arrow.png" class="mmp">
                 <span>MOMA</span>
                 <p>园区示意图</p>
             </div>
+        </div>
+        <div v-show="show1" class="park_alert" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+            <img src="../../assets/park_map.png" class="map_alert">
+            <img @click="close" src="../../assets/close.png" class="close">
         </div>
   </div>
 </template>
@@ -68,7 +72,8 @@ export default {
             s1:true,
             s2:false,
             s3:false,
-            s4:false
+            s4:false,
+            show1:false
         }
     },
     mounted(){
@@ -102,10 +107,44 @@ export default {
                 this.s4 = false
             }
         },1500)
+    },
+    methods:{
+        show(){
+            this.show1 = true
+        },
+        close(){
+            this.show1 = false
+        }
     }
 }
 </script>
 <style scoped>
+.park_alert .close {
+    position: absolute;
+    width: 0.72rem;
+    height: 0.72rem;
+    left: 50%;
+    margin-left: -0.36rem;
+    bottom: 1.5rem;
+}
+.park_alert .map_alert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5.18rem;
+    height: 6.81rem;
+    margin-left: -2.59rem;
+    margin-top: -3.4rem;
+}
+.park_alert {
+    width: 100%;
+    height: 100%;
+    background: rgba(1,1,1,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
 .join {
     text-decoration:none;
     text-decoration-line: none;
