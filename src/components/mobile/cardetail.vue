@@ -2,7 +2,7 @@
 <div>
     <router-link to="/mobile" class="back"></router-link>
     <div class="lunbo">
-        <div class="swiper-pagination ssss"></div>    
+        <div style="bottom:0px" class="swiper-pagination"></div>    
         <swiper class="swip1" :options="swiperOption" ref="mySwiper">
             <swiper-slide :key="item.id" v-for="item in info.carImgShows" class="swip2">
                 <img v-lazy="item" />
@@ -138,7 +138,18 @@ export default {
               autoplay: 2000,
               autoplayDisableOnInteraction:false,
               pagination : '.swiper-pagination',
-              paginationType:'fraction',
+              paginationType:'custom',
+              paginationCustomRender:function(swiper, current, total){
+                  var _html = '';
+            for (var i = 1; i <= total; i++) {
+              if (current == i) {
+                _html += '<li style="background:#F3F3F3;display:inline-block;width:13px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:7px"></i>';
+              }else{
+                _html += '<li style="background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:7px"></i>';
+              }
+            }
+            return _html
+              },
               direction : 'horizontal',
               grabCursor : true,
               setWrapperSize :true,
@@ -247,10 +258,23 @@ img[lazy=loaded]{
   }
 }
 
-
+/* .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 100%;
+    background: #000;
+    opacity: 1;
+} */
 .ssss{
-    color: #F3F3F3!important;
-    font-size: 0.16rem!important;
+    display: inline-block;
+}
+/* .swiper-pagination-bullet{
+    background: #F3F3F3!important;
+    opacity: 1!important;
+} */
+.sip1{
+    
 }
 .alert_msg {
     position: fixed;
@@ -489,6 +513,8 @@ img[lazy=loaded]{
     height: 5.7rem;
 }
 .swip2 img{
+    /* position: relative;
+    top: -0.2rem; */
     display: block;
     width: 100%;
     height: 5.7rem;
