@@ -2,15 +2,64 @@
 <div>
     <div class="head">
         <img class="logo" src="../../assets/newlogo.png">
+        <span @click="call" class="share"></span>
     </div>
 </div>
 </template>
 <script>
+require('./rem.js')(window,document)
+import NativeShare from 'nativeshare'
+        var nativeShare = new NativeShare()
+
 export default {
-  
+    data(){
+        return{
+
+        }
+    },
+    created(){
+        var shareData = {
+            title: 'WAGONS光速超跑-专业超跑运营商',
+            desc: '客服热线：4008-625-700，WAGONS光速超跑为您提供超跑租赁、高端商务接待、高端静展、高端婚庆等用车服务。汇聚兰博基尼、法拉利、奔驰、迈凯伦、保时捷、宝马、玛莎拉蒂、劳斯莱斯、宾利等世界顶级品牌,精心定制奢享级会员服务,让您尽享至尊驾驭体验。',
+            // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
+            link: 'http://www.wagonsclub.com',
+            icon: '../../assets/carRental_logo3.png',
+            // 不要过于依赖以下两个回调，很多浏览器是不支持的
+            success: function() {
+                alert('success')
+            },
+            fail: function() {
+                alert('fail')
+            }
+        }
+        nativeShare.setShareData(shareData)
+    },
+    methods:{
+        call(command) {
+            try {
+                nativeShare.call(command)
+            } catch (err) {
+                // 如果不支持，你可以在这里做降级处理
+                alert(err.message)
+            }
+        }
+    }
 }
 </script>
 <style scoped>
+.share{
+    position: relative;
+    top: -0.3rem;
+    float: right;
+    margin-right: 0.3rem;
+    display: block;
+    width: 0.28rem;
+    height: 0.34rem;
+    z-index: 1000000;
+    background-image: url('../../assets/share.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .head-1{
     position: relative;
     height: 1.25rem;
