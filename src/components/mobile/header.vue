@@ -2,7 +2,8 @@
 <div>
     <div class="head">
         <img class="logo" src="../../assets/newlogo.png">
-        <span @click="call" class="share"></span>
+        <span v-if="isNewApp" @click="call" class="share"></span>
+        
     </div>
 </div>
 </template>
@@ -14,12 +15,11 @@ var wx = require('weixin-js-sdk');
 export default {
     data(){
         return{
-            weichat:{
-
-            }
+            isNewApp:''
         }
     },
     created(){
+        this.$ajax(BASE_URL+'/car/isNewApp').then((res)=>{this.isNewApp = res.data.data.isNewApp})
         this.$ajax(BASE_URL+'/car/weixinShare')
         .then((res)=>{
             wx.config({
@@ -72,7 +72,7 @@ export default {
             desc: '客服热线：4008-625-700，WAGONS光速超跑为您提供超跑租赁、高端商务接待、高端静展、高端婚庆等用车服务。汇聚兰博基尼、法拉利、奔驰、迈凯伦、保时捷、宝马、玛莎拉蒂、劳斯莱斯、宾利等世界顶级品牌,精心定制奢享级会员服务,让您尽享至尊驾驭体验。',
             // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
             link: 'http://www.wagonsclub.com',
-            icon: '../../assets/carRental_logo3.png',
+            icon: 'http://wap.wagonsclub.com/source/images/wagon_logo.png',
             // 不要过于依赖以下两个回调，很多浏览器是不支持的
             success: function() {
                 alert('success')
@@ -85,9 +85,7 @@ export default {
     },
     methods:{
         call(command) {
-            alert(1)
             window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), '', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
-            alert(1)
             // try {
             //     nativeShare.call(command)
             // } catch (err) {

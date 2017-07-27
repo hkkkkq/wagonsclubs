@@ -70,7 +70,7 @@
             <div class="give">
                 为了答谢您对WAGONS的支持，您有机会获得一份精美礼品，请写下正确的收件地址以方便我们寄送。
             </div>
-            <textarea id="address" placeholder="请填写详细地址"></textarea>
+            <textarea v-model="address" id="address" placeholder="请填写详细地址"></textarea>
             <div @click="ok" class="ok">完成</div>
             <div class="tel">
                 <p>如有疑问，您可以随时拨打客服热线</p>
@@ -82,6 +82,7 @@
 
 <script>
 require('./rem.js')(window,document);
+import qs from 'qs';
 export default {
     data(){
         return {
@@ -117,17 +118,21 @@ export default {
     },
     methods:{
         ok:function(){
+            if(this.address){}
             if(this.address == ''){
                 this.$router.push('/mobile')
             }else{
-                this.$ajax(
-                    BASE_URL+'/regist',{
-                        params:{
-                            id:this.id,
-                            address:this.address
-                            }
-                    }
-                ).then((res)=>{
+                this.$ajax({
+                    method:'POST',
+                    url:BASE_URL+"/addrBinding",
+                    data:qs.stringify({
+                        id:this.id,
+                        address:this.address
+                    }),
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                }).then((res)=>{
                     this.$router.push('/mobile');
                 })
             }
@@ -164,15 +169,21 @@ export default {
             setTimeout(()=>{ this.iserr = false},1500)
         },
         submit:function(){
-            if(this.userinfo.name == ''){ this.err('姓名不能为空'); return false }
-            if(this.userinfo.idCard == ''){ this.err('身份证号不能为空'); return false  }
-            if(this.userinfo.telephone == ''){ this.err('电话号不能为空'); return false  }
+            if(this.userinfo.name == ''){ this.err('请填写姓名'); return false }
+            if(this.userinfo.idCard == ''){ this.err('请填写身份证号'); return false  }
+            if(this.userinfo.telephone == ''){ this.err('请填写手机号'); return false  }
+            if(this.userinfo.maritalStatus === ''){ this.err('请选择婚姻状况'); return false  }
+            if(this.userinfo.career == ''){ this.err('请选择职业'); return false  }
+            if(this.userinfo.duty == ''){ this.err('请选择职务'); return false  }
             console.log(this.userinfo)
-            this.$ajax(
-                BASE_URL+"/regist",{
-                    params:this.userinfo
-                }
-            ).then((res)=>{
+            this.$ajax({
+                method:'POST',
+                url:BASE_URL+'/regist',
+                data:qs.stringify(this.userinfo),
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        },
+            }).then((res)=>{
                 if(res.data.success == true){
                     this.tianxie = false;
                     this.id = res.data.data.id;
@@ -206,7 +217,7 @@ html{
     left: 0.4rem;
 }
 .p3se{
-    width: 2.3rem!important;
+    width: 3.3rem!important;
     color:black!important; 
     text-align:right;
     background:url('')!important;
