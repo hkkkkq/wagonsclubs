@@ -118,9 +118,6 @@ export default {
     },
     methods:{
         ok:function(){
-            if(this.address == ''){
-                this.err('请填写通讯地址')
-            }else{
                 this.$ajax({
                     method:'POST',
                     url:BASE_URL+"/addrBinding",
@@ -134,7 +131,6 @@ export default {
                 }).then((res)=>{
                     this.$router.push('/mobile');
                 })
-            }
         },
         goback:function(){
             this.$router.go(-1)
