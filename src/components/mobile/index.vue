@@ -3,14 +3,15 @@
       <m-header></m-header>
       <pull :maxDistance=60 :topDistance=50 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
         <m-list  v-if="foot_left"></m-list>   
-        <div slot="top" class="mint-loadmore-top">
+        <div v-if="foot_left" slot="top" class="mint-loadmore-top">
             <!-- <span v-show="topStatus !== 'loading'">↓</span>
             <span v-show="topStatus === 'loading'">Loading...</span> -->
             <p class="down" v-if="topStatus == 'pull'">pull down to fresh</p>            
             <p class="down" v-if="topStatus == 'drop'">pull down to fresh</p>
             <p class="down" v-if="topStatus == 'loading'">updating...</p>
             <img class="reloadcar" :class="{tomid:topStatus == 'drop',toend:topStatus == 'loading'}" src="../../assets/reload_car.png">
-        </div>                   
+        </div>      
+        <div v-else slot="top" class="mint-loadmore-top"></div>             
       </pull>
       <m-into v-if="foot_right"></m-into>
       <m-footer></m-footer>

@@ -1,5 +1,6 @@
 <template>
   <div>
+      <!-- <div style="height:1.25rem"></div> -->
       <img class="about_ban" src="../../assets/m-about_banner.png">
       <div class="con-1">
           <div class="introduce">
