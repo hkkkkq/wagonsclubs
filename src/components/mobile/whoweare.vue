@@ -25,7 +25,7 @@ export default {
 <style scoped>
 .goback {
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     left: 0.06rem;
     top: 0.37rem;
     width: 0.8rem;

@@ -118,9 +118,8 @@ export default {
     },
     methods:{
         ok:function(){
-            if(this.address){}
             if(this.address == ''){
-                this.$router.push('/mobile')
+                this.err('请填写通讯地址')
             }else{
                 this.$ajax({
                     method:'POST',
