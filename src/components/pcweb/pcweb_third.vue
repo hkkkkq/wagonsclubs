@@ -342,7 +342,7 @@ export default {
     height: 300px;
     background: white;
     margin: auto;
-    top: 340px;
+    top: 30%;
     left: 33%;
 }
 .mask{
