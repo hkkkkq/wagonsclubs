@@ -237,7 +237,6 @@ export default {
             if(this.maritalStatus == ''){this.err("请选择婚姻状况");this.iserr = true;return false}
             if(this.career == '职业'){this.err("请选择职业");this.iserr = true;return false}
             if(this.duty == '职务'){this.err("请选择职务");this.iserr = true;return false}
-            if(this.address == ''){this.err("请填写通讯地址");this.iserr = true;return false}
             let that = this
             this.$ajax({
                 method:'POST',
