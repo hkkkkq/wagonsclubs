@@ -13,9 +13,9 @@
           </transition>
           <p>申请会员</p>
           <div class="clear2"></div>
-          <input v-model="name" class="text" placeholder="姓名" type="text"><span class="must">*</span>
-          <input v-model="telephone" class="text" placeholder="手机号码" type="text"><span class="must">*</span>
-          <input v-model="idCard" class="text" placeholder="身份证号码" type="text"><span class="must">*</span>
+          <input v-model="name" class="text" placeholder="姓名" type="text">
+          <input v-model="telephone" class="text" placeholder="手机号码" type="text">
+          <input v-model="idCard" class="text" placeholder="身份证号码" type="text">
           <div :class="{black:!show11,shadow:show1}" @click="choose1" class="text select" placeholder="">
               {{maritalStatus}}
               <span v-show="show11" class="choose">{{pleasechoose}}</span>
