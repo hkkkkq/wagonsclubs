@@ -32,7 +32,13 @@
               homeactive2:false,
               homeactive3:false
           }
-          },
+        },
+        mounted(){
+          let i = this.$route.path;
+          if(i == '/first'){ this.changecolor1() }
+          if(i == '/second'){ this.changecolor2() }
+          if(i == '/third'){ this.changecolor3() }
+        },
     methods:{
       changecolor1:function(){
           this.homeactive1 = true
