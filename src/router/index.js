@@ -26,6 +26,9 @@ const news12 = resolve => require(['../components/spider/news12.vue'], resolve);
 const news13 = resolve => require(['../components/spider/news13.vue'], resolve);
 const news14 = resolve => require(['../components/spider/news14.vue'], resolve);
 const news15 = resolve => require(['../components/spider/news15.vue'], resolve);
+const news16 = resolve => require(['../components/spider/news16.vue'], resolve);
+const news17 = resolve => require(['../components/spider/news17.vue'], resolve);
+const news18 = resolve => require(['../components/spider/news18.vue'], resolve);
 
 
 
@@ -72,6 +75,9 @@ export default new Router({
         { path: '/supercarnews/13', component: news13 },
         { path: '/supercarnews/14', component: news14 },
         { path: '/supercarnews/15', component: news15 },
+        { path: '/supercarnews/16', component: news16 },
+        { path: '/supercarnews/17', component: news17 },
+        { path: '/supercarnews/18', component: news18 },
 
         //404
         {
