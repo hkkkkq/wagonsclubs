@@ -1,5 +1,5 @@
 <template>
-  <div style="">
+  <div>
       <div class="head_xz">
             <a @click="goback" class="goback"></a>
             <p>快速申请</p>
@@ -192,9 +192,6 @@ export default {
 </script>
 
 <style scoped>
-html{
-    background-color: #f6f6f6;
-}
 .tabse{
     background-image: url('../../assets/right.png')!important;
 }
@@ -372,6 +369,7 @@ input::-webkit-input-placeholder{
     margin: 0 0.5rem;
     height: 1rem;
     border-bottom: 1px solid #f6f6f6;
+    background-color: white;
 }
 .inputbox{
     font-size: 0.28rem;
