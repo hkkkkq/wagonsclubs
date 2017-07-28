@@ -173,7 +173,7 @@ export default {
         }
     },
     created(){
-        this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt':new Date()}})
+        this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
         .then((res)=>{this.info = res.data.data;console.log(res.data.data)})
         window.scrollTo(0,0);
     },
