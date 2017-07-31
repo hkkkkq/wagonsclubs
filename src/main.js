@@ -26,7 +26,8 @@ Vue.use(vuex)
 const store = new vuex.Store({
     state: {
         'foot_left': true,
-        'foot_right': false
+        'foot_right': false,
+        'isNewApp': false
     },
     mutations: {
         foot_left_click(state) {
@@ -36,6 +37,9 @@ const store = new vuex.Store({
         foot_right_click(state) {
             state.foot_left = false;
             state.foot_right = true;
+        },
+        isNewApp(state) {
+            state.isNewApp = true;
         }
     }
 })

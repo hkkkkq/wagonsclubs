@@ -2,7 +2,7 @@
 <div>
     <div class="head">
         <img class="logo" src="../../assets/newlogo.png">
-        <span v-if="isNewApp" @click="call" class="share"></span>
+        <span v-if="isNew" @click="call" class="share"></span>
         
     </div>
 </div>
@@ -15,11 +15,16 @@ var wx = require('weixin-js-sdk');
 export default {
     data(){
         return{
-            isNewApp:''
         }
     },
+    computed:{
+        isNew(){ return this.$store.state.isNewApp}
+    },
     created(){
-        this.$ajax(BASE_URL+'/car/isNewApp').then((res)=>{this.isNewApp = res.data.data.isNewApp})
+        this.$ajax(BASE_URL+'/car/isNewApp').then((res)=>{
+            if(res.data.data.isNewApp){
+                this.$store.commit('isNewApp')
+            }})
         this.$ajax(BASE_URL+'/car/weixinShare')
         .then((res)=>{
             wx.config({

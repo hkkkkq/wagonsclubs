@@ -1,33 +1,15 @@
 <template>
 <div>
     <router-link to="/mobile" class="back"></router-link>
+    <span v-if='isNew' @click='share' class="share">
+                            <img src="../../assets/wagons_lease_share.png" alt="">
+                        </span>
     <div class="lunbo">
         <div style="bottom:0px" class="swiper-pagination"></div>    
         <swiper class="swip1" :options="swiperOption" ref="mySwiper">
             <swiper-slide :key="item.id" v-for="item in info.carImgShows" class="swip2">
                 <img v-lazy="item" />
             </swiper-slide>
-            <!-- <swiper-slide class="swip2">
-                <img src="../../assets/car_gongzhonghao.png" />            
-            </swiper-slide>
-            <swiper-slide class="swip2">
-                <img src="../../assets/car_gongzhonghao.png" />            
-            </swiper-slide>
-            <swiper-slide class="swip2">
-                <img src="../../assets/car_gongzhonghao.png" />            
-            </swiper-slide>
-            <swiper-slide class="swip2">
-                <img src="../../assets/car_gongzhonghao.png" />            
-            </swiper-slide>
-            <swiper-slide class="swip2">
-                <img src="../../assets/car_gongzhonghao.png" />            
-            </swiper-slide>
-            <swiper-slide class="swip2">
-                <img src="../../assets/car_gongzhonghao.png" />            
-            </swiper-slide>
-            <swiper-slide class="swip2">
-                <img src="../../assets/car_gongzhonghao.png" />            
-            </swiper-slide> -->
         </swiper>
     </div>
     <div class="car_info">
@@ -176,6 +158,9 @@ export default {
             },
         }
     },
+     computed:{
+        isNew(){ return this.$store.state.isNewApp}
+    },
     created(){
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
         .then((res)=>{if(res.data.success == true){
@@ -186,6 +171,53 @@ export default {
                 this.$router.push('/404') 
                 }
                 })
+        
+         this.$ajax(BASE_URL+'/car/weixinShare')
+        .then((res)=>{
+            wx.config({
+                        debug: false,
+                        appId: res.data.sign.appId,
+                        timestamp: res.data.sign.timestamp,
+                        nonceStr: res.data.sign.nonceStr,
+                        signature: res.data.sign.signature,
+                        jsApiList: [
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage',
+                            'onMenuShareQQ',
+                            'onMenuShareWeibo'
+                        ]
+                    });
+            var locationHref = window.location.href;
+            wx.ready(function () {
+                        wx.onMenuShareTimeline({
+                            title: 'WAGONS超跑俱乐部',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareAppMessage({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareQQ({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareWeibo({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+                    });
+            })
+
         window.scrollTo(0,0);
     },
     methods:{
@@ -196,10 +228,17 @@ export default {
             this.show1 = true;
         },
         call:function(){
-            this.show2 = true;
-            setTimeout(()=>{
-                this.show2 = false
-            },1500)
+            if(this.isNew){
+                window.ground.callCustomPhone("4008625700");
+            }else{
+                this.show2 = true;
+                setTimeout(()=>{
+                    this.show2 = false
+                },1500)
+            }
+        },
+        share:function(){
+            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), '', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
         }
     }
 
@@ -207,7 +246,20 @@ export default {
 </script>
 
 <style scoped>
-
+.share img {
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin: 0.52rem auto 0;
+}
+.share {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    width: 1rem;
+    height: 1.2rem;
+}
 img[lazy=error]{
     /* //your code */
     background-image: url('../../assets/loading12.png');
