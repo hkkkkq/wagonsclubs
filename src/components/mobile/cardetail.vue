@@ -40,7 +40,7 @@
                 <!-- <img v-if="info.car.starLevel == '1'" src="../../assets/1.png" class="star">  -->
             </p>
             <p class="price">
-                <span>白金会员</span>
+                <span>白金会员价</span>
                 ¥<i>{{info.car.dailyRentPrice}}</i>/天
             </p>
     </div>
@@ -91,11 +91,14 @@
         </div>
         <div style="height:1.2rem"></div>
         <div class="fix">
-            <div v-if="info.car.rentingStatus == true" @click="open" class="can_rent">
+            <div v-if="info.car.rentingStatus === true" @click="open" class="can_rent">
                 今日已租
             </div>
-            <div v-else @click="open" class="can_rent">
+            <div v-else-if="info.car.rentingStatus === false" @click="open" class="can_rent">
                 我要用车
+            </div>
+            <div v-else @click="open" class="can_rent">
+                
             </div>
         </div>
         <div v-show="show1" class="shadow_rent">
@@ -470,7 +473,7 @@ img[lazy=loaded]{
 }
 .car_info .price span {
     display: inline-block;
-    width: 1.14rem;
+    width: 1.3rem;
     height: 0.28rem;
     line-height: 0.28rem;
     text-align: center;
@@ -479,7 +482,7 @@ img[lazy=loaded]{
     vertical-align: top;
     color: #fff;
     background: url('../../assets/m-discount_vip.png') no-repeat;
-    background-size: 1.14rem 0.28rem;
+    background-size: 100% 100%;
 }
 .car_info .price {
     height: 0.52rem;

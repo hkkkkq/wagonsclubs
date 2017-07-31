@@ -10,7 +10,7 @@
         </div>
         <div class="packgage">
             <div class="head">
-                <i class="line" style="left:2.16rem;"></i>
+                <i class="line" style="left:2.47rem;"></i>
                 <i class="line" style="right:2.47rem;"></i>
                 <p>套餐</p>
             </div>
@@ -137,7 +137,7 @@
         <div class="none_box"></div>        
         <div class="scatter">
             <div class="head">
-                <i class="line" style="left:2.16rem;"></i>
+                <i class="line" style="left:2.47rem;"></i>
                 <i class="line" style="right:2.47rem;"></i>
                 <p>散租</p>
             </div>
