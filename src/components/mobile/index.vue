@@ -32,7 +32,9 @@ export default {
         }
     },
     mounted(){
-        
+        if(this.$route.query.isNewApp){
+            this.$store.commit('isNewApp')
+        }
     },
     computed:{
         foot_left(){return this.$store.state.foot_left},
