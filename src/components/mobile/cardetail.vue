@@ -177,7 +177,7 @@ export default {
     },
     created(){
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
-        .then((res)=>{this.info = res.data.data;console.log(res.data.data)})
+        .then((res)=>{if(res.data.success == true){this.info = res.data.data;}else{ console.log(res.data);this.$router.push('/404') }})
         window.scrollTo(0,0);
     },
     methods:{

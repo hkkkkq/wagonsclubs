@@ -2,7 +2,7 @@
   <div>
       <div class="head_xz">
             <a @click="goback" class="goback"></a>
-            <p>快速申请</p>
+            <p>{{title}}</p>
       </div>
       <div style="width:100%;height:1.27rem;"></div>
       <div class="tab" :class="{tabse:!tianxie}">
@@ -86,6 +86,7 @@ import qs from 'qs';
 export default {
     data(){
         return {
+            title:'快速申请',
             address:'',
             id:'',
             tianxie:true,
@@ -180,6 +181,7 @@ export default {
                         },
             }).then((res)=>{
                 if(res.data.success == true){
+                    this.title = '提交成功'
                     this.tianxie = false;
                     this.id = res.data.data.id;
                 }else{

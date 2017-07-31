@@ -25,8 +25,8 @@
                             <span>缴纳<b style="color:#f65641;">50万</b>现金办理</span>
                         </li>
                         <li>
-                            <i style="border-bottom: none">白金会员</i>
-                            <span style="border-bottom: none">缴纳<b style="color:#f65641;">100万</b>现金办理</span>
+                            <i>白金会员</i>
+                            <span>缴纳<b style="color:#f65641;">100万</b>现金办理</span>
                         </li>
                         <li>
                             <i>企业精英卡会员</i>
