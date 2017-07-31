@@ -17,7 +17,7 @@
     </div> -->
     <div v-if="loading == false" class="content">
         <ul>
-            <li @click="details(car.id)" v-for="car in carlist2.data.carsList" class="car_details">
+            <li @click="details(car.id)" v-for="car in carlist.data.carsList" class="car_details">
                 <img v-lazy="car.carImages" class="car_img">
                 <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
@@ -26,25 +26,7 @@
                     <p class="member_cut">{{car.starLevel}}星级</p>
                 </div>
             </li>
-            <li @click="details(car.id)" v-for="car in carlist3.data.carsList" class="car_details">
-                <img v-lazy="car.carImages" class="car_img">
-                <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
-
-                <p class="carName">{{car.carName}}</p>
-                <div class="rentPrice">
-                    <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
-                    <p class="member_cut">{{car.starLevel}}星级</p>
-                </div>
-            </li>
-            <li @click="details(car.id)" v-for="car in carlist1.data.carsList" class="car_details">
-                <img v-lazy="car.carImages" class="car_img">
-                <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
-                <p class="carName">{{car.carName}}</p>
-                <div class="rentPrice">
-                    <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
-                    <p class="member_cut">{{car.starLevel}}星级</p>
-                </div>
-            </li>
+            
         </ul>
     </div>
     <div style="height:5.1rem" v-else>
@@ -62,23 +44,13 @@ export default {
             type1:false,
             type2:true,
             type3:false,
-            currentlist:'',
-            carlist3:'',
-            carlist2:'',
-            carlist1:'',
+            carlist:'',
             loading:true
         }
     },
     created(){
-        var i = 0;
-        this.$ajax(BASE_URL+'/car/carsList?type=3')
-            .then((res)=>{this.carlist3 = res.data; console.log(res.data); i=i+1;i==3?this.loading = false:{}})
-            .catch(()=>{alert('一定是什么地方出问题了')})
-        this.$ajax(BASE_URL+'/car/carsList?type=2')
-            .then((res)=>{this.carlist2 = res.data;this.currentlist = res.data;i=i+1;i==3?this.loading = false:{}})
-            .catch(()=>{alert('一定是什么地方出问题了')})
-        this.$ajax(BASE_URL+'/car/carsList?type=1')
-            .then((res)=>{this.carlist1 = res.data;i=i+1;i==3?this.loading = false:{}})
+        this.$ajax(BASE_URL+'/car/carsList')
+            .then((res)=>{this.carlist = res.data; console.log(res.data); this.loading = false})
             .catch(()=>{alert('一定是什么地方出问题了')})
         // i == 3?{this.loading = false }:{alert("一定是什么地方出问题了")}
         // console.log(i)
@@ -89,11 +61,7 @@ export default {
         // }
     },
     methods:{
-        select:function(i){
-            if(i == 1){this.type1 = true;this.type2=this.type3=false;this.currentlist = this.carlist1}
-            if(i == 2){this.type2 = true;this.type1=this.type3=false;this.currentlist = this.carlist2}
-            if(i == 3){this.type3 = true;this.type2=this.type1=false;this.currentlist = this.carlist3}
-        },
+
         details:function(i){
             this.$router.push({path:'/mobile/cardetail',query:{carId:i}})
             // router.push({ name: 'user', params: { userId: 123 }})
