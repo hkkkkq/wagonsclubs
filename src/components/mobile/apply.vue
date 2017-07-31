@@ -371,7 +371,6 @@ input::-webkit-input-placeholder{
     margin: 0 0.5rem;
     height: 1rem;
     border-bottom: 1px solid #f6f6f6;
-    background-color: white;
 }
 .inputbox{
     font-size: 0.28rem;
