@@ -22,7 +22,7 @@
                 <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
-                    <p class="car_price">¥<i>{{car.dailyRentPrice}}</i>／天起</p>
+                    <p class="car_price">¥<i>{{car.dailyRentPrice*discount*0.1}}</i>／天起</p>
                     <p class="member_cut">{{car.starLevel}}星级</p>
                 </div>
             </li>
@@ -45,12 +45,13 @@ export default {
             type2:true,
             type3:false,
             carlist:'',
-            loading:true
+            loading:true,
+            discount:''
         }
     },
     created(){
         this.$ajax(BASE_URL+'/car/carsList')
-            .then((res)=>{this.carlist = res.data; console.log(res.data); this.loading = false})
+            .then((res)=>{this.carlist = res.data; this.discount = res.data.data.maxDiscount; console.log(res.data); this.loading = false})
             .catch(()=>{alert('一定是什么地方出问题了')})
         // i == 3?{this.loading = false }:{alert("一定是什么地方出问题了")}
         // console.log(i)

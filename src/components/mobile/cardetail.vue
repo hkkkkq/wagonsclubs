@@ -41,7 +41,7 @@
             </p>
             <p class="price">
                 <span>白金会员价</span>
-                ¥<i>{{info.car.dailyRentPrice}}</i>/天
+                ¥<i>{{info.car.dailyRentPrice*info.discount*0.1}}</i>/天
             </p>
     </div>
     <div class="car_intro">
@@ -172,12 +172,20 @@ export default {
                     starLevel:'',
                     rentingStatus:''
                 },
+                discount:''
             },
         }
     },
     created(){
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
-        .then((res)=>{if(res.data.success == true){this.info = res.data.data;}else{ console.log(res.data);this.$router.push('/404') }})
+        .then((res)=>{if(res.data.success == true){
+            this.info = res.data.data;
+            this.info.discount = res.data.data.maxDiscount;
+            }else{
+                console.log(res.data);
+                this.$router.push('/404') 
+                }
+                })
         window.scrollTo(0,0);
     },
     methods:{
