@@ -32,6 +32,7 @@ export default {
         }
     },
     mounted(){
+        console.log(this.$route.query.isNewApp)
         if(this.$route.query.isNewApp){
             this.$store.commit('isNewApp')
         }
