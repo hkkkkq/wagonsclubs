@@ -21,6 +21,7 @@
 require('./rem.js')(window,document);
 import memberright from './memberright.vue'
 import howjoin from './howjoin.vue'
+import logoSrc from '.。/../assets/wagons_share_logo.jpg'
 var wx = require('weixin-js-sdk');
 
 export default {
@@ -34,6 +35,7 @@ export default {
         isNew(){ return this.$store.state.isNewApp}
     },
     created(){
+        console.log()
         window.scrollTo(0,0);
         this.$ajax(BASE_URL+'/car/weixinShare')
         .then((res)=>{
@@ -55,28 +57,28 @@ export default {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS超跑俱乐部',
                             link: locationHref,
-                            imgUrl: require('../../assets/wagons_share_logo.jpg')
+                            imgUrl: logoSrc
                         });
 
                         wx.onMenuShareAppMessage({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: require('../../assets/wagons_share_logo.jpg')
+                            imgUrl: logoSrc
                         });
 
                         wx.onMenuShareQQ({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: require('../../assets/wagons_share_logo.jpg')
+                            imgUrl:logoSrc
                         });
 
                         wx.onMenuShareWeibo({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: require('../../assets/wagons_share_logo.jpg')
+                            imgUrl: logoSrc
                         });
                     });
             console.log(window.ground)
