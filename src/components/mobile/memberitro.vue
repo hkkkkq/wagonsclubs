@@ -53,28 +53,28 @@ export default {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS超跑俱乐部',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareAppMessage({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareQQ({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareWeibo({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
                     });
             console.log(window.ground)
