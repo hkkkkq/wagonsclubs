@@ -21,7 +21,7 @@
 require('./rem.js')(window,document);
 import memberright from './memberright.vue'
 import howjoin from './howjoin.vue'
-import logoSrc from '.。/../assets/wagons_share_logo.jpg'
+import logoSrc from '../../assets/wagons_share_logo.jpg'
 var wx = require('weixin-js-sdk');
 
 export default {
