@@ -21,7 +21,7 @@
 require('./rem.js')(window,document);
 import memberright from './memberright.vue'
 import howjoin from './howjoin.vue'
-import logoSrc from '../../assets/wagons_share_logo.jpg'
+import logoSrc from '../../assets/wagon_logo.png'
 var wx = require('weixin-js-sdk');
 
 export default {
@@ -35,7 +35,7 @@ export default {
         isNew(){ return this.$store.state.isNewApp}
     },
     created(){
-        console.log()
+        console.log(logoSrc)
         window.scrollTo(0,0);
         this.$ajax(BASE_URL+'/car/weixinShare')
         .then((res)=>{
