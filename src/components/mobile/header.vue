@@ -23,6 +23,7 @@ export default {
     created(){
         this.$ajax(BASE_URL+'/car/isNewApp').then((res)=>{
             if(res.data.data.isNewApp){
+                console.log('发送')
                 this.$store.commit('isNewApp')
             }})
         this.$ajax(BASE_URL+'/car/weixinShare')
@@ -108,8 +109,8 @@ export default {
     float: right;
     margin-right: 0.3rem;
     display: block;
-    width: 0.28rem;
-    height: 0.34rem;
+    width: 0.35rem;
+    height: 0.35rem;
     z-index: 1000000;
     background-image: url('../../assets/share.png');
     background-repeat: no-repeat;

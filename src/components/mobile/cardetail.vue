@@ -23,7 +23,7 @@
             </p>
             <p class="price">
                 <span>白金会员价</span>
-                ¥<i>{{info.car.dailyRentPrice*info.discount*0.1}}</i>/天
+                ¥<i>{{discountprice}}</i>/天
             </p>
     </div>
     <div class="car_intro">
@@ -160,7 +160,10 @@ export default {
         }
     },
      computed:{
-        isNew(){ return this.$store.state.isNewApp}
+        isNew(){ return this.$store.state.isNewApp},
+        discountprice(){
+            return String(this.info.car.dailyRentPrice*this.info.discount*0.1) == String(NaN)?'':Number(this.info.car.dailyRentPrice*this.info.discount*0.1)
+            }
     },
     created(){
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
@@ -248,6 +251,7 @@ export default {
 
 <style scoped>
 .share img {
+    position:fixed;
     display: block;
     width: 0.6rem;
     height: 0.6rem;
@@ -258,7 +262,7 @@ export default {
     z-index: 100;
     top: 0;
     right: 0;
-    width: 1rem;
+    width: 0.8rem;
     height: 1.2rem;
 }
 img[lazy=error]{

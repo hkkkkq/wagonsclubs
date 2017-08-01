@@ -3,6 +3,8 @@
     <div class="head_xz">
         <a @click="goback" class="goback" id="goback"></a>
         <p>会员说明</p>    
+                    <span v-if="isNew" @click="call" class="share"></span>
+
         <div class="tab">
             <span @click="select(1)" class="no1"><b :class="{active:show1}">会员权益</b></span>
             <span @click="select(2)" class="no2"><b :class="{active:show2}">如何加入</b></span>
@@ -26,8 +28,57 @@ export default {
             show2:false
         }
     },
+    computed:{
+        isNew(){ return this.$store.state.isNewApp}
+    },
     created(){
         window.scrollTo(0,0);
+        this.$ajax(BASE_URL+'/car/weixinShare')
+        .then((res)=>{
+            wx.config({
+                        debug: false,
+                        appId: res.data.sign.appId,
+                        timestamp: res.data.sign.timestamp,
+                        nonceStr: res.data.sign.nonceStr,
+                        signature: res.data.sign.signature,
+                        jsApiList: [
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage',
+                            'onMenuShareQQ',
+                            'onMenuShareWeibo'
+                        ]
+                    });
+            var locationHref = window.location.href;
+            wx.ready(function () {
+                        wx.onMenuShareTimeline({
+                            title: 'WAGONS超跑俱乐部',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareAppMessage({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareQQ({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+
+                        wx.onMenuShareWeibo({
+                            title: 'WAGONS超跑俱乐部',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagon_logo.png'
+                        });
+                    });
+            console.log(window.ground)
+            })
     },
     methods:{
         goback:function(){
@@ -36,6 +87,15 @@ export default {
         select:function(i){
             if(i == 1){this.show1 = true;this.show2 = false}
             if(i == 2){this.show2 = true;this.show1 = false}
+        },
+        call(command) {
+            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), '', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            // try {
+            //     nativeShare.call(command)
+            // } catch (err) {
+            //     // 如果不支持，你可以在这里做降级处理
+            //     alert(err.message)
+            // }
         }
     },
     components:{
@@ -45,11 +105,26 @@ export default {
 }
 </script>
 <style scoped>
+.share{
+    position: relative;
+    top: -0.4rem;
+    float: right;
+    margin-right: 0.3rem;
+    display: block;
+    width: 0.35rem;
+    height: 0.35rem;
+    z-index: 1000000;
+    background-image: url('../../assets/share.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .empty {
     width: 100%;
     height: 2.28rem;
 }
 .none_box {
+    position:relative;
+    top:-0.1rem;
     width: 100%;
     height: 0.1rem;
     padding-bottom: 2px;
@@ -84,22 +159,24 @@ export default {
 .tab {
     position: relative;
     width: 100%;
+    top:-0.1rem;
     height: 0.91rem;
     overflow: hidden;
     background-color: #fff;
 }
 .head_xz p {
-    height: 0.84rem;
-    line-height: 0.84rem;
-    font-size: 0.36rem;
-    color: #ffffff;
     text-align: center;
+    width: 3.08rem;
+    height: 0.4rem;
+    font-size: 0.36rem;
+    color: #fff;
+    margin: 0.17rem 0 0 2.2rem;
 }
 .head_xz .goback {
     position: absolute;
-    left: 0.1rem;
-    top: 0.43rem;
-    width: 1rem;
+    left: 0.06rem;
+    top: 0.37rem;
+    width: 0.8rem;
     height: 0.8rem;
     background: url('../../assets/m-goback.png') no-repeat center center;
     background-size: 0.3rem 0.3rem;
@@ -110,7 +187,7 @@ export default {
     left: 0;
     z-index: 10;
     width: 100%;
-    height: 1.85rem;
+    height: 0.84rem;
     padding-top: 0.43rem;
     background-color: #06060b;
 }

@@ -33,7 +33,8 @@ export default {
     },
     mounted(){
         console.log(this.$route.query.isNewApp)
-        if(this.$route.query.isNewApp){
+        if(this.$route.query.isNewApp == 'true'){
+            console.log('发送index')
             this.$store.commit('isNewApp')
         }
     },
