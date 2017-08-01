@@ -96,7 +96,7 @@ export default {
             window.ground.close();
         },
         call(command) {
-            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), '', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagon_logo.png', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
             // try {
             //     nativeShare.call(command)
             // } catch (err) {
