@@ -1,12 +1,186 @@
 <template>
-<div>
-asdas
+<div class="all">
+    <div class="lunbo">
+            <div class="swiper-pagination"></div>                       
+        <swiper style="top: -50px;" :options="swiperOption" ref="mySwiper">
+            <swiper-slide>
+                 <img src="../../assets/test02.png" /> 
+            </swiper-slide>
+            <swiper-slide>
+                 <img src="../../assets/test02.png"> 
+            </swiper-slide>
+            <swiper-slide>
+                 <img src="../../assets/test02.png"> 
+            </swiper-slide>
+            <swiper-slide>
+                 <img src="../../assets/test02.png"> 
+            </swiper-slide>
+        </swiper>
+       
+    </div>
+    <div class="it">
+        <div>
+            <span class="name">宝马</span>
+            <span class="star">5星级车</span>
+        </div>
+        <div class="pr">
+            <span class="level">白金会员</span>
+            <span class="price"><span class="number">180000</span>／天</span>
+        </div>
+        <p class="des">自由驰骋间，久违的感觉重新浮现——那童年时代自由奔跑，感受嗖嗖风声的纯真快乐，那穿梭往来的汽车经过身边时发出的Zoom-Zoom声，今天我们把它从你心中唤醒了吗？</p>
+        <span class="tips">2座</span>
+        <span class="tips">7档双离合</span>
+        <span class="tips">太空灰</span>
+        <span class="tips">全球限量</span>
+        <span class="tips">硬顶敞篷</span>
+        <span class="tips">2座</span>
+        <span class="tips">7档双离合</span>
+        <span class="tips">太空灰</span>
+        <span class="tips">全球限量</span>
+        <span class="tips">硬顶敞篷</span>
+    </div>
+    <p class="but">
+        立即预订
+    </p>
 </div>
 </template>
+
 <script>
-    
+import Swiper from "../../../node_modules/vue-awesome-swiper/swiper"
+export default {
+    components: {Swiper},
+    data(){
+        return{
+            swiperOption: {
+              notNextTick: true,
+              autoplay: 2000,
+              autoplayDisableOnInteraction:false,
+              pagination : '.swiper-pagination',
+              paginationType:'custom',
+              paginationCustomRender:function(swiper, current, total){
+                  var _html = '';
+            for (var i = 1; i <= total; i++) {
+              if (current == i) {
+                _html += '<li style="background:#ffffff;display:inline-block;width:5px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:14px"></i>';
+              }else{
+                _html += '<li style="opacity:0.3;background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:14px"></i>';
+              }
+            }
+            return _html
+              },
+              direction : 'horizontal',
+              grabCursor : true,
+              setWrapperSize :true,
+              autoHeight: true,
+              slidesPerView : 1,
+              paginationClickable :false,
+              observeParents:true,
+              debugger: true,
+              watchSlidesVisibility : true,
+              onTransitionStart(swiper){},
+            },
+        }
+    },
+
+}
 </script>
 
-<style>
-
+<style scoped>
+.but{
+    line-height: 1rem;
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 0.98rem;
+    color: #333333;
+    text-align: center;
+    background-color: #fed945;
+    font-size: 0.32rem;
+}
+.tips{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #444b52;
+    font-size: 0.24rem;
+    border-radius: 15px;
+    color: #ffffff;
+    margin-right: 0.2rem;
+    display: inline-block;
+    margin-bottom: 0.2rem;
+}
+.des{
+    margin-top: 0.2rem;
+    font-size: 0.24rem;
+    line-height: 0.5rem;
+    color: #ffffff;
+    margin-bottom: 0.34rem;
+}
+.pr{
+    margin-top: 0.32rem;
+    padding-bottom: 0.32rem;
+    border-bottom: 1px solid rgba(213,213,190,0.1);
+}
+.number{
+    font-size: 0.5rem;
+    color: #fed945;
+}
+.price{
+    color: #fed945;
+    font-size: 0.26rem;
+}
+.level{
+    vertical-align: super;
+    font-size: 0.18rem;
+    padding-left: 10px;
+    background-color: #fed945;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    padding-right: 10px; 
+    width: 1rem;
+    height: 0.3rem;
+    margin-right: 0.3rem;
+}
+.star{
+    border-radius: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: 1px solid;
+    font-size: 0.2rem;
+    color: #ffffff;
+    float: right;
+}
+.name{
+    font-size: 0.3rem;
+    color: #ffffff;
+}
+.it{
+    display: block;
+    width: 92%;
+    margin: auto;
+    padding-top: 0.32rem;
+    font-size: 0;
+}
+.all{
+    height: 100%;
+    background-image: url('../../assets/a_bj.png');
+    background-size: 100% 100%;
+}
+.lunbo{
+    height: 42.6%;
+    width: 100%;
+}
+.lunbo img{
+    width: 100%;
+    height: 100%;
+}
+.swiper-pagination{
+    position: relative;
+    top:80%;
+}
+.swiper-pagination-bullets span{
+    background-color: white!important;
+}
 </style>

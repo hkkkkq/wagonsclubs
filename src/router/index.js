@@ -10,7 +10,8 @@ const pcweb_third = resolve => require(['../components/pcweb/pcweb_third.vue'], 
 const notfound = resolve => require(['../components/404.vue'], resolve);
 
 //for app
-const app_cardetails = resolve => require(['../components/app/cardetails'], resolve);
+const app = resolve => require(['../components/app/index.vue'], resolve);
+const app_details = resolve => require(['../components/app/cardetails.vue'], resolve)
 
 //for spider
 const news1 = resolve => require(['../components/spider/news1.vue'], resolve);
@@ -62,7 +63,13 @@ export default new Router({
         },
 
         //for app
-        { path: '/app/cardetails', component: app_cardetails },
+        {
+            path: '/app',
+            component: app,
+            children: [
+                { path: 'cardetails', component: app_details }
+            ]
+        },
 
         //for spider
         { path: '/supercarnews/1', component: news1 },
