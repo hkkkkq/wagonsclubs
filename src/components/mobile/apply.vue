@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="head_xz">
-            <a @click="goback" class="goback"></a>
+            <a v-if="isNew" @click="goback" class="goback"></a>
             <p>{{title}}</p>
                                 <span v-if="isNew" @click="call" class="share"></span>
       </div>

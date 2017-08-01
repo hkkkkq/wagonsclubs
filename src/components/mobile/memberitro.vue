@@ -55,28 +55,28 @@ export default {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS超跑俱乐部',
                             link: locationHref,
-                            imgUrl: '../../assets/wagons_share_logo.jpg'
+                            imgUrl: require('../../assets/wagons_share_logo.jpg')
                         });
 
                         wx.onMenuShareAppMessage({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: '../../assets/wagons_share_logo.jpg'
+                            imgUrl: require('../../assets/wagons_share_logo.jpg')
                         });
 
                         wx.onMenuShareQQ({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: '../../assets/wagons_share_logo.jpg'
+                            imgUrl: require('../../assets/wagons_share_logo.jpg')
                         });
 
                         wx.onMenuShareWeibo({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: '../../assets/wagons_share_logo.jpg'
+                            imgUrl: require('../../assets/wagons_share_logo.jpg')
                         });
                     });
             console.log(window.ground)
@@ -84,7 +84,7 @@ export default {
     },
     methods:{
         goback:function(){
-            this.$router.go(-1);
+            this.$router.push('/mobile/join');
         },
         select:function(i){
             if(i == 1){this.show1 = true;this.show2 = false}
@@ -126,7 +126,7 @@ export default {
 }
 .none_box {
     position:relative;
-    top:-0.1rem;
+    top:0.3rem;
     width: 100%;
     height: 0.1rem;
     padding-bottom: 2px;
@@ -160,8 +160,8 @@ export default {
 }
 .tab {
     position: relative;
+    top:0.3rem;
     width: 100%;
-    top:-0.1rem;
     height: 0.91rem;
     overflow: hidden;
     background-color: #fff;

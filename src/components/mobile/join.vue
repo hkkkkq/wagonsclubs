@@ -238,7 +238,7 @@ export default {
     },
     methods:{
         goback:function(){
-            this.$router.go(-1);
+            this.$router.push('/mobile');
         },
         showcars:function(i){
             if(i == 1){this.show1 = true}
