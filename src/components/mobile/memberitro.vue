@@ -21,6 +21,8 @@
 require('./rem.js')(window,document);
 import memberright from './memberright.vue'
 import howjoin from './howjoin.vue'
+var wx = require('weixin-js-sdk');
+
 export default {
     data(){
         return{

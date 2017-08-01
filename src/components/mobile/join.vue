@@ -175,6 +175,8 @@
 </template>
 <script>
 require('./rem.js')(window,document)
+var wx = require('weixin-js-sdk');
+
 export default {
     data(){
         return {

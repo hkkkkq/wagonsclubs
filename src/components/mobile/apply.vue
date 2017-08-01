@@ -84,6 +84,8 @@
 <script>
 require('./rem.js')(window,document);
 import qs from 'qs';
+var wx = require('weixin-js-sdk');
+
 export default {
     data(){
         return {
