@@ -3,7 +3,7 @@
     <div class="head_xz">
         <a @click="goback" class="goback" id="goback"></a>
         <p>会员说明</p>    
-                    <span v-if="isNew" @click="call" class="share"></span>
+                    <span @click="call" class="share"></span>
 
         <div class="tab">
             <span @click="select(1)" class="no1"><b :class="{active:show1}">会员权益</b></span>
@@ -55,30 +55,30 @@ export default {
             var locationHref = window.location.href;
             wx.ready(function () {
                         wx.onMenuShareTimeline({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS超跑俱乐部11111',
                             link: locationHref,
-                            imgUrl: logoSrc
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareAppMessage({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS超跑俱乐部22222',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: logoSrc
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareQQ({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl:logoSrc
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareWeibo({
                             title: 'WAGONS超跑俱乐部',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: logoSrc
+                            imgUrl: '../../assets/wagons_share_logo.jpg'
                         });
                     });
             console.log(window.ground)
@@ -93,7 +93,7 @@ export default {
             if(i == 2){this.show2 = true;this.show1 = false}
         },
         call(command) {
-            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), '', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            window.ground.share('WAGONS超跑俱乐部3333', location.href.replace(/true/g,"false"),logoSrc, 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
             // try {
             //     nativeShare.call(command)
             // } catch (err) {
@@ -128,7 +128,6 @@ export default {
 }
 .none_box {
     position:relative;
-    top:0.3rem;
     width: 100%;
     height: 0.1rem;
     padding-bottom: 2px;
@@ -161,12 +160,13 @@ export default {
     color: #686868;
 }
 .tab {
-    position: relative;
-    top:0.3rem;
+    display:block;
+    position:relative;
     width: 100%;
     height: 0.91rem;
     overflow: hidden;
     background-color: #fff;
+    margin-top:0.3rem;
 }
 .head_xz p {
     text-align: center;
@@ -191,7 +191,7 @@ export default {
     left: 0;
     z-index: 10;
     width: 100%;
-    height: 0.84rem;
+    height: 1.73rem;
     padding-top: 0.43rem;
     background-color: #06060b;
 }
