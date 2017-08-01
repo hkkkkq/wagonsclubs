@@ -1,6 +1,7 @@
 <template>
 <div>
     <div class="head">
+    <a @click="goback" class="goback"></a>
         <img class="logo" src="../../assets/newlogo.png">
         <span v-if="isNew" @click="call" class="share"></span>
         
@@ -90,6 +91,10 @@ export default {
         nativeShare.setShareData(shareData)
     },
     methods:{
+        goback:function(){
+            // this.$router.go(-1)
+            window.ground.close();
+        },
         call(command) {
             window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), '', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
             // try {
@@ -103,6 +108,15 @@ export default {
 }
 </script>
 <style scoped>
+.goback {
+    position: absolute;
+    left: 0.06rem;
+    top: 0.37rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url("../../assets/m-goback.png") no-repeat center center;
+    background-size: 0.3rem 0.3rem;
+}
 .share{
     position: relative;
     top: -0.3rem;

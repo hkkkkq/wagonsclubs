@@ -34,6 +34,7 @@ export default {
     mounted(){
         console.log(this.$route.query.isNewApp)
         if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
             console.log('发送index')
             this.$store.commit('isNewApp')
         }
