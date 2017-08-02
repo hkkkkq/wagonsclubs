@@ -4,7 +4,7 @@
             <div class="swiper-pagination"></div>                       
         <swiper style="top: -50px;" :options="swiperOption" ref="mySwiper">
             <swiper-slide>
-                <video preload="auto" width='100%' height='43%' src="/static/vi.mp4" controls>
+                <video preload="auto" width='100%' height='43%' :src="ss" controls>
                      您的浏览器不支持 video 标签。
                 </video> 
             </swiper-slide>
@@ -83,6 +83,7 @@ export default {
               watchSlidesVisibility : true,
               onTransitionStart(swiper){},
             },
+            ss:"http://192.168.10.186:3000/vi.mp4"
         }
     },
 
