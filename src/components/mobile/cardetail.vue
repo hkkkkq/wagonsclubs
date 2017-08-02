@@ -191,7 +191,7 @@ export default {
                             'onMenuShareWeibo'
                         ]
                     });
-            var locationHref = window.location.origin+'/mobile';
+            var locationHref = window.location.origin+'';
             wx.ready(function () {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS超跑俱乐部',
@@ -241,8 +241,9 @@ export default {
                 },1500)
             }
         },
+        // location.href.replace(/true/g,"false")
         share:function(){
-            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            window.ground.share('WAGONS超跑俱乐部', window.location.origin , 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
         }
     }
 
