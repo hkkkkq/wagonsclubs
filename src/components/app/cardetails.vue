@@ -4,7 +4,9 @@
             <div class="swiper-pagination"></div>                       
         <swiper style="top: -50px;" :options="swiperOption" ref="mySwiper">
             <swiper-slide>
-                 <img src="../../assets/test02.png" /> 
+                <video preload="auto" width='100%' height='43%' src="/static/vi.mp4" controls>
+                     您的浏览器不支持 video 标签。
+                </video> 
             </swiper-slide>
             <swiper-slide>
                  <img src="../../assets/test02.png"> 
@@ -14,7 +16,7 @@
             </swiper-slide>
             <swiper-slide>
                  <img src="../../assets/test02.png"> 
-            </swiper-slide>
+            </swiper-slide>  
         </swiper>
        
     </div>
@@ -28,6 +30,7 @@
             <span class="price"><span class="number">180000</span>／天</span>
         </div>
         <p class="des">自由驰骋间，久违的感觉重新浮现——那童年时代自由奔跑，感受嗖嗖风声的纯真快乐，那穿梭往来的汽车经过身边时发出的Zoom-Zoom声，今天我们把它从你心中唤醒了吗？</p>
+         
         <span class="tips">2座</span>
         <span class="tips">7档双离合</span>
         <span class="tips">太空灰</span>
@@ -39,6 +42,7 @@
         <span class="tips">全球限量</span>
         <span class="tips">硬顶敞篷</span>
     </div>
+    <p class="but1"></p>
     <p class="but">
         立即预订
     </p>
@@ -86,9 +90,24 @@ export default {
 </script>
 
 <style scoped>
+video{
+    height: 5.7rem;
+    object-fit:fill;
+}
+.but1{
+    position: relative;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 0.98rem;
+    color: #333333;
+    text-align: center;
+    background-color: #fed945;
+    font-size: 0.32rem;
+}
 .but{
     line-height: 1rem;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     display: block;
     width: 100%;
@@ -151,25 +170,29 @@ export default {
     font-size: 0.2rem;
     color: #ffffff;
     float: right;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 .name{
     font-size: 0.3rem;
     color: #ffffff;
+    line-height: 0.5rem;
 }
 .it{
     display: block;
     width: 92%;
     margin: auto;
-    padding-top: 0.32rem;
+    padding-top: 0.1rem;
     font-size: 0;
 }
 .all{
-    height: 100%;
+    min-height: 100%;
     background-image: url('../../assets/a_bj.png');
+    background-repeat: repeat-y;
     background-size: 100% 100%;
 }
 .lunbo{
-    height: 42.6%;
+    height: 5.7rem;
     width: 100%;
 }
 .lunbo img{
@@ -178,7 +201,7 @@ export default {
 }
 .swiper-pagination{
     position: relative;
-    top:80%;
+    top: 4.6rem;
 }
 .swiper-pagination-bullets span{
     background-color: white!important;
