@@ -4,11 +4,13 @@
             <div class="swiper-pagination"></div>                       
         <swiper style="top: -50px;" :options="swiperOption" ref="mySwiper">
             <swiper-slide>
-                <video preload="auto" width='100%' height='43%' :src="ss" controls>
+                <!-- <video preload="auto" width='100%' height='43%' :src="ss" controls>
                      您的浏览器不支持 video 标签。
-                </video> 
+                </video>  -->
+                <video-player class="videoplayer" :options='playerOptions'>
+                </video-player> 
             </swiper-slide>
-            <swiper-slide>
+            <!-- <swiper-slide>
                  <img src="../../assets/test02.png"> 
             </swiper-slide>
             <swiper-slide>
@@ -16,7 +18,7 @@
             </swiper-slide>
             <swiper-slide>
                  <img src="../../assets/test02.png"> 
-            </swiper-slide>  
+            </swiper-slide>   -->
         </swiper>
        
     </div>
@@ -51,8 +53,10 @@
 
 <script>
 import Swiper from "../../../node_modules/vue-awesome-swiper/swiper"
+import { videoPlayer } from 'vue-video-player'
+
 export default {
-    components: {Swiper},
+    components: {Swiper,videoPlayer},
     data(){
         return{
             swiperOption: {
@@ -83,18 +87,49 @@ export default {
               watchSlidesVisibility : true,
               onTransitionStart(swiper){},
             },
-            ss:"http://192.168.10.186:3000/vi.mp4"
+            playerOptions: {
+
+          // component options
+          start: 0,
+          playsinline: false,
+
+          // videojs options
+          muted: true,
+          language: 'en',
+          playbackRates: [0.7, 1.0, 1.5, 2.0],
+          sources: [{
+            type: "video/mp4",
+            src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+          }],
+          poster: "",
+        },
+            ss:"http://192.168.10.74:3000/vi.mp4"
         }
+    },
+    computed: {
+      player() {
+          console.log(this.$refs.videoPlayer.player)
+        return this.$refs.videoPlayer.player
+      }
     },
 
 }
 </script>
 
 <style scoped>
-video{
+/* .video-js .vjs-tech{
+    top: 1rem!important;
+    display: none;
+
+} */
+.videoplayer{
+     height: 5.7rem;
+     object-fit:fill
+}
+/* video{
     height: 5.7rem;
     object-fit:fill;
-}
+} */
 .but1{
     position: relative;
     bottom: 0;
@@ -103,7 +138,6 @@ video{
     height: 0.98rem;
     color: #333333;
     text-align: center;
-    background-color: #fed945;
     font-size: 0.32rem;
 }
 .but{
@@ -177,7 +211,7 @@ video{
 .name{
     font-size: 0.3rem;
     color: #ffffff;
-    line-height: 0.5rem;
+    line-height: 0.3rem;
 }
 .it{
     display: block;
@@ -195,6 +229,7 @@ video{
 .lunbo{
     height: 5.7rem;
     width: 100%;
+    margin-bottom: 0.32rem;
 }
 .lunbo img{
     width: 100%;
