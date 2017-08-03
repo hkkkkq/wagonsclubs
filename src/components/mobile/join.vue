@@ -162,9 +162,9 @@
         </div>
         <div class="none_box"></div>
         <div style="height:1rem;"></div>
-        <router-link to='/mobile/apply' class="apply">
+        <a @click="gooapply" class="apply">
             立即申请
-        </router-link>
+        </a>
         <div v-show="show1||show2||show3" class="mask youxiang">
             <img v-if="show1" class="im1" src="../../assets/lechao.jpg">
             <img v-else-if="show2" class="im1" src="../../assets/youxiang.jpg">
@@ -189,6 +189,11 @@ export default {
         isNew(){ return this.$store.state.isNewApp}
     },
     created(){
+        if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            console.log('发送index')
+            this.$store.commit('isNewApp')
+        }
          this.$ajax(BASE_URL+'/car/weixinShare')
         .then((res)=>{
             wx.config({
@@ -237,8 +242,11 @@ export default {
             })
     },
     methods:{
+        gooapply(){
+            this.$router.push('/mobile/apply?isNewApp='+this.isNew)
+        },
         goback:function(){
-            this.$router.push('/mobile');
+            this.$router.push('/mobile?isNewApp='+this.isNew);
         },
         showcars:function(i){
             if(i == 1){this.show1 = true}
@@ -249,7 +257,7 @@ export default {
             this.show1 = this.show2 = this.show3 = false
         },
         tomemberitro:function(){
-            this.$router.push('/mobile/memberitro')
+            this.$router.push('/mobile/memberitro?isNewApp='+this.isNew)
         },
         call(command) {
             window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');

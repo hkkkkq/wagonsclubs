@@ -21,7 +21,7 @@
             <div class="process_frame">
                 <div class="q">
                 <div class="clear"></div>
-                <router-link to="/mobile/join" class="join">如何加入</router-link>
+                <a @click="goo" class="join">如何加入</a>
                 <span class="rad" :class="{'rad-s':s1}" style="">1</span>
                 <span class="text" :class="{'text-s':s1}">加入WAGONS</span>
                 <i :class="{'line-s':s1}" class="line"></i>
@@ -77,6 +77,16 @@ export default {
             show1:false
         }
     },
+    computed:{
+        isNew(){ return this.$store.state.isNewApp},
+    },
+    created(){
+        if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            console.log('发送index')
+            this.$store.commit('isNewApp')
+        }
+    },
     mounted(){
         window.scrollTo(0,0);
         setInterval(()=>{
@@ -115,6 +125,9 @@ export default {
         },
         close(){
             this.show1 = false
+        },
+        goo(){
+            this.$router.push('/mobile/join?isNewApp='+this.isNew)
         }
     }
 }

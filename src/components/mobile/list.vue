@@ -50,6 +50,11 @@ export default {
         }
     },
     created(){
+        if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            console.log('发送index')
+            this.$store.commit('isNewApp')
+        }
         this.$ajax(BASE_URL+'/car/carsList')
             .then((res)=>{this.carlist = res.data; this.discount = res.data.data.maxDiscount; console.log(res.data); this.loading = false})
             .catch(()=>{alert('一定是什么地方出问题了')})
@@ -61,10 +66,13 @@ export default {
         //     alert('4')
         // }
     },
+    computed:{
+        isNew(){ return this.$store.state.isNewApp},
+    },
     methods:{
 
         details:function(i){
-            this.$router.push({path:'/mobile/cardetail',query:{carId:i}})
+            this.$router.push({path:'/mobile/cardetail?isNewApp='+this.isNew,query:{carId:i}})
             // router.push({ name: 'user', params: { userId: 123 }})
             // this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':i}})
             // .then((res)=>{console.log(res.data)})

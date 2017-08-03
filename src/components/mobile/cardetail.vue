@@ -1,6 +1,6 @@
 <template>
 <div>
-    <router-link to="/mobile" class="back"></router-link>
+    <a @click="goo" class="back"></a>
     <span v-if='isNew' @click='share' class="share">
                             <img src="../../assets/wagons_lease_share.png" alt="">
                         </span>
@@ -166,6 +166,11 @@ export default {
             }
     },
     created(){
+        if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            console.log('发送index')
+            this.$store.commit('isNewApp')
+        }
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
         .then((res)=>{if(res.data.success == true){
             this.info = res.data.data;
@@ -225,6 +230,9 @@ export default {
         window.scrollTo(0,0);
     },
     methods:{
+        goo(){
+            this.$router.push({path:'/mobile?isNewApp='+this.isNew})
+        },
         close:function(){
             this.show1 = false;
         },
