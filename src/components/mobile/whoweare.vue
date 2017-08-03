@@ -2,6 +2,7 @@
   <div>
       <m-header></m-header>
       <router-link to="/mobile" class="goback"></router-link>
+      <span v-if="isNew" @click="call" class="share"></span>
       <div class="empty"></div>
       <div class="content"></div>
   </div>
@@ -23,6 +24,19 @@ export default {
 </script>
 
 <style scoped>
+.share{
+    position: relative;
+    top: -0.8rem;
+    float: right;
+    margin-right: 0.3rem;
+    display: block;
+    width: 0.35rem;
+    height: 0.35rem;
+    z-index: 1000000;
+    background-image: url('../../assets/share.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .goback {
     z-index: 1000;
     position: fixed;

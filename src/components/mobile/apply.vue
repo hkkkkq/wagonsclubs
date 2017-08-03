@@ -1,9 +1,9 @@
 <template>
   <div>
       <div class="head_xz">
-            <a v-if="isNew" @click="goback" class="goback"></a>
+            <a @click="goback" class="goback"></a>
             <p>{{title}}</p>
-                                <span v-if="isNew" @click="call" class="share"></span>
+                                <!-- <span v-if="isNew" @click="call" class="share"></span> -->
       </div>
       <div style="width:100%;height:1.27rem;"></div>
       <div class="tab" :class="{tabse:!tianxie}">
@@ -256,18 +256,8 @@ export default {
 </script>
 
 <style scoped>
-.share{
-    position: relative;
-    top: -0.8rem;
-    float: right;
-    margin-right: 0.3rem;
-    display: block;
-    width: 0.35rem;
-    height: 0.35rem;
-    z-index: 1000000;
-    background-image: url('../../assets/share.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+.tianxie{
+    background: #ffffff;
 }
 .tabse{
     background-image: url('../../assets/right.png')!important;
@@ -392,10 +382,10 @@ export default {
     background: rgba(76,76,76,0.6);
 }
 .b1{
-    margin-top: 0.6rem;
+padding-top: 0.6rem;
     width: 100%;
-    /* height: 3.67rem; */
-    /* background: #f6f6f6; */
+    height: 3.5em;
+    background: #f6f6f6;
 }
 .apply {
     width: 6rem;
@@ -429,6 +419,7 @@ input::-webkit-input-placeholder{
     color: #d7d7d7;
     display: inline-block;
      background: url("../../assets/arrow01.png") right no-repeat ; 
+     background-size: 0.14rem 0.24rem;
 }
 .p2{
     border: 0px;
