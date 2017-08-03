@@ -12,6 +12,14 @@ const notfound = resolve => require(['../components/404.vue'], resolve);
 //for app
 const app = resolve => require(['../components/app/index.vue'], resolve);
 const app_details = resolve => require(['../components/app/cardetails.vue'], resolve)
+    //mobile
+const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
+const join = resolve => require(['../components/mobile/join.vue'], resolve);
+const memberitro = resolve => require(['../components/mobile/memberitro.vue'], resolve);
+const apply = resolve => require(['../components/mobile/apply.vue'], resolve);
+const cardetail = resolve => require(['../components/mobile/cardetail.vue'], resolve);
+const whoweare = resolve => require(['../components/mobile/whoweare.vue'], resolve);
+
 
 //for spider
 const news1 = resolve => require(['../components/spider/news1.vue'], resolve);
@@ -48,7 +56,8 @@ export default new Router({
             beforeEnter: (to, from, next) => {
                 // console.log(navigator.userAgent)
                 if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-                    window.location.href = 'http://wap.wagonsclub.com/car/index'
+                    // window.location.href = 'http://wap.wagonsclub.com/car/index'
+                    next({ path: '/mobile' })
                 } else {
                     next();
                 }
@@ -62,6 +71,8 @@ export default new Router({
             ]
         },
 
+        <<
+        << << < HEAD
         //for app
         {
             path: '/app',
@@ -69,7 +80,16 @@ export default new Router({
             children: [
                 { path: 'cardetails', component: app_details }
             ]
-        },
+        }, ===
+        === =
+        //重写移动端
+        { path: '/mobile', component: mobile },
+        { path: '/mobile/join', component: join },
+        { path: '/mobile/memberitro', component: memberitro },
+        { path: '/mobile/apply', component: apply },
+        { path: '/mobile/cardetail', component: cardetail },
+        { path: '/mobile/whoweare', component: whoweare }, >>>
+        >>> > a35a6db484df13268ca5e86c4d432f04035b3fed
 
         //for spider
         { path: '/supercarnews/1', component: news1 },
