@@ -3,7 +3,7 @@
       <div class="head_xz">
             <a @click="goback" class="goback"></a>
             <p>{{title}}</p>
-                                <!-- <span v-if="isNew" @click="call" class="share"></span> -->
+                                 <span v-if="isNew" @click="call" class="share"></span> 
       </div>
       <div style="width:100%;height:1.27rem;"></div>
       <div class="tab" :class="{tabse:!tianxie}">
