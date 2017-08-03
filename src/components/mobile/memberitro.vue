@@ -3,7 +3,7 @@
     <div class="head_xz">
         <a @click="goback" class="goback" id="goback"></a>
         <p>会员说明</p>    
-                    <span @click="call" class="share"></span>
+                    <span v-if="isNew" @click="call" class="share"></span>
 
         <div class="tab">
             <span @click="select(1)" class="no1"><b :class="{active:show1}">会员权益</b></span>
