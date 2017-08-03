@@ -24,7 +24,6 @@ export default {
     created(){
         this.$ajax(BASE_URL+'/car/isNewApp').then((res)=>{
             if(res.data.data.isNewApp){
-                console.log('发送')
                 this.$store.commit('isNewApp')
             }})
         this.$ajax(BASE_URL+'/car/weixinShare')
@@ -71,7 +70,6 @@ export default {
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
                     });
-            console.log(window.ground)
             })
         var nativeShare = new NativeShare()        
         var shareData = {

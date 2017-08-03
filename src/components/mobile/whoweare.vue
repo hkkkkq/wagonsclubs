@@ -1,7 +1,7 @@
 <template>
   <div>
       <m-header></m-header>
-      <router-link to="/mobile" class="goback"></router-link>
+      <a @click="goo" class="goback"></a>
       <span v-if="isNew" @click="call" class="share"></span>
       <div class="empty"></div>
       <div class="content"></div>
@@ -17,8 +17,22 @@ export default {
 
         }
     },
+    computed:{
+        isNew(){ return this.$store.state.isNewApp}
+    },
     components:{
         'm-header':header,
+    },
+    created(){
+                if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            this.$store.commit('isNewApp')
+        }
+    },
+    methods:{
+        goo(){
+            this.$router.push('/mobile?isNewApp='+this.isNew)
+        }
     }
 }
 </script>

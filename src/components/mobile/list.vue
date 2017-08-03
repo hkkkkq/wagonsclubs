@@ -52,7 +52,6 @@ export default {
     created(){
         if(this.$route.query.isNewApp == 'true'){
             window.ground.hideHeader();
-            console.log('发送index')
             this.$store.commit('isNewApp')
         }
         this.$ajax(BASE_URL+'/car/carsList')
@@ -78,7 +77,7 @@ export default {
             // .then((res)=>{console.log(res.data)})
         },
         whoweare:function(){
-            this.$router.push('/mobile/whoweare')
+            this.$router.push('/mobile/whoweare?isNewApp='+this.isNew)
         }
     }
 }

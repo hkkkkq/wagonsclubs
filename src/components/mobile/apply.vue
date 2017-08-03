@@ -112,7 +112,8 @@ export default {
                 career:'',
                 duty:'',
                 type:'3'
-            }
+            },
+            appId:''
         }
     },
     computed:{
@@ -125,6 +126,7 @@ export default {
         window.scrollTo(0,0);
         this.$ajax(BASE_URL+'/car/weixinShare')
         .then((res)=>{
+            // console.log(res.data.sign.appId)
             wx.config({
                         debug: false,
                         appId: res.data.sign.appId,
@@ -167,7 +169,6 @@ export default {
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
                     });
-            console.log(window.ground)
             })
     },
     methods:{
@@ -224,7 +225,6 @@ export default {
             if(this.userinfo.maritalStatus === ''){ this.err('请选择婚姻状况'); return false  }
             if(this.userinfo.career == ''){ this.err('请选择职业'); return false  }
             if(this.userinfo.duty == ''){ this.err('请选择职务'); return false  }
-            console.log(this.userinfo)
             this.$ajax({
                 method:'POST',
                 url:BASE_URL+'/regist',

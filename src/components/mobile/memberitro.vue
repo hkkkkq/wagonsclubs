@@ -35,7 +35,10 @@ export default {
         isNew(){ return this.$store.state.isNewApp}
     },
     created(){
-        console.log(logoSrc)
+        if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            this.$store.commit('isNewApp')
+        }
         window.scrollTo(0,0);
         this.$ajax(BASE_URL+'/car/weixinShare')
         .then((res)=>{
@@ -81,12 +84,11 @@ export default {
                             imgUrl:'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
                     });
-            console.log(window.ground)
             })
     },
     methods:{
         goback:function(){
-            this.$router.push('/mobile/join');
+            this.$router.push('/mobile/join?isNewApp='+this.isNew);
         },
         select:function(i){
             if(i == 1){this.show1 = true;this.show2 = false}

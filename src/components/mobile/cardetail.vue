@@ -168,7 +168,6 @@ export default {
     created(){
         if(this.$route.query.isNewApp == 'true'){
             window.ground.hideHeader();
-            console.log('发送index')
             this.$store.commit('isNewApp')
         }
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
@@ -176,7 +175,6 @@ export default {
             this.info = res.data.data;
             this.info.discount = res.data.data.maxDiscount;
             }else{
-                console.log(res.data);
                 this.$router.push('/404') 
                 }
                 })

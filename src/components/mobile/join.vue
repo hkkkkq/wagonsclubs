@@ -191,7 +191,6 @@ export default {
     created(){
         if(this.$route.query.isNewApp == 'true'){
             window.ground.hideHeader();
-            console.log('发送index')
             this.$store.commit('isNewApp')
         }
          this.$ajax(BASE_URL+'/car/weixinShare')
@@ -238,7 +237,6 @@ export default {
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
                     });
-            console.log(window.ground)
             })
     },
     methods:{
