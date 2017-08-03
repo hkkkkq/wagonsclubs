@@ -3,7 +3,7 @@
       <div class="head_xz">
             <a @click="goback" class="goback"></a>
             <p>{{title}}</p>
-                                 <span v-if="isNew" @click="call" class="share"></span> 
+            <span v-if="isNew" @click="call" class="share"></span> 
       </div>
       <div style="width:100%;height:1.27rem;"></div>
       <div class="tab" :class="{tabse:!tianxie}">
@@ -256,6 +256,19 @@ export default {
 </script>
 
 <style scoped>
+.share{
+    position: relative;
+    top: -0.8rem;
+    float: right;
+    margin-right: 0.3rem;
+    display: block;
+    width: 0.35rem;
+    height: 0.35rem;
+    z-index: 1000000;
+    background-image: url('../../assets/share.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .tianxie{
     background: #ffffff;
 }

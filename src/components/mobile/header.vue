@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="head">
-    <a v-if="isNew" @click="goback" class="goback"></a>
+    <a @click="goback" class="goback"></a>
         <img class="logo" src="../../assets/newlogo.png">
         <span v-if="isNew" @click="call" class="share"></span>
         
