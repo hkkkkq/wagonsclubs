@@ -437,6 +437,7 @@ input::-webkit-input-placeholder{
     font-size: 0.29rem;
     margin-top: 0.3rem;
     float: right;
+        background: rgba(1,1,1,0);
 }
 .p1{
     margin-top: 0.4rem;    
