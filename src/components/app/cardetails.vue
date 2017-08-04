@@ -1,6 +1,8 @@
 <template>
 <div class="all">
     <div class="lunbo">
+        <img src="../../assets/app/back.png" class="back"></img>
+        <img src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>                       
         <swiper style="top: -50px;" :options="swiperOption" class="ms" ref="mySwiper">
             <swiper-slide>
@@ -113,6 +115,22 @@ export default {
 </script>
 
 <style scoped>
+.back{
+    top:0.6rem;
+    left: 0.3rem;
+    z-index: 2;
+    width: 0.45rem!important;
+    height: 0.45rem!important;
+    position: absolute;
+}
+.share{
+    top:0.6rem;
+    right: 0.3rem;
+    z-index: 2;
+    width: 0.45rem!important;
+    height: 0.45rem!important;
+    position: absolute;
+}
 video{
     height: 5.7rem;
 }
