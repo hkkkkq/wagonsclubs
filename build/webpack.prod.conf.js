@@ -31,21 +31,8 @@ var webpackConfig = merge(baseWebpackConfig, {
             path.join(__dirname, '../dist'),
             // List of routes to prerender
             [ //此处写要预渲染的链接
-                '/supercarnews/1',
-                '/supercarnews/2',
-                '/supercarnews/3',
-                '/supercarnews/4',
-                '/supercarnews/5',
-                '/supercarnews/6',
-                '/supercarnews/7',
-                '/supercarnews/8',
-                '/supercarnews/9',
-                '/supercarnews/10',
-                '/supercarnews/11',
-                '/supercarnews/12',
-                '/supercarnews/13',
-                '/supercarnews/14',
-                '/supercarnews/15',
+                // '/supercarnews/1',
+
             ]
         ),
         // http://vuejs.github.io/vue-loader/en/workflow/production.html
