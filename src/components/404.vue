@@ -93,6 +93,7 @@ export default {
     top:-100px;
     color: #cacaca;
     text-align: center;
+    font-size: 20px;
 }
 .pcimg{
     display: block;
