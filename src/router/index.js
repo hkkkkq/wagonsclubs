@@ -8,7 +8,6 @@ const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], 
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
 const pcweb_third = resolve => require(['../components/pcweb/pcweb_third.vue'], resolve);
 const notfound = resolve => require(['../components/404.vue'], resolve);
-
 //for app
 const app = resolve => require(['../components/app/index.vue'], resolve);
 const app_details = resolve => require(['../components/app/cardetails.vue'], resolve)
@@ -71,8 +70,7 @@ export default new Router({
             ]
         },
 
-        <<
-        << << < HEAD
+
         //for app
         {
             path: '/app',
@@ -80,16 +78,17 @@ export default new Router({
             children: [
                 { path: 'cardetails', component: app_details }
             ]
-        }, ===
-        === =
+        },
+
+
         //重写移动端
         { path: '/mobile', component: mobile },
         { path: '/mobile/join', component: join },
         { path: '/mobile/memberitro', component: memberitro },
         { path: '/mobile/apply', component: apply },
         { path: '/mobile/cardetail', component: cardetail },
-        { path: '/mobile/whoweare', component: whoweare }, >>>
-        >>> > a35a6db484df13268ca5e86c4d432f04035b3fed
+        { path: '/mobile/whoweare', component: whoweare },
+
 
         //for spider
         { path: '/supercarnews/1', component: news1 },

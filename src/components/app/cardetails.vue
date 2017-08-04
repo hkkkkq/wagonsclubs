@@ -4,21 +4,21 @@
             <div class="swiper-pagination"></div>                       
         <swiper style="top: -50px;" :options="swiperOption" class="ms" ref="mySwiper">
             <swiper-slide>
-                 <video autoplay width='100%' height='' :src="ss" controls>
+                 <video @click="pp" ref="video" :poster="poster" width='100%' height='' :src="ss">
                      您的浏览器不支持 video 标签。
                 </video>  
                 <!-- <video-player class="videoplayer" :options='playerOptions'>
                 </video-player>  -->
             </swiper-slide>
-             <!-- <swiper-slide>
-                 <img src="../../assets/test02.png"> 
-            </swiper-slide>
             <swiper-slide>
                  <img src="../../assets/test02.png"> 
             </swiper-slide>
             <swiper-slide>
                  <img src="../../assets/test02.png"> 
-            </swiper-slide>    -->
+            </swiper-slide>
+            <swiper-slide>
+                 <img src="../../assets/test02.png"> 
+            </swiper-slide>    
         </swiper>
        
     </div>
@@ -87,31 +87,27 @@ export default {
               watchSlidesVisibility : true,
               onTransitionStart(swiper){},
             },
-            playerOptions: {
-
-          // component options
-          start: 0,
-          playsinline: false,
-
-          // videojs options
-          muted: true,
-          language: 'en',
-          playbackRates: [0.7, 1.0, 1.5, 2.0],
-          sources: [{
-            type: "video/mp4",
-            src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-          }],
-          poster: "",
-        },
-            ss:"http://192.168.10.74:3000/vi.mp4"
+            ss:"http://192.168.10.20:3000/vi.mp4",
+            poster:"http://192.168.10.20:3000/poster.jpg",
+            isplay:false
         }
     },
     computed: {
-      player() {
-          console.log(this.$refs.videoPlayer.player)
-        return this.$refs.videoPlayer.player
-      }
     },
+    methods:{
+        pp(){
+            if(this.isplay == false){
+                console.log(this.$refs)
+                this.$refs.mySwiper.swiper.stopAutoplay()
+                this.isplay = true;
+                this.$refs.video.play();
+            }else{
+                this.$refs.mySwiper.swiper.startAutoplay()
+                this.isplay = false;
+                this.$refs.video.pause()
+            }
+        }
+    }
 
 }
 </script>
