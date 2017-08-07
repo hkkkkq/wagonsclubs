@@ -114,7 +114,7 @@
 <script>
 require('./rem.js')(window,document);
 var wx = require('weixin-js-sdk');
-import Swiper from "vue-awesome-swiper";
+import Swiper from "vue-awesome-swiper/swiper";
 export default {
     components: {Swiper},
     data(){
