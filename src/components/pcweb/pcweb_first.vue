@@ -102,9 +102,9 @@
   </div>
 </template>
 <script>
-  import Swiper from "vue-awesome-swiper/swiper";
+  import { swiper, swiperSlide } from "vue-awesome-swiper";
   export default {
-    components: {Swiper},
+    components: {swiper, swiperSlide},
     data(){
           return{
             swiperOption: {
