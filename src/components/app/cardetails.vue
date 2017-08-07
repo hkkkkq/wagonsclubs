@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import Swiper from "../../../node_modules/vue-awesome-swiper/swiper"
-import { videoPlayer } from 'vue-video-player'
+import {swiper} from "vue-awesome-swiper"
+require('swiper/dist/css/swiper.css')
 
 export default {
-    components: {Swiper,videoPlayer},
+    components: {swiper},
     data(){
         return{
             swiperOption: {
