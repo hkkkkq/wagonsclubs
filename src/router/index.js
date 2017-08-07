@@ -20,28 +20,6 @@ const cardetail = resolve => require(['../components/mobile/cardetail.vue'], res
 const whoweare = resolve => require(['../components/mobile/whoweare.vue'], resolve);
 
 
-//for spider
-const news1 = resolve => require(['../components/spider/news1.vue'], resolve);
-const news2 = resolve => require(['../components/spider/news2.vue'], resolve);
-const news3 = resolve => require(['../components/spider/news3.vue'], resolve);
-const news4 = resolve => require(['../components/spider/news4.vue'], resolve);
-const news5 = resolve => require(['../components/spider/news5.vue'], resolve);
-const news6 = resolve => require(['../components/spider/news6.vue'], resolve);
-const news7 = resolve => require(['../components/spider/news7.vue'], resolve);
-const news8 = resolve => require(['../components/spider/news8.vue'], resolve);
-const news9 = resolve => require(['../components/spider/news9.vue'], resolve);
-const news10 = resolve => require(['../components/spider/news10.vue'], resolve);
-const news11 = resolve => require(['../components/spider/news11.vue'], resolve);
-const news12 = resolve => require(['../components/spider/news12.vue'], resolve);
-const news13 = resolve => require(['../components/spider/news13.vue'], resolve);
-const news14 = resolve => require(['../components/spider/news14.vue'], resolve);
-const news15 = resolve => require(['../components/spider/news15.vue'], resolve);
-const news16 = resolve => require(['../components/spider/news16.vue'], resolve);
-const news17 = resolve => require(['../components/spider/news17.vue'], resolve);
-const news18 = resolve => require(['../components/spider/news18.vue'], resolve);
-
-
-
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router);
 
@@ -89,26 +67,6 @@ export default new Router({
         { path: '/mobile/cardetail', component: cardetail },
         { path: '/mobile/whoweare', component: whoweare },
 
-
-        //for spider
-        { path: '/supercarnews/1', component: news1 },
-        { path: '/supercarnews/2', component: news2 },
-        { path: '/supercarnews/3', component: news3 },
-        { path: '/supercarnews/4', component: news4 },
-        { path: '/supercarnews/5', component: news5 },
-        { path: '/supercarnews/6', component: news6 },
-        { path: '/supercarnews/7', component: news7 },
-        { path: '/supercarnews/8', component: news8 },
-        { path: '/supercarnews/9', component: news9 },
-        { path: '/supercarnews/10', component: news10 },
-        { path: '/supercarnews/11', component: news11 },
-        { path: '/supercarnews/12', component: news12 },
-        { path: '/supercarnews/13', component: news13 },
-        { path: '/supercarnews/14', component: news14 },
-        { path: '/supercarnews/15', component: news15 },
-        { path: '/supercarnews/16', component: news16 },
-        { path: '/supercarnews/17', component: news17 },
-        { path: '/supercarnews/18', component: news18 },
 
 
         //404

@@ -8,7 +8,6 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-var PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 var env = config.build.env
 
@@ -26,28 +25,15 @@ var webpackConfig = merge(baseWebpackConfig, {
         chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
     },
     plugins: [
-        new PrerenderSpaPlugin(
-            // Absolute path to compiled SPA
-            path.join(__dirname, '../dist'),
-            // List of routes to prerender
-            [ //此处写要预渲染的链接
-                '/supercarnews/1',
-                '/supercarnews/2',
-                '/supercarnews/3',
-                '/supercarnews/4',
-                '/supercarnews/5',
-                '/supercarnews/6',
-                '/supercarnews/7',
-                '/supercarnews/8',
-                '/supercarnews/9',
-                '/supercarnews/10',
-                '/supercarnews/11',
-                '/supercarnews/12',
-                '/supercarnews/13',
-                '/supercarnews/14',
-                '/supercarnews/15',
-            ]
-        ),
+        // new PrerenderSpaPlugin(
+        //     // Absolute path to compiled SPA
+        //     path.join(__dirname, '../dist'),
+        //     // List of routes to prerender
+        //     [ //此处写要预渲染的链接
+        //         // '/supercarnews/1',
+
+        //     ]
+        // ),
         // http://vuejs.github.io/vue-loader/en/workflow/production.html
         new webpack.DefinePlugin({
             'process.env': env,
