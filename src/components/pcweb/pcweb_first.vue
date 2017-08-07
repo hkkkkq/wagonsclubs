@@ -104,7 +104,7 @@
 <script>
   import { swiper, swiperSlide } from "vue-awesome-swiper";
   export default {
-    components: {swiper, swiperSlide},
+    components: {swiper},
     data(){
           return{
             swiperOption: {
