@@ -1,8 +1,8 @@
 <template>
 <div class="all">
     <div class="lunbo">
-        <img src="../../assets/app/back.png" class="back"></img>
-        <img src="../../assets/app/share.png" class="share"></img>
+        <img @click="back" src="../../assets/app/back.png" class="back"></img>
+        <img @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>                       
         <swiper style="top: -50px;" :options="swiperOption" class="ms" ref="mySwiper">
             <swiper-slide>
@@ -47,7 +47,7 @@
         <span class="tips">硬顶敞篷</span>
     </div>
     <p class="but1"></p>
-    <p class="but">
+    <p @click="sub" class="but">
         立即预订
     </p>
 </div>
@@ -89,25 +89,46 @@ export default {
               watchSlidesVisibility : true,
               onTransitionStart(swiper){},
             },
-            ss:"http://192.168.10.20:3000/vi.mp4",
-            poster:"http://192.168.10.20:3000/poster.jpg",
+            ss:"http://192.168.10.132:3000/vi.mp4",
+            poster:"http://192.168.10.132:3000/poster.jpg",
             isplay:false
         }
     },
     computed: {
     },
     methods:{
+        full(element){
+            if(element.requestFullscreen) {
+                element.requestFullscreen();
+             } else if(element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if(element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if(element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        },
         pp(){
             if(this.isplay == false){
                 console.log(this.$refs)
-                this.$refs.mySwiper.swiper.stopAutoplay()
+                // this.$refs.mySwiper.swiper.stopAutoplay()
+                this.full(this.$refs.video)
                 this.isplay = true;
-                this.$refs.video.play();
+                // this.$refs.video.play();
             }else{
-                this.$refs.mySwiper.swiper.startAutoplay()
+                // this.$refs.mySwiper.swiper.startAutoplay()
                 this.isplay = false;
-                this.$refs.video.pause()
+                // this.$refs.video.pause()
             }
+        },
+        back(){
+            alert("back")
+        },
+        share(){
+            alert("share")
+        },
+        sub(){
+            alert("sub")
         }
     }
 
