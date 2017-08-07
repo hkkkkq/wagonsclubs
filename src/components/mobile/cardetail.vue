@@ -5,7 +5,7 @@
                             <img src="../../assets/wagons_lease_share.png" alt="">
                         </span>
     <div class="lunbo">
-        <div style="bottom:0px" class="swiper-pagination"></div>    
+        <!-- <div style="bottom:0px" class="swiper-pagination"></div>     -->
         <swiper class="swip1" :options="swiperOption" ref="mySwiper">
             <swiper-slide :key="item.id" v-for="item in info.carImgShows" class="swip2">
                 <img v-lazy="item" />
@@ -258,6 +258,12 @@ export default {
 </script>
 
 <style scoped>
+.swip1{
+    overflow: hidden;
+  }
+  .swip2{
+    float:left;
+  }
 .share img {
     position:fixed;
     display: block;

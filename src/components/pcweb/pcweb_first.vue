@@ -102,9 +102,14 @@
   </div>
 </template>
 <script>
-  import { swiper, swiperSlide } from "vue-awesome-swiper";
+  // import {swiper,swiperSlide }  from "vue-awesome-swiper";
+  import { swiper, swiperSlide } from 'vue-awesome-swiper'
   export default {
-    components: {swiper},
+    // components: {swiper,swiperSlide},
+      components: {
+    swiper,
+    swiperSlide
+  },
     data(){
           return{
             swiperOption: {
@@ -118,7 +123,7 @@
               paginationClickable :false,
               observeParents:true,
               debugger: true,
-              onTransitionStart(swiper){},
+              // onTransitionStart(swiper){},
             },
             haschoose:[1],
             cars:[],
@@ -337,7 +342,8 @@
   }
   .car_list .box{
     user-select: none;
-    width: 1000px;
+    overflow: hidden;
+     width: 1000px; 
     margin: auto;
   }
   .box span{
@@ -346,6 +352,12 @@
     width: 35px;
     height: 128px;
     cursor: pointer;
+  }
+  .swip1{
+    overflow: hidden;
+  }
+  .swip2{
+    float:left;
   }
   .up{
     background: url("../../assets/car_left_jiantou.png");
