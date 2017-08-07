@@ -5,7 +5,7 @@
                             <img src="../../assets/wagons_lease_share.png" alt="">
                         </span>
     <div class="lunbo">
-        <!-- <div style="bottom:0px" class="swiper-pagination"></div>     -->
+         <div style="bottom:0px" class="swiper-pagination"></div>     
         <swiper class="swip1" :options="swiperOption" ref="mySwiper">
             <swiper-slide :key="item.id" v-for="item in info.carImgShows" class="swip2">
                 <img v-lazy="item" />
@@ -112,6 +112,8 @@
 </template>
 
 <script>
+require('swiper/dist/css/swiper.css')
+
 require('./rem.js')(window,document);
 var wx = require('weixin-js-sdk');
 import { swiper, swiperSlide } from "vue-awesome-swiper";
@@ -122,7 +124,7 @@ export default {
         return{
             swiperOption: {
               notNextTick: true,
-              autoplay: 2000,
+              autoplay: 3000,
               autoplayDisableOnInteraction:false,
               pagination : '.swiper-pagination',
               paginationType:'custom',
@@ -258,12 +260,12 @@ export default {
 </script>
 
 <style scoped>
-.swip1{
+/* .swip1{
     overflow: hidden;
   }
   .swip2{
     float:left;
-  }
+  } */
 .share img {
     position:fixed;
     display: block;

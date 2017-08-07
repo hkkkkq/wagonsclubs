@@ -102,6 +102,7 @@
   </div>
 </template>
 <script>
+require('swiper/dist/css/swiper.css')
   // import {swiper,swiperSlide }  from "vue-awesome-swiper";
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   export default {
@@ -353,12 +354,12 @@
     height: 128px;
     cursor: pointer;
   }
-  .swip1{
+  /* .swip1{
     overflow: hidden;
   }
   .swip2{
     float:left;
-  }
+  } */
   .up{
     background: url("../../assets/car_left_jiantou.png");
     background-repeat: no-repeat;
