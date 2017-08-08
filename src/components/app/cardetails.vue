@@ -92,7 +92,6 @@ export default {
         this.carId = deurl(location).carId;
         this.$ajax(BASE_URL+'/car/leaseDetails?carId='+deurl(location).carId)
         .then((res)=>{
-            console.log(res.data)
             if(res.data.success == true){
                 this.memberNick5 = res.data.data.memberNick5;
                 this.level5 = res.data.data.level5;
