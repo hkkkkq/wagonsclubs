@@ -1,6 +1,6 @@
 <template>
 <div class="all">
-    <video poster='poster' ref="video" autoplay="autoplay" controls="controls" :src="ss">
+    <video poster='poster' ref="video" autoplay="autoplay" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
     <div class="lunbo">
@@ -9,42 +9,33 @@
             <div class="swiper-pagination"></div>                       
         <swiper :options="swiperOption" class="ms" ref="mySwiper">
             <swiper-slide>
-                 <img  src="../../assets/test02.png">                 
+                 <img class="vimg"  v-lazy="car.videoImg">                 
                  <img @click="pp" class="p11" src="../../assets/app/play.png" />
             </swiper-slide>
-             <swiper-slide>
-                 <img src="../../assets/test02.png"> 
+            <swiper-slide :key="item" v-for='item in carimgs'>
+                 <img v-lazy="item"> 
             </swiper-slide>
-            <swiper-slide>
-                 <img src="../../assets/test02.png"> 
-            </swiper-slide>
-            <swiper-slide>
-                 <img src="../../assets/test02.png"> 
-            </swiper-slide>     
         </swiper>
-       
     </div>
     <div class="it">
         <div>
-            <span class="name">宝马</span>
-            <span class="star">5星级车</span>
+            <span class="name">{{car.carName}}</span>
+            <span class="star">{{car.starLevel}}星级车</span>
         </div>
         <div class="pr">
-            <span class="level">白金会员</span>
-            <span class="price"><span class="number">180000</span>／天</span>
+            <span class="level">{{memberNick5}}</span>
+            <span class="price"><span class="number">{{level5}}</span>／天</span>
         </div>
-        <p class="des">自由驰骋间，久违的感觉重新浮现——那童年时代自由奔跑，感受嗖嗖风声的纯真快乐，那穿梭往来的汽车经过身边时发出的Zoom-Zoom声，今天我们把它从你心中唤醒了吗？</p>
+        <p class="des">{{car.carDesc}}</p>
          
-        <span class="tips">2座</span>
-        <span class="tips">7档双离合</span>
-        <span class="tips">太空灰</span>
-        <span class="tips">全球限量</span>
-        <span class="tips">硬顶敞篷</span>
-        <span class="tips">2座</span>
-        <span class="tips">7档双离合</span>
-        <span class="tips">太空灰</span>
-        <span class="tips">全球限量</span>
-        <span class="tips">硬顶敞篷</span>
+        <span class="tips">{{car.carSeats}}座</span>
+        <span v-if="car.gearLevel == 2" class="tips">自动挡</span>
+        <span v-else class="tips">手动挡</span>        
+        <span class="tips">{{car.carColor}}</span>
+        <span class="tips">{{car.carEngineDisplacement}}排量</span>
+        <span v-if="car.convertible == 1" class="tips">敞篷</span>
+        <span v-if="car.convertible == 2" class="tips">硬顶敞篷</span>
+        <span v-if="car.convertible == 3" class="tips">软顶敞篷</span>
     </div>
     <p class="but1"></p>
     <p @click="sub" class="but">
@@ -56,7 +47,7 @@
 <script>
 import {swiper} from "vue-awesome-swiper"
 require('swiper/dist/css/swiper.css')
-
+var deurl = require('./url.js')
 export default {
     components: {swiper},
     data(){
@@ -89,10 +80,30 @@ export default {
               watchSlidesVisibility : true,
               onTransitionStart(swiper){},
             },
-            ss:"http://192.168.10.132:3000/vi.mp4",
-            poster:"http://192.168.10.132:3000/poster.jpg",
             // isplay:false
+            memberNick5:'',
+            level5:'',
+            car:'',
+            carimgs:'',
+            carId:''
         }
+    },
+    created(){
+        this.carId = deurl(location).carId;
+        this.$ajax(BASE_URL+'/car/leaseDetails?carId='+deurl(location).carId)
+        .then((res)=>{
+            console.log(res.data)
+            if(res.data.success == true){
+                this.memberNick5 = res.data.data.memberNick5;
+                this.level5 = res.data.data.level5;
+                this.car = res.data.data.car;
+                this.carimgs = res.data.data.carImgShows;
+// .data.car.starLevel
+            }else{
+                alert('一定是后台小哥出现了什么问题！！！')
+            }            
+            })
+        .catch(()=>{alert('一定是你的手机出了什么问题！！！')})
     },
     computed: {
     },
@@ -135,6 +146,9 @@ export default {
 </script>
 
 <style scoped>
+.vimg{
+    margin-top: 1rem;
+}
 .ms{
     top: -1rem!important;
 }
