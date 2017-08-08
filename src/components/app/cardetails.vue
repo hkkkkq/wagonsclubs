@@ -1,18 +1,18 @@
 <template>
 <div class="all">
+    <video poster='poster' ref="video" autoplay="autoplay" controls="controls" :src="ss">
+        您的浏览器不支持 video 标签。
+    </video>   
     <div class="lunbo">
         <img @click="back" src="../../assets/app/back.png" class="back"></img>
         <img @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>                       
-        <swiper style="top: -50px;" :options="swiperOption" class="ms" ref="mySwiper">
+        <swiper :options="swiperOption" class="ms" ref="mySwiper">
             <swiper-slide>
-                 <video @click="pp" ref="video" :poster="poster" width='100%' height='' :src="ss">
-                     您的浏览器不支持 video 标签。
-                </video>  
-                <!-- <video-player class="videoplayer" :options='playerOptions'>
-                </video-player>  -->
+                 <img  src="../../assets/test02.png">                 
+                 <img @click="pp" class="p11" src="../../assets/app/play.png" />
             </swiper-slide>
-            <swiper-slide>
+             <swiper-slide>
                  <img src="../../assets/test02.png"> 
             </swiper-slide>
             <swiper-slide>
@@ -20,7 +20,7 @@
             </swiper-slide>
             <swiper-slide>
                  <img src="../../assets/test02.png"> 
-            </swiper-slide>    
+            </swiper-slide>     
         </swiper>
        
     </div>
@@ -63,7 +63,7 @@ export default {
         return{
             swiperOption: {
               notNextTick: true,
-              autoplay: 2000,
+              autoplay: 3000,
               autoplayDisableOnInteraction:false,
               pagination : '.swiper-pagination',
               paginationType:'custom',
@@ -91,7 +91,7 @@ export default {
             },
             ss:"http://192.168.10.132:3000/vi.mp4",
             poster:"http://192.168.10.132:3000/poster.jpg",
-            isplay:false
+            // isplay:false
         }
     },
     computed: {
@@ -109,17 +109,16 @@ export default {
             }
         },
         pp(){
-            if(this.isplay == false){
-                console.log(this.$refs)
+            // if(this.isplay == false){
                 // this.$refs.mySwiper.swiper.stopAutoplay()
                 this.full(this.$refs.video)
-                this.isplay = true;
-                // this.$refs.video.play();
-            }else{
-                // this.$refs.mySwiper.swiper.startAutoplay()
-                this.isplay = false;
-                // this.$refs.video.pause()
-            }
+                // this.isplay = true;
+                this.$refs.video.play();
+            // }else{
+            //     // this.$refs.mySwiper.swiper.startAutoplay()
+            //     this.isplay = false;
+            //     // this.$refs.video.pause()
+            // }
         },
         back(){
             alert("back")
@@ -136,6 +135,17 @@ export default {
 </script>
 
 <style scoped>
+.ms{
+    top: -1rem!important;
+}
+.p11{
+    width: 0.9rem!important;
+    height: 0.9rem!important;
+    position: relative!important;
+    display: block!important;
+    margin: auto!important;
+    top: -3rem!important;
+}
 .back{
     top:0.6rem;
     left: 0.3rem;
@@ -153,7 +163,9 @@ export default {
     position: absolute;
 }
 video{
-    height: 5.7rem;
+    display: block;
+    width: 0;
+    height: 0;
 }
 .but1{
     position: relative;
