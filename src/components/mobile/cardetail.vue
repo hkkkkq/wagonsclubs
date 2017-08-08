@@ -165,7 +165,8 @@ export default {
      computed:{
         isNew(){ return this.$store.state.isNewApp},
         discountprice(){
-            return String(this.info.car.dailyRentPrice*this.info.discount*0.1) == String(NaN)?'':Number(this.info.car.dailyRentPrice*this.info.discount*0.1)
+            // return String(this.info.car.dailyRentPrice*this.info.discount*0.1) == String(NaN)?'':Number(this.info.car.dailyRentPrice*this.info.discount*0.1)
+            return Math.round(String(this.info.car.dailyRentPrice*this.info.discount*0.1) == String(NaN)?'':Number(this.info.car.dailyRentPrice*this.info.discount*0.1))
             }
     },
     created(){

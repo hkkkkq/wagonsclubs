@@ -22,7 +22,7 @@
                 <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
-                    <p class="car_price">¥<i>{{car.dailyRentPrice*discount*0.1}}</i>／天起</p>
+                    <p class="car_price">¥<i>{{Math.round(car.dailyRentPrice*discount*0.1)}}</i>／天起</p>
                     <p class="member_cut">{{car.starLevel}}星级</p>
                 </div>
             </li>
