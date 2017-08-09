@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import axios from 'axios';
 import vuex from 'vuex';
+import 'babel-polyfill'
 
 import VueLazyload from 'vue-lazyload'
 
