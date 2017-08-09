@@ -313,7 +313,7 @@ require('swiper/dist/css/swiper.css')
   .car_info_right span{
     vertical-align: bottom;
     display: inline-block;
-    width: 100px;
+    width: 90px;
     text-align: center;
     padding-top: 5px;
     box-sizing: border-box;
