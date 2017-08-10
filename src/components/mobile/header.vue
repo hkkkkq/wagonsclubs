@@ -12,7 +12,7 @@
 require('./rem.js')(window,document)
 // require('./ground.js')
 import NativeShare from 'nativeshare'
-var wx = require('weixin-js-sdk');
+// var wx = require('weixin-js-sdk');
 export default {
     data(){
         return{
@@ -26,7 +26,8 @@ export default {
             if(res.data.data.isNewApp){
                 this.$store.commit('isNewApp')
             }})
-        this.$ajax(BASE_URL+'/car/weixinShare')
+        this.$ajax(BASE_URL+'/car/weixinShare?url='+location.href)
+        // http://www.wagonsclub.com/prd/car/weixinShare   BASE_URL+'/car/weixinShare'
         .then((res)=>{
             wx.config({
                         debug: false,
@@ -70,7 +71,7 @@ export default {
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
                     });
-            })
+            }).catch((res)=>{alert(res)})
         var nativeShare = new NativeShare()        
         var shareData = {
             title: 'WAGONS光速超跑-专业超跑运营商',

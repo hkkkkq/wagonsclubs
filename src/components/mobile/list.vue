@@ -55,7 +55,7 @@ export default {
             this.$store.commit('isNewApp')
         }
         this.$ajax(BASE_URL+'/car/carsList')
-            .then((res)=>{this.carlist = res.data; this.discount = res.data.data.maxDiscount; console.log(res.data); this.loading = false})
+            .then((res)=>{this.carlist = res.data; this.discount = res.data.data.maxDiscount;this.loading = false})
             .catch(()=>{alert('一定是什么地方出问题了')})
         // i == 3?{this.loading = false }:{alert("一定是什么地方出问题了")}
         // console.log(i)
