@@ -32,7 +32,7 @@ export default {
                         debug: false,
                         appId: res.data.data.sign.appId,
                         timestamp: res.data.data.sign.timestamp,
-                        nonceStr: res.data.sign.data.nonceStr,
+                        nonceStr: res.data.data.sign.nonceStr,
                         signature: res.data.data.sign.signature,
                         jsApiList: [
                             'onMenuShareTimeline',
