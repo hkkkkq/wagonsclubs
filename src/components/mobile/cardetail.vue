@@ -115,7 +115,6 @@
 require('swiper/dist/css/swiper.css')
 
 require('./rem.js')(window,document);
-var wx = require('weixin-js-sdk');
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default {
