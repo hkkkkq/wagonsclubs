@@ -30,10 +30,10 @@ export default {
         .then((res)=>{
             wx.config({
                         debug: false,
-                        appId: res.data.sign.appId,
-                        timestamp: res.data.sign.timestamp,
-                        nonceStr: res.data.sign.nonceStr,
-                        signature: res.data.sign.signature,
+                        appId: res.data.data.sign.appId,
+                        timestamp: res.data.data.sign.timestamp,
+                        nonceStr: res.data.sign.data.nonceStr,
+                        signature: res.data.data.sign.signature,
                         jsApiList: [
                             'onMenuShareTimeline',
                             'onMenuShareAppMessage',
