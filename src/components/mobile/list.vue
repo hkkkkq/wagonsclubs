@@ -87,7 +87,7 @@ export default {
 .newcar{
     position: absolute;
     top: 0;
-    width: 1rem;
+    width:0.55rem;
 }
 .carShadow img {
     width: 1.46rem;

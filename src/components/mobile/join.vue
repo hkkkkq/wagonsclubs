@@ -192,7 +192,7 @@ export default {
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
         }
-         this.$ajax(BASE_URL+'/car/weixinShare?url='+location.href)
+         this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         .then((res)=>{
             wx.config({
                         debug: false,

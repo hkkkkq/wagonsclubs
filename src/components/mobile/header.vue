@@ -26,7 +26,7 @@ export default {
             if(res.data.data.isNewApp){
                 this.$store.commit('isNewApp')
             }})
-        this.$ajax(BASE_URL+'/car/weixinShare?url='+location.href)
+        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         // http://www.wagonsclub.com/prd/car/weixinShare   BASE_URL+'/car/weixinShare'
         .then((res)=>{
             wx.config({

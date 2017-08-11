@@ -39,7 +39,7 @@ export default {
             this.$store.commit('isNewApp')
         }
         window.scrollTo(0,0);
-        this.$ajax(BASE_URL+'/car/weixinShare?url='+location.href)
+        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         .then((res)=>{
             wx.config({
                         debug: false,

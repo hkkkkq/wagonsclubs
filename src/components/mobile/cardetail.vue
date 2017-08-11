@@ -181,8 +181,7 @@ export default {
                 this.$router.push('/404') 
                 }
                 })
-        
-         this.$ajax(BASE_URL+'/car/weixinShare?url='+location.href)
+         this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         .then((res)=>{
             wx.config({
                         debug: false,
