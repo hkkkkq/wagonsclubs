@@ -182,7 +182,7 @@ export default {
                 }
                 })
         
-         this.$ajax(BASE_URL+'/car/weixinShare')
+         this.$ajax(BASE_URL+'/car/weixinShare?url='+location.href)
         .then((res)=>{
             wx.config({
                         debug: false,
@@ -197,7 +197,7 @@ export default {
                             'onMenuShareWeibo'
                         ]
                     });
-            var locationHref = window.location.origin+'';
+            var locationHref = window.location.origin;
             wx.ready(function () {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS超跑俱乐部',

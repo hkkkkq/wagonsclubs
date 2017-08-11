@@ -122,7 +122,7 @@ export default {
     },
     created(){
         window.scrollTo(0,0);
-        this.$ajax(BASE_URL+'/car/weixinShare')
+        this.$ajax(BASE_URL+'/car/weixinShare?url='+location.href)
         .then((res)=>{
             // console.log(res.data.sign.appId)
             wx.config({

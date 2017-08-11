@@ -25,6 +25,7 @@
                     <p class="car_price">¥<i>{{Math.round( car.dailyRentPrice*discount*0.1)}}</i>／天起</p>
                     <p class="member_cut">{{car.starLevel}}星级</p>
                 </div>
+                <img v-if="car.new" class="newcar" src="../../assets/new.png">
             </li>
             
         </ul>
@@ -83,6 +84,11 @@ export default {
 }
 </script>
 <style scoped>
+.newcar{
+    position: absolute;
+    top: 0;
+    width: 1rem;
+}
 .carShadow img {
     width: 1.46rem;
     height: 1.46rem;
