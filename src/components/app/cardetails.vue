@@ -131,13 +131,31 @@ export default {
             // }
         },
         back(){
-            alert("back")
+            window.wagonsground.goBack();
         },
         share(){
-            alert("share")
+            window.wagonsground.share("wagons光速超跑",window.location.href,'','www',[0,1,2,3])
         },
         sub(){
-            alert("sub")
+            // window.wagonsground.reservation()
+            // getCustomerType();
+            this.$ajax(BASE_URL+"/car/memberType?carId="+this.carId)
+            .then((res)=>{
+                console.log(res.data.success)
+                if(res.data.success == true){
+                    if(!res.data.data.isMember){
+                        alert('您还不是会员，无法预订')
+                    }else{
+                        if(!res.data.data.useable){
+                            alert('您的等级不够，无法预订')
+                        }else{
+                            window.wagonsground.reservation(res.data.data.isPlan)
+                        }
+                    }
+                }else{
+                    alert(res.data.message)
+                }
+            })
         }
     }
 
