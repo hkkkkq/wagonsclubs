@@ -22,9 +22,10 @@
                 <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
-                    <p class="car_price">¥<i>{{car.dailyRentPrice*discount*0.1}}</i>／天起</p>
+                    <p class="car_price">¥<i>{{Math.round( car.dailyRentPrice*discount*0.1)}}</i>／天起</p>
                     <p class="member_cut">{{car.starLevel}}星级</p>
                 </div>
+                <img v-if="car.new" class="newcar" src="../../assets/new.png">
             </li>
             
         </ul>
@@ -55,7 +56,7 @@ export default {
             this.$store.commit('isNewApp')
         }
         this.$ajax(BASE_URL+'/car/carsList')
-            .then((res)=>{this.carlist = res.data; this.discount = res.data.data.maxDiscount; console.log(res.data); this.loading = false})
+            .then((res)=>{this.carlist = res.data; this.discount = res.data.data.maxDiscount;this.loading = false})
             .catch(()=>{alert('一定是什么地方出问题了')})
         // i == 3?{this.loading = false }:{alert("一定是什么地方出问题了")}
         // console.log(i)
@@ -83,6 +84,11 @@ export default {
 }
 </script>
 <style scoped>
+.newcar{
+    position: absolute;
+    top: 0;
+    width:0.55rem;
+}
 .carShadow img {
     width: 1.46rem;
     height: 1.46rem;

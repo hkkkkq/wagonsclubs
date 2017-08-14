@@ -22,7 +22,6 @@ require('./rem.js')(window,document);
 import memberright from './memberright.vue'
 import howjoin from './howjoin.vue'
 import logoSrc from '../../assets/wagon_logo.png'
-var wx = require('weixin-js-sdk');
 
 export default {
     data(){
@@ -40,14 +39,14 @@ export default {
             this.$store.commit('isNewApp')
         }
         window.scrollTo(0,0);
-        this.$ajax(BASE_URL+'/car/weixinShare')
+        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         .then((res)=>{
             wx.config({
                         debug: false,
-                        appId: res.data.sign.appId,
-                        timestamp: res.data.sign.timestamp,
-                        nonceStr: res.data.sign.nonceStr,
-                        signature: res.data.sign.signature,
+                        appId: res.data.data.sign.appId,
+                        timestamp: res.data.data.sign.timestamp,
+                        nonceStr: res.data.data.sign.nonceStr,
+                        signature: res.data.data.sign.signature,
                         jsApiList: [
                             'onMenuShareTimeline',
                             'onMenuShareAppMessage',

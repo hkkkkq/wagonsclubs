@@ -175,7 +175,6 @@
 </template>
 <script>
 require('./rem.js')(window,document)
-var wx = require('weixin-js-sdk');
 
 export default {
     data(){
@@ -193,14 +192,14 @@ export default {
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
         }
-         this.$ajax(BASE_URL+'/car/weixinShare')
+         this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         .then((res)=>{
             wx.config({
                         debug: false,
-                        appId: res.data.sign.appId,
-                        timestamp: res.data.sign.timestamp,
-                        nonceStr: res.data.sign.nonceStr,
-                        signature: res.data.sign.signature,
+                        appId: res.data.data.sign.appId,
+                        timestamp: res.data.data.sign.timestamp,
+                        nonceStr: res.data.data.sign.nonceStr,
+                        signature: res.data.data.sign.signature,
                         jsApiList: [
                             'onMenuShareTimeline',
                             'onMenuShareAppMessage',

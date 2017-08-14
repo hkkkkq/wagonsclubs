@@ -115,7 +115,6 @@
 require('swiper/dist/css/swiper.css')
 
 require('./rem.js')(window,document);
-var wx = require('weixin-js-sdk');
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default {
@@ -165,7 +164,8 @@ export default {
      computed:{
         isNew(){ return this.$store.state.isNewApp},
         discountprice(){
-            return String(this.info.car.dailyRentPrice*this.info.discount*0.1) == String(NaN)?'':Number(this.info.car.dailyRentPrice*this.info.discount*0.1)
+            // return String(this.info.car.dailyRentPrice*this.info.discount*0.1) == String(NaN)?'':Number(this.info.car.dailyRentPrice*this.info.discount*0.1)
+            return Math.round(String(this.info.car.dailyRentPrice*this.info.discount*0.1) == String(NaN)?'':Number(this.info.car.dailyRentPrice*this.info.discount*0.1))
             }
     },
     created(){
@@ -181,15 +181,14 @@ export default {
                 this.$router.push('/404') 
                 }
                 })
-        
-         this.$ajax(BASE_URL+'/car/weixinShare')
+         this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         .then((res)=>{
             wx.config({
                         debug: false,
-                        appId: res.data.sign.appId,
-                        timestamp: res.data.sign.timestamp,
-                        nonceStr: res.data.sign.nonceStr,
-                        signature: res.data.sign.signature,
+                        appId: res.data.data.sign.appId,
+                        timestamp: res.data.data.sign.timestamp,
+                        nonceStr: res.data.data.sign.nonceStr,
+                        signature: res.data.data.sign.signature,
                         jsApiList: [
                             'onMenuShareTimeline',
                             'onMenuShareAppMessage',
@@ -197,7 +196,7 @@ export default {
                             'onMenuShareWeibo'
                         ]
                     });
-            var locationHref = window.location.origin+'';
+            var locationHref = window.location.origin;
             wx.ready(function () {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS超跑俱乐部',

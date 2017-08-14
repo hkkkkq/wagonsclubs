@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>WAGONS光速超跑</title>
+    <title>WAGONS光速超跑-专业超跑运营</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="/static/favicon.ico" />
     <meta name="renderer" content="webkit">
@@ -14,6 +14,7 @@
     <meta name='description' content='客服热线：4008-625-700，WAGONS光速超跑为您提供超跑租赁、高端商务接待、高端静展、高端婚庆等用车服务。汇聚兰博基尼、法拉利、奔驰、迈凯伦、保时捷、宝马、玛莎拉蒂、劳斯莱斯、宾利等世界顶级品牌,精心定制奢享级会员服务,让您尽享至尊驾驭体验。' />
     <meta name='keywords' content='租跑车,租超跑,超跑租赁,北京租车,北京超跑,超跑,自驾,接送,车展,光速超跑' />
     <script src="/static/ground.js"></script>
+    <script src="/static/jssdk.js"></script>
     <style type="text/css">
         html,
         body,
@@ -161,6 +162,12 @@
             font-size: 0;
         }
     </style>
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        // _czc.push(["_setAccount", "XXXXXXXX"]);
+    </script>
 </head>
 
 <body>
@@ -176,6 +183,29 @@
         <a href="http://www.quhuanqian.cn/" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">趣还钱</a>&nbsp;&nbsp;
         <a href="https://www.leverfun.com/" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">炒饭</a>&nbsp;&nbsp;
     </p>
+    <script>
+        (function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                // alert("sss")
+                _czc.push(["_trackEvent", "微信", "微信中打开"]);
+            }
+        })()
+    </script>
+    <script>
+        (function() {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            } else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
 </body>
 
 </html>
