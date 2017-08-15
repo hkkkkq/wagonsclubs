@@ -18,7 +18,7 @@
     <div v-if="loading == false" class="content">
         <ul>
             <li @click="details(car.id)" v-for="car in carlist.data.carsList" class="car_details">
-                <img v-lazy="car.carImagess" class="car_img">
+                <img v-lazy="car.carImages" class="car_img">
                 <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
                 <div class="rentPrice">
