@@ -29,8 +29,7 @@ function init_native() {
         var callbackId = arguments[0],
             status = arguments[1],
             callback = callbacks[callbackId],
-            params = Array.prototype.slice
-            .call(arguments, 2),
+            params = Array.prototype.slice.call(arguments, 2),
             success,
             fail;
         for (var i = 0; i < params.length; i++) {
@@ -66,10 +65,6 @@ function android_init() {
             wagons.copy(message);
             return false;
         },
-        getApiToken: function(success, fail) {
-            athene.exec(success, fail, huoqiu, huoqiu.getApiToken, []);
-            return false;
-        },
         share: function(title, url, img, des, channel) {
             var args = "{\"title\":\"" + title + "\",\"url\":\"" + url + "\",\"img\":" + img + "\",\"des\":" + des + "}"
             var call = "{\"method\":\"share:\",\"arg\":" + args + "}";
@@ -77,12 +72,16 @@ function android_init() {
             wagons.share(title, url, img, des, channel);
             return false;
         },
-        callPhone: function() {
-            wagons.callPhone();
+        getApiToken: function(success, fail) {
+            athene.exec(success, fail, wagons, wagons.getApiToken, []);
             return false;
         },
-        callCustomPhone: function(cell) {
-            wagons.callCustomPhone(cell);
+        reservation: function(id) {
+            wagons.reservation(id);
+            return false;
+        },
+        callPhone: function() {
+            wagons.callPhone();
             return false;
         },
         showImage: function(urls, titles, index) {
@@ -109,6 +108,10 @@ function android_init() {
             wagons.dontRefresh();
             return false;
         },
+        callCustomPhone: function(cell) {
+            wagons.callCustomPhone(cell);
+            return false;
+        },
         hideHeader: function() {
             wagons.hideHeader();
             return false;
@@ -116,24 +119,16 @@ function android_init() {
         goBack: function() {
             wagons.goBack();
             return false;
-        },
-        reservation: function(isPlan) {
-            wagons.reservation(isPlan);
-            return false;
-        },
-        trusteeship: function() {
-            wagons.trusteeship();
-            return false;
         }
 
     };
-    window['wagonsground'] = ground;
+    window['Wground'] = ground;
 };
 
 function ios_init(obj) {
 
-    if (!obj.wagonsground) {
-        obj.wagonsground = {}
+    if (!obj.Wground) {
+        obj.Wground = {}
 
     }
     console.log('成功初始化');
@@ -148,7 +143,7 @@ function ios_init(obj) {
         var call = "{\"method\":\"show\"}";
         baseCall(call);
     }
-    window['wagonsground']['show'] = show;
+    window['Wground']['show'] = show;
 
     function baseCall(jsonString) {
         _WagonsJSBridge_objArray[_WagonsBridgeId] = jsonString;
@@ -162,10 +157,10 @@ function ios_init(obj) {
         return args;
     }
 
-    window['wagonsground']['getArgs'] = getArgs;
+    window['Wground']['getArgs'] = getArgs;
 
     function addCallback(functionObj) {
-        var cid = _HuoqiuJSBridge_callbackId;
+        var cid = _WagonsJSBridge_callbackId;
         _WagonsJSBridge_callbackArray[cid] = functionObj;
         _WagonsJSBridge_callbackId++;
 
@@ -177,26 +172,26 @@ function ios_init(obj) {
         delete _WagonsJSBridge_callbackArray[cid];
         delete _WagonsJSBridge_callbackArray[alsoDeleteId];
     }
-    window['wagonsground']['callback'] = callback;
+    window['Wground']['callback'] = callback;
 
     function deleteCallBack(cid) {
         delete _IfengJSBridge_callbackArray[cid];
     }
-    window['wagonsground']['deleteCallBack'] = callback;
+    window['Wground']['deleteCallBack'] = callback;
 
     function customCopy(message) {
         var args = "{\"message\":\"" + message + "\"}";
         var call = "{\"method\":\"customCopy\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['customCopy'] = customCopy;
+    window['Wground']['customCopy'] = customCopy;
 
     function share(title, url, img, des, channel) {
         var args = "{\"title\":\"" + title + "\",\"url\":\"" + url + "\",\"img\":\"" + img + "\",\"des\":\"" + des + "\",\"channel\":\"" + channel + "\"}"
         var call = "{\"method\":\"share:\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['share'] = share;
+    window['Wground']['share'] = share;
 
     function getApiToken(success, fail) {
         var successId = addCallback(success);
@@ -205,78 +200,78 @@ function ios_init(obj) {
         var call = "{\"method\":\"getApiToken:\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['getApiToken'] = getApiToken;
+    window['Wground']['getApiToken'] = getApiToken;
 
     function callPhone() {
         var args = "{\"num\":\"0\"}";
         var call = "{\"method\":\"callPhone:\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['callPhone'] = callPhone;
+    window['Wground']['callPhone'] = callPhone;
 
     function callCustomPhone(cell) {
         var args = "{\"cell\":\"" + cell + "\"}";
         var call = "{\"method\":\"callCustomPhone:\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['callCustomPhone'] = callCustomPhone;
+    window['Wground']['callCustomPhone'] = callCustomPhone;
 
     function showImage(urls, titles, index) {
         var args = "{\"urls\":\"" + urls + "\",\"titles\":\"" + titles + "\",\"index\":" + index + "}";
         var call = "{\"method\":\"showImage:\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['showImage'] = showImage;
+    window['Wground']['showImage'] = showImage;
 
     function close() {
         var call = "{\"method\":\"close\"}";
         baseCall(call);
     }
-    window['wagonsground']['close'] = close;
+    window['Wground']['close'] = close;
 
     function goBack() {
         var call = "{\"method\":\"goBack\"}";
         baseCall(call);
     }
-    window['wagonsground']['goBack'] = goBack;
+    window['Wground']['goBack'] = goBack;
 
     function reload() {
         var call = "{\"method\":\"reload\"}";
         baseCall(call);
     }
-    window['wagonsground']['reload'] = reload;
+    window['Wground']['reload'] = reload;
 
     function forward(url) {
         var args = "{\"url\":\"" + url + "\"}";
         var call = "{\"method\":\"forward:\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['forward'] = forward;
+    window['Wground']['forward'] = forward;
 
     function dontRefresh() {
         var call = "{\"method\":\"dontRefresh\"}";
         baseCall(call);
     }
-    window['wagonsground']['dontRefresh'] = dontRefresh;
+    window['Wground']['dontRefresh'] = dontRefresh;
 
     function hideHeader() {
         var call = "{\"method\":\"hideHeader\"}";
         baseCall(call);
     }
-    window['wagonsground']['hideHeader'] = hideHeader;
+    window['Wground']['hideHeader'] = hideHeader;
 
     function reservation(isPlan) {
         var args = "{\"isPlan\":\"" + isPlan + "\"}";
         var call = "{\"method\":\"reservation:\",\"arg\":" + args + "}";
         baseCall(call);
     }
-    window['wagonsground']['reservation'] = reservation;
+    window['Wground']['reservation'] = reservation;
 
     function trusteeship() {
         var call = "{\"method\":\"trusteeship\"}";
         baseCall(call);
     }
-    window['wagonsground']['trusteeship'] = trusteeship;
+    window['Wground']['trusteeship'] = trusteeship;
 
     function json2str(o) {
         var arr = [];

@@ -131,29 +131,32 @@ export default {
             // }
         },
         back(){
-            window.wagonsground.goBack();
+            window.Wground.goBack();
         },
         share(){
-            window.wagonsground.share("wagons光速超跑",window.location.href,'','www',[0,1,2,3])
+            window.Wground.share("wagons光速超跑",window.location.href,'','www',[0,1,2,3])
         },
         sub(){
             // window.wagonsground.reservation()
             // getCustomerType();
             this.$ajax(BASE_URL+"/car/memberType?carId="+this.carId)
             .then((res)=>{
-                console.log(res.data.success)
-                if(res.data.success == true){
-                    if(!res.data.data.isMember){
-                        alert('您还不是会员，无法预订')
-                    }else{
-                        if(!res.data.data.useable){
-                            alert('您的等级不够，无法预订')
-                        }else{
-                            window.wagonsground.reservation(res.data.data.isPlan)
-                        }
-                    }
-                }else{
+                if(res.data.success == false){
                     alert(res.data.message)
+                }else{
+                    if((res.data.data.type == 4)||(res.data.data.type == 5)){
+                        window.Wground.reservation(false)
+                    }else if((res.data.data.type == 1)||(res.data.data.type == 2)||(res.data.data.type == 3)){
+                        window.Wground.reservation(true)
+                    }else if(res.data.data.type == 7){
+                        alert('审核未通过')
+                    }else if(res.data.data.type == 6){
+                        alert('会员审核中')
+                    }else if(res.data.data.type == 8){
+                        alert('该车辆不可用')
+                    }else if(res.data.data.type == 0){
+                        alert('请先去注册会员吧！！')
+                    }
                 }
             })
         }
