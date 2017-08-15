@@ -137,28 +137,32 @@ export default {
             window.Wground.share("wagons光速超跑",window.location.href,'','www',[0,1,2,3])
         },
         sub(){
-            // window.wagonsground.reservation()
-            // getCustomerType();
-            this.$ajax(BASE_URL+"/car/memberType?carId="+this.carId)
-            .then((res)=>{
-                if(res.data.success == false){
-                    alert(res.data.message)
-                }else{
-                    if((res.data.data.type == 4)||(res.data.data.type == 5)){
-                        window.Wground.reservation(false)
-                    }else if((res.data.data.type == 1)||(res.data.data.type == 2)||(res.data.data.type == 3)){
-                        window.Wground.reservation(true)
-                    }else if(res.data.data.type == 7){
-                        alert('审核未通过')
-                    }else if(res.data.data.type == 6){
-                        alert('会员审核中')
-                    }else if(res.data.data.type == 8){
-                        alert('该车辆不可用')
-                    }else if(res.data.data.type == 0){
-                        alert('请先去注册会员吧！！')
-                    }
-                }
-            })
+            //获取token
+            window.Wground.getApiToken(suc,fail)
+            function suc(token){
+                this.$ajax({
+                    url:BASE_URL+"/car/memberType?carId="+this.carId,
+                    method:'GET',
+                    headers:{"token":token}
+                    }).then((res)=>{
+                        if(res.data.success == false){
+                            alert('请求出错1');  
+                            }else{
+                                if((res.data.data.type == 4)||(res.data.data.type == 5)){
+                                    window.Wground.reservation(false)
+                                }else if((res.data.data.type == 1)||(res.data.data.type == 2)||(res.data.data.type == 3)){
+                                    window.Wground.reservation(true)
+                                }else if(res.data.data.type == 7){
+                                    alert('审核未通过')
+                                }else if(res.data.data.type == 6){
+                                    alert('会员审核中')
+                                }else if(res.data.data.type == 8){
+                                    alert('该车辆不可用')
+                                }
+                            }
+                        })
+                };
+            function fail(err){alert(err,2)}
         }
     }
 
