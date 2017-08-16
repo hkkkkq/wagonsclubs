@@ -1,39 +1,107 @@
 <template>
   <div>
     <div class="banner"></div>
+    <div class="dongtai">
+      <div class="con">
+        <span class="cons"></span><p class="conp">最新动态</p>
+        <p style="height: 24px;"></p>
+        <div class="f1">
+          <img src="../../assets/car_logos.png" />
+          <h1>ssss</h1>
+          <div>萨诺对方了解卡萨诺法律框架那失联客机烦恼恼恼恼恼恼恼恼恼恼恼恼恼恼恼恼</div>
+        </div>
+        <div style="margin: 0 18px;" class="f1">
+          <img src="../../assets/car_logos.png" />    
+          <h1>ssss</h1>
+          <div>阿斯顿那蛇年大吉是看那可就是你发牢骚接口部分卢卡斯家离开就是你的将来可能是打飞机卡萨诺对方了解卡萨诺法律框架那失联客机烦恼</div>
+        </div>
+        <div class="f1">
+          <img src="../../assets/car_logos.png" />
+          <h1>ssss</h1>
+          <div>阿斯顿那蛇年大吉是看那可就是你发牢骚接口部分卢卡斯家离开就是你的将来可能是打飞机卡萨诺对方了解卡萨诺法律框架那失联客机烦恼</div>
+        </div>
+      </div>  
+    </div>      
     <div class="car-con">
-      <h5 class="hot">
-        <p>POPULAR MODELE</p>
-        <span>热门车型</span>
-      </h5>
+      <div style="width: 1000px;margin: auto;">
+      <span class="cons"></span><p class="conp">热门车型</p>        
+      </div>
+        <p style="height: 24px;"></p>
       <div class="intro">
         <div class="left">
           <img :src="currentcar.car.carImages">
         </div>
         <div class="right">
-          <p class="p1">
+          <p class="name">{{currentcar.car.carName}}</p>
+          <p style="margin-top: 14px;    margin-bottom: 20px;">
+            <img style="margin: 0 6px;" v-for="i in currentcar.car.starLevel" src='../../assets/xingxing.png'>
+          </p>
+          <p class="chexing">车型信息</p>
+          <span class="ddd">
+            <img src="../../assets/zuowei.png" />
+            <p>{{currentcar.car.carSeats}}</p>
+          </span>
+           <span v-if="currentcar.car.gearLevel == 2"  class="ddd">
+            <img src="../../assets/zidong.png" />
+            <p>自动档</p>
+          </span>
+           <span v-else class="ddd">
+            <img src="../../assets/shoudong.png" />
+            <p>手动挡</p>
+          </span>
+           <span class="ddd">
+            <img src="../../assets/yanse.png" />
+            <p>{{currentcar.car.carColor}}</p>
+          </span>
+          <span v-if="currentcar.car.convertible==1" class="ddd">
+            <img src="../../assets/changpeng.png" />
+            <p>敞篷</p>
+          </span>
+          <span v-if="currentcar.car.convertible==2" class="ddd">
+            <img src="../../assets/changpeng.png" />
+            <p>硬顶敞篷</p>
+          </span>
+          <span v-if="currentcar.car.convertible==3" class="ddd">
+            <img src="../../assets/changpeng.png" />
+            <p>软顶敞篷</p>
+          </span>
+          <span class="ddd">
+            <img src="../../assets/pailiang.png" />
+            <p>{{currentcar.car.carEngineDisplacement}}</p>
+          </span>
+          <span v-if="currentcar.car.plateNumberBj" class="ddd">
+            <img src="../../assets/bj.png" />
+            <p>京牌</p>
+          </span>
+          <span class="ddd">
+            <img src="../../assets/feibj.png" />
+            <p>非京牌</p>
+          </span>
+          <p style="margin-top:26px;"></p>
+          <p class="chexing">本车特色</p>       
+          <p class="ddes">{{currentcar.car.carDesc}}</p>  
+          <div class="ppri">
+            <h1>
+              {{currentcar.memberNick5}}价:
+            </h1>
+            <h2><span>{{currentcar.level5?currentcar.level5:''}}</span> 元/天</h2>
+          </div> 
+          <!-- <span class="ddd">
+            <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/1.png" />
+            <p>2座</p>
+          </span> -->
+          
+          <!-- <p class="p1">
           <span>用车条件</span>
           <i>{{currentcar.car.conditionText}}</i>
         </p>
-          <!-- <p>
-          <span>市场价</span>
-          <i>{{currentcar.car.dailyRentPrice}}元／天</i>
-        </p> -->
-          <!-- <p>
-          <span>{{currentcar.memberNick3}}</span>
-          <i>{{currentcar.level3?currentcar.level3:''}}元／天</i>
-        </p>
-          <p>
-          <span>{{currentcar.memberNick4}}</span>
-          <i>{{currentcar.level4?currentcar.level4:''}}元／天</i>
-        </p> -->
           <p>
           <span>{{currentcar.memberNick5}}</span>
           <i>{{currentcar.level5?currentcar.level5:''}}元／天</i>
-        </p>
+        </p> -->
         </div>
-        <h2 class="car_name" id="carName">{{currentcar.car.carName}}</h2>
-        <div class="car_info">
+        <!-- <h2 class="car_name" id="carName">{{currentcar.car.carName}}</h2> -->
+        <!-- <div class="car_info">
           <div class="car_info_left">
             <span>本车特色</span>
             <p>{{currentcar.car.carDesc}}</p>
@@ -73,7 +141,7 @@
               <i>{{currentcar.car.carEngineDisplacement}}</i>
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="car_list">
         <div class="box">
@@ -94,8 +162,10 @@
         <p>扫码即刻体验</p>
       </div>
       <div class="brand">
-        <p class="brandname1">BRAND</p>
-        <p class="brandname2">品牌</p>
+        <span style="position: relative;left: -461px;background-color:white" class="cons"></span><p style="position: relative;left: -461px;color:white" class="conp">品牌一览</p>   
+        <p></p>
+        <!-- <p class="brandname1">BRAND</p> -->
+        <!-- <p class="brandname2">品牌</p> -->
         <img src="../../assets/car_logos.png">
       </div>
     </div>
@@ -150,6 +220,7 @@ require('swiper/dist/css/swiper.css')
           this.$ajax(BASE_URL+'/car/carDetail?carId='+firstid)
           .then((resolve)=>{
             this.currentcar = resolve.data.data;
+            console.log(this.currentcar)
           })
 
           for(let i = 1;i<this.cars.length;i++){
@@ -186,7 +257,125 @@ require('swiper/dist/css/swiper.css')
     }
   }
 </script>
-<style scoped> 
+<style scoped>
+.ppri h1{
+color: white;
+    font-size: 14px;
+    width: 80px;
+    display: inline-block;
+        margin-top: 30px;
+}
+.ppri h2{
+    color: white;
+    float: right;
+    font-size: 12px;
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    margin-right: 10px;
+    margin-top: 21px;
+
+}
+.ppri h2 span{
+  font-size: 24px;
+  color: #ffeb61;
+}
+.ppri{
+  border-top: 1px solid #8e8e8e;
+}
+.ddes{
+  font-size: 12px;
+    color: #bababa;
+    width: 200px;
+    height: 48px;
+    padding-top: 12px;
+    padding-bottom: 20px;
+}
+.ddd img{
+    width: 70%;
+    margin: auto;
+    display: block;
+}
+.ddd p {
+      font-size: 12px;
+    text-align: center;
+    color: #8e8e8e;
+    margin-top: 11px;
+}
+.ddd{
+  margin-top: 10px;
+display: inline-block;
+    width: 53px;
+    height: 56px;
+}
+.chexing{
+  padding-bottom: 10px;
+  color: #8e8e8e;
+  font-size: 14px;
+  border-bottom: 1px solid #8e8e8e;
+}
+.right .name{
+  font-size: 22px;
+  color: white;
+}
+.f1 h1{
+width: 318px;
+    background: white;
+    font-weight: bolder;
+    font-size: 16px;
+    padding-left: 0px;
+    text-indent: 10px;
+    border-bottom: 3px solid #f7f7f7;
+    padding-top: 4px;
+    padding-bottom: 6px;
+} 
+.f1 div{
+      width: 298px;
+    background: white;
+    height: 40px;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    line-height: 19px;
+} 
+.f1{
+  display: inline-block;
+  vertical-align: top;
+}
+.f1 img{
+      display: inline-block;
+    width: 318px;
+    height: 234px;
+}
+.cons{
+    display: inline-block;
+    width: 2px;
+    height: 12px;
+    background-color: black;
+}
+.conp{
+font-size: 18px;
+    color: black;
+    display: inline-block;
+    margin-left: 10px;
+}
+  .dongtai{
+    display: block;
+    /* font-size: 0; */
+    width: 100%;
+    background: #f5f5f5; 
+    padding-top: 38px;
+    padding-bottom: 30px;
+
+  }
+  .dongtai .con{
+    display: block;
+    width: 1000px;
+    margin: auto;
+  }
   .banner {
     width: 100%;
     min-width: 1000px;
@@ -195,7 +384,7 @@ require('swiper/dist/css/swiper.css')
   }
   .car-con{
     width: 100%;
-    padding-top: 88px;
+    padding-top: 40px;
     margin: 0 auto;
   }
   .hot{
@@ -219,14 +408,20 @@ require('swiper/dist/css/swiper.css')
     margin: auto;
   }
   .intro .right{
-    vertical-align: top;
-    width: 248px;
+ vertical-align: top;
+    width: 212px;
     display: inline-block;
-    height: 504px;
-    background-color: #404040;
+    height: 450px;
+    background-color: #272727;
+    position: relative;
+    top: -15px;
+    padding-left: 36px;
+    padding-top: 40px;
+    padding-right: 28px;
+
   }
   .intro .left{
-    width: 752px;
+    width: 723px;
     font-size: 0;
     display: inline-block;
   }
@@ -237,7 +432,7 @@ require('swiper/dist/css/swiper.css')
   .p1{
     margin-top: 122px!important;
   }
-  .right p{
+  /* .right p{
     font-size: 14px;
     line-height: 37px;
     margin: 0px 15px;
@@ -249,16 +444,16 @@ require('swiper/dist/css/swiper.css')
   }
   .right p span{
     color: #a6a6a6;
-  }
+  } */
   .brand{
     color: #dadada;
     text-align: center;
     width: 100%;
     min-width: 1000px;
-    height: 478px;
+    height: 400px;
     box-sizing: border-box;
-    padding-top: 88px;
-    background-color: #2c2c2c;
+    padding-top: 44px;
+    background-color: #272727;
   }
   .brandname1{
     height: 29px;
@@ -339,12 +534,11 @@ require('swiper/dist/css/swiper.css')
     height: 232px;
     box-sizing: border-box;
     padding-top: 18px;
-    background-color: #ececec;
   }
   .car_list .box{
     user-select: none;
     overflow: hidden;
-     width: 1000px; 
+     width: 1100px; 
     margin: auto;
   }
   .box span{
@@ -364,6 +558,9 @@ require('swiper/dist/css/swiper.css')
     background: url("../../assets/car_left_jiantou.png");
     background-repeat: no-repeat;
     background-position: left center;
+    float: left;
+    margin-right: 15px;
+    
   }
   .up:hover {
     background: url("../../assets/car_left_jiantou1.png");
@@ -374,6 +571,7 @@ require('swiper/dist/css/swiper.css')
     background: url("../../assets/car_right_jiantou.png");
     background-repeat: no-repeat;
     background-position: right center;
+    float: right;
   }
   .down:hover {
     background: url("../../assets/car_right_jiantou1.png");
@@ -382,17 +580,21 @@ require('swiper/dist/css/swiper.css')
   }
   .swip1{
     display: inline-block;
-    width: 920px;
+    width: 1000px;
     height: 200px;
   }
   .swip2{
   }
   .swip2 i{
     background: white;
-    width: 209px;
-    height: 128px;
+    width: 246px;
+    height: 152px;
     margin: auto;
     display: block;
+  }
+  .swip2 i img{
+        width: 100%;
+        /* height: 100%; */
   }
   .swip2 i .active{
     width: 92%;
