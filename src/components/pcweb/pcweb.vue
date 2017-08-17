@@ -13,7 +13,7 @@
         <i>用车须知</i>
       </router-link>
       <span class="shu"></span>
-      <router-link v-on:click.native="changecolor3" class="router-link" v-bind:class="{'active':homeactive3}" to="/third">
+      <router-link v-on:click.native="changecolor4" class="router-link" v-bind:class="{'active':homeactive4}" to="/third">
         <i>会员说明</i>
       </router-link>
       <span class="phone"></span>
@@ -36,7 +36,8 @@
           return{
               homeactive1:true,
               homeactive2:false,
-              homeactive3:false
+              homeactive3:false,
+              homeactive4:false
           }
         },
         mounted(){
@@ -44,22 +45,34 @@
           if(i == '/first'){ this.changecolor1() }
           if(i == '/second'){ this.changecolor2() }
           if(i == '/third'){ this.changecolor3() }
+          if(i == '/forth'){ this.changecolor4() }
         },
     methods:{
       changecolor1:function(){
           this.homeactive1 = true
           this.homeactive2 = false
           this.homeactive3 = false
+          this.homeactive4 = false
       },
       changecolor2:function(){
           this.homeactive1 = false
           this.homeactive2 = true
           this.homeactive3 = false
+          this.homeactive4 = false
+          
       },
       changecolor3:function(){
           this.homeactive1 = false
           this.homeactive2 = false
           this.homeactive3 = true
+          this.homeactive4 = false
+          
+      },
+      changecolor4:function(){
+          this.homeactive1 = false
+          this.homeactive2 = false
+          this.homeactive3 = false
+          this.homeactive4 = true
       }
     }
 
