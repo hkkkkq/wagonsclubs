@@ -10,8 +10,9 @@ const pcweb_third = resolve => require(['../components/pcweb/pcweb_third.vue'], 
 const notfound = resolve => require(['../components/404.vue'], resolve);
 //for app
 const app = resolve => require(['../components/app/index.vue'], resolve);
-const app_details = resolve => require(['../components/app/cardetails.vue'], resolve)
-    //mobile
+const app_details = resolve => require(['../components/app/cardetails.vue'], resolve);
+const app_join = resolve => require(['../components/app/join.vue'], resolve);
+//mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
 const memberitro = resolve => require(['../components/mobile/memberitro.vue'], resolve);
@@ -54,7 +55,8 @@ export default new Router({
             path: '/app',
             component: app,
             children: [
-                { path: 'cardetails', component: app_details }
+                { path: 'cardetails', component: app_details },
+                { path: 'join', component: app_join },
             ]
         },
 
