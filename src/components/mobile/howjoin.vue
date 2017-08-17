@@ -81,6 +81,8 @@
                         </li>
                     </ul>
                 </div>
+                <a class="simu" href="https://toweringcapital.cn/?pcode=wagons">点此了解或购买合作方私募基金</a>
+                
                 <ul class="rule_list">
                     <li>
                         <b><i></i></b>
@@ -121,6 +123,17 @@ export default {
 </script>
 
 <style scoped>
+.simu{
+    -webkit-tap-highlight-color:transparent;
+     font-size: 0.24rem;
+    display: block;
+    margin-left: 0.3rem;
+    color: cornflowerblue;
+    margin-top: 0.3rem;
+    background: white;
+    text-decoration: none;
+
+}
 .method_2 .rule_list li em {
     padding-top: 0.025rem;
     width: 6rem;
