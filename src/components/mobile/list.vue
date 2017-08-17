@@ -108,52 +108,22 @@ export default {
 }
 img[lazy=error]{
     /* //your code */
-    background-image: url('../../assets/loading12.png');
+    background-image: url('../../assets/loading12.gif');
     background-repeat: no-repeat;
     background-position:center;
     background-size: 0.5rem;
-     animation: mysecond 1s; 
-    animation-iteration-count: infinite;  
-    animation-timing-function:linear;
+
   
 }
 img[lazy=loading]{
     /* //your code */
-    background-image: url('../../assets/loading12.png');
+    background-image: url('../../assets/loading12.gif');
     background-repeat: no-repeat;
     background-position:center;
     background-size: 0.5rem;
-    animation: mysecond 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function:linear;
-}
-@keyframes mysecond
-{
-0%   {transform:rotate()}
-50%  {transform:rotate(-180deg)}
-100% {transform:rotate(-360deg)}
+
 }
 
-@-moz-keyframes mysecond /* Firefox */
-{
-0%   {transform:rotate()}
-50%  {transform:rotate(-180deg)}
-100% {transform:rotate(-360deg)}
-}
-
-@-webkit-keyframes mysecond /* Safari 和 Chrome */
-{
-0%   {transform:rotate()}
-50%  {transform:rotate(-180deg)}
-100% {transform:rotate(-360deg)}
-}
-
-@-o-keyframes mysecond /* Opera */
-{
-0%   {transform:rotate()}
-50%  {transform:rotate(-180deg)}
-100% {transform:rotate(-360deg)}
-}
 img[lazy=loaded]{
     /* //your code */
   animation:fade 0.5s;
