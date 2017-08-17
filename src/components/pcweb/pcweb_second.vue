@@ -7,7 +7,60 @@
       </div>
     <div class="s_banner"></div>
     <div class="con_1">
-      <div class="intro">
+      <div class="ll">
+        <p :class="{active:show == 'chanpin'}" @click='change("chanpin")'>产品服务</p>
+        <p :class="{active:show == 'us'}" @click='change("us")'>关于我们</p>
+      </div>
+      <div class="rr">
+<div v-if='show == "chanpin"'>
+          <div class="vf">
+          <h1>俱乐部业务</h1>
+          <h2>— 个人</h2>
+          <P>平台有多种档次的会员套餐，满足各阶层的租赁需求</P>
+          <div style="height:22px;"></div>
+          <h2>— 商务</h2>
+          <P>平台同时兼营婚庆，静展，商务接待和拍摄等其他业务</P>
+        </div>
+        <div class="vf">
+          <h1>谁能用车</h1>
+          <h2>试营业期间WAGONS光速超跑的用车服务仅覆盖北京地区的用户</h2>
+        </div>
+        <div class="vf">
+          <h1>用车流程</h1>
+          <h2>— 选车</h2>
+          <P>线上选车并拨打官方客服电话咨询预约，或直接到店选车</P>
+          <div style="height:22px;"></div>
+          <h2>— 用车</h2>
+          <P>到店出示本人身份证驾驶证，签订用车协议，交付用车费用</P>
+          <div style="height:22px;"></div>
+          <h2>— 还车</h2>
+          <P>平台同时兼营婚庆，静展，商务接待和拍摄等其他业务</P>
+        </div>
+        <div style="border:0px" class="vf">
+          <h1>俱乐部业务</h1>
+          <h2>— 个人</h2>
+          <P>平台有多种档次的会员套餐，满足各阶层的租赁需求</P>
+          <div style="height:22px;"></div>
+          <h2>1.缴纳会费</h2>
+          <P>2.选择合作伙伴投资产品：私募，，公募</P>
+        </div>
+</div>
+<div v-if='show == "us"'>
+          <div class="vf">
+          <h1>关于WAGONS光速超跑俱乐部</h1>
+          <h2>WAGONS光速超跑是北京玄铁科技有限公司旗下超跑俱乐部，面向高端用户群体提供自驾出行，高端商务接待，高端静展等用车服务。</h2>
+          <h2>WAGONS光速超跑门店位于北京高端商区当代MOMA商务中心，自有车辆涵盖世界各顶级品牌超跑经典车型，拉风小跑，炸街超跑，奢华商务座驾供您尽享顶级驾驭体验。同时，WAGONS光速超跑还精心定制五星会员服务，让您尽享会员尊宠礼遇。</h2>
+        </div>
+        <div style="border:0px" class="vf">
+          <h1>联系我们</h1>
+          <h2>客服热线：<span>4008-625-700</span></h2>
+          <h2>公司地址：北京市东城区香河园路1号当代MOMA商务中心</h2>
+          <p style="height:15px"></p>
+          <img style="height:379px;width:620px" src="../../assets/newmap.jpg">
+        </div>
+</div>
+      </div>
+      <!-- <div class="intro">
         <p>WAGONS光速超跑是北京玄铁科技有限公司旗下超跑俱乐部，面向高端用户群体提供自驾出行、高端商务接待、高端静展等用车服务。WAGONS光速超跑门店位于北京高端商区当代MOMA商务中心，自有车辆涵盖世界各顶级品牌超跑经典车型，拉风小跑、炸街超跑、奢华商务座驾供您尽享顶级驾驭体验。同时，WAGONS光速超跑还精心定制五星会员服务，让您尽享会员尊宠礼遇。</p>
         <h5>地址：北京市东城区香河园路1号当代MOMA商务中心</h5>
         <div style="width:255px;">
@@ -44,7 +97,7 @@
             2、选择合作伙伴投资产品：私募、公募
           </p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -52,17 +105,77 @@
 export default {
   data(){
     return {
-      qr_show:true
+      qr_show:true,
+      show:'chanpin'
     }
   },
   methods:{
     closeqr:function(){
           this.qr_show = false;
-      }
+      },
+    change:function(str){
+      this.show = str;
+    }
   }
 }
 </script>
 <style scoped>
+.vf h1{
+  margin-top: 36px;
+  font-size: 16px;
+  color: black;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.vf h2{
+  color: #3f3f3f;
+  font-size: 15px;
+    margin-bottom: 7px;
+    line-height: 26px;
+}
+.vf p{
+    color: #3f3f3f;
+  font-size: 15px;
+  text-indent: 20px;
+}
+.vf{
+  border-bottom: 1px solid #8e8e8e;
+    padding-bottom: 34px;
+     padding-top: 12px;
+     padding-left: 10px;
+
+}
+.ll p {
+  text-align: center;
+  line-height: 53px;
+  height: 50px;
+  /* background: #262626; */
+  color: black;
+  font-size: 22px;
+  margin: 18px 0;
+}
+.ll p.active {
+  text-align: center;
+  line-height: 53px;
+  height: 50px;
+  background: #262626;
+  color: #ffd400;
+  font-size: 22px;
+  margin: 18px 0;
+}
+.ll{
+  width: 314px;
+  background: #efefef;
+  height: 100%;
+  display: inline-block;
+}
+.rr{
+    width: 630px;
+    height: 10px;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 50px;
+}
   .qr_code{
     z-index: 100;
     position: fixed;
@@ -96,11 +209,11 @@ export default {
     width: 100%;
     min-width: 1000px;
     height: 217px;
-    background: url('../../assets/car_guide_banner.png') center center no-repeat;
+    background: url('../../assets/car_guide_banner.jpg') center center no-repeat;
   }
   .con_1{
     width:1000px;
-    height:550px;
+    height:1000px;
     margin:0 auto;
     overflow: hidden;
   }

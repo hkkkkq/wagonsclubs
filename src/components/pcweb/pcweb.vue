@@ -5,11 +5,11 @@
         <i>首页</i>
       </router-link>
       <span class="shu"></span>
-      <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':homeactive2}" to="/second">
+      <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':homeactive2}" to="/forth">
         <i>俱乐部动态</i>
       </router-link>
       <span class="shu"></span>
-      <router-link v-on:click.native="changecolor3" class="router-link" v-bind:class="{'active':homeactive3}" to="/third">
+      <router-link v-on:click.native="changecolor3" class="router-link" v-bind:class="{'active':homeactive3}" to="/second">
         <i>用车须知</i>
       </router-link>
       <span class="shu"></span>

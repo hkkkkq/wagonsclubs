@@ -10,7 +10,7 @@
           <h1>ssss</h1>
           <div>萨诺对方了解卡萨诺法律框架那失联客机烦恼恼恼恼恼恼恼恼恼恼恼恼恼恼恼恼</div>
         </div>
-        <div style="margin: 0 18px;" class="f1">
+        <div style="margin: 0 16px;" class="f1">
           <img src="../../assets/car_logos.png" />    
           <h1>ssss</h1>
           <div>阿斯顿那蛇年大吉是看那可就是你发牢骚接口部分卢卡斯家离开就是你的将来可能是打飞机卡萨诺对方了解卡萨诺法律框架那失联客机烦恼</div>
@@ -261,7 +261,7 @@ require('swiper/dist/css/swiper.css')
 .ppri h1{
 color: white;
     font-size: 14px;
-    width: 80px;
+    width: 100px;
     display: inline-block;
         margin-top: 30px;
 }
