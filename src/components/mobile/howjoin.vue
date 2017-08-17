@@ -147,7 +147,7 @@ export default {
     width: 0.09rem;
     height: 0.09rem;
     border-radius: 400px;
-    background: url(/source/mobile/images/dotted.png) center center no-repeat #252525;
+    background: url() center center no-repeat #252525;
     background-size: 100% 100%;
 }
 .method_2 .rule_list li b {
@@ -241,7 +241,7 @@ export default {
     width: 0.09rem;
     height: 0.09rem;
     border-radius: 400px;
-    background: url(/source/mobile/images/dotted.png) center center no-repeat #252525;
+    background: url() center center no-repeat #252525;
     background-size: 100% 100%;
 }
 .method_1 .rule_list li b {
