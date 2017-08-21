@@ -41,6 +41,7 @@
           }
         },
         mounted(){
+          window.scroll(0,0)
           let i = this.$route.path;
           if(i == '/first'){ this.changecolor1() }
           if(i == '/second'){ this.changecolor2() }

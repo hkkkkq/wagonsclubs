@@ -6,20 +6,20 @@
         <span class="cons"></span><p class="conp">最新动态</p>
         <p style="height: 24px;"></p>
         <div style="font-size:0">
-          <div class="f1">
+          <div @click='goar(1)' class="f1">
           <img src="../../assets/news1.png" />
-          <h1>有WAGONS的周末不会太无聊</h1>
-          <div>WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀……</div>
+          <h1>WAGONS光速超跑落地京城</h1>
+          <div>WAGONS光速超跑落地京城 引领高端出行新趋势......</div>
         </div>
-        <div style="margin: 0 10px;" class="f1">
-          <img src="../../assets/news2.jpg" />    
+        <div @click='goar(2)' style="margin: 0 10px;" class="f1">
+          <img src="../../assets/nn21.jpg" />    
+          <h1>WAGONS光速超跑举办试驾品鉴活动</h1>
+          <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了......</div>
+        </div>
+        <div @click='goar(3)' class="f1">
+          <img src="../../assets/news2.jpg" />
           <h1>为爱提速、超跑动心</h1>
-          <div>WAGONS为留守儿童爱心捐赠，捐赠现场引来了许多小朋友领取爱心存折，来……</div>
-        </div>
-        <div class="f1">
-          <img src="../../assets/news3.png" />
-          <h1>大魔术师到店</h1>
-          <div>大魔术师刘谦到WAGONS超跑做客</div>
+          <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
         </div>
         </div>
       </div>  
@@ -88,62 +88,7 @@
             </h1>
             <h2><span>{{currentcar.level5?currentcar.level5:''}}</span> 元/天</h2>
           </div> 
-          <!-- <span class="ddd">
-            <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/1.png" />
-            <p>2座</p>
-          </span> -->
-          
-          <!-- <p class="p1">
-          <span>用车条件</span>
-          <i>{{currentcar.car.conditionText}}</i>
-        </p>
-          <p>
-          <span>{{currentcar.memberNick5}}</span>
-          <i>{{currentcar.level5?currentcar.level5:''}}元／天</i>
-        </p> -->
         </div>
-        <!-- <h2 class="car_name" id="carName">{{currentcar.car.carName}}</h2> -->
-        <!-- <div class="car_info">
-          <div class="car_info_left">
-            <span>本车特色</span>
-            <p>{{currentcar.car.carDesc}}</p>
-          </div>
-          <div class="car_info_right">
-            <span>车型信息</span>
-            <p>
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/1.png" />
-              <i>{{currentcar.car.carSeats}}</i>
-            </p>
-            <p v-if="currentcar.car.gearLevel == 2" >
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/2.png" />
-              <i>自动挡</i>
-            </p>
-            <p v-else>
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/3.png" />
-              <i>手动挡</i>
-            </p>
-            <p>
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/4.png" />
-              <i>{{currentcar.car.carColor}}</i>
-            </p>
-            <p v-if="currentcar.car.convertible==1">
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/5.png" />
-              <i>敞篷</i>
-            </p>
-            <p v-if="currentcar.car.convertible==2">
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/5.png" />
-              <i>硬顶敞篷</i>
-            </p>
-            <p v-if="currentcar.car.convertible==3">
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/5.png" />
-              <i>软顶敞篷</i>
-            </p>
-            <p>
-              <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/6.png" />
-              <i>{{currentcar.car.carEngineDisplacement}}</i>
-            </p>
-          </div>
-        </div> -->
       </div>
       <div class="car_list">
         <div class="box">
@@ -255,6 +200,9 @@ require('swiper/dist/css/swiper.css')
       },
       closeqr:function(){
           this.qr_show = false;
+      },
+      goar(n){
+        this.$router.push('/article/'+n)
       }
     }
   }
@@ -437,19 +385,6 @@ font-size: 18px;
   .p1{
     margin-top: 122px!important;
   }
-  /* .right p{
-    font-size: 14px;
-    line-height: 37px;
-    margin: 0px 15px;
-    border-bottom: 1px solid #626263;
-  }
-  .right p i {
-    float: right;
-    color: #e7e7e7;
-  }
-  .right p span{
-    color: #a6a6a6;
-  } */
   .brand{
     color: #dadada;
     text-align: center;
