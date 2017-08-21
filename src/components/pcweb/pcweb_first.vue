@@ -5,12 +5,13 @@
       <div class="con">
         <span class="cons"></span><p class="conp">最新动态</p>
         <p style="height: 24px;"></p>
-        <div class="f1">
+        <div style="font-size:0">
+          <div class="f1">
           <img src="../../assets/car_logos.png" />
           <h1>ssss</h1>
-          <div>萨诺对方了解卡萨诺法律框架那失联客机烦恼恼恼恼恼恼恼恼恼恼恼恼恼恼恼恼</div>
+          <div>WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到WAGONS现场，共赴极速之约……</div>
         </div>
-        <div style="margin: 0 16px;" class="f1">
+        <div style="margin: 0 10px;" class="f1">
           <img src="../../assets/car_logos.png" />    
           <h1>ssss</h1>
           <div>阿斯顿那蛇年大吉是看那可就是你发牢骚接口部分卢卡斯家离开就是你的将来可能是打飞机卡萨诺对方了解卡萨诺法律框架那失联客机烦恼</div>
@@ -19,6 +20,7 @@
           <img src="../../assets/car_logos.png" />
           <h1>ssss</h1>
           <div>阿斯顿那蛇年大吉是看那可就是你发牢骚接口部分卢卡斯家离开就是你的将来可能是打飞机卡萨诺对方了解卡萨诺法律框架那失联客机烦恼</div>
+        </div>
         </div>
       </div>  
     </div>      

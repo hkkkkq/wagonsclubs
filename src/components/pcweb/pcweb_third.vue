@@ -153,6 +153,7 @@ export default {
   color: black;
   font-size: 22px;
   margin: 18px 0;
+  cursor: pointer;
 }
 .ll p.active {
   text-align: center;
