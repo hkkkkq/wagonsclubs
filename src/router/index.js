@@ -12,6 +12,9 @@ const notfound = resolve => require(['../components/404.vue'], resolve);
 const app = resolve => require(['../components/app/index.vue'], resolve);
 const app_details = resolve => require(['../components/app/cardetails.vue'], resolve);
 const app_join = resolve => require(['../components/app/join.vue'], resolve);
+const app_memindex = resolve => require(['../components/app/huiyuanindex.vue'], resolve);
+const app_memright = resolve => require(['../components/app/memright.vue'], resolve);
+const app_memjoin = resolve => require(['../components/app/memjoin.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -57,6 +60,15 @@ export default new Router({
             children: [
                 { path: 'cardetails', component: app_details },
                 { path: 'join', component: app_join },
+                {
+                    path: 'memindex',
+                    component: app_memindex,
+                    redirect: "memindex/memright",
+                    children: [
+                        { path: "memright", component: app_memright },
+                        { path: "memjoin", component: app_memjoin }
+                    ]
+                },
             ]
         },
 

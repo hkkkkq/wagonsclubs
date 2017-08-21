@@ -1,6 +1,7 @@
 <template>
 <div style="background:#0f1923">
     <img class="banner" src="../../assets/app/joinbanner.png">
+    <p class="uv">开始用车之前，您需要通过申请方式加入WAGONS，成功后即可自由选择购买优惠套餐，或采用单次散租的方式开始您的超跑自驾之旅。</p>
     <div class="cc">
         <p>套餐</p>
         <div class="qq">
@@ -149,8 +150,8 @@
                 <b><span class="rad"></span>尊享会员折扣价</b>       
                 <b><span class="rad"></span>优质老客户还有多重优惠，有机会免押金用车</b>  
         </div>
-        <h2 style="font-size:0.22rem;color:#009cff;float:right;height:0.7rem">查看更多会员说明</h2>
-        <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.5rem" src="../../assets/app/blogo.png">
+        <h2 style="font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</h2>
+        <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
     </div>
 </div>
 </template>
@@ -162,6 +163,16 @@ export default {
 </script>
 
 <style scoped>
+.uv{
+    font-size: 0.24rem;
+    color: #ffffff;
+    width: 6.6rem;
+    position: absolute;
+    top: 0.6rem;
+    left: 0.4rem;
+    line-height: 0.4rem;
+
+}
 .rad{
     display: inline-block;
     vertical-align: top;
