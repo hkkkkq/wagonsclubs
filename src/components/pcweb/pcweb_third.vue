@@ -42,7 +42,7 @@
           <P>平台有多种档次的会员套餐，满足各阶层的租赁需求</P>
           <div style="height:22px;"></div>
           <h2>1.缴纳会费</h2>
-          <P>2.选择合作伙伴投资产品：私募，，公募</P>
+          <h2>2.选择合作伙伴投资产品：私募，公募</h2>
         </div>
 </div>
 <div v-if='show == "us"'>
@@ -53,8 +53,8 @@
         </div>
         <div style="border:0px" class="vf">
           <h1>联系我们</h1>
-          <h2>客服热线：<span>4008-625-700</span></h2>
-          <h2>公司地址：北京市东城区香河园路1号当代MOMA商务中心</h2>
+          <h2>客服热线：<span style="font-size: 22px;font-weight: bolder;">4008-625-700</span></h2>
+          <h2 style="position: relative;top: -5px;">公司地址：北京市东城区香河园路1号当代MOMA商务中心</h2>
           <p style="height:15px"></p>
           <img style="height:379px;width:620px" src="../../assets/newmap.jpg">
         </div>
@@ -128,13 +128,12 @@ export default {
   margin-bottom: 20px;
 }
 .vf h2{
-  color: #3f3f3f;
+  color: #747474;
   font-size: 15px;
-    margin-bottom: 7px;
     line-height: 26px;
 }
 .vf p{
-    color: #3f3f3f;
+    color: #747474;
   font-size: 15px;
   text-indent: 20px;
 }

@@ -21,6 +21,10 @@
         <img src='../../assets/nn34.png'>        
         <p>这个夏天，WAGONS光速超跑与您一起关注留守儿童，让油门为爱轰鸣！</p>
     </div>
+    <div class="fen">
+        <a href="/article/2" style="float:left">上一页：WAGONS光速超跑举办试驾品鉴活动</a>
+        <a href="" style="float:right">没有了：下一页</a>
+    </div>
 </div>
 </template>
 
@@ -39,6 +43,22 @@ export default {
 </script>
 
 <style scoped>
+.fen a:hover{
+    color: #acacac;
+}
+.fen a {
+     margin-top: 20px;
+     font-size: 14px;
+     color: #494949;
+     cursor: pointer;
+     text-decoration-line: none;
+}
+.fen{
+    width: 1000px;
+    margin: auto;
+    display: block;
+    height: 72px;
+}
 .ccc p {
     text-indent: 30px;
     margin-bottom: 18px;

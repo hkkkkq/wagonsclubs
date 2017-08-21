@@ -1,5 +1,6 @@
 <template>
   <div class="pcweb">
+    <div @click='ind' class="oo"></div>
     <div class="header">
       <router-link v-on:click.native="changecolor1" class="router-link" v-bind:class="{'active':homeactive1}" to="/first">
         <i>首页</i>
@@ -74,6 +75,9 @@
           this.homeactive2 = false
           this.homeactive3 = false
           this.homeactive4 = true
+      },
+      ind(){
+        location.href = location.origin
       }
     }
 
@@ -81,6 +85,15 @@
   }
 </script>
 <style type="text/css" scoped>
+.oo{
+      position: absolute;
+    display: block;
+    width: 250px;
+    height: 50px;
+    top: 32px;
+    left: 141px;
+    cursor: pointer;
+}
   .shu{
     display: inline-block;
     width: 1px;
@@ -120,12 +133,12 @@
     text-align: center;
   }
   .no1{
-    width: 780px;
+    width: 1000px;
     height: 22px;
     color: #777777;
     font-size: 14px;
     margin: 0 auto;
-    border-bottom: 1px solid #8e8e8e;
+    border-bottom: 1px solid #c5c5c5;
   }
   .no2{
     width: 780px;

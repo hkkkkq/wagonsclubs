@@ -24,6 +24,10 @@
         <p>WAGONS光速超跑让你在炎炎夏日体验速度与激情带来的凉爽，加入我们，不要再压抑自己的荷尔蒙，让独一无二的你享受我们为你准备的全球超跑激情体验！</p>
         <p>WAGONS光速超跑是国内首家专业超跑运营商，主要为高端用户群体提供超跑自驾、商务接待、婚庆服务、影视拍摄、高端静展等一些列用车服务。</p>
     </div>
+    <div class="fen">
+        <a href="/article/1" style="float:left">上一页：WAGONS光速超跑落地京城</a>
+        <a href="/article/3" style="float:right">为爱提速、超跑动心：下一页</a>
+    </div>
 </div>
 </template>
 
@@ -42,8 +46,24 @@ export default {
 </script>
 
 <style scoped>
+.fen a:hover{
+    color: #acacac;
+}
+.fen a {
+     margin-top: 20px;
+     font-size: 14px;
+     color: #494949;
+     cursor: pointer;
+     text-decoration-line: none;
+}
+.fen{
+    width: 1000px;
+    margin: auto;
+    display: block;
+    height: 72px;
+}
 .ccc p {
-    text-indent: 30px;
+    /* text-indent: 30px; */
     margin-bottom: 18px;
 }
 .ccc img{
