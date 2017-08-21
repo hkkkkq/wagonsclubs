@@ -2,7 +2,7 @@
 <div>
     <div class="s_banner"></div>
     <div class="ff">
-        <img src="../../assets/youxiang.jpg">
+        <img src="../../assets/news1.png">
         <div class="gg">
             <p class="title">有wagons的周末不会无聊<span>2017-08-11  14:23:52</span></p>
             <div class="cc">WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到现场，共赴极速之约，WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到WAGONS现场，共赴极速之约……</div>
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="ff">
-        <img src="../../assets/youxiang.jpg">
+        <img src="../../assets/news2.jpg">
         <div class="gg">
             <p class="title">有wagons的周末不会无聊<span>2017-08-11  14:23:52</span></p>
             <div class="cc">WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到现场，共赴极速之约，WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到WAGONS现场，共赴极速之约……</div>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="ff">
-        <img src="../../assets/youxiang.jpg">
+        <img src="../../assets/news3.png">
         <div class="gg">
             <p class="title">有wagons的周末不会无聊<span>2017-08-11  14:23:52</span></p>
             <div class="cc">WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到现场，共赴极速之约，WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到WAGONS现场，共赴极速之约……</div>
@@ -61,6 +61,9 @@ export default {
 </script>
 
 <style scoped>
+.gg span{
+    cursor: pointer;
+}
 .hh span{
     color:#8c8c8c;
 }

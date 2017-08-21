@@ -7,19 +7,19 @@
         <p style="height: 24px;"></p>
         <div style="font-size:0">
           <div class="f1">
-          <img src="../../assets/car_logos.png" />
-          <h1>ssss</h1>
-          <div>WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到WAGONS现场，共赴极速之约……</div>
+          <img src="../../assets/news1.png" />
+          <h1>有WAGONS的周末不会太无聊</h1>
+          <div>WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀……</div>
         </div>
         <div style="margin: 0 10px;" class="f1">
-          <img src="../../assets/car_logos.png" />    
-          <h1>ssss</h1>
-          <div>阿斯顿那蛇年大吉是看那可就是你发牢骚接口部分卢卡斯家离开就是你的将来可能是打飞机卡萨诺对方了解卡萨诺法律框架那失联客机烦恼</div>
+          <img src="../../assets/news2.jpg" />    
+          <h1>为爱提速、超跑动心</h1>
+          <div>WAGONS为留守儿童爱心捐赠，捐赠现场引来了许多小朋友领取爱心存折，来……</div>
         </div>
         <div class="f1">
-          <img src="../../assets/car_logos.png" />
-          <h1>ssss</h1>
-          <div>阿斯顿那蛇年大吉是看那可就是你发牢骚接口部分卢卡斯家离开就是你的将来可能是打飞机卡萨诺对方了解卡萨诺法律框架那失联客机烦恼</div>
+          <img src="../../assets/news3.png" />
+          <h1>大魔术师到店</h1>
+          <div>大魔术师刘谦到WAGONS超跑做客</div>
         </div>
         </div>
       </div>  
@@ -330,9 +330,11 @@ width: 318px;
     border-bottom: 3px solid #f7f7f7;
     padding-top: 4px;
     padding-bottom: 6px;
+    height: 22px;
+    line-height: 25px;
 } 
 .f1 div{
-      width: 298px;
+    width: 298px;
     background: white;
     height: 40px;
     display: block;
@@ -340,8 +342,9 @@ width: 318px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 19px;
+    color: #747474;
 } 
 .f1{
   display: inline-block;
