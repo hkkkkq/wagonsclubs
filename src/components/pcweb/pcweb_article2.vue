@@ -76,8 +76,8 @@ export default {
     background: #ffffff;
     padding: 32px 100px 32px 100px;
     margin: auto;
-    font-size: 18px;
-    color: #5c5c5c;
+    font-size: 15px;
+    color: #a2a2a2;
     line-height: 25px;
 }
 .tit h1{

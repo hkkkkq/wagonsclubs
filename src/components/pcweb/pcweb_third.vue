@@ -121,7 +121,7 @@ export default {
 </script>
 <style scoped>
 .vf h1{
-  margin-top: 36px;
+  margin-top: 24px;
   font-size: 16px;
   color: black;
   font-weight: bolder;

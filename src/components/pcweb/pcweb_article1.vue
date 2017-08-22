@@ -23,7 +23,7 @@
         <p>时刻处在焦点中心的超跑无论到哪个层面都始终是焦点。WAGONS光速超跑开门营业仅一个月就吸引到了海那边、爱享聚等品牌到店举办活动，与知名视频自媒体品牌“李老鼠说车”以及实力高端地产品牌当代MOMA建立了战略合作关系。“短短一个月时间里，与WAGONS光速超跑达成合作或合作意向的品牌已经达到10余家”负责人介绍说。</p>
     </div>
     <div class="fen">
-        <a style="float:left">上一页：没有了</a>
+        <a style="float:left;color: #acacac;">上一页：没有了</a>
         <a href="/article/2" style="float:right">WAGONS光速超跑举办试驾品鉴活动：下一页</a>
     </div>
 </div>
@@ -44,9 +44,9 @@ export default {
 </script>
 
 <style scoped>
-.fen a:hover{
+/* .fen a:hover{
     color: #acacac;
-}
+} */
 .fen a {
      margin-top: 20px;
      font-size: 14px;
@@ -73,8 +73,8 @@ export default {
     background: #ffffff;
     padding: 32px 100px 32px 100px;
     margin: auto;
-    font-size: 18px;
-    color: #5c5c5c;
+    font-size: 15px;
+    color: #a2a2a2;
     line-height: 25px;
 }
 .tit h1{
