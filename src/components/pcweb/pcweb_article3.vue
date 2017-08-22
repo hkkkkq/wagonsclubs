@@ -23,7 +23,7 @@
     </div>
     <div class="fen">
         <a href="/article/2" style="float:left">上一页：WAGONS光速超跑举办试驾品鉴活动</a>
-        <a href="" style="float:right">没有了：下一页</a>
+        <a href="" style="float:right;color: #acacac;">没有了：下一页</a>
     </div>
 </div>
 </template>
@@ -43,9 +43,9 @@ export default {
 </script>
 
 <style scoped>
-.fen a:hover{
+/* .fen a:hover{
     color: #acacac;
-}
+} */
 .fen a {
      margin-top: 20px;
      font-size: 14px;
@@ -60,7 +60,7 @@ export default {
     height: 72px;
 }
 .ccc p {
-    text-indent: 30px;
+    /* text-indent: 30px; */
     margin-bottom: 18px;
 }
 .ccc img{
@@ -73,8 +73,8 @@ export default {
     background: #ffffff;
     padding: 32px 100px 32px 100px;
     margin: auto;
-    font-size: 18px;
-    color: #5c5c5c;
+    font-size: 15px;
+    color: #a2a2a2;
     line-height: 25px;
 }
 .tit h1{

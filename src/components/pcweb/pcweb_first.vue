@@ -7,26 +7,23 @@
         <p style="height: 24px;"></p>
         <div style="font-size:0">
           <div @click='goar(1)' class="f1">
-          <img @mouseenter="getmask(1)" @mouseleave="outmask(1)" src="../../assets/news1.png" />
-          <h3 v-if="mask1" class="mask">
-            光速超跑，落地京城
-          </h3>
+            <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+              <img src="../../assets/news1.png" />
+            </div>
           <h1>WAGONS光速超跑落地京城</h1>
           <div>WAGONS光速超跑落地京城 引领高端出行新趋势......</div>
         </div>
         <div @click='goar(2)' style="margin: 0 10px;" class="f1">
-          <img @mouseenter="getmask(2)" @mouseleave="outmask(2)" src="../../assets/nn21.jpg" />    
-          <h3 v-if="mask2" class="mask">
-            光速超跑，品鉴试驾
-          </h3>
+            <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+          <img src="../../assets/nn21.jpg" />    
+            </div>
           <h1>WAGONS光速超跑举办试驾品鉴活动</h1>
           <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了......</div>
         </div>
         <div @click='goar(3)' class="f1">
-          <img @mouseenter="getmask(3)" @mouseleave="outmask(3)" src="../../assets/news2.jpg" />
-          <h3 v-if="mask3" class="mask">
-            为爱提速，超跑动心
-          </h3>
+            <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+          <img src="../../assets/news2.jpg" />
+            </div>
           <h1>为爱提速、超跑动心</h1>
           <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
         </div>
@@ -216,45 +213,10 @@ require('swiper/dist/css/swiper.css')
       goar(n){
         this.$router.push('/article/'+n)
       },
-      getmask(n){
-          if(n == 1){
-            this.mask1 = true
-            // setTimeout(()=>{this.mask1 = false},1000)
-          }else if(n == 2){
-            // setTimeout(()=>{this.mask2 = false},1000)
-            this.mask2 = true          
-          }else if(n == 3){
-            // setTimeout(()=>{this.mask3 = false},1000)
-            this.mask3 = true                    
-          }
-      },
-      outmask(n){
-        if(n == 1){
-          this.mask1 = false
-        }else if(n == 2){
-          this.mask2 = false          
-        }else if(n == 3){
-          this.mask3 = false                    
-        }
-      }
     }
   }
 </script>
 <style scoped>
-.mask{
-    width: 318px;
-    height: 234px;
-    position: absolute;
-    top: 0;
-    padding: 0;
-    margin: 0;
-    background: rgba(0,0,0,0.8);
-    font-size: 20px;
-    margin: auto;
-    text-align: center;
-    line-height: 240px;
-    color: #ffffff;
-}
 .ppri h1{
 color: white;
     font-size: 14px;
@@ -352,9 +314,16 @@ width: 318px;
   position: relative;
 }
 .f1 img{
-      display: inline-block;
     width: 318px;
     height: 234px;
+    display: block;
+    margin: auto;
+}
+.f1 img:hover{
+    width: 300px;
+    height: 220px;
+    display: block;
+    margin: auto;
 }
 .cons{
     display: inline-block;
