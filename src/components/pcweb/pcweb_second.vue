@@ -1,209 +1,135 @@
 <template>
-  <div>
-    <div v-if="qr_show" class="qr_code">
-        <a @click="closeqr" href="javascript:;" class="cclose"></a>
-        <img src="../../assets/car_gongzhonghao.png" alt="" class="qr"/>
-        <p>扫码即刻体验</p>
-      </div>
+<div>
     <div class="s_banner"></div>
-    <div class="con_1">
-      <div class="intro">
-        <p>WAGONS光速超跑是北京玄铁科技有限公司旗下超跑俱乐部，面向高端用户群体提供自驾出行、高端商务接待、高端静展等用车服务。WAGONS光速超跑门店位于北京高端商区当代MOMA商务中心，自有车辆涵盖世界各顶级品牌超跑经典车型，拉风小跑、炸街超跑、奢华商务座驾供您尽享顶级驾驭体验。同时，WAGONS光速超跑还精心定制五星会员服务，让您尽享会员尊宠礼遇。</p>
-        <h5>地址：北京市东城区香河园路1号当代MOMA商务中心</h5>
-        <div style="width:255px;">
-          <img src="../../assets/car_gongzhonghao.png" alt="" class="gongzhonghao" />
-          <h4>关注微信 即刻体验</h4>
+    <div style="display:block;height:904px">
+    <div  @click="goar(1)" class="ff">
+        <img src="../../assets/news1.png">
+        <div class="gg">
+            <p class="title">WAGONS光速超跑落地京城<span>2017-08-21  16:22:52</span></p>
+            <div class="cc">诸如兰博基尼、法拉利的超级跑车一直以来都处在汽车消费金字塔的最尖端，即便是很多高端用户群体一生也鲜有驾驶甚至接触超跑的机会......</div>
+            <span>阅读更多 >></span>
         </div>
-      </div>
-      <div class="condition">
-        <div class="no1">
-          <span>谁能用车</span>
-          <p>试营业期间WAGONS光速超跑的用车服务<i>仅覆盖北京地区</i>用户。</p>
-        </div>
-        <div class="no2">
-          <span class="lc">用车流程</span>
-          <div class="lct">
-            <h5 style="margin-top:-4px;">
-              <p>-选车</p>
-              <p>线上选车并拨打官方客服电话咨询预约，或直接到店选车</p>
-            </h5>
-            <h5>
-              <p>-用车</p>
-              <p>到店出示本人身份证、驾驶证，签订用车协议，交付用车费用</p>
-            </h5>
-            <h5>
-              <p>-还车</p>
-              <p>到店还车，接受车辆检查及交通违规查询，退还相应费用</p>
-            </h5>
-          </div>
-        </div>
-        <div class="no3">
-          <span>会员申请方式</span>
-          <p>1、缴纳会费
-            <br/><br/>
-            2、选择合作伙伴投资产品：私募、公募
-          </p>
-        </div>
-      </div>
     </div>
-  </div>
+    <div @click="goar(2)" class="ff">
+        <img src="../../assets/nn21.jpg">
+        <div class="gg">
+            <p class="title">WAGONS光速超跑举办试驾品鉴活动<span>2017-08-21  16:25:52</span></p>
+            <div class="cc">盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了首次体验试驾活动。WAGONS光速超跑此次店内试驾体验活动采取邀请嘉宾制度，给予嘉宾们更私密的交流空间......</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
+    <div @click="goar(3)" class="ff">
+        <img src="../../assets/news2.jpg">
+        <div class="gg">
+            <p class="title">为爱提速、超跑动心<span>2017-08-11  14:30:09</span></p>
+            <div class="cc">赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群孩子，每天在家盼望着父母的归来，只能在照片里看到父母慈爱的笑容，生病没有父母的拥抱。他们......</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
+    <!-- <div class="ff">
+        <img src="../../assets/youxiang.jpg">
+        <div class="gg">
+            <p class="title">有wagons的周末不会无聊<span>2017-08-11  14:23:52</span></p>
+            <div class="cc">WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到现场，共赴极速之约，WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到WAGONS现场，共赴极速之约……</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
+    <div class="ff">
+        <img src="../../assets/youxiang.jpg">
+        <div class="gg">
+            <p class="title">有wagons的周末不会无聊<span>2017-08-11  14:23:52</span></p>
+            <div class="cc">WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到现场，共赴极速之约，WAGONS光速超跑试驾会火热启幕，来自各行各业的精英人士也应邀来到WAGONS现场，共赴极速之约……</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div> -->
+    </div>
+    <p class="hh">
+        <span>1</span>
+        <span>/</span>
+        <span>1</span> 
+        <span style="padding-left:10px;cursor:pointer">上一页</span>
+        <span style="padding-left:10px;padding-right:10px;font-size:10px;cursor:pointer">|</span>
+        <span>下一页</span>
+    </p>
+</div>
 </template>
+
 <script>
 export default {
-  data(){
-    return {
-      qr_show:true
+    data(){
+        return {}
+    },
+    methods:{
+        goar(n){
+            this.$router.push('/article/'+n)
+        }
     }
-  },
-  methods:{
-    closeqr:function(){
-          this.qr_show = false;
-      }
-  }
 }
 </script>
+
 <style scoped>
-  .qr_code{
-    z-index: 100;
-    position: fixed;
-    right:11%;
-    top:30%;
-    width:173px;
-    height:234px;
-    background-color: #333333;
-  }
-  .qr_code .cclose{
-    position: absolute;
-    top:15px;
-    right:15px;
-    width:14px;
-    height:14px;
-    background:url("../../assets/car_close.png") no-repeat;
-    background-size:100% 100%;
-  }
-  .qr_code .qr{
-    display:block;
-    margin:45px auto 13px;
-    width:128px;
-    height:128px;
-  }
-  .qr_code p{
-    font-size:14px;
-    color:#f4f4f4;
-    text-align: center;
-  }
+.gg span{
+    cursor: pointer;
+    font-weight: lighter;
+}
+.hh span{
+    color:#8c8c8c;
+}
+.hh{
+    position: relative;
+    top: -2px;
+    height:68px;text-align:center;
+    padding-top: 48px;
+    z-index: 1;
+    background: white;
+}
+.gg span{
+    bottom: 0;
+    float: left;
+    color: #8c8c8c;
+}
+.cc{
+color: #747474;
+    font-size: 15px;
+    height: 150px;
+    line-height: 25px;
+}
+.gg p span{
+    font-size: 12px;
+    color: #747474;
+    float: right;
+    margin-right: 10px;
+}
+.gg p {
+    font-size: 24px;
+    color: black;
+    line-height: 48px;
+}
+.gg{
+    width: 565px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+}
+.ff img{
+    display: inline-block;
+    width: 323px;
+    height: 100%;
+}
+.ff{
+    width: 1000px;
+    margin: auto;
+    height: 248px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid #eeeeee;
+    cursor: pointer;
+}
   .s_banner{
     width: 100%;
     min-width: 1000px;
     height: 217px;
-    background: url('../../assets/car_guide_banner.png') center center no-repeat;
-  }
-  .con_1{
-    width:1000px;
-    height:550px;
-    margin:0 auto;
-    overflow: hidden;
-  }
-  .con_1 .intro{
-    float: left;
-    width: 366px;
-    height:550px;
-    padding-top:70px;
-    box-sizing: border-box;
-    border-right:1px solid #dddddf;
-  }
-  .con_1 .intro p{
-    padding-right:49px;
-    font-size:14px;
-    line-height:30px;
-    color:#7a7a7a;
-    margin-bottom:30px;
-  }
-  .con_1 .intro h5{
-    height:30px;
-    font-size:14px;
-    color:#717171;
-  }
-  .con_1 .intro .gongzhonghao{
-    display:block;
-    width:145px;
-    height:143px;
-    margin:0 auto;
-  }
-  .con_1 .intro h4{
-    text-align: center;
-    font-size:16px;
-    color:#3d3d3d;
-    line-height:22px;
-  }
-  .con_1 .condition{
-    float: left;
-    box-sizing: border-box;
-    width:634px;
-    height:550px;
-    padding:75px 0 0 86px;
-  }
-  .con_1 .condition .no1{
-    height:50px;
-    border-bottom: 1px solid #dddddf;
-    overflow: hidden;
-  }
-  .con_1 .condition .no1 span{
-    float:left;
-    width:122px;
-    font-size:18px;
-    color:#06060b;
-  }
-  .con_1 .condition .no1 p{
-    float:left;
-    width:420px;
-    font-size:14px;
-    color:#717171;
-  }
-  .con_1 .condition .no1 p i{
-    color:#e41b06;
-  }
-
-  .con_1 .condition .no2{
-    height:256px;
-    border-bottom: 1px solid #dddddf;
-    overflow: hidden;
-    box-sizing: border-box;
-    padding-top:34px;
-  }
-  .con_1 .condition .no2 .lc{
-    float:left;
-    width:122px;
-    font-size:18px;
-    color:#06060b;
-  }
-  .con_1 .condition .no2 .lct{
-    float:left;
-    width:420px;
-    font-size:14px;
-    color:#717171;
-  }
-  .con_1 .condition .no2 .lct h5{
-    margin-bottom:18px;
-  }
-  .con_1 .condition .no2 .lct h5 p{
-    line-height:26px;
-  }
-  .con_1 .condition .no3{
-    overflow: hidden;
-    padding-top:34px;
-  }
-  .con_1 .condition .no3 span{
-    float:left;
-    width:122px;
-    font-size:18px;
-    color:#06060b;
-  }
-  .con_1 .condition .no3 p{
-    float:left;
-    width:420px;
-    line-height:20px;
-    font-size:14px;
-    color:#717171;
+    background: url('../../assets/car_dongtai.jpg') center center no-repeat;
   }
 </style>

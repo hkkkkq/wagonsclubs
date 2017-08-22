@@ -1,16 +1,23 @@
 <template>
   <div class="pcweb">
+    <div @click='ind' class="oo"></div>
     <div class="header">
       <router-link v-on:click.native="changecolor1" class="router-link" v-bind:class="{'active':homeactive1}" to="/first">
         <i>首页</i>
       </router-link>
+      <span class="shu"></span>
       <router-link v-on:click.native="changecolor2" class="router-link" v-bind:class="{'active':homeactive2}" to="/second">
+        <i>俱乐部动态</i>
+      </router-link>
+      <span class="shu"></span>
+      <router-link v-on:click.native="changecolor3" class="router-link" v-bind:class="{'active':homeactive3}" to="/third">
         <i>用车须知</i>
       </router-link>
-      <router-link v-on:click.native="changecolor3" class="router-link" v-bind:class="{'active':homeactive3}" to="/third">
+      <span class="shu"></span>
+      <router-link v-on:click.native="changecolor4" class="router-link" v-bind:class="{'active':homeactive4}" to="/forth">
         <i>会员说明</i>
       </router-link>
-      <span class="phone">4008-625-700</span>
+      <span class="phone"></span>
     </div>
     <router-view></router-view>
     <div class="footer">
@@ -30,30 +37,47 @@
           return{
               homeactive1:true,
               homeactive2:false,
-              homeactive3:false
+              homeactive3:false,
+              homeactive4:false
           }
         },
         mounted(){
+          window.scroll(0,0)
           let i = this.$route.path;
           if(i == '/first'){ this.changecolor1() }
           if(i == '/second'){ this.changecolor2() }
           if(i == '/third'){ this.changecolor3() }
+          if(i == '/forth'){ this.changecolor4() }
         },
     methods:{
       changecolor1:function(){
           this.homeactive1 = true
           this.homeactive2 = false
           this.homeactive3 = false
+          this.homeactive4 = false
       },
       changecolor2:function(){
           this.homeactive1 = false
           this.homeactive2 = true
           this.homeactive3 = false
+          this.homeactive4 = false
+          
       },
       changecolor3:function(){
           this.homeactive1 = false
           this.homeactive2 = false
           this.homeactive3 = true
+          this.homeactive4 = false
+          
+      },
+      changecolor4:function(){
+          this.homeactive1 = false
+          this.homeactive2 = false
+          this.homeactive3 = false
+          this.homeactive4 = true
+      },
+      ind(){
+        location.href = location.origin
       }
     }
 
@@ -61,6 +85,24 @@
   }
 </script>
 <style type="text/css" scoped>
+.oo{
+      position: absolute;
+    display: block;
+    width: 250px;
+    height: 50px;
+    top: 32px;
+    left: 141px;
+    cursor: pointer;
+}
+  .shu{
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background: #797979;
+    padding-top: 0px;
+    margin: -3px 10px;
+
+  }
   .pcweb {
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
     background-color: #fff;
@@ -73,11 +115,11 @@
     height: 100px;
     background: url("../../assets/carRental_logo3.png") no-repeat left 34px;
     padding-top: 49px;
-    background-size: 231px 24px;
+    background-size: 256px 43px;
     box-sizing: border-box;
     margin: auto;
     padding-left: 314px;
-    background-position: 0 53px;
+    background-position: 0 40px;
   }
   .footer{
     width: 100%;
@@ -85,18 +127,18 @@
     height: 82px;
     padding-top: 18px;
     box-sizing: border-box;
-    background-color: #565656;
+    background-color: #dcdcdc;
   }
   .footer p{
     text-align: center;
   }
   .no1{
-    width: 780px;
+    width: 1000px;
     height: 22px;
     color: #777777;
-    font-size: 13px;
+    font-size: 14px;
     margin: 0 auto;
-    border-bottom: 1px solid #6b6b6b;
+    border-bottom: 1px solid #c5c5c5;
   }
   .no2{
     width: 780px;
@@ -111,7 +153,7 @@
     display: inline-block;
     text-decoration: none;
     color: #797979;
-    margin-right: 80px;
+    margin-right: 0px;
   }
   .router-link i {
     display: block;
@@ -123,12 +165,12 @@
     font-size: 11px;
   }
   .phone{
-    letter-spacing:1px;
-    color: #797979;
     float: right;
-    line-height: 30px;
-    text-indent: 2em;
     background: url('../../assets/car_tel.png') 0 5px no-repeat;
-    cursor: text;
+    display: block;
+    width: 242px;
+    height: 45px;
+    position: relative;
+    top: -15px;
   }
 </style>
