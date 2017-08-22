@@ -284,11 +284,12 @@ color: white;
 .ddes{
   font-size: 12px;
     color: #bababa;
-    width: 200px;
+    width: 204px;
     height: 48px;
     padding-top: 12px;
     padding-bottom: 20px;
     line-height: 20px;
+    margin: auto;
 }
 .ddd img{
     width: 70%;
@@ -316,6 +317,7 @@ display: inline-block;
 .right .name{
   font-size: 22px;
   color: white;
+  white-space: nowrap;
 }
 .f1 h1{
 width: 318px;
