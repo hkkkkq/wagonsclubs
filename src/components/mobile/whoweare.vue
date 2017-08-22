@@ -24,14 +24,14 @@ export default {
         'm-header':header,
     },
     created(){
-                if(this.$route.query.isNewApp == 'true'){
+        if(/isNewApp=true/.test(document.referrer)){
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
         }
     },
     methods:{
         goo(){
-            this.$router.push('/mobile?isNewApp='+this.isNew)
+            this.$router.go(-1)
         }
     }
 }
