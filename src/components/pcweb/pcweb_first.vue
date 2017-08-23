@@ -98,7 +98,7 @@
             <img src="../../assets/bj.png" />
             <p>京牌</p>
           </span>
-          <span class="ddd">
+          <span v-else class="ddd">
             <img src="../../assets/feibj.png" />
             <p>非京牌</p>
           </span>
@@ -295,7 +295,7 @@ color: white;
     padding-bottom: 20px;
     line-height: 20px;
     margin: auto;
-    letter-spacing: -1px;
+    /* letter-spacing: -1px; */
 }
 .ddd img{
     width: 70%;
