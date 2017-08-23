@@ -11,26 +11,21 @@
           <p>
               <span>手机号</span><input placeholder="请填写手机号" />          
           </p>
-          <p>
+          <p @click="sel(1)">
               <span>婚姻状况</span><b>请选择  ></b>
           </p>
-          <p>
+          <p @click="sel(2)">
               <span>职业</span><b>请选择  ></b>      
           </p>
-          <p style="border:0px">
+          <p @click="sel(3)" style="border:0px">
               <span>职务</span><b>请选择  ></b>      
           </p> 
       </div>
       <p class="but">提交申请</p>
-      <div class="mask">
+      <div @click="clo" v-show="l1" class="mask">
           <div class="nu">
-              <p>1</p>
-              <p>1</p>
-              <p>1</p>
-              <p>1</p>
-              <p>1</p>
-              <p>1</p>
-              <p style="color: rgb(215, 215, 215);">1</p>
+              <p @click='ss' v-for="(item,index) in currlist">{{item}}</p>
+              <p @click="clo" style="color: rgb(215, 215, 215);">取消</p>
           </div>
       </div>
   </div>
@@ -38,7 +33,29 @@
 
 <script>
 export default {
-
+    data(){
+        return{
+            l1:false,
+            currlist:"",
+            hunyinlist:["未婚","已婚","离异"],
+            zhiyelist:["国家机关／事业单位","计算机／互联网","金融业","建筑业","批发零售","文体教育","生产制造","交通运输","文化娱乐","能源环保","农／林／牧／渔业","其他"],
+            zhiwulist:["企业所有者","高管","经理","主管","一般职员","自由职业","学生","其他"],
+        }
+    },
+    methods:{
+        sel(n){
+            this.l1 = true
+            if(n == 1){this.currlist = this.hunyinlist}
+            if(n == 2){this.currlist = this.zhiyelist}
+            if(n == 3){this.currlist = this.zhiwulist}
+        },
+        clo(){
+            this.l1 = false
+        },
+        ss(){
+            alert(1)
+        }
+    }
 }
 </script>
 
