@@ -11,7 +11,7 @@
           <transition name="fade">
               <div v-show="iserr"  class='err'>{{errmessage}}</div>
           </transition>
-          <p>申请会员</p>
+          <p>申请加入</p>
           <div class="clear2"></div>
           <input v-model="name" class="text" placeholder="姓名" type="text">
           <input v-model="telephone" class="text" placeholder="手机号码" type="text">

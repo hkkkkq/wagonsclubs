@@ -16,8 +16,8 @@
               </h4>
           </transition>
             </div>
-          <h1>WAGONS光速超跑落地京城</h1>
-          <div>WAGONS光速超跑落地京城 引领高端出行新趋势......</div>
+          <h1>WAGONS光速超跑落地京城 引领高端出</h1>
+          <div>诸如兰博基尼、法拉利的超级跑车一直以来都处在汽车消费金字塔的最尖端，即便是很多......</div>
         </div>
         <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(2)' style="margin: 0 10px;" class="f1">
             <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
@@ -29,8 +29,8 @@
               </h4>
           </transition>
             </div>
-          <h1>WAGONS光速超跑举办试驾品鉴活动</h1>
-          <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了......</div>
+          <h1>WAGONS光速超跑举办首次高端试驾品</h1>
+          <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了首次......</div>
         </div>
         <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(3)' class="f1">
             <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
@@ -41,7 +41,7 @@
               </h4>        
           </transition>  
             </div>
-          <h1>为爱提速、超跑动心</h1>
+          <h1>为爱提速、超跑动心 | WAGONS为留守</h1>
           <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
         </div>
         </div>

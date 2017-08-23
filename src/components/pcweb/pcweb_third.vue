@@ -38,9 +38,6 @@
         </div>
         <div style="border:0px" class="vf">
           <h1>俱乐部业务</h1>
-          <h2>— 个人</h2>
-          <P>平台有多种档次的会员套餐，满足各阶层的租赁需求</P>
-          <div style="height:22px;"></div>
           <h2>1.缴纳会费</h2>
           <h2>2.选择合作伙伴投资产品：私募，公募</h2>
         </div>
