@@ -1,7 +1,26 @@
 <template>
 <div>
-    <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
-    <div class="but"></div>
+    <!-- <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png"> -->
+    <div style="position:relative">
+        <div style="height:0;top: 1.3rem;" class="swiper-pagination"></div>       
+        <swiper :options="swiperOption" ref="mySwiper"> 
+            <swiper-slide :key="n" v-for="(item,n) in carousel">
+                <a :href='item.detailPath'>
+                    <img class="banner" :src="item.imagePath">
+                </a>
+            </swiper-slide>
+            <!-- <swiper-slide >
+                <img class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
+            </swiper-slide>
+            <swiper-slide >
+                <img class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
+            </swiper-slide>
+            <swiper-slide >
+                <img class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
+            </swiper-slide> -->
+        </swiper>
+    </div>
+    
     <!-- <div class="type">
         <div @click='select(1)' class="lafeng typeselect">拉风小跑
             <img v-show="type1" src="../../assets/m-typeselect.png">
@@ -39,15 +58,46 @@
 </div>
 </template>
 <script>
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+require('swiper/dist/css/swiper.css')
 export default {
     data(){
         return{
+             swiperOption: {
+              notNextTick: true,
+              autoplay: 2000,
+              autoplayDisableOnInteraction:false,
+              pagination : '.swiper-pagination',
+              paginationType:'custom',
+              paginationCustomRender:function(swiper, current, total){
+                  var _html = '';
+            for (var i = 1; i <= total; i++) {
+              if (current == i) {
+                _html += '<li style="background:#F3F3F3;display:inline-block;width:13px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:7px"></i>';
+              }else{
+                _html += '<li style="background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:7px"></i>';
+              }
+            }
+            return _html
+              },
+              direction : 'horizontal',
+              grabCursor : true,
+              setWrapperSize :true,
+              autoHeight: true,
+              slidesPerView : 1,
+              paginationClickable :false,
+              observeParents:true,
+              debugger: true,
+              watchSlidesVisibility : true,
+              onTransitionStart(swiper){},
+            },
             type1:false,
             type2:true,
             type3:false,
             carlist:'',
             loading:true,
-            discount:''
+            discount:'',
+            carousel:''
         }
     },
     created(){
@@ -58,13 +108,14 @@ export default {
         this.$ajax(BASE_URL+'/car/carsList')
             .then((res)=>{this.carlist = res.data; this.discount = res.data.data.maxDiscount;this.loading = false})
             .catch(()=>{alert('一定是什么地方出问题了')})
-        // i == 3?{this.loading = false }:{alert("一定是什么地方出问题了")}
-        // console.log(i)
-        // if( i ==3){
-        //     this.loading = false
-        // }else{
-        //     alert('4')
-        // }
+        this.$ajax(BASE_URL+"/car/carousel")
+            .then((res)=>{
+                if(res.data.success == true){
+                    this.carousel = res.data.data.carousel;
+                }else{
+                    alert('获取轮播图接口出了一些问题')
+                }
+            })
     },
     computed:{
         isNew(){ return this.$store.state.isNewApp},
@@ -84,6 +135,9 @@ export default {
 }
 </script>
 <style scoped>
+.sp{
+    height: 1rem;
+}
 .newcar{
     position: absolute;
     top: 0;
