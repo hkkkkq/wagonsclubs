@@ -253,7 +253,7 @@ require('swiper/dist/css/swiper.css')
 .ppri h1{
 color: white;
     font-size: 14px;
-    width: 100px;
+    width: 80px;
     display: inline-block;
         margin-top: 30px;
 }
@@ -272,6 +272,7 @@ color: white;
   font-size: 24px;
   color: #ffeb61;
   font-weight: bolder;
+  letter-spacing: 1px;
 }
 .ppri{
   border-top: 1px solid #8e8e8e;
