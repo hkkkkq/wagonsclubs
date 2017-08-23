@@ -19,7 +19,7 @@
           <h1>WAGONS光速超跑落地京城 引领高端出</h1>
           <div>诸如兰博基尼、法拉利的超级跑车一直以来都处在汽车消费金字塔的最尖端，即便是很多......</div>
         </div>
-        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(2)' style="margin: 0 10px;" class="f1">
+        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(2)' style="margin: 0 22px;" class="f1">
             <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
           <img src="../../assets/nn21.jpg" />
           <transition name="fade">
@@ -253,7 +253,7 @@ require('swiper/dist/css/swiper.css')
 .ppri h1{
 color: white;
     font-size: 14px;
-    width: 100px;
+    width: 80px;
     display: inline-block;
         margin-top: 30px;
 }
@@ -272,6 +272,7 @@ color: white;
   font-size: 24px;
   color: #ffeb61;
   font-weight: bolder;
+  letter-spacing: 1px;
 }
 .ppri{
   border-top: 1px solid #8e8e8e;
