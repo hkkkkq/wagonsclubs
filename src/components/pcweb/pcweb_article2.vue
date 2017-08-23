@@ -1,5 +1,7 @@
 <template>
 <div style="background:#f5f5f5">
+            <div class="s_banner"></div>
+
     <h1 style="height:28px"></h1>
     <div class="tit">
         <p>WAGONS光速超跑举办首次高端试驾品鉴活动</p>
@@ -101,4 +103,10 @@ export default {
     background: #ffffff;
     padding-top: 32px;
 }
+  .s_banner{
+    width: 100%;
+    min-width: 1000px;
+    height: 217px;
+    background: url('../../assets/car_dongtai.jpg') center center no-repeat;
+  }
 </style>

@@ -6,23 +6,40 @@
         <span class="cons"></span><p class="conp">最新动态</p>
         <p style="height: 24px;"></p>
         <div style="font-size:0">
-          <div @click='goar(1)' class="f1">
+          <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(1)' class="f1">
             <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
               <img src="../../assets/news1.png" />
+          <transition name="fade">
+              
+              <h4 v-if="mask1" class="mask">
+                光速超跑，落地京城
+              </h4>
+          </transition>
             </div>
           <h1>WAGONS光速超跑落地京城</h1>
           <div>WAGONS光速超跑落地京城 引领高端出行新趋势......</div>
         </div>
-        <div @click='goar(2)' style="margin: 0 10px;" class="f1">
+        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(2)' style="margin: 0 10px;" class="f1">
             <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-          <img src="../../assets/nn21.jpg" />    
+          <img src="../../assets/nn21.jpg" />
+          <transition name="fade">
+          
+              <h4 v-if="mask2" class="mask">
+                盛夏七月，品鉴试驾
+              </h4>
+          </transition>
             </div>
           <h1>WAGONS光速超跑举办试驾品鉴活动</h1>
           <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了......</div>
         </div>
-        <div @click='goar(3)' class="f1">
+        <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(3)' class="f1">
             <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
           <img src="../../assets/news2.jpg" />
+          <transition name="fade">
+              <h4 v-if="mask3" class="mask">
+                为爱提速，超跑动心  
+              </h4>        
+          </transition>  
             </div>
           <h1>为爱提速、超跑动心</h1>
           <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
@@ -81,7 +98,7 @@
             <img src="../../assets/bj.png" />
             <p>京牌</p>
           </span>
-          <span class="ddd">
+          <span v-else class="ddd">
             <img src="../../assets/feibj.png" />
             <p>非京牌</p>
           </span>
@@ -213,10 +230,26 @@ require('swiper/dist/css/swiper.css')
       goar(n){
         this.$router.push('/article/'+n)
       },
+      min(n){
+        if(n==1){this.mask1 = true} 
+        if(n==2){this.mask2 = true} 
+        if(n==3){this.mask3 = true} 
+      },
+      mout(n){
+        if(n==1){this.mask1 = false} 
+        if(n==2){this.mask2 = false} 
+        if(n==3){this.mask3 = false} 
+      }
     }
   }
 </script>
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
 .ppri h1{
 color: white;
     font-size: 14px;
@@ -243,6 +276,16 @@ color: white;
 .ppri{
   border-top: 1px solid #8e8e8e;
 }
+.mask{
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    width: 318px;
+    height: 234px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 231px;
+}
 .ddes{
   font-size: 12px;
     color: #bababa;
@@ -252,6 +295,7 @@ color: white;
     padding-bottom: 20px;
     line-height: 20px;
     margin: auto;
+    /* letter-spacing: -1px; */
 }
 .ddd img{
     width: 70%;
@@ -319,12 +363,12 @@ width: 318px;
     display: block;
     margin: auto;
 }
-.f1 img:hover{
+/* .f1 img:hover{
     width: 300px;
     height: 220px;
     display: block;
     margin: auto;
-}
+} */
 .cons{
     display: inline-block;
     width: 2px;
@@ -573,7 +617,7 @@ font-size: 18px;
   .qr_code{
     z-index: 100;
     position: fixed;
-    right:11%;
+    right:0;
     top:30%;
     width:173px;
     height:234px;
