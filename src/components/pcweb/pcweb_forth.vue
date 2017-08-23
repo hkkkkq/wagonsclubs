@@ -272,7 +272,7 @@ export default {
  .qr_code{
     z-index: 100;
     position: fixed;
-    right:11%;
+    right:0;
     top:30%;
     width:173px;
     height:234px;

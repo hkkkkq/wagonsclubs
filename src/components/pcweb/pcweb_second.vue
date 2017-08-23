@@ -1,5 +1,10 @@
 <template>
 <div>
+        <div v-if="qr_show" class="qr_code">
+        <a @click="closeqr" href="javascript:;" class="cclose"></a>
+        <img src="../../assets/car_gongzhonghao.png" alt="" class="qr"/>
+        <p>扫码即刻体验</p>
+      </div>
     <div class="s_banner"></div>
     <div style="display:block;height:904px">
     <div  @click="goar(1)" class="ff">
@@ -57,11 +62,19 @@
 <script>
 export default {
     data(){
-        return {}
+        return {
+            qr_show:true,
+        }
     },
     methods:{
         goar(n){
             this.$router.push('/article/'+n)
+        },
+        closeqr:function(){
+            this.qr_show = false;
+        },
+        change:function(str){
+            this.show = str;
         }
     }
 }
@@ -131,5 +144,34 @@ color: #747474;
     min-width: 1000px;
     height: 217px;
     background: url('../../assets/car_dongtai.jpg') center center no-repeat;
+  }
+    .qr_code{
+    z-index: 100;
+    position: fixed;
+    right:0;
+    top:30%;
+    width:173px;
+    height:234px;
+    background-color: #333333;
+  }
+  .qr_code .cclose{
+    position: absolute;
+    top:15px;
+    right:15px;
+    width:14px;
+    height:14px;
+    background:url("../../assets/car_close.png") no-repeat;
+    background-size:100% 100%;
+  }
+  .qr_code .qr{
+    display:block;
+    margin:45px auto 13px;
+    width:128px;
+    height:128px;
+  }
+  .qr_code p{
+    font-size:14px;
+    color:#f4f4f4;
+    text-align: center;
   }
 </style>

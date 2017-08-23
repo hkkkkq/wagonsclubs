@@ -56,7 +56,7 @@
           <h2>客服热线：<span style="font-size: 22px;font-weight: bolder;">4008-625-700</span></h2>
           <h2 style="position: relative;top: -5px;">公司地址：北京市东城区香河园路1号当代MOMA商务中心</h2>
           <p style="height:15px"></p>
-          <img style="height:379px;width:620px" src="../../assets/newmap.jpg">
+          <img style="height:379px;width:620px" src="../../assets/newmap1.jpg">
         </div>
 </div>
       </div>
@@ -179,7 +179,7 @@ export default {
   .qr_code{
     z-index: 100;
     position: fixed;
-    right:11%;
+    right:0;
     top:30%;
     width:173px;
     height:234px;
