@@ -360,7 +360,7 @@ width: 318px;
 }
 .f1 img{
     width: 318px;
-    height: 234px;
+    height: 100%;
     display: block;
     margin: auto;
 }
