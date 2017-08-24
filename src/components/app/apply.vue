@@ -12,19 +12,19 @@
               <span>手机号</span><input placeholder="请填写手机号" />          
           </p>
           <p @click="sel(1)">
-              <span>婚姻状况</span><b>请选择  ></b>
+              <span>婚姻状况</span><b :class="{'tian':istian1}">{{c1}}</b>
           </p>
           <p @click="sel(2)">
-              <span>职业</span><b>请选择  ></b>      
+              <span>职业</span><b :class="{'tian':istian2}">{{c2}}</b>      
           </p>
           <p @click="sel(3)" style="border:0px">
-              <span>职务</span><b>请选择  ></b>      
+              <span>职务</span><b :class="{'tian':istian3}">{{c3}}</b>      
           </p> 
       </div>
       <p class="but">提交申请</p>
       <div @click="clo" v-show="l1" class="mask">
           <div class="nu">
-              <p @click='ss' v-for="(item,index) in currlist">{{item}}</p>
+              <p @click='cl(item)' v-for="(item,index) in currlist">{{item}}</p>
               <p @click="clo" style="color: rgb(215, 215, 215);">取消</p>
           </div>
       </div>
@@ -35,6 +35,13 @@
 export default {
     data(){
         return{
+            istian1:false,
+            istian2:false,
+            istian3:false,
+            wh:'',
+            c1:'请选择  >',
+            c2:'请选择  >',
+            c3:'请选择  >',
             l1:false,
             currlist:"",
             hunyinlist:["未婚","已婚","离异"],
@@ -45,21 +52,26 @@ export default {
     methods:{
         sel(n){
             this.l1 = true
-            if(n == 1){this.currlist = this.hunyinlist}
-            if(n == 2){this.currlist = this.zhiyelist}
-            if(n == 3){this.currlist = this.zhiwulist}
+            if(n == 1){this.currlist = this.hunyinlist;this.wh = 1}
+            if(n == 2){this.currlist = this.zhiyelist;this.wh = 2}
+            if(n == 3){this.currlist = this.zhiwulist;this.wh = 3}
         },
         clo(){
             this.l1 = false
         },
-        ss(){
-            alert(1)
+        cl(str){
+            if(this.wh == 1){this.c1 = str;this.istian1 = true}
+            if(this.wh == 2){this.c2 = str;this.istian2 = true}
+            if(this.wh == 3){this.c3 = str;this.istian3 = true}
         }
     }
 }
 </script>
 
 <style scoped>
+.tian{
+    color: #a9acb0!important;
+}
 .mask p {
     z-index: 100;
     height: 1rem;

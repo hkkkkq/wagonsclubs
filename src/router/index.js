@@ -20,6 +20,7 @@ const app_memindex = resolve => require(['../components/app/huiyuanindex.vue'], 
 const app_memright = resolve => require(['../components/app/memright.vue'], resolve);
 const app_memjoin = resolve => require(['../components/app/memjoin.vue'], resolve);
 const app_apply = resolve => require(['../components/app/apply.vue'], resolve);
+const app_applysuc = resolve => require(['../components/app/applysuc.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -70,6 +71,7 @@ export default new Router({
                 { path: 'cardetails', component: app_details },
                 { path: 'join', component: app_join },
                 { path: 'apply', component: app_apply },
+                { path: 'applysuc', component: app_applysuc },
                 {
                     path: 'memindex',
                     component: app_memindex,
