@@ -7,7 +7,7 @@
         <p style="height: 24px;"></p>
         <div style="font-size:0">
           <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(1)' class="f1">
-            <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
               <img src="../../assets/news1.png" />
           <transition name="fade">
               
@@ -19,8 +19,8 @@
           <h1>WAGONS光速超跑落地京城 引领高端出</h1>
           <div>诸如兰博基尼、法拉利的超级跑车一直以来都处在汽车消费金字塔的最尖端，即便是很多......</div>
         </div>
-        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(2)' style="margin: 0 22px;" class="f1">
-            <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(2)' style="margin: 0 20px;" class="f1">
+            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
           <img src="../../assets/nn21.jpg" />
           <transition name="fade">
           
@@ -33,7 +33,7 @@
           <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了首次......</div>
         </div>
         <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(3)' class="f1">
-            <div style="height: 234px;width: 318px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
           <img src="../../assets/news2.jpg" />
           <transition name="fade">
               <h4 v-if="mask3" class="mask">
@@ -193,7 +193,6 @@ require('swiper/dist/css/swiper.css')
           this.$ajax(BASE_URL+'/car/carDetail?carId='+firstid)
           .then((resolve)=>{
             this.currentcar = resolve.data.data;
-            console.log(this.currentcar)
           })
 
           for(let i = 1;i<this.cars.length;i++){
@@ -280,8 +279,8 @@ color: white;
 .mask{
     position: absolute;
     background: rgba(0,0,0,0.8);
-    width: 318px;
-    height: 234px;
+    width: 320px;
+    height: 230px;
     text-align: center;
     color: #ffffff;
     font-size: 18px;
@@ -327,7 +326,7 @@ display: inline-block;
   white-space: nowrap;
 }
 .f1 h1{
-width: 318px;
+width: 320px;
     background: white;
     /* font-weight: bolder; */
     font-size: 16px;
@@ -340,7 +339,7 @@ width: 318px;
     line-height: 25px;
 } 
 .f1 div{
-    width: 298px;
+    width: 300px;
     background: white;
     height: 40px;
     display: block;
@@ -360,7 +359,7 @@ width: 318px;
 }
 .f1 img{
     width: 318px;
-    height: 234px;
+    height: 100%;
     display: block;
     margin: auto;
 }
