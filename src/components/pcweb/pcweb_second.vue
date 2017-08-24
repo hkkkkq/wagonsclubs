@@ -127,8 +127,9 @@ color: #747474;
 }
 .ff img{
     display: inline-block;
-    width: 323px;
-    height: 100%;
+    width: 320px;
+    height: 230px;
+    margin-top: 9px;
 }
 .ff{
     width: 1000px;
