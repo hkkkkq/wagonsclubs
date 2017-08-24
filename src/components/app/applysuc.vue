@@ -2,7 +2,8 @@
 <div style="height:100%;background:#0f1923;border:1px solid #3d454d">
     <div class="qq"></div>
     <img style="width:7.1rem" src="../../assets/app/suc.jpg">
-    <textarea placeholder="请填写您的详细地址" class="area">请填写您的详细地址请填写您的详细地址请填写您的详细地址请填写您的详细地址</textarea>
+    <textarea placeholder="请填写您的详细地址" class="area"></textarea>
+    <p class="but">提交申请</p>
 </div>
 </template>
 
@@ -13,6 +14,17 @@ export default {
 </script>
 
 <style scoped>
+.but{
+    width: 7.1rem;
+    height: 0.72rem;
+    margin: auto;
+    background: #fed945;
+    font-size: 0.26rem;
+    color: #333333;
+    text-align: center;
+    line-height: 0.7rem;
+    margin-top: 0.3rem;
+}
 .area{
     width: 6.5rem;
     display: block;
