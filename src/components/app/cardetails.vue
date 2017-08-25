@@ -1,6 +1,6 @@
 <template>
 <div class="all">
-    <video poster='poster' ref="video" autoplay="autoplay" controls="controls" :src="car.videoUrl">
+    <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
     <div class="lunbo">
@@ -92,6 +92,7 @@ export default {
         this.carId = deurl(location).carId;
         this.$ajax(BASE_URL+'/car/leaseDetails?carId='+deurl(location).carId)
         .then((res)=>{
+            console.log(res)
             if(res.data.success == true){
                 this.memberNick5 = res.data.data.memberNick5;
                 this.level5 = res.data.data.level5;
