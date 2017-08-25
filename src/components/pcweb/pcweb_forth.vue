@@ -72,7 +72,7 @@
               </div>
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">每月3天超跑使用权，每天可在指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用（具体车型见备注）</span></p>
-              <p class="line"><span class="left">2</span><span class="right">乐潮计划权益外用车，可享受金卡会员折扣，即基础价7折</span></p>
+              <p class="line"><span class="left">2</span><span class="right">乐潮计划权益外用车，可享受白金卡会员折扣，即基础价6折</span></p>
               <p class="line"><span class="left">3</span><span class="right">生日当天用车半价，生日专属礼物</span></p>
               <p class="line"><span class="left">4</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
               <p class="line"><span class="left">5</span><span class="right">一对一专属管家服务</span></p>
@@ -94,7 +94,7 @@
               <p class="line"><span class="left">6</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
               <p class="line"><span class="left">7</span><span class="right">每月1次劳斯莱斯或宾利商务接送服务</span></p>
               <p class="line"><span class="left">8</span><span class="right">一对一专属管家服务</span></p>
-              <p class="line"><span class="left">9</span><span class="right">每次用车免除3分及以内的违章罚金</span></p>
+              <p class="line"><span class="left">9</span><span class="right">每年用车免除3分及以内的违章罚金</span></p>
               <p class="line"><span class="left">10</span><span class="right">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span></p>
               <p class="line"><span class="left">11</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
               <p class="line"><span class="left">12</span><span class="right">俱乐部组织的高端定制游等自费活动，享受8折优惠</span></p>
@@ -114,7 +114,7 @@
               <p class="line"><span class="left">6</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
               <p class="line"><span class="left">7</span><span class="right">每月2次劳斯莱斯或宾利商务接送服务</span></p>
               <p class="line"><span class="left">8</span><span class="right">一对一专属管家服务</span></p>
-              <p class="line"><span class="left">9</span><span class="right">每次用车免除6分及以内的违章罚金</span></p>
+              <p class="line"><span class="left">9</span><span class="right">每年用车免除6分及以内的违章罚金</span></p>
               <p class="line"><span class="left">10</span><span class="right">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span></p>
               <p class="line"><span class="left">11</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
               <p class="line"><span class="left">12</span><span class="right">俱乐部组织的高端定制游等自费活动，享受7折优惠</span></p>
