@@ -5,35 +5,12 @@
         <div style="height:0;top: 1.3rem;" class="swiper-pagination"></div>       
         <swiper :options="swiperOption" ref="mySwiper"> 
             <swiper-slide :key="n" v-for="(item,n) in carousel">
-                <a :href='item.detailPath'>
+                <a :href='item.detailPath+"?isNewApp="+isNew'>
                     <img class="banner" :src="item.imagePath">
                 </a>
             </swiper-slide>
-            <!-- <swiper-slide >
-                <img class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
-            </swiper-slide>
-            <swiper-slide >
-                <img class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
-            </swiper-slide>
-            <swiper-slide >
-                <img class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png">
-            </swiper-slide> -->
         </swiper>
     </div>
-    
-    <!-- <div class="type">
-        <div @click='select(1)' class="lafeng typeselect">拉风小跑
-            <img v-show="type1" src="../../assets/m-typeselect.png">
-        </div>
-        <i></i>
-        <div @click='select(2)' class="zhajie">炸街超跑
-            <img v-show="type2" src="../../assets/m-typeselect.png">            
-        </div>
-        <i></i>
-        <div @click='select(3)' class="jingbao">惊爆眼球
-            <img v-show="type3" src="../../assets/m-typeselect.png">            
-        </div>
-    </div> -->
     <div v-if="loading == false" class="content">
         <ul>
             <li @click="details(car.id)" v-for="car in carlist.data.carsList" class="car_details">
@@ -97,7 +74,9 @@ export default {
             carlist:'',
             loading:true,
             discount:'',
-            carousel:''
+            carousel:'',
+            ssss:"http://192.168.10.212:8095/car/activity",
+            df:"ssssssss"
         }
     },
     created(){
