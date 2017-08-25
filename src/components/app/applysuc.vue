@@ -1,7 +1,7 @@
 <template>
 <div style="height:100%;background:#0f1923;border:1px solid #3d454d">
     <div class="qq"></div>
-    <img style="width:7.1rem" src="../../assets/app/suc.jpg">
+    <img style="width:7.1rem;display:block;margin:auto" src="../../assets/app/suc.jpg">
     <textarea placeholder="请填写您的详细地址" class="area"></textarea>
     <p class="but">提交申请</p>
 </div>
@@ -39,6 +39,7 @@ export default {
     padding-left: 0.3rem;
     padding-right: 0.3rem;
     padding-top: 0.1rem;
+    margin-top: 0.46rem;
 }
 .qq{
     width: 7.1rem;

@@ -22,6 +22,7 @@ const app_memjoin = resolve => require(['../components/app/memjoin.vue'], resolv
 const app_apply = resolve => require(['../components/app/apply.vue'], resolve);
 const app_applysuc = resolve => require(['../components/app/applysuc.vue'], resolve);
 const app_ab = resolve => require(['../components/app/ab.vue'], resolve);
+const app_warning = resolve => require(['../components/app/warning.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -74,6 +75,7 @@ export default new Router({
                 { path: 'apply', component: app_apply },
                 { path: 'applysuc', component: app_applysuc },
                 { path: 'ab', component: app_ab },
+                { path: 'warning', component: app_warning },
                 {
                     path: 'memindex',
                     component: app_memindex,

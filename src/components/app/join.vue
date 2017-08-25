@@ -6,7 +6,7 @@
         <p>套餐</p>
         <div class="qq">
             <p><span style="floate:left">乐潮计划</span><span style='float:right'>98000元/年</span></p>
-            <h1><span style="color:#999999;float:left">全部权益明细</span><span style="color:#009cff;float:right">支持车型一览</span></h1>
+            <h1><span style="color:#999999;float:left">全部权益明细</span><span @click="ch(1)" style="color:#009cff;float:right">支持车型一览</span></h1>
             <div class="ff">
                 <span>1</span>
                 <b>每月3天超跑使用权，每天可在俱乐部指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
@@ -38,7 +38,7 @@
         </div>
         <div class="qq">
             <p><span style="floate:left">优享计划</span><span style='float:right'>218000元/年</span></p>
-            <h1><span style="color:#999999;float:left">全部权益明细</span><span style="color:#009cff;float:right">支持车型一览</span></h1>
+            <h1><span style="color:#999999;float:left">全部权益明细</span><span @click="ch(2)" style="color:#009cff;float:right">支持车型一览</span></h1>
             <div class="ff">
                 <span>1</span>
                 <b>每月3天超跑使用权，每天可在俱乐部指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
@@ -90,7 +90,7 @@
         </div>
         <div class="qq">
             <p><span style="floate:left">至尊计划</span><span style='float:right'>358000元/年</span></p>
-            <h1><span style="color:#999999;float:left">全部权益明细</span><span style="color:#009cff;float:right">支持车型一览</span></h1>
+            <h1><span style="color:#999999;float:left">全部权益明细</span><span @click="ch(3)" style="color:#009cff;float:right">支持车型一览</span></h1>
             <div class="ff">
                 <span>1</span>
                 <b>每月5天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
@@ -150,19 +150,99 @@
                 <b><span class="rad"></span>尊享会员折扣价</b>       
                 <b><span class="rad"></span>优质老客户还有多重优惠，有机会免押金用车</b>  
         </div>
-        <h2 style="font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</h2>
+        <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link>
         <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
+    </div>
+    <div v-show="at" class="al">
+        <div v-if="lechao">
+        <img class="at" src="../../assets/app/lc.png">
+        <h1 class="yl">乐潮计划车型一览</h1>
+        <div class="ms">兰博基尼加拉多，阿斯顿马丁V8 Vantage，法拉利加利福尼亚，奥迪R8，奔驰SLS AMG，奔驰G55 AMG，奔驰AMG GT，玛莎拉蒂GranCabrio，玛莎拉蒂GranTurismo，保时捷911，宝马i8，宝马640i，宝马z4，科尔维特，科迈罗等</div>
+        </div>
+        <div v-else-if="youxiang">
+        <img class="at" src="../../assets/app/yx.png">
+        <h1 class="yl">优享计划车型一览</h1>
+        <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
+        </div>
+        <div v-if="zhizun">
+        <img class="at" src="../../assets/app/zz.png">
+        <h1 class="yl">至尊计划车型一览</h1>
+        <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
+        </div>
+        <img @click="cl" class="ax" src="../../assets/app/xx.png">
     </div>
 </div>
 </template>
 
 <script>
 export default {
-
+    data(){
+        return{
+            at:false,
+            lechao:false,
+            youxiang:false,
+            zhizun:false,
+        }
+    },
+    methods:{
+        cl(){
+            this.at = false
+        },
+        ch(n){
+            this.lechao=this.youxiang=this.zhizun=false
+            if(n == 1){this.lechao = true}
+            if(n == 2){this.youxiang = true}
+            if(n == 3){this.zhizun = true}
+            this.at = true;            
+        },
+    }
 }
 </script>
 
 <style scoped>
+.ax{
+    z-index: 1;
+    width: 0.68rem;
+    height: 0.68rem;
+    display: block;
+    margin: auto;
+    margin-top: 0.3rem;
+}
+.ms{
+    background: #ffffff;
+    font-size: 0.24rem;
+    color: #06060b;
+    height: 3.65rem;
+    width: 4.52rem;
+    padding: 0.48rem 0.32rem 0 0.32rem;
+    line-height: 0.4rem;
+    display: block;
+    margin: auto;
+}
+.al .at{
+    width: 5.17rem;
+    margin: auto;
+    display: block;
+    margin-top: 3rem;
+}
+.yl{
+    font-size: 0.3rem;
+    color: #ffffff;
+    position: absolute;
+    top: 13em;
+    left: 2.5rem;
+}
+.al{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: block;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 0;
+    background: rgba(0,0,0,0.7);
+}
 .uv{
     font-size: 0.24rem;
     color: #ffffff;
