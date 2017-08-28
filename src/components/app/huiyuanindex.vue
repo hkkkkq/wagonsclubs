@@ -18,6 +18,7 @@ export default {
         }
     },
     created(){
+        window.scrollTo(0,0);
         if(/memright/.test(location.href)){
             this.rightc = true;
         }else{

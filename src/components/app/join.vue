@@ -184,6 +184,9 @@ export default {
             zhizun:false,
         }
     },
+    created(){
+        window.scrollTo(0,0);
+    },
     methods:{
         cl(){
             this.at = false
@@ -206,24 +209,30 @@ export default {
     height: 0.68rem;
     display: block;
     margin: auto;
-    margin-top: 0.3rem;
+    position: fixed;
+    bottom: 1.18rem;
+    left: 3.2rem;
 }
 .ms{
     background: #ffffff;
     font-size: 0.24rem;
-    color: #06060b;
-    height: 3.65rem;
+    color: #333333;
+    min-height: 2.28rem;
     width: 4.52rem;
-    padding: 0.48rem 0.32rem 0 0.32rem;
+    padding: 0.4rem 0.32rem 0.48rem 0.32rem;
     line-height: 0.4rem;
     display: block;
     margin: auto;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 .al .at{
     width: 5.17rem;
     margin: auto;
     display: block;
     margin-top: 3rem;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 .yl{
     font-size: 0.3rem;

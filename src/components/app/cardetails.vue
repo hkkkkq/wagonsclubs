@@ -7,7 +7,7 @@
         <img @click="back" src="../../assets/app/back.png" class="back"></img>
         <img @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>                       
-        <swiper :options="swiperOption" class="ms" ref="mySwiper">
+        <swiper :options="swiperOption" class="msl" ref="mySwiper">
             <swiper-slide>
                  <img class="vimg"  v-lazy="car.videoImg">                 
                  <img @click="pp" class="p11" src="../../assets/app/play.png" />
@@ -41,6 +41,16 @@
     <p @click="sub" class="but">
         立即预订
     </p>
+    <div v-show="at" class="al">
+        <div>
+        <img class="at" src="../../assets/app/xqt1.png">
+        <div class="ms">
+            {{mes}}
+            <div @click="cl">我知道了</div>
+        </div>
+        </div>
+        <img @click="cl" class="ax" src="../../assets/app/xx.png">
+    </div>
 </div>
 </template>
 
@@ -85,7 +95,9 @@ export default {
             level5:'',
             car:'',
             carimgs:'',
-            carId:''
+            carId:'',
+            at:true,
+            mes:''
         }
     },
     created(){
@@ -98,7 +110,6 @@ export default {
                 this.level5 = res.data.data.level5;
                 this.car = res.data.data.car;
                 this.carimgs = res.data.data.carImgShows;
-// .data.car.starLevel
             }else{
                 alert('一定是后台小哥出现了什么问题！！！')
             }            
@@ -120,16 +131,8 @@ export default {
             }
         },
         pp(){
-            // if(this.isplay == false){
-                // this.$refs.mySwiper.swiper.stopAutoplay()
                 this.full(this.$refs.video)
-                // this.isplay = true;
                 this.$refs.video.play();
-            // }else{
-            //     // this.$refs.mySwiper.swiper.startAutoplay()
-            //     this.isplay = false;
-            //     // this.$refs.video.pause()
-            // }
         },
         back(){
             window.Wground.goBack();
@@ -147,16 +150,18 @@ export default {
                     headers:{"token":token}
                     }).then((res)=>{
                         if(res.data.success == false){
-                            alert('请求出错1');  
+                            alert('请求出错1');
                             }else{
                                 if((res.data.data.type == 4)||(res.data.data.type == 5)){
                                     window.Wground.reservation(false)
                                 }else if((res.data.data.type == 1)||(res.data.data.type == 2)||(res.data.data.type == 3)){
                                     window.Wground.reservation(true)
                                 }else if(res.data.data.type == 7){
-                                    alert('审核未通过')
+                                    this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                                    // alert('审核未通过')
                                 }else if(res.data.data.type == 6){
-                                    alert('会员审核中')
+                                    this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                                    // alert('会员审核中')
                                 }else if(res.data.data.type == 8){
                                     alert('该车辆不可用')
                                 }
@@ -164,6 +169,13 @@ export default {
                         })
                 };
             function fail(err){alert(err,2)}
+        },
+        cl(){
+            this.at = false
+        },
+        ef(msg){
+            this.mes = msg
+            this.at = true;
         }
     }
 
@@ -171,10 +183,70 @@ export default {
 </script>
 
 <style scoped>
+.ms div{
+    background: #fed945;
+    height: 0.72rem;
+    color: #333333;
+    position: absolute;
+    bottom: 0.32rem;
+    width: 4.52rem;
+    border-radius: 4px;
+    font-size: 0.26rem;
+    text-align: center;
+    line-height: 0.7rem;
+}
+.ax{
+    z-index: 1;
+    width: 0.68rem;
+    height: 0.68rem;
+    display: block;
+    margin: auto;
+    margin-top: 2.24rem;
+}
+.ms{
+    position: relative;
+    background: #ffffff;
+    font-size: 0.24rem;
+    color: #7a7a7a;
+    height: 2.76rem;
+    width: 4.52rem;
+    padding: 0.48rem 0.32rem 0 0.32rem;
+    line-height: 0.4rem;
+    display: block;
+    margin: auto;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.al .at{
+    width: 5.17rem;
+    margin: auto;
+    display: block;
+    margin-top: 3rem;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.yl{
+    font-size: 0.3rem;
+    color: #ffffff;
+    position: absolute;
+    top: 13em;
+    left: 2.5rem;
+}
+.al{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: block;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 0;
+    background: rgba(0,0,0,0.7);
+}
 .vimg{
     margin-top: 1rem;
 }
-.ms{
+.msl{
     top: -1rem!important;
 }
 .p11{
