@@ -112,19 +112,19 @@ export default {
     line-height: 0.7rem;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #636364; opacity:1; 
+    color: #666666; opacity:1; 
 }
 
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #636364;opacity:1;
+    color: #666666;opacity:1;
 }
 
 input:-ms-input-placeholder{
-    color: #636364;opacity:1;
+    color: #666666;opacity:1;
 }
 
 input::-webkit-input-placeholder{
-    color: #636364;opacity:1;
+    color: #666666;opacity:1;
 }
 .in b{
     display: inline-block;

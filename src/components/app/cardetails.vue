@@ -5,7 +5,7 @@
     </video>   
     <div class="lunbo">
         <img @click="back" src="../../assets/app/back.png" class="back"></img>
-        <img @click="share" src="../../assets/app/share.png" class="share"></img>
+        <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>                       
         <swiper :options="swiperOption" class="msl" ref="mySwiper">
             <swiper-slide>
@@ -23,8 +23,8 @@
             <span class="star">{{car.starLevel}}星级车</span>
         </div>
         <div class="pr">
-            <span class="level">{{memberNick5}}</span>
-            <span class="price"><span class="number">{{level5}}</span>／天</span>
+            <span class="level">白金会员</span>
+            <span class="price"><span class="number">{{car.dailyRentPrice}}</span>／天</span>
         </div>
         <p class="des">{{car.carDesc}}</p>
          
@@ -96,19 +96,27 @@ export default {
             car:'',
             carimgs:'',
             carId:'',
-            at:true,
-            mes:''
+            at:false,
+            mes:'',
+            isapp:false
         }
     },
     created(){
+        //判断是否是wagonsapp
+        if(false){
+            this.isapp = true            
+        }else{
+            this.isapp = false
+        }
+
         this.carId = deurl(location).carId;
         this.$ajax(BASE_URL+'/car/leaseDetails?carId='+deurl(location).carId)
         .then((res)=>{
-            console.log(res)
             if(res.data.success == true){
                 this.memberNick5 = res.data.data.memberNick5;
                 this.level5 = res.data.data.level5;
                 this.car = res.data.data.car;
+                console.log(this.car)
                 this.carimgs = res.data.data.carImgShows;
             }else{
                 alert('一定是后台小哥出现了什么问题！！！')
@@ -135,14 +143,22 @@ export default {
                 this.$refs.video.play();
         },
         back(){
-            window.Wground.goBack();
+            if(this.isapp){
+                window.Wground.goBack();
+            }else{
+                this.$router.go(-1);
+            }
         },
         share(){
             window.Wground.share("wagons光速超跑",window.location.href,'','www',[0,1,2,3])
         },
         sub(){
             //获取token
-            window.Wground.getApiToken(suc,fail)
+            if(this.isapp){
+                window.Wground.getApiToken(suc,fail)
+            }else{
+                alert(11)
+            }
             function suc(token){
                 this.$ajax({
                     url:BASE_URL+"/car/memberType?carId="+this.carId,

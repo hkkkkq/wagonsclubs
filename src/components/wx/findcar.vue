@@ -1,0 +1,268 @@
+<template>
+<div style="background:rgb(15, 25, 35)">
+    <div class="t1">
+        <p>北京</p>
+        <img class="logo" src="../../assets/app/wlogo.png">
+        <img class="kefu" src="../../assets/app/kefu.png">
+    </div>
+    <pull :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
+        <div  slot="top" class="mint-loadmore-top">
+            <img v-if="topStatus == 'loading'" class="down" src="../../assets/app/ryg.gif">
+            <img v-else class="down" src='../../assets/app/ryg.png'>
+        </div>  
+        <!-- 轮播图 -->
+        <div v-if="f5" style="position:relative;height: 3.2rem;">
+            <div style="height:0;top: 2.2rem;" class="swiper-pagination"></div>       
+            <swiper :options="swiperOption" ref="mySwiper"> 
+                <swiper-slide :key="n"  v-for="(item,n) in carousel"  class="w">
+                    <img class="ss"  :src="item.cycleImage">
+                </swiper-slide>
+            </swiper>
+        </div>
+        <!-- 车辆list -->
+        <p class="ti">车型探索</p>
+        <div v-if='f6'>
+            <div :key="n" v-for="(item,n) in list" class="car">
+                <img v-lazy="item.carImages" @click="choose(n,item.id)">
+                <p class="name">{{item.carName}}</p>
+                <P class="star">{{item.starLevel}}星级车</P>
+                <p class="pri">{{item.dailyRentPrice}}／天</p>
+            </div>    
+        </div>
+    </pull>
+    <img v-if="hasNext" class="down" src="../../assets/app/ryg.gif">
+    <img  v-else style="width: 100%;display:block;margin-top:0.4rem" src="../../assets/app/nomore.png">
+</div>
+</template>
+
+<script>
+require('../app/rem.js')(window,document)
+require('swiper/dist/css/swiper.css')
+import { Loadmore } from 'mint-ui';
+
+export default {
+    data(){
+        return{
+            swiperOption: {
+              notNextTick: true,
+            //   width:"200px",
+              autoplay: 2000,
+              autoplayDisableOnInteraction:false,
+              pagination : '.swiper-pagination',
+              centeredSlides : true,
+              paginationType:'custom',
+              paginationCustomRender:function(swiper, current, total){
+                  var _html = '';
+            for (var i = 1; i <= total; i++) {
+              if (current == i) {
+                _html += '<img style="width:0.3rem;display:inline-block" src="/static/img/swpc.png">'
+              }else{
+                _html += '<img style="width:0.3rem;display:inline-block" src="/static/img/swp.png">'
+              }
+            }
+            return _html
+              },
+              direction : 'horizontal',
+              grabCursor : true,
+              setWrapperSize :true,
+              autoHeight: true,
+              slidesPerView : "auto",
+              paginationClickable :false,
+              observeParents:true,
+              debugger: true,
+              watchSlidesVisibility : true,
+              onTransitionStart(swiper){},
+            },
+            topStatus: '',
+            f5:true,
+            f6:true,
+            carousel:'',
+            list:'',
+            hasNext:false,
+            currpage:1
+        }
+    },
+    created(){
+        //监听滚动事件        
+        window.addEventListener('scroll', this.handleScroll);
+
+        this.$ajax(BASE_URL+"/car/carousel.json?tt="+new Date().toUTCString())
+        .then((res)=>{
+            if(res.data.success == true){
+                this.carousel = res.data.data.cycleList
+            }else{
+                alert('接口出现了问题')
+            }
+        })
+        this.$ajax(BASE_URL+"/car/carsList?pageIndex="+this.currpage+"&q"+Math.random()*100)
+            .then((res)=>{
+                this.list = res.data.data.carsList.data;
+                this.hasNext = res.data.data.carsList.hasNext;
+                this.currpage = res.data.data.carsList.pageIndex;
+            })
+    },
+    components:{
+      'pull':Loadmore
+    },
+    methods:{
+        loadTop() {      
+            this.$ajax(BASE_URL+"/car/carousel.json?tt="+new Date().toUTCString())
+            .then((res)=>{
+                if(res.data.success == true){
+                    this.carousel = res.data.data.cycleList
+                }else{
+                    alert('接口出现了问题')
+                }
+            })
+            this.f5 = false
+            this.$nextTick(function(){
+                this.f5 = true
+            })
+            setTimeout(()=>{
+                this.$refs.loadmore.onTopLoaded();                
+            },2500)
+        },
+        handleTopChange(status){
+            this.topStatus = status;
+        },
+        handleScroll(){
+            if(document.body.scrollHeight == document.body.scrollTop+window.screen.height){
+                if(this.hasNext){
+                    this.$ajax(BASE_URL+"/car/carsList?pageIndex="+ Number(this.currpage + 1) +"&q"+Math.random()*100)
+                    .then((res)=>{
+                        for(let i=0;i < res.data.data.carsList.data.length; i++){
+                            this.list.push(res.data.data.carsList.data[i]);
+                        }
+                        this.hasNext = res.data.data.carsList.hasNext;
+                        this.currpage = res.data.data.carsList.pageIndex;
+                    })
+                }else{
+                    return ;
+                }
+                
+            }
+        },
+        choose(n,id){
+            this.$router.push("/app/cardetails?carId="+id)
+        }
+    },
+}
+</script>
+
+<style scoped>
+img[lazy=error]{
+    /* //your code */
+    background-image: url('../../assets/loading12.gif');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 0.5rem;
+
+  
+}
+img[lazy=loading]{
+    /* //your code */
+    background-image: url('../../assets/loading12.gif');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 0.5rem;
+
+}
+
+img[lazy=loaded]{
+    /* //your code */
+  animation:fade 0.5s;
+}
+.down{
+    z-index: -1;
+    display: block;
+    margin: auto;
+    width: 1.5rem;
+}
+.car .pri{
+    color: #fcd82f;
+    font-size: 0.24rem;
+    margin-top: -0.25rem;
+}
+.star{
+    background: #273039;
+    color: #ffffff;
+    font-size: 0.2rem;
+    display: inline-block;
+    width: 1rem;
+    height: 0.32rem;
+    text-align: center;
+    line-height: 16px;
+    border-radius: 4px;
+    float: right;
+    margin-top: 0.3rem;
+    vertical-align: top;
+}
+.car>.name{
+    font-size: 0.3rem;
+    color: #ffffff;
+    margin-top: 0.28rem;
+    display: inline-block;
+    vertical-align: top;
+}
+.car>img{
+    width: 100%;
+    height: 3.7rem;
+    display: block;
+}
+.car{
+    padding: 0 0.2rem 0 0.2rem;
+    /* margin-bottom: 0.4rem; */
+}
+.ti{
+    color: #ffffff;
+    font-size: 0.24rem;
+    border-left: 2px solid #fed945;
+    text-indent: 0.16rem;
+    display: block;
+    width: 7.1rem;
+    margin: auto;
+    margin-top: 0.22rem;
+    margin-bottom: 0.16rem;
+}
+.swiper-pagination img{
+    width: 10px;
+}
+.w{
+    width: 6.16rem;
+}
+.ss{
+    width: 6rem;
+    height: 2.8rem;
+    display: block;
+    margin: auto;
+}
+.t1 .kefu{
+    width: 0.4rem;
+    float: right;
+    margin-top: 0.3rem;
+    margin-right: 0.3rem;
+}
+.t1 .logo{
+    width: 2.92rem;
+    vertical-align: top;
+    margin-top: 0.3rem;
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+.t1>p{
+    color: #ffffff;
+    font-size: 0.28rem;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0.3rem;
+    float: left;
+    margin-left: 0.3rem;
+}
+.t1{
+    position: absolute;
+    height: 0.8rem;
+    width: 100%;
+    z-index: 1;
+    background:rgb(15, 25, 35)
+}
+</style>

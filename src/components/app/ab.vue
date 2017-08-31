@@ -1,5 +1,8 @@
 <template>
 <div style="background:#0f1923;border:1px solid #3d454d">
+    <!-- <div v-if="iswx" class="t1">
+        <img class="logo" src="../../assets/app/wlogo.png">
+    </div> -->
     <p class="ti">基本信息</p>
     <img class="abb" src="../../assets/app/abb.png">
     <p class="de">WAGONS超跑俱乐部是国内首家专业超跑运营商，旗舰店坐落在京城高端商区当代MOMA商务中心，在库运营超跑涵盖世界各主流顶级品牌，专为精英人士及社群提供奢享级用车服务。</p>
@@ -27,7 +30,7 @@
     <p class="ti">车辆托管</p>
     <img class="abb" src="../../assets/app/abt.png">   
     <p class="de">您可以将闲置的跑车托管到WAGONS平台上运营，我们会与您协商具体运营模式并向您支付相应费用。</p> 
-    <p style="margin-bottom: 0.38rem;" class="but">申请托管</p>   
+    <p @click="sub" style="margin-bottom: 0.38rem;" class="but">申请托管</p>   
     <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
 </div>
 </template>
@@ -66,6 +69,24 @@ export default {
               watchSlidesVisibility : true,
               onTransitionStart(swiper){},
             },
+            isapp:false
+        }
+    },
+    created(){
+        //判断是否是wagonsapp
+        if(false){
+            this.isapp = true            
+        }else{
+            this.isapp = false
+        }
+    },
+    methods:{
+        sub(){
+            if(this.isapp){
+                //app
+            }else{
+                this.$router.push("/wx/collocation")
+            }
         }
     }
 }
@@ -137,5 +158,32 @@ export default {
     width: 7.1rem;
     margin: auto;
     margin-top: 0.5rem;
+}
+
+.t1 .kefu{
+    width: 0.4rem;
+    float: right;
+    margin-top: 0.2rem;
+    margin-right: 0.3rem;
+}
+.t1 .logo{
+    width: 2.92rem;
+    margin: auto;
+    display:block;
+}
+.t1>p{
+    color: #ffffff;
+    font-size: 0.28rem;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0.25rem;
+    float: left;
+    margin-left: 0.3rem;
+}
+.t1{
+    height: 0.6rem;
+    width: 100%;
+    padding-top: 0.2rem;
+    border-bottom: 1px solid #273039;
 }
 </style>
