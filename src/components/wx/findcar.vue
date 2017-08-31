@@ -1,5 +1,6 @@
 <template>
 <div style="background:rgb(15, 25, 35)">
+        <!-- <keep-alive v-if="keep"> -->
     <div class="t1">
         <p>北京</p>
         <img class="logo" src="../../assets/app/wlogo.png">
@@ -22,7 +23,7 @@
         <!-- 车辆list -->
         <p class="ti">车型探索</p>
         <div v-if='f6'>
-            <div :key="n" v-for="(item,n) in list" class="car">
+            <div :key="n" v-for="(item,n) in carlist" class="car">
                 <img v-lazy="item.carImages" @click="choose(n,item.id)">
                 <p class="name">{{item.carName}}</p>
                 <P class="star">{{item.starLevel}}星级车</P>
@@ -32,6 +33,7 @@
     </pull>
     <img v-if="hasNext" class="down" src="../../assets/app/ryg.gif">
     <img  v-else style="width: 100%;display:block;margin-top:0.4rem" src="../../assets/app/nomore.png">
+        <!-- </keep-alive v-if="keep"> -->
 </div>
 </template>
 
@@ -41,6 +43,7 @@ require('swiper/dist/css/swiper.css')
 import { Loadmore } from 'mint-ui';
 
 export default {
+    name:"findcar",
     data(){
         return{
             swiperOption: {
@@ -79,8 +82,11 @@ export default {
             carousel:'',
             list:'',
             hasNext:false,
-            currpage:1
+            currpage:1,
         }
+    },
+    computed:{
+        carlist(){return this.$store.state.applist}
     },
     created(){
         //监听滚动事件        
@@ -94,18 +100,27 @@ export default {
                 alert('接口出现了问题')
             }
         })
-        this.$ajax(BASE_URL+"/car/carsList?pageIndex="+this.currpage+"&q"+Math.random()*100)
+        this.$ajax(BASE_URL+"/car/carsList?pageIndex="+this.currpage)
             .then((res)=>{
                 this.list = res.data.data.carsList.data;
+                this.$store.commit("saveAppList",this.list)
                 this.hasNext = res.data.data.carsList.hasNext;
                 this.currpage = res.data.data.carsList.pageIndex;
             })
+    },
+    mounted(){
+        // document.body.scrollTop = 5000;
+        // console.log(Number(sessionStorage.getItem("pos")));
+        setTimeout(function(){
+            // document.body.scrollTop = 5000;
+        // console.log(document.body.scrollTop);
+        },100)
     },
     components:{
       'pull':Loadmore
     },
     methods:{
-        loadTop() {      
+        loadTop() {  
             this.$ajax(BASE_URL+"/car/carousel.json?tt="+new Date().toUTCString())
             .then((res)=>{
                 if(res.data.success == true){
@@ -120,7 +135,7 @@ export default {
             })
             setTimeout(()=>{
                 this.$refs.loadmore.onTopLoaded();                
-            },2500)
+            },1500)
         },
         handleTopChange(status){
             this.topStatus = status;
@@ -128,11 +143,12 @@ export default {
         handleScroll(){
             if(document.body.scrollHeight == document.body.scrollTop+window.screen.height){
                 if(this.hasNext){
-                    this.$ajax(BASE_URL+"/car/carsList?pageIndex="+ Number(this.currpage + 1) +"&q"+Math.random()*100)
+                    this.$ajax(BASE_URL+"/car/carsList?pageIndex="+ Number(this.currpage + 1))
                     .then((res)=>{
                         for(let i=0;i < res.data.data.carsList.data.length; i++){
                             this.list.push(res.data.data.carsList.data[i]);
                         }
+                        this.$store.commit("saveAppList",this.list)
                         this.hasNext = res.data.data.carsList.hasNext;
                         this.currpage = res.data.data.carsList.pageIndex;
                     })
@@ -143,6 +159,7 @@ export default {
             }
         },
         choose(n,id){
+            // sessionStorage.setItem("pos",document.body.scrollTop)
             this.$router.push("/app/cardetails?carId="+id)
         }
     },
@@ -211,7 +228,7 @@ img[lazy=loaded]{
 }
 .car{
     padding: 0 0.2rem 0 0.2rem;
-    /* margin-bottom: 0.4rem; */
+    margin-bottom: 0.4rem;
 }
 .ti{
     color: #ffffff;

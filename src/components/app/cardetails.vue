@@ -8,7 +8,7 @@
         <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>                       
         <swiper :options="swiperOption" class="msl" ref="mySwiper">
-            <swiper-slide>
+            <swiper-slide style="position:relative">
                  <img class="vimg"  v-lazy="car.videoImg">                 
                  <img @click="pp" class="p11" src="../../assets/app/play.png" />
             </swiper-slide>
@@ -60,6 +60,7 @@ require('swiper/dist/css/swiper.css')
 var deurl = require('./url.js')
 export default {
     components: {swiper},
+    name:"cardetails",
     data(){
         return{
             swiperOption: {
@@ -116,7 +117,6 @@ export default {
                 this.memberNick5 = res.data.data.memberNick5;
                 this.level5 = res.data.data.level5;
                 this.car = res.data.data.car;
-                console.log(this.car)
                 this.carimgs = res.data.data.carImgShows;
             }else{
                 alert('一定是后台小哥出现了什么问题！！！')
@@ -268,10 +268,11 @@ export default {
 .p11{
     width: 0.9rem!important;
     height: 0.9rem!important;
-    position: relative!important;
+    position: absolute;
     display: block!important;
     margin: auto!important;
-    top: -3rem!important;
+    top: 2.5rem!important;
+    left: 3.2rem;
 }
 .back{
     top:0.6rem;

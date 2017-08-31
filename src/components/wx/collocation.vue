@@ -12,19 +12,19 @@
             <p class="ti">请您填写车辆的基本信息，我们会在审核后与您取得联系。</p>
             <div class="in">
                 <p>
-                    <span>车牌号</span><input placeholder="请填写车牌号" />          
+                    <span>车牌号</span><input v-model="carNumber" placeholder="请填写车牌号" />          
                 </p>
                 <p>
-                    <span>车辆型号</span><input placeholder="请填写车辆型号" />          
+                    <span>车辆型号</span><input v-model="carType" placeholder="请填写车辆型号" />          
                 </p>
                 <p>
-                    <span>行驶证所有人</span><input placeholder="请填写行驶证所有人" />          
+                    <span>行驶证所有人</span><input v-model="licenseOwner" placeholder="请填写行驶证所有人" />          
                 </p>
                 <p style="border:0">
-                    <span>联系电话</span><input placeholder="请填写联系电话" />          
+                    <span>联系电话</span><input v-model="cell" placeholder="请填写联系电话" />          
                 </p>
             </div>
-            <p class="but">提交申请</p>
+            <p @click="collocation" class="but">提交申请</p>
         </div>
         
     </div>
@@ -34,10 +34,39 @@
 
 <script>
 require('../app/rem.js')(window,document)
+import qs from 'qs';
 export default {
     data(){
         return{
-            ifsuccess:true
+            ifsuccess:false,
+            carNumber:"",
+            carType	:"",
+            licenseOwner:"",
+            cell:""
+        }
+    },
+    methods:{
+        collocation(){
+            this.$ajax({
+                method:'POST',
+                url:BASE_URL+"/trusteeship/add",
+                data:qs.stringify({
+                    // idCard:this.idCard,
+                    carNumber:this.carNumber,
+                    carType	:this.carType,
+                    licenseOwner:this.licenseOwner,
+                    cell:this.cell
+                    }),
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                }).then((res)=>{
+                    if(res.data.success == true){
+                        this.ifsuccess = true
+                    }else{
+                        alert('托管失败')
+                    }
+                })
         }
     }
 }
