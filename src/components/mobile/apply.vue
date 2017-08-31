@@ -141,27 +141,27 @@ export default {
             var locationHref = window.location.href;
             wx.ready(function () {
                         wx.onMenuShareTimeline({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareAppMessage({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareQQ({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareWeibo({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
@@ -241,7 +241,7 @@ export default {
             })
         },
         call(command) {
-            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"),'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"),'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
             // try {
             //     nativeShare.call(command)
             // } catch (err) {
