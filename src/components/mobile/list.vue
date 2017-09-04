@@ -16,14 +16,6 @@
         <p style="height:0.1rem;background:#eceef1"></p>
         <div style="background:#ffffff;width:100%;height:3.9rem;padding-top: 0.1rem;">
             <img style="width:2.24rem;height:0.4rem;display:block;margin:auto" src="../../assets/tj.jpg">
-            <!-- <div class="tj">
-                <div class="tjcar tjz">
-                    <img :src="">
-                </div>
-                <span class="tjdes" style="">哈哈哈哈哈啦啦啦啦</span>
-                <span class="tjyuan">原价:<span style="font-size:0.22rem">12414</span>元/天</span>
-                <span class="tjdi"><span style="font-size:0.48rem">19999</span>元/天</span>
-            </div> -->
             <swiper :options="swiperOption" ref="mySwiper"> 
                 <swiper-slide :key="n" v-for="(item,n) in tj.discount">
                     <div @click="details(item.id)" class="tj">
@@ -104,8 +96,6 @@ export default {
             loading:true,
             discount:'',
             carousel:'',
-            ssss:"http://192.168.10.212:8095/car/activity",
-            df:"ssssssss",
             tj:""
         }
     },
@@ -168,6 +158,7 @@ position: absolute;display: block;width: 7.1rem;height: 3.1rem;left: 0.2rem;
     position: absolute;
     top: 2.7rem;
     left: 3.3rem;
+    text-decoration-line: line-through;
 }
 .tj .tjdes{
     position: absolute;

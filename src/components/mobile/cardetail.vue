@@ -22,9 +22,10 @@
                 <!-- <img v-if="info.car.starLevel == '1'" src="../../assets/1.png" class="star">  -->
             </p>
             <p class="price">
-                <span>白金会员价</span>
+                <span>会员价</span>
                 ¥<i>{{discountprice}}</i>/天
             </p>
+            <p class="nodis">¥<i>{{info.car.dailyRentPrice}}</i>/天</p>
     </div>
     <div class="car_intro">
             <h3>本车特色</h3>
@@ -68,7 +69,7 @@
         </div>
         <div class="lease_info">
             <div class="rent_header">
-                <router-link class="link" to="/mobile/join">还没有加入WAGONS光速超跑会员？点此了解套餐及散租详情</router-link>
+                <router-link class="link" to="/mobile/join">还没加入WAGONS光速超跑会员?点此了解套餐及散租详情</router-link>
             </div>
         </div>
         <div style="height:1.2rem"></div>
@@ -176,6 +177,7 @@ export default {
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
         .then((res)=>{if(res.data.success == true){
             this.info = res.data.data;
+            console.log(this.info)
             this.info.discount = res.data.data.maxDiscount;
             }else{
                 this.$router.push('/404') 
@@ -259,12 +261,14 @@ export default {
 </script>
 
 <style scoped>
-/* .swip1{
-    overflow: hidden;
-  }
-  .swip2{
-    float:left;
-  } */
+.nodis{
+    position: relative;
+    font-size: 0.24rem;
+    color: #808796;
+    top: -0.35rem;
+    left: 3.2rem;
+    text-decoration-line: line-through;
+}
 .share img {
     position:fixed;
     display: block;
