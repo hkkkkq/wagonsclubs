@@ -17,9 +17,9 @@
                 <span style="background:#4ac87a" class="rad"></span>
                 <div class="lf">
                     <p style="font-size: 0;display: inline-block;width: 5.9rem;">
-                        <span class="date">7-30<img src="../../assets/app/der.jpg"></span>
-                        <b>10:00</b>
-                        <b style="margin-right: 0.18rem;">周一</b>
+                        <span @click="starttime" class="date">{{startob == ""?"请选择":(startob.month+1+"-"+startob.date)}}<img src="../../assets/app/der.jpg"></span>
+                        <b>{{startob == ""?"--:--":((parseInt(startob.shi)<10?"0"+parseInt(startob.shi):parseInt(startob.shi))+":"+(parseInt(startob.fen)==0?"00":parseInt(startob.fen)))}}</b>
+                        <b style="margin-right: 0.18rem;">{{sxqj == undefined?"--":sxqj}}</b>
                         <input class="in" type="text" placeholder="请填写取车地址">
                     </p>
                 </div>
@@ -28,9 +28,9 @@
                 <span style="background:#fbaf5d" class="rad"></span>                
                 <div class="lf">
                     <p style="font-size: 0;display: inline-block;width: 5.9rem;">
-                        <span class="date">7-30<img src="../../assets/app/der.jpg"></span>
-                        <b>10:00</b>
-                        <b style="margin-right: 0.18rem;">周一</b>
+                        <span @click="endtime" class="date">{{endob == ""?"请选择":(endob.month+1+"-"+endob.date)}}<img src="../../assets/app/der.jpg"></span>
+                        <b>{{endob == ""?"--:--":((parseInt(endob.shi)<10?"0"+parseInt(endob.shi):parseInt(endob.shi))+":"+(parseInt(endob.fen)==0?"00":parseInt(endob.fen)))}}</b>
+                        <b style="margin-right: 0.18rem;">{{exqj == undefined?"--":exqj}}</b>
                         <input class="in" type="text" placeholder="请填写还车地址">
                     </p>
                 </div>
@@ -43,7 +43,47 @@
 <script>
 require('../app/rem.js')(window,document)
 export default {
+    data(){
+        return{
 
+        }
+    },
+    computed:{
+        startob(){return this.$store.state.starttime},
+        endob(){return this.$store.state.endtime},
+        sxqj(){
+            var x = this.$store.state.starttime.xqj;
+            switch(x){
+                case 0:return "周日";break;
+                case 1:return "周一";break;
+                case 2:return "周二";break;
+                case 3:return "周三";break;
+                case 4:return "周四";break;
+                case 5:return "周五";break;
+                case 6:return "周六";break;            
+            }
+        },
+        exqj(){
+            var x = this.$store.state.endtime.xqj;
+            switch(x){
+                case 0:return "周日";break;
+                case 1:return "周一";break;
+                case 2:return "周二";break;
+                case 3:return "周三";break;
+                case 4:return "周四";break;
+                case 5:return "周五";break;
+                case 6:return "周六";break;            
+            }
+        }
+    },
+    methods:{
+        starttime(){
+            this.$router.push({path:'/wx/datepicker',query:{type:'starttime'}})
+        },
+        endtime(){
+            this.$router.push({path:'/wx/datepicker',query:{type:'endtime'}})            
+        }
+    }
 }
 </script>
 

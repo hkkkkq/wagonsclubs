@@ -1,7 +1,9 @@
 <template>
 <div style="position:absolute;height:100%;width:100%">
-    <div style="background:#0f1923;height:100%">
+    <div style="background:#0f1923;min-height:100%">
         <p style="height:0.2rem"></p>
+        <p @click="su" class='but1'>确定</p>
+        <p style="height:0.8rem"></p>        
         <div class="con">
             <img @click="premonth" style="float:left" src="../../assets/app/pickerleft.jpg">
             <p><span>{{curYear}}</span><span>年</span><span>{{(curMonth+1)>9?(curMonth+1):("0"+(curMonth+1))}}</span><span>月</span></p>
@@ -9,35 +11,46 @@
             <div class="days">
                 <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
             </div>
-            <!-- <div class="dates">
-                <span>1<b>已出租</b></span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-                <span>6</span>
-                <span>7</span>
-            </div> -->
-            <div class="dates" :key="n" v-for="(item,n) in this.dateform">
-                <span>{{item}}</span>
+            <div class="dates" :key="n" :line='n' v-for="(item,n) in this.dateform">
+                <!-- <p style="font-size:20px">{{n}}</p> -->
+                <span :line='n' :row='n2' @click="clickspan(n,n2)" :key="n2" v-for="(item2,n2) in item"><em :class="{'click':dateform[n][n2] == choose}">{{item2 == "k"?null:item2}}</em></span>
+                <pd-select-box v-if="show[n]" style="width: 7.1rem;margin: auto;position: relative;left: -0.3rem;">
+                    <pd-select-item :listData="listData" v-model="shi"></pd-select-item>
+                    <pd-select-item :listData="listData2" v-model="fen"></pd-select-item>
+                </pd-select-box>
             </div>
         </div>
+
     </div>
 </div>
 </template>
 
 <script>
 require('../app/rem.js')(window,document)
+
+import pdSelectItem from './picker/selectitem.vue'
+import pdSelectBox from './picker/slectBox.vue'
 export default {
     data(){
         return{
+            show:"",
             curYear:"",
             curMonth:"",   //0开头
             dateform:[],
-            xqj:""
+            xqj:"",
+            listData: ['00时','01时','02时','03时','04时','05时','06时','07时','08时','09时','10时','11时','12时','13时','14时','15时','16时','17时','18时','19时','20时','21时','22时','23时',],
+            listData2: ['00分','30分'],
+            shi: "",
+            fen: "",
+            choose:"",
+            nowxqj:"",
         }
     },
     computed:{
+    },
+    components:{
+        pdSelectItem,
+        pdSelectBox
     },
     watch:{
         curMonth:function(data){
@@ -50,19 +63,22 @@ export default {
             for(let i=0;i<form.length;i=i+7){
                 this.dateform.push(form.slice(i,i+7))
             }
+            this.show = new Array(this.dateform.length).fill(0)
         }
     },
     created(){
+
         var curDate = new Date(); //当前日期
         this.curYear = curDate.getFullYear()  //当前年份
         this.curMonth = curDate.getMonth() //当前月份
-
+        this.choose = curDate.getDate()
         //获取当月1号是周几
         this.xqj = new Date(this.curYear,this.curMonth,1).getDay()
 
     },
     methods:{
         premonth(){
+            this.choose = "";
             if(this.curMonth == 0){
                 this.curYear = this.curYear - 1;
                 this.curMonth = 11;
@@ -72,6 +88,7 @@ export default {
             }
         },
         nextmonth(){
+            this.choose = "";
             if(this.curMonth == 11){
                 this.curYear = this.curYear + 1
                 this.curMonth = 0;
@@ -89,12 +106,50 @@ export default {
             // curDate.setDate(0);
             /* 返回当月的天数 */
             return tmp.getDate();
+        },
+        clickspan(n,n2){
+            this.choose = this.dateform[n][n2];
+            this.show.fill(0)
+            this.show[n] = 1
+            this.nowxqj = new Date(this.curYear,this.curMonth,this.choose).getDay();
+        },
+        su(){
+            if(this.$route.query.type == "starttime"){
+                this.$store.commit('starttime',{year:this.curYear,month:this.curMonth,date:this.choose,xqj:this.nowxqj,shi:this.shi,fen:this.fen})
+                this.$router.push("/wx/pay")
+            }else{
+                this.$store.commit('endtime',{year:this.curYear,month:this.curMonth,date:this.choose,xqj:this.nowxqj,shi:this.shi,fen:this.fen})
+                this.$router.push("/wx/pay")
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+.but1{
+    display: block;
+    width: 1rem;
+    height: 0.6rem;
+    font-size: 0.3rem;
+    color: #ffffff;
+    background: #273039;
+    text-align: center;
+    line-height: 0.6rem;
+    border-radius: 4px;
+    right: 0.2rem;
+    position: absolute;
+}
+.click{
+    display: block;
+    width: 0.68rem;
+    margin: auto;
+    height: 0.68rem;
+    background: #f4d144;
+    color: #0f1923;
+    border-radius: 1000px;
+    line-height: 0.7rem;
+}
 .dates>span>b{
     display: block;
     font-size: 0.18rem;
@@ -107,7 +162,6 @@ export default {
 .dates>span{
     display: inline-block;
     width: 0.92rem;
-    height: 100%;
     color: #ffffff;
     font-size: 0.3rem;
     text-align: center;
@@ -116,7 +170,7 @@ export default {
 }
 .dates{
     display: block;
-    height: 0.95rem;
+    /* height: 0.95rem; */
     width: 100%;
 }
 .days>span{
@@ -133,6 +187,7 @@ export default {
     border-top:1px solid #39424a;
     border-bottom:1px solid #39424a;
     margin-top: 0.48rem;
+    margin-bottom: 0.4rem;
 }
 .con>p{
     text-align: center;

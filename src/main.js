@@ -29,7 +29,9 @@ const store = new vuex.Store({
         'foot_left': true,
         'foot_right': false,
         'isNewApp': false,
-        'applist': ""
+        'applist': "",
+        'starttime': "",
+        'endtime': ''
     },
     mutations: {
         foot_left_click(state) {
@@ -45,6 +47,12 @@ const store = new vuex.Store({
         },
         saveAppList(state, data) {
             state.applist = data
+        },
+        starttime(state, data) {
+            state.starttime = data
+        },
+        endtime(state, data) {
+            state.endtime = data
         }
     }
 })
