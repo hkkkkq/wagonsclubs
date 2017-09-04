@@ -11,7 +11,7 @@
           <transition name="fade">
               <div v-show="iserr"  class='err'>{{errmessage}}</div>
           </transition>
-          <p>申请加入</p>
+          <p>申请加入会员</p>
           <div class="clear2"></div>
           <input v-model="name" class="text" placeholder="姓名" type="text">
           <input v-model="telephone" class="text" placeholder="手机号码" type="text">
@@ -72,12 +72,13 @@
               </div>
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">每月3天超跑使用权，每天可在指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用（具体车型见备注）</span></p>
-              <p class="line"><span class="left">2</span><span class="right">乐潮计划权益外用车，可享受白金卡会员折扣，即基础价6折</span></p>
-              <p class="line"><span class="left">3</span><span class="right">生日当天用车半价，生日专属礼物</span></p>
-              <p class="line"><span class="left">4</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
-              <p class="line"><span class="left">5</span><span class="right">一对一专属管家服务</span></p>
-              <p class="line"><span class="left">6</span><span class="right">俱乐部旗下修理厂每年1次免费深度车辆清洗</span></p>
-              <p class="line"><span class="left">7</span><span class="right">俱乐部组织的高端定制游等自费活动，享受9折优惠</span></p>
+              <p class="line"><span class="left">2</span><span class="right">乐潮计划权益外用车，可享受会员折扣，即基础价6折</span></p>
+              <p class="line"><span class="left">3</span><span class="right">长租折上折，周租会员价9折，月租会员价7折</span></p>
+              <p class="line"><span class="left">4</span><span class="right">生日当天用车半价，生日专属礼物</span></p>
+              <p class="line"><span class="left">5</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
+              <p class="line"><span class="left">6</span><span class="right">一对一专属管家服务</span></p>
+              <p class="line"><span class="left">7</span><span class="right">俱乐部旗下修理厂每年1次免费深度车辆清洗</span></p>
+              <p class="line"><span class="left">8</span><span class="right">俱乐部组织的高端定制游等自费活动，享受9折优惠</span></p>
           </div>
           <div class="jihua1">
               <p class="jihuaname">优享计划</p>
@@ -87,17 +88,16 @@
               </div>
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">每月3天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span></p>
-              <p class="line"><span class="left">2</span><span class="right">获俱乐部价值100万白金会员资格，享有白金会员所有权益</span></p>
-              <p class="line"><span class="left">3</span><span class="right">优享计划权益外用车，可享受白金会员折扣，即基础价6折</span></p>
-              <p class="line"><span class="left">4</span><span class="right">长租折上折，周租白金价格9折，月租白金价格7折</span></p>
-              <p class="line"><span class="left">5</span><span class="right">生日当天用车半价，生日专属礼物</span></p>
-              <p class="line"><span class="left">6</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
-              <p class="line"><span class="left">7</span><span class="right">每月1次劳斯莱斯或宾利商务接送服务</span></p>
-              <p class="line"><span class="left">8</span><span class="right">一对一专属管家服务</span></p>
-              <p class="line"><span class="left">9</span><span class="right">每年用车免除3分及以内的违章罚金</span></p>
-              <p class="line"><span class="left">10</span><span class="right">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span></p>
-              <p class="line"><span class="left">11</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
-              <p class="line"><span class="left">12</span><span class="right">俱乐部组织的高端定制游等自费活动，享受8折优惠</span></p>
+              <p class="line"><span class="left">2</span><span class="right">优享计划权益外用车，可享受会员折扣，即基础价6折</span></p>
+              <p class="line"><span class="left">3</span><span class="right">长租折上折，周租会员价9折，月租会员价7折</span></p>
+              <p class="line"><span class="left">4</span><span class="right">生日当天用车半价，生日专属礼物</span></p>
+              <p class="line"><span class="left">5</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
+              <p class="line"><span class="left">6</span><span class="right">每月1次劳斯莱斯或宾利商务接送服务</span></p>
+              <p class="line"><span class="left">7</span><span class="right">一对一专属管家服务</span></p>
+              <p class="line"><span class="left">8</span><span class="right">每年用车免除3分及以内的违章罚金</span></p>
+              <p class="line"><span class="left">9</span><span class="right">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span></p>
+              <p class="line"><span class="left">10</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
+              <p class="line"><span class="left">11</span><span class="right">俱乐部组织的高端定制游等自费活动，享受8折优惠</span></p>
           </div>
           <div class="jihua1">
               <p class="jihuaname">至尊计划</p>
@@ -107,18 +107,17 @@
               </div>
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">每月5天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span></p>
-              <p class="line"><span class="left">2</span><span class="right">获俱乐部价值100万白金会员资格，享有白金会员所有权益</span></p>
-              <p class="line"><span class="left">3</span><span class="right">至尊计划权益外用车，可享受白金会员折扣，即基础价6折</span></p>
-              <p class="line"><span class="left">4</span><span class="right">长租折上折，周租白金价格9折，月租白金价格7折</span></p>
-              <p class="line"><span class="left">5</span><span class="right">生日当天用车免费，生日专属礼物</span></p>
-              <p class="line"><span class="left">6</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
-              <p class="line"><span class="left">7</span><span class="right">每月2次劳斯莱斯或宾利商务接送服务</span></p>
-              <p class="line"><span class="left">8</span><span class="right">一对一专属管家服务</span></p>
-              <p class="line"><span class="left">9</span><span class="right">每年用车免除6分及以内的违章罚金</span></p>
-              <p class="line"><span class="left">10</span><span class="right">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span></p>
-              <p class="line"><span class="left">11</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
-              <p class="line"><span class="left">12</span><span class="right">俱乐部组织的高端定制游等自费活动，享受7折优惠</span></p>
-              <p class="line"><span class="left">13</span><span class="right">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span></p>
+              <p class="line"><span class="left">2</span><span class="right">至尊计划权益外用车，可享受会员折扣，即基础价6折</span></p>
+              <p class="line"><span class="left">3</span><span class="right">长租折上折，周租会员价9折，月租会员价7折</span></p>
+              <p class="line"><span class="left">4</span><span class="right">生日当天用车免费，生日专属礼物</span></p>
+              <p class="line"><span class="left">5</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
+              <p class="line"><span class="left">6</span><span class="right">每月2次劳斯莱斯或宾利商务接送服务</span></p>
+              <p class="line"><span class="left">7</span><span class="right">一对一专属管家服务</span></p>
+              <p class="line"><span class="left">8</span><span class="right">每年用车免除6分及以内的违章罚金</span></p>
+              <p class="line"><span class="left">9</span><span class="right">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span></p>
+              <p class="line"><span class="left">10</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
+              <p class="line"><span class="left">11</span><span class="right">俱乐部组织的高端定制游等自费活动，享受7折优惠</span></p>
+              <p class="line"><span class="left">12</span><span class="right">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span></p>
           </div>
           <div class="jihua1">
               <p class="jihuaname">散租</p>
@@ -130,6 +129,7 @@
               <p class="line"><span class="left">1</span><span class="right">只需缴纳少量押金，即可开走顶级跑车</span></p>
               <p class="line"><span class="left">2</span><span class="right">尊享会员折扣价，长租还享折上折</span></p>
               <p class="line"><span class="left">3</span><span class="right">优质老客户还有多重优惠，有机会免押金用车</span></p>
+              <p><a style="font-size: 14px;margin-left: 112px;position: relative;top: 16px;text-decoration-line: none;color: cornflowerblue;" href="https://toweringcapital.cn/?pcode=wagons">点此购买合作方私募基金可减免押金</a></p>
           </div>
           <div class='tips'>
               <p class="tips1">备注</p>

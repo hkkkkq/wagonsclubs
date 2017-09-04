@@ -68,7 +68,7 @@
         </div>
         <div class="lease_info">
             <div class="rent_header">
-                <router-link class="link" to="/mobile/join">还没有加入WAGONS光速超跑？点此了解套餐及散租详情</router-link>
+                <router-link class="link" to="/mobile/join">还没有加入WAGONS光速超跑会员？点此了解套餐及散租详情</router-link>
             </div>
         </div>
         <div style="height:1.2rem"></div>
