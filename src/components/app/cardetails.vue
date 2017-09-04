@@ -157,7 +157,34 @@ export default {
             if(this.isapp){
                 window.Wground.getApiToken(suc,fail)
             }else{
-                alert(11)
+                // alert(11)在微信中
+                this.$ajax({
+                    url:BASE_URL+"/car/memberType?carId="+this.carId,
+                    method:'GET',
+                }).then((res)=>{
+                    if(res.data.success == true){//请求成功
+                        if(res.data.data.JumpInfo.review == true){//审核通过
+                            if((res.data.data.JumpInfo.userType == 4)||(res.data.data.JumpInfo.userType == 5)){//白金会员和散租
+                                window.Wground.reservation(false)
+                            }else{//三计划用户
+                                if(res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable){//车可用，日期可用
+                                    window.Wground.reservation(true)                                    
+                                }else if(res.data.data.JumpInfo.carUseable == false){//车不可用
+                                    this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
+                                    return ;
+                                }else if(res.data.data.JumpInfo.dateUseable == false){//日期不可用
+                                    window.Wground.reservation(false)
+                                }
+                            }
+                        }else{
+                            this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                            return ;
+                        }
+                    }else{
+                        this.ef("出现了什么问题，比如没登陆？")
+                        return ;
+                    }
+                })
             }
             function suc(token){
                 this.$ajax({
@@ -165,26 +192,33 @@ export default {
                     method:'GET',
                     headers:{"token":token}
                     }).then((res)=>{
-                        if(res.data.success == false){
-                            alert('请求出错1');
-                            }else{
-                                if((res.data.data.type == 4)||(res.data.data.type == 5)){
+                        if(res.data.success == true){
+                            if(res.data.data.JumpInfo.review == true){
+                                if((res.data.data.JumpInfo.userType == 4)||(res.data.data.JumpInfo.userType == 5)){
                                     window.Wground.reservation(false)
-                                }else if((res.data.data.type == 1)||(res.data.data.type == 2)||(res.data.data.type == 3)){
-                                    window.Wground.reservation(true)
-                                }else if(res.data.data.type == 7){
-                                    this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
-                                    // alert('审核未通过')
-                                }else if(res.data.data.type == 6){
-                                    this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
-                                    // alert('会员审核中')
-                                }else if(res.data.data.type == 8){
-                                    alert('该车辆不可用')
+                                }else{
+                                    if(res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable){
+                                        window.Wground.reservation(true)                                    
+                                    }else if(res.data.data.JumpInfo.carUseable == false){
+                                        this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
+                                        return ;
+                                    }else if(res.data.data.JumpInfo.dateUseable == false){
+                                        window.Wground.reservation(false)
+                                    }
                                 }
+                            }else{
+                                this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                                return ;
                             }
-                        })
+                        }else{
+                            this.ef("出现了什么问题，比如没登陆？")
+                            return ;
+                        }
+                    })
                 };
-            function fail(err){alert(err,2)}
+            function fail(err){
+                this.ef("err")
+            }
         },
         cl(){
             this.at = false

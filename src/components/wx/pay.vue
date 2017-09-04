@@ -1,0 +1,166 @@
+<template>
+<div style="height: 100%;position: absolute;width: 100%;">
+    <div style="background:rgb(15, 25, 35);min-height:100%">
+        <p style="height:0.2rem"></p>
+        <div class="carinfo">
+            <img src="../../assets/car_guide_banner.jpg">
+            <div class="left">
+                <p class="carname">兰博基尼</p>
+                <span class="carstar">5星级车</span>
+                <span>京派</span>
+                <span>自动挡</span>
+                <span>6.0l</span>
+            </div>
+        </div>
+        <div class="useinfo">
+            <div>
+                <span style="background:#4ac87a" class="rad"></span>
+                <div class="lf">
+                    <p style="font-size: 0;display: inline-block;width: 5.9rem;">
+                        <span class="date">7-30<img src="../../assets/app/der.jpg"></span>
+                        <b>10:00</b>
+                        <b style="margin-right: 0.18rem;">周一</b>
+                        <input class="in" type="text" placeholder="请填写取车地址">
+                    </p>
+                </div>
+            </div>
+            <div style="margin-top:0.4rem">
+                <span style="background:#fbaf5d" class="rad"></span>                
+                <div class="lf">
+                    <p style="font-size: 0;display: inline-block;width: 5.9rem;">
+                        <span class="date">7-30<img src="../../assets/app/der.jpg"></span>
+                        <b>10:00</b>
+                        <b style="margin-right: 0.18rem;">周一</b>
+                        <input class="in" type="text" placeholder="请填写还车地址">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+require('../app/rem.js')(window,document)
+export default {
+
+}
+</script>
+
+<style scoped>
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999999; opacity:1; 
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999999;opacity:1;
+}
+
+input:-ms-input-placeholder{
+    color: #999999;opacity:1;
+}
+
+input::-webkit-input-placeholder{
+    color: #999999;opacity:1;
+}
+.in{
+    background: rgba(0,0,0,0);
+    border: 0;
+    width: 100%;
+    margin-top: 0.48rem;
+    margin-bottom: 0.1rem;
+}
+.lf b{
+    font-size: 0.24rem;
+    color: #999999;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+    position: relative;
+    top: 0.1rem;
+}
+.date img{
+    display: inline-block;
+    width: 0.1rem;
+    height: 0.18rem;
+    margin-left: 0.3rem;
+    vertical-align: top;
+    position: relative;
+    top: 0.15rem;
+}
+.date{
+    vertical-align: top;
+    font-size: 0.4rem;
+    color:#ffffff;
+    display: inline-block
+}
+.lf{
+    display: inline-block;
+    border-bottom:1px solid  #39424a
+}
+.useinfo .rad{
+    display: inline-block;
+    width: 0.18rem;
+    height: 0.18rem;
+    border-radius: 100px;
+    vertical-align: top;
+    position: relative;
+    top: 0.15rem;
+}
+.useinfo{
+    background: #273039;
+    width: 6.5rem;
+    height: 3.06rem;
+    display: block;
+    margin: auto;
+    margin-top: 0.2rem;
+    border-radius: 4px;
+    padding: 0.67rem 0.3rem 0.67rem 0.3rem;
+}
+.carstar{
+    color: #ffffff!important;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    display: inline-block;
+    width: 0.98rem;
+    height: 0.3rem;
+    text-align: center;
+    line-height: 0.3rem;
+    margin-left: 0.3rem!important;
+}
+.left{
+    display: inline-block;
+    width: 4.5rem;
+    vertical-align: top;
+    height: 100%;
+}
+.carinfo span{
+    font-size: 0.24rem;
+    color: #999999;
+    margin-left: 0.2rem;
+    margin-top: 0.2rem;
+}
+.carname{
+    display: inline-block;
+    margin-left: 0.3rem;
+    font-size: 0.24rem;
+    color: #ffffff;
+    vertical-align: top;
+    margin-top: 0.3rem;
+    width: 100%;
+}
+.carinfo img{
+    width: 2.6rem;
+    height: 100%;
+    display: inline-block;
+}
+.carinfo{
+    width: 7.1rem;
+    height: 1.3rem;
+    display: block;
+    margin: auto;
+    background: #273039;
+    border-radius: 4px;
+    font-size: 0;
+}
+</style>

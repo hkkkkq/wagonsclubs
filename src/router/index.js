@@ -27,6 +27,8 @@ const app_warning = resolve => require(['../components/app/warning.vue'], resolv
 const wx_findcar = resolve => require(['../components/wx/findcar.vue'], resolve);
 const wx_hd = resolve => require(['../components/wx/hd.vue'], resolve);
 const wx_collocation = resolve => require(['../components/wx/collocation.vue'], resolve);
+const wx_pay = resolve => require(['../components/wx/pay.vue'], resolve);
+const wx_datepicker = resolve => require(['../components/wx/datepicker.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -96,6 +98,8 @@ export default new Router({
         { path: '/wx/findcar', component: wx_findcar },
         { path: '/wx/hd', component: wx_hd },
         { path: '/wx/collocation', component: wx_collocation },
+        { path: '/wx/pay', component: wx_pay },
+        { path: '/wx/datepicker', component: wx_datepicker },
 
         //重写移动端
         { path: '/mobile', component: mobile },
