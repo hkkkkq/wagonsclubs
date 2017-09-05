@@ -3,13 +3,11 @@
     <div style="background:rgb(15, 25, 35);min-height:100%">
         <p style="height:0.2rem"></p>
         <div class="carinfo">
-            <img src="../../assets/car_guide_banner.jpg">
+            <img :src="carData.carImage">
             <div class="left">
-                <p class="carname">兰博基尼</p>
-                <span class="carstar">5星级车</span>
-                <span>京派</span>
-                <span>自动挡</span>
-                <span>6.0l</span>
+                <p class="carname">{{carData.carName}}</p>
+                <span class="carstar">{{carData.carLevel}}</span>
+                <span>{{carData.carDes}}</span>
             </div>
         </div>
         <div class="useinfo">
@@ -20,7 +18,7 @@
                         <span @click="starttime" class="date">{{startob == ""?"请选择":(startob.month+1+"-"+startob.date)}}<img src="../../assets/app/der.jpg"></span>
                         <b>{{startob == ""?"--:--":((parseInt(startob.shi)<10?"0"+parseInt(startob.shi):parseInt(startob.shi))+":"+(parseInt(startob.fen)==0?"00":parseInt(startob.fen)))}}</b>
                         <b style="margin-right: 0.18rem;">{{sxqj == undefined?"--":sxqj}}</b>
-                        <input class="in" type="text" placeholder="请填写取车地址">
+                        <input v-model="startadd" class="in" type="text" placeholder="请填写取车地址" >
                     </p>
                 </div>
             </div>
@@ -31,10 +29,36 @@
                         <span @click="endtime" class="date">{{endob == ""?"请选择":(endob.month+1+"-"+endob.date)}}<img src="../../assets/app/der.jpg"></span>
                         <b>{{endob == ""?"--:--":((parseInt(endob.shi)<10?"0"+parseInt(endob.shi):parseInt(endob.shi))+":"+(parseInt(endob.fen)==0?"00":parseInt(endob.fen)))}}</b>
                         <b style="margin-right: 0.18rem;">{{exqj == undefined?"--":exqj}}</b>
-                        <input class="in" type="text" placeholder="请填写还车地址">
+                        <input v-model="endadd" class="in" type="text" placeholder="请填写还车地址">
                     </p>
                 </div>
             </div>
+        </div>
+        <div class="com">
+            <div>
+                <span style="background:#3d454d" class="rad"></span>
+                <div class='rr'>
+                    <span>本次用车天数</span>
+                    <span style="float:right;color:#fed945">5天</span>
+                </div>
+            </div>
+            <div>
+                <span style="background:#3d454d" class="rad"></span>
+                <div class='rr'>
+                    <span>本次用车天数</span>
+                    <span style="float:right">5天</span>
+                </div>
+            </div>
+            <div>
+                <span style="background:#3d454d;" class="rad"></span>
+                <div style="border:0" class='rr'>
+                    <span>本次用车天数</span>
+                    <span style="float:right">5天</span>
+                </div>
+            </div>
+        </div>
+        <div class='submit'>
+            提交订单
         </div>
     </div>
 </div>
@@ -45,8 +69,23 @@ require('../app/rem.js')(window,document)
 export default {
     data(){
         return{
-
+            orderType:'',
+            carId:'',
+            carData:'',
+            startadd:'',
+            endadd:''
         }
+    },
+    created(){
+        this.carId = this.$route.query.carId
+        this.orderType = this.$route.query.orderType
+        //请求用户数据和车辆信息
+        this.$ajax(BASE_URL+"/car/memberData?carId="+this.carId)
+            .then((res)=>{
+                console.log(res.data)
+                this.carData = res.data.data;
+                this.startadd = res.data.data.storeAdds
+            })
     },
     computed:{
         startob(){return this.$store.state.starttime},
@@ -88,6 +127,42 @@ export default {
 </script>
 
 <style scoped>
+.submit{
+    background: #fed945;
+    color: #333333;
+    font-size: 0.32rem;
+    text-align: center;
+    height: 1rem;
+    line-height: 1rem;
+    position: absolute;
+    display: block;
+    width: 100%;
+    bottom: 0;
+}
+.com .rr{
+    display: inline-block;
+    width: 5.9rem;
+    border-bottom: 1px solid #39424a;
+}
+.com span{
+    font-size: 0.26rem;
+    color: #ffffff;
+    vertical-align: top;
+    display: inline-block;
+    margin-top: 0.38rem;
+    margin-bottom: 0.38rem;
+}
+.com{
+    width: 6.5rem;
+    display: block;
+    margin: auto;
+    height: 3.1rem;
+    background: #273039;
+    border-radius: 4px;
+    margin-top: 0.2rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #999999; opacity:1; 
 }
@@ -106,6 +181,7 @@ input::-webkit-input-placeholder{
 .in{
     background: rgba(0,0,0,0);
     border: 0;
+    color: #999999;
     width: 100%;
     margin-top: 0.48rem;
     margin-bottom: 0.1rem;
@@ -137,6 +213,15 @@ input::-webkit-input-placeholder{
 .lf{
     display: inline-block;
     border-bottom:1px solid  #39424a
+}
+.com .rad{
+    display: inline-block;
+    width: 0.18rem;
+    height: 0.18rem;
+    border-radius: 100px;
+    vertical-align: top;
+    position: relative;
+    top: 0.03rem;
 }
 .useinfo .rad{
     display: inline-block;
@@ -193,6 +278,8 @@ input::-webkit-input-placeholder{
     width: 2.6rem;
     height: 100%;
     display: inline-block;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 .carinfo{
     width: 7.1rem;

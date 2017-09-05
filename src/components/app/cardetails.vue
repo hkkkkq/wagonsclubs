@@ -155,7 +155,7 @@ export default {
         sub(){
             //获取token
             if(this.isapp){
-                window.Wground.getApiToken(suc,fail)
+                window.Wground.getApiToken(suc,fail)//suc在下面
             }else{
                 // alert(11)在微信中
                 this.$ajax({
@@ -165,15 +165,18 @@ export default {
                     if(res.data.success == true){//请求成功
                         if(res.data.data.JumpInfo.review == true){//审核通过
                             if((res.data.data.JumpInfo.userType == 4)||(res.data.data.JumpInfo.userType == 5)){//白金会员和散租
-                                window.Wground.reservation(false)
+                                // window.Wground.reservation(false)
+                                this.$router.push({path:"/wx/pay",query:{orderType:1,carId:this.carId},})                                
                             }else{//三计划用户
                                 if(res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable){//车可用，日期可用
-                                    window.Wground.reservation(true)                                    
+                                    // window.Wground.reservation(true)                                    
+                                    this.$router.push({path:"/wx/pay",query:{orderType:0,carId:this.carId},})
                                 }else if(res.data.data.JumpInfo.carUseable == false){//车不可用
                                     this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
                                     return ;
                                 }else if(res.data.data.JumpInfo.dateUseable == false){//日期不可用
-                                    window.Wground.reservation(false)
+                                    // window.Wground.reservation(false)
+                                    this.$router.push({path:"/wx/pay",query:{orderType:1,carId:this.carId},})
                                 }
                             }
                         }else{
