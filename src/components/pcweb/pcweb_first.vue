@@ -6,25 +6,11 @@
         <span class="cons"></span><p class="conp">最新动态</p>
         <p style="height: 24px;"></p>
         <div style="font-size:0">
-          <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(1)' class="f1">
+          <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(2)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-              <img src="../../assets/news1.png" />
+              <img src="../../assets/nn21.jpg" />
           <transition name="fade">
-              
               <h4 v-if="mask1" class="mask">
-                光速超跑，落地京城
-              </h4>
-          </transition>
-            </div>
-          <h1>WAGONS光速超跑落地京城 引领高端出</h1>
-          <div>诸如兰博基尼、法拉利的超级跑车一直以来都处在汽车消费金字塔的最尖端，即便是很多......</div>
-        </div>
-        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(2)' style="margin: 0 20px;" class="f1">
-            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-          <img src="../../assets/nn21.jpg" />
-          <transition name="fade">
-          
-              <h4 v-if="mask2" class="mask">
                 盛夏七月，品鉴试驾
               </h4>
           </transition>
@@ -32,17 +18,29 @@
           <h1>WAGONS光速超跑举办首次高端试驾品</h1>
           <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了首次......</div>
         </div>
+        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(3)' style="margin: 0 20px;" class="f1">
+            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+          <img src="../../assets/news2.jpg" />
+          <transition name="fade">
+              <h4 v-if="mask2" class="mask">
+                为爱提速，超跑动心  
+              </h4>
+          </transition>
+            </div>
+          <h1>为爱提速、超跑动心 | WAGONS为留守</h1>
+          <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
+        </div>
         <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(3)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
           <img src="../../assets/news2.jpg" />
           <transition name="fade">
               <h4 v-if="mask3" class="mask">
-                为爱提速，超跑动心  
+                浪漫七夕，精彩漂移
               </h4>        
           </transition>  
             </div>
-          <h1>为爱提速、超跑动心 | WAGONS为留守</h1>
-          <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
+          <h1>我学会了漂移，正在前往拯救世界的路上</h1>
+          <div>你能一个人打赢一群海盗我是信的，你能一个人打赢一个反政府军队我也信，你.一个人.....</div>
         </div>
         </div>
       </div>  

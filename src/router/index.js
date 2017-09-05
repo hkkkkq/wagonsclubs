@@ -11,6 +11,7 @@ const pcweb_forth = resolve => require(['../components/pcweb/pcweb_forth.vue'], 
 const pcweb_article1 = resolve => require(['../components/pcweb/pcweb_article1.vue'], resolve);
 const pcweb_article2 = resolve => require(['../components/pcweb/pcweb_article2.vue'], resolve);
 const pcweb_article3 = resolve => require(['../components/pcweb/pcweb_article3.vue'], resolve);
+const pcweb_article4 = resolve => require(['../components/pcweb/pcweb_article4.vue'], resolve);
 const notfound = resolve => require(['../components/404.vue'], resolve);
 
 //mobile
@@ -50,7 +51,8 @@ export default new Router({
                 { path: 'forth', component: pcweb_forth },
                 { path: 'article/1', component: pcweb_article1 },
                 { path: 'article/2', component: pcweb_article2 },
-                { path: 'article/3', component: pcweb_article3 }
+                { path: 'article/3', component: pcweb_article3 },
+                { path: 'article/4', component: pcweb_article4 }
             ]
         },
 

@@ -104,7 +104,6 @@ export default {
         this.$ajax(BASE_URL+"/car/discount")
             .then((res)=>{
                 this.tj = res.data.data;
-                console.log(this.tj)
             })
 
 
