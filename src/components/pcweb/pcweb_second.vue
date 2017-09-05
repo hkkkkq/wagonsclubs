@@ -6,7 +6,7 @@
         <p>扫码即刻体验</p>
       </div>
     <div class="s_banner"></div>
-    <div style="display:block;height:904px">
+    <div style="display:block;height:1205px">
     <div  @click="goar(1)" class="ff">
         <img src="../../assets/news1.png">
         <div class="gg">
@@ -28,6 +28,14 @@
         <div class="gg">
             <p class="title">为爱提速、超跑动心<span>2017-08-11  14:30:09</span></p>
             <div class="cc">赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群孩子，每天在家盼望着父母的归来，只能在照片里看到父母慈爱的笑容，生病没有父母的拥抱。他们......</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
+    <div @click="goar(4)" class="ff">
+        <img src="../../assets/zl4.jpg">
+        <div class="gg">
+            <p class="title">我学会了漂移，正在前往拯救世界的路上<span>2017-09-5  14:17:09</span></p>
+            <div class="cc">对不起，吴京 你能一个人打赢一群海盗我是信的，你能一个人打赢一个反政府军队我也信，你能一个人打赢一个雇佣兵军队我还信，你能连续喝完5扎深水炸弹后再吹掉一瓶茅台，别人都不相信你，你说我能信......</div>
             <span>阅读更多 >></span>
         </div>
     </div>

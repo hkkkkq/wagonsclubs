@@ -24,7 +24,7 @@
     </div>
     <div class="fen">
         <a href="/article/2" style="float:left">上一页：WAGONS光速超跑举办试驾品鉴活动</a>
-        <a style="float:right;color: #acacac; cursor: no-drop;">没有了：下一页</a>
+        <a href="/article/4" style="float:right;">我学会了漂移 正在前往拯救世界的路上：下一页</a>
     </div>
 </div>
 </template>

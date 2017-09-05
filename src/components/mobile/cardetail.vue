@@ -22,9 +22,10 @@
                 <!-- <img v-if="info.car.starLevel == '1'" src="../../assets/1.png" class="star">  -->
             </p>
             <p class="price">
-                <span>白金会员价</span>
+                <span><img style="display:block;width:100%;margin-top: 0.02rem;" src="../../assets/hyj.jpg"></span>
                 ¥<i>{{discountprice}}</i>/天
             </p>
+            <p class="nodis">¥<i>{{info.car.dailyRentPrice}}</i>/天</p>
     </div>
     <div class="car_intro">
             <h3>本车特色</h3>
@@ -68,7 +69,7 @@
         </div>
         <div class="lease_info">
             <div class="rent_header">
-                <router-link class="link" to="/mobile/join">还没有加入WAGONS光速超跑？点此了解套餐及散租详情</router-link>
+                <router-link class="link" to="/mobile/join">还没加入WAGONS光速超跑会员?点此了解套餐及散租详情</router-link>
             </div>
         </div>
         <div style="height:1.2rem"></div>
@@ -176,6 +177,7 @@ export default {
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
         .then((res)=>{if(res.data.success == true){
             this.info = res.data.data;
+            console.log(this.info)
             this.info.discount = res.data.data.maxDiscount;
             }else{
                 this.$router.push('/404') 
@@ -199,27 +201,27 @@ export default {
             var locationHref = window.location.origin;
             wx.ready(function () {
                         wx.onMenuShareTimeline({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareAppMessage({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareQQ({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareWeibo({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
@@ -251,7 +253,7 @@ export default {
         },
         // location.href.replace(/true/g,"false")
         share:function(){
-            window.ground.share('WAGONS超跑俱乐部', window.location.origin , 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            window.ground.share('WAGONS光速超跑', window.location.origin , 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
         }
     }
 
@@ -259,12 +261,15 @@ export default {
 </script>
 
 <style scoped>
-/* .swip1{
-    overflow: hidden;
-  }
-  .swip2{
-    float:left;
-  } */
+.nodis{
+    position: relative;
+    font-size: 0.18rem;
+    color: #808796;
+    top: -0.32rem;
+    left: 2.68rem;
+    text-decoration-line: line-through;
+    -webkit-text-decoration-line: line-through;
+}
 .share img {
     position:fixed;
     display: block;
@@ -521,15 +526,11 @@ img[lazy=loaded]{
 }
 .car_info .price span {
     display: inline-block;
-    width: 1.3rem;
-    height: 0.28rem;
+    width: 0.8rem;
+    height: 0.29rem;
     line-height: 0.28rem;
     text-align: center;
-    padding-top: 0.05rem;
-    margin: 0.1rem 0.2rem 0 0;
-    vertical-align: top;
-    color: #fff;
-    background: url('../../assets/m-discount_vip.png') no-repeat;
+    margin: 0.1rem 0.16rem 0 0;
     background-size: 100% 100%;
 }
 .car_info .price {

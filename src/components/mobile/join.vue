@@ -2,12 +2,12 @@
   <div>
       <div class="head_xz">
             <a @click="goback" class="goback"></a>
-            <p class="wagons_logo">如何加入WAGONS</p>
+            <p class="wagons_logo">如何加入WAGONS会员</p>
             <span v-if="isNew" @click="call" class="share"></span>
         </div>
         <div style="width:100%;height:1.27rem;"></div>
         <div class="introduce">
-            开始用车之前，您需要通过申请加入WAGONS，成功后即可自由选择购买优惠套餐，或采用单次散租的方式开始您的超跑自驾之旅。
+            开始用车之前，您需要通过申请加入WAGONS会员，成功后即可自由选择购买优惠套餐，或采用单次散租的方式开始您的超跑自驾之旅。
         </div>
         <div class="packgage">
             <div class="head">
@@ -24,22 +24,25 @@
                         <i>1</i><span>每月3天超跑使用权，每天可在指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span>
                     </li>
                     <li>
-                        <i>2</i><span>乐潮计划权益外用车，可享受白金卡会员折扣，即基础价6折</span>
+                        <i>2</i><span>乐潮计划权益外用车，可享受会员折扣，即基础价6折</span>
                     </li>
                     <li>
-                        <i>3</i><span>生日当天用车半价，生日专属礼物</span>
+                        <i>3</i><span>长租折上折，周租会员价9折，月租会员价7折</span>
                     </li>
                     <li>
-                        <i>4</i><span>每邀请1位好友，可额外累计1天使用权</span>
+                        <i>4</i><span>生日当天用车半价，生日专属礼物</span>
                     </li>
                     <li>
-                        <i>5</i><span>一对一专属管家服务</span>
+                        <i>5</i><span>每邀请1位好友，可额外累计1天使用权</span>
                     </li>
                     <li>
-                        <i>6</i><span>俱乐部旗下修理厂每年1次免费深度车辆清洗</span>
+                        <i>6</i><span>一对一专属管家服务</span>
                     </li>
                     <li>
-                        <i>7</i><span>俱乐部组织的高端定制游等自费活动，享受9折优惠</span>
+                        <i>7</i><span>俱乐部旗下修理厂每年1次免费深度车辆清洗</span>
+                    </li>
+                    <li>
+                        <i>8</i><span>俱乐部组织的高端定制游等自费活动，享受9折优惠</span>
                     </li>
                 </ul>
             </div>
@@ -53,37 +56,34 @@
                         <i>1</i><span>每月3天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span>
                     </li>
                     <li>
-                        <i>2</i><span>获俱乐部价值100万白金会员资格，享有白金会员所有权益</span>
+                        <i>2</i><span>优享计划权益外用车，可享受会员折扣，即基础价6折</span>
                     </li>
                     <li>
-                        <i>3</i><span>优享计划权益外用车，可享受白金会员折扣，即基础价6折</span>
+                        <i>3</i><span>长租折上折，周租会员价9折，月租会员价7折</span>
                     </li>
                     <li>
-                        <i>4</i><span>长租折上折，周租白金价格9折，月租白金价格7折</span>
+                        <i>4</i><span>生日当天用车半价，生日专属礼物</span>
                     </li>
                     <li>
-                        <i>5</i><span>生日当天用车半价，生日专属礼物</span>
+                        <i>5</i><span>每邀请1位好友，可额外累计1天使用权</span>
                     </li>
                     <li>
-                        <i>6</i><span>每邀请1位好友，可额外累计1天使用权</span>
+                        <i>6</i><span>每月1次劳斯莱斯或宾利商务接送服务</span>
                     </li>
                     <li>
-                        <i>7</i><span>每月1次劳斯莱斯或宾利商务接送服务</span>
+                        <i>7</i><span>一对一专属管家服务</span>
                     </li>
                     <li>
-                        <i>8</i><span>一对一专属管家服务</span>
+                        <i>8</i><span>每年用车免除3分及以内的违章罚金</span>
                     </li>
                     <li>
-                        <i>9</i><span>每年用车免除3分及以内的违章罚金</span>
+                        <i>9</i><span>俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span>
                     </li>
                     <li>
-                        <i>10</i><span>俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span>
+                        <i>10</i><span>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
                     </li>
                     <li>
-                        <i>11</i><span>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
-                    </li>
-                    <li>
-                        <i>12</i><span>俱乐部组织的高端定制游等自费活动，享受8折优惠</span>
+                        <i>11</i><span>俱乐部组织的高端定制游等自费活动，享受8折优惠</span>
                     </li>
                 </ul>
             </div>
@@ -97,40 +97,37 @@
                         <i>1</i><span>每月5天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span>
                     </li>
                     <li>
-                        <i>2</i><span>获俱乐部价值100万白金会员资格，享有白金会员所有权益</span>
+                        <i>2</i><span>至尊计划权益外用车，可享受会员折扣，即基础价6折</span>
                     </li>
                     <li>
-                        <i>3</i><span>优享计划权益外用车，可享受白金会员折扣，即基础价6折</span>
+                        <i>3</i><span>长租折上折，周租会员价9折，月租会员价7折</span>
                     </li>
                     <li>
-                        <i>4</i><span>长租折上折，周租白金价格9折，月租白金价格7折</span>
+                        <i>4</i><span>生日当天用车半价，生日专属礼物</span>
                     </li>
                     <li>
-                        <i>5</i><span>生日当天用车半价，生日专属礼物</span>
+                        <i>5</i><span>每邀请1位好友，可额外累计1天使用权</span>
                     </li>
                     <li>
-                        <i>6</i><span>每邀请1位好友，可额外累计1天使用权</span>
+                        <i>6</i><span>每月2次劳斯莱斯或宾利商务接送服务</span>
                     </li>
                     <li>
-                        <i>7</i><span>每月2次劳斯莱斯或宾利商务接送服务</span>
+                        <i>7</i><span>一对一专属管家服务</span>
                     </li>
                     <li>
-                        <i>8</i><span>一对一专属管家服务</span>
+                        <i>8</i><span>每年用车免除6分及以内的违章罚金</span>
                     </li>
                     <li>
-                        <i>9</i><span>每年用车免除6分及以内的违章罚金</span>
+                        <i>9</i><span>俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span>
                     </li>
                     <li>
-                        <i>10</i><span>俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span>
+                        <i>10</i><span>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
                     </li>
                     <li>
-                        <i>11</i><span>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
+                        <i>11</i><span>俱乐部组织的高端定制游等自费活动，享受7折优惠</span>
                     </li>
                     <li>
-                        <i>12</i><span>俱乐部组织的高端定制游等自费活动，享受7折优惠</span>
-                    </li>
-                    <li>
-                        <i>13</i><span>在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享受专属礼遇</span>
+                        <i>12</i><span>在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享受专属礼遇</span>
                     </li>
                 </ul>
             </div>
@@ -153,14 +150,16 @@
                     <li>
                         <i>3</i><span>优质老客户还有多重优惠，有机会免押金用车</span>
                     </li>
+                    <li>
+                        <a style="font-size: 0.24rem;float: right;text-decoration-line: none;color: cornflowerblue;" href="https://toweringcapital.cn/?pcode=wagons">点此购买合作方私募基金可减免押金</a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div class="none_box"></div>
-        <div @click="tomemberitro" class="more">
+        <!-- <div @click="tomemberitro" class="more">
             查看更多会员说明<span></span>
-        </div>
-        <div class="none_box"></div>
+        </div> -->
+        <!-- <div class="none_box"></div> -->
         <div style="height:1rem;"></div>
         <a @click="gooapply" class="apply">
             立即申请
@@ -210,27 +209,27 @@ export default {
             var locationHref = window.location.href;
             wx.ready(function () {
                         wx.onMenuShareTimeline({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareAppMessage({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareQQ({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                         });
 
                         wx.onMenuShareWeibo({
-                            title: 'WAGONS超跑俱乐部',
+                            title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
                             imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
@@ -257,7 +256,7 @@ export default {
             this.$router.push('/mobile/memberitro?isNewApp='+this.isNew)
         },
         call(command) {
-            window.ground.share('WAGONS超跑俱乐部', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
             // try {
             //     nativeShare.call(command)
             // } catch (err) {
@@ -466,10 +465,9 @@ export default {
     background-size: 0.3rem 0.3rem;
 }
 .head_xz .wagons_logo {
-    width: 3.08rem;
     height: 0.4rem;
     font-size: 0.36rem;
     color: #fff;
-    margin: 0.17rem 0 0 2.2rem;
+    margin: 0.17rem 0 0 1.8rem;
 }
 </style>

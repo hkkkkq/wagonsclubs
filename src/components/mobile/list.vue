@@ -11,6 +11,27 @@
             </swiper-slide>
         </swiper>
     </div>
+    <!-- 每日特价 -->
+    <div v-if="tj">
+        <p style="height:0.1rem;background:#eceef1"></p>
+        <div style="background:#ffffff;width:100%;height:3.9rem;padding-top: 0.1rem;">
+            <img style="width:2.24rem;height:0.4rem;display:block;margin:auto" src="../../assets/tj.jpg">
+            <swiper :options="swiperOption" ref="mySwiper"> 
+                <swiper-slide :key="n" v-for="(item,n) in tj.discount">
+                    <div @click="details(item.id)" class="tj">
+                        <img v-if="item.rentingStatus" class="zz" src="../../assets/bz.png">
+                        <img v-else class="zz" src="../../assets/tjb1.png">
+                        <div class="tjcar">
+                            <img class="tjcar" style="width: 100%;height: 100%;" :src="item.carImages">
+                        </div>
+                        <span class="tjdes" style="">{{item.carName}}</span>
+                        <span class="tjyuan">原价:<span style="font-size:0.22rem">{{item.dailyRentPrice}}</span>元/天</span>
+                        <span class="tjdi"><span style="font-size:0.48rem">{{item.discDailyRentPrice}}</span>元/天</span>
+                    </div>
+                </swiper-slide>
+            </swiper>
+        </div>
+    </div>
     <div v-if="loading == false" class="content">
         <ul>
             <li @click="details(car.id)" v-for="car in carlist.data.carsList" class="car_details">
@@ -75,11 +96,17 @@ export default {
             loading:true,
             discount:'',
             carousel:'',
-            ssss:"http://192.168.10.212:8095/car/activity",
-            df:"ssssssss"
+            tj:""
         }
     },
     created(){
+        //每日特价
+        this.$ajax(BASE_URL+"/car/discount")
+            .then((res)=>{
+                this.tj = res.data.data;
+            })
+
+
         if(this.$route.query.isNewApp == 'true'){
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
@@ -114,6 +141,44 @@ export default {
 }
 </script>
 <style scoped>
+.zz{
+position: absolute;display: block;width: 7.1rem;height: 3.1rem;left: 0.2rem;
+}
+.tjdi{
+    position: absolute;
+    top: 2.5rem;
+    left: 5.2rem;
+    font-size: 0.18rem;
+    color: #f33346;
+}
+.tjyuan{
+    font-size: 0.14rem;
+    color: #cbcbcb;
+    position: absolute;
+    top: 2.7rem;
+    left: 3.3rem;
+    text-decoration-line: line-through;
+}
+.tj .tjdes{
+    position: absolute;
+    top: 2.7rem;
+    font-size: 0.24rem;
+    display: block;
+    width: 3rem;
+    left: 0.4rem;
+    color: #ffffff;
+}
+.tj .tjcar{
+    width:7.1rem;
+    height:3.1rem;
+    margin:auto;
+    display:block;
+    margin-top:0.18rem;
+    z-index: 0;
+}
+.tj{
+    position:relative
+}
 .sp{
     height: 1rem;
 }
