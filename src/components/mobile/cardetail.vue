@@ -22,7 +22,7 @@
                 <!-- <img v-if="info.car.starLevel == '1'" src="../../assets/1.png" class="star">  -->
             </p>
             <p class="price">
-                <span>会员价</span>
+                <span><img style="display:block;width:100%;margin-top: 0.02rem;" src="../../assets/hyj.jpg"></span>
                 ¥<i>{{discountprice}}</i>/天
             </p>
             <p class="nodis">¥<i>{{info.car.dailyRentPrice}}</i>/天</p>
@@ -263,11 +263,12 @@ export default {
 <style scoped>
 .nodis{
     position: relative;
-    font-size: 0.24rem;
+    font-size: 0.18rem;
     color: #808796;
-    top: -0.35rem;
-    left: 3.2rem;
+    top: -0.32rem;
+    left: 2.68rem;
     text-decoration-line: line-through;
+    -webkit-text-decoration-line: line-through;
 }
 .share img {
     position:fixed;
@@ -525,15 +526,11 @@ img[lazy=loaded]{
 }
 .car_info .price span {
     display: inline-block;
-    width: 1.3rem;
-    height: 0.28rem;
+    width: 0.8rem;
+    height: 0.29rem;
     line-height: 0.28rem;
     text-align: center;
-    padding-top: 0.05rem;
-    margin: 0.1rem 0.2rem 0 0;
-    vertical-align: top;
-    color: #fff;
-    background: url('../../assets/m-discount_vip.png') no-repeat;
+    margin: 0.1rem 0.16rem 0 0;
     background-size: 100% 100%;
 }
 .car_info .price {

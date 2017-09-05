@@ -12,7 +12,7 @@
         </swiper>
     </div>
     <!-- 每日特价 -->
-    <div>
+    <div v-if="tj">
         <p style="height:0.1rem;background:#eceef1"></p>
         <div style="background:#ffffff;width:100%;height:3.9rem;padding-top: 0.1rem;">
             <img style="width:2.24rem;height:0.4rem;display:block;margin:auto" src="../../assets/tj.jpg">

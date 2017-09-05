@@ -30,9 +30,9 @@
           <h1>为爱提速、超跑动心 | WAGONS为留守</h1>
           <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
         </div>
-        <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(3)' class="f1">
+        <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(4)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-          <img src="../../assets/news2.jpg" />
+          <img src="../../assets/zl4.jpg" />
           <transition name="fade">
               <h4 v-if="mask3" class="mask">
                 浪漫七夕，精彩漂移
@@ -40,7 +40,7 @@
           </transition>  
             </div>
           <h1>我学会了漂移，正在前往拯救世界的路上</h1>
-          <div>你能一个人打赢一群海盗我是信的，你能一个人打赢一个反政府军队我也信，你.一个人.....</div>
+          <div>对不起，吴京 你能一个人打赢一群海盗我是信的，你能一个人打赢一个反政府军队我也.....</div>
         </div>
         </div>
       </div>  
