@@ -6,7 +6,7 @@
         <p>扫码即刻体验</p>
       </div>
     <div class="s_banner"></div>
-    <div style="display:block;height:1205px">
+    <div style="display:block;height:1506px">
     <div  @click="goar(1)" class="ff">
         <img src="../../assets/news1.png">
         <div class="gg">
@@ -36,6 +36,14 @@
         <div class="gg">
             <p class="title">我学会了漂移，正在前往拯救世界的路上<span>2017-09-5  14:17:09</span></p>
             <div class="cc">对不起，吴京 你能一个人打赢一群海盗我是信的，你能一个人打赢一个反政府军队我也信，你能一个人打赢一个雇佣兵军队我还信，你能连续喝完5扎深水炸弹后再吹掉一瓶茅台，别人都不相信你，你说我能信......</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
+        <div @click="goar(5)" class="ff">
+        <img src="../../assets/zl4.jpg">
+        <div class="gg">
+            <p class="title">超跑一发光，撩妹不用慌 丨 埃及之夜，时尚SHOW<span>2017-09-6  18:32:00</span></p>
+            <div class="cc">8月19日，WAGONS光速超跑与美丽的环球旅游小姐相约在珠江紫宸山。打入秘密据点，最会玩的人都在这里！这场由珠江紫宸山主办、WAGONS光速超跑携手环球旅游小姐网络大赛组委会共同协办的“埃及之夜......</div>
             <span>阅读更多 >></span>
         </div>
     </div>
