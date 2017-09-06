@@ -116,10 +116,10 @@ export default {
         su(){
             if(this.$route.query.type == "starttime"){
                 this.$store.commit('starttime',{year:this.curYear,month:this.curMonth,date:this.choose,xqj:this.nowxqj,shi:this.shi,fen:this.fen})
-                this.$router.push("/wx/pay")
+                this.$router.go(-1)
             }else{
                 this.$store.commit('endtime',{year:this.curYear,month:this.curMonth,date:this.choose,xqj:this.nowxqj,shi:this.shi,fen:this.fen})
-                this.$router.push("/wx/pay")
+                this.$router.go(-1)
             }
         }
     }

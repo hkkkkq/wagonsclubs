@@ -14,7 +14,7 @@
             <div>
                 <span style="background:#4ac87a" class="rad"></span>
                 <div class="lf">
-                    <p style="font-size: 0;display: inline-block;width: 5.9rem;">
+                    <p style="font-size: 0;display: inline-block;width: 6.25rem;">
                         <span @click="starttime" class="date">{{startob == ""?"请选择":(startob.month+1+"-"+startob.date)}}<img src="../../assets/app/der.jpg"></span>
                         <b>{{startob == ""?"--:--":((parseInt(startob.shi)<10?"0"+parseInt(startob.shi):parseInt(startob.shi))+":"+(parseInt(startob.fen)==0?"00":parseInt(startob.fen)))}}</b>
                         <b style="margin-right: 0.18rem;">{{sxqj == undefined?"--":sxqj}}</b>
@@ -25,7 +25,7 @@
             <div style="margin-top:0.4rem">
                 <span style="background:#fbaf5d" class="rad"></span>                
                 <div class="lf">
-                    <p style="font-size: 0;display: inline-block;width: 5.9rem;">
+                    <p style="font-size: 0;display: inline-block;width: 6.25rem;">
                         <span @click="endtime" class="date">{{endob == ""?"请选择":(endob.month+1+"-"+endob.date)}}<img src="../../assets/app/der.jpg"></span>
                         <b>{{endob == ""?"--:--":((parseInt(endob.shi)<10?"0"+parseInt(endob.shi):parseInt(endob.shi))+":"+(parseInt(endob.fen)==0?"00":parseInt(endob.fen)))}}</b>
                         <b style="margin-right: 0.18rem;">{{exqj == undefined?"--":exqj}}</b>
@@ -34,27 +34,62 @@
                 </div>
             </div>
         </div>
-        <div class="com">
+        <!-- 三计划 -->
+        <div v-if='orderType == 0' class="com">
             <div>
                 <span style="background:#3d454d" class="rad"></span>
-                <div class='rr'>
-                    <span>本次用车天数</span>
-                    <span style="float:right;color:#fed945">5天</span>
-                </div>
-            </div>
-            <div>
-                <span style="background:#3d454d" class="rad"></span>
-                <div class='rr'>
-                    <span>本次用车天数</span>
-                    <span style="float:right">5天</span>
-                </div>
-            </div>
-            <div>
-                <span style="background:#3d454d;" class="rad"></span>
                 <div style="border:0" class='rr'>
                     <span>本次用车天数</span>
-                    <span style="float:right">5天</span>
+                    <span style="right:0.3rem;position:relative;;float:right;color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</span>
                 </div>
+            </div>
+            <div>
+                <span style="background:#3d454d" class="rad"></span>
+                <div class='rr'>
+                    <span>{{carData.planName}}可用天数</span>
+                    <span style="right:0.3rem;position:relative;float:right">{{carData.canMemberUse}}天</span>
+                </div>
+            </div>
+            <div v-if="tokendays<=carData.canMemberUse">
+                <span style="background:#3d454d;" class="rad"></span>
+                <div class='rr'>
+                    <span>扣减后剩余天数</span>
+                    <span style="right:0.3rem;position:relative;float:right">{{carData.canMemberUse - tokendays}}天</span>
+                </div>
+            </div>
+        </div>
+        <div v-if="!(tokendays<=carData.canMemberUse)" class='warn'>
+            可用天数不足，请重新选择用车天数
+        </div>
+        <!-- 非计划会员 -->
+        <div v-if='orderType == 1' class='com'>
+            <span style="background:#3d454d" class="rad"></span>   
+            <span>费用明细</span>  
+            <p class='clear'></p>       
+            <div class='bdd'>
+                <span>用车天数</span>
+                <span class='c'>{{tokendays}}天</span>
+            </div>
+            <div class='bdd'>
+                <span>会员价</span>
+                <span class='c'>{{carData.platinumPrice}}元/天</span>
+            </div>
+            <div v-if='(tokendays >= 7)&&(tokendays<30)' class='bdd'>
+                <span>周租折扣</span>
+                <span class='c'>{{carData.week}}折</span>
+            </div>
+            <div v-if='tokendays>=30' class='bdd'>
+                <span>月租折扣</span>
+                <span class='c'>{{carData.month}}折</span>
+            </div>
+            <div v-if='isbirthday' class='bdd'>
+                <span>生日折扣</span>
+                <span class='c'>单日{{carData.birthday}}折</span>
+            </div>
+            <p style="margin-top: 0.38rem;" class='clear'></p>       
+            <div style="height:1rem" class='bdd'>
+                <span>费用合计</span>
+                <span style="color:#f4d144!important" class='c'>¥{{total}}</span>
             </div>
         </div>
         <div class='submit'>
@@ -82,10 +117,11 @@ export default {
         //请求用户数据和车辆信息
         this.$ajax(BASE_URL+"/car/memberData?carId="+this.carId)
             .then((res)=>{
-                console.log(res.data)
                 this.carData = res.data.data;
                 this.startadd = res.data.data.storeAdds
+                console.log(this.carData)
             })
+        
     },
     computed:{
         startob(){return this.$store.state.starttime},
@@ -113,6 +149,56 @@ export default {
                 case 5:return "周五";break;
                 case 6:return "周六";break;            
             }
+        },
+        tokendays(){
+            let s = new Date(this.startob.year,this.startob.month,this.startob.date,parseInt(this.startob.shi),parseInt(this.startob.fen))
+            let e = new Date(this.endob.year,this.endob.month,this.endob.date,parseInt(this.endob.shi),parseInt(this.endob.fen))
+            if((s == "Invalid Date")||(s == "Invalid Date")){
+                return 0
+            }else{
+                return Math.floor((e - s)/(60*60*24*1000)) + ((((e-s)%(60*60*24*1000))/(60*60*1000))>this.carData.extraHours?1:0);
+            }
+        },
+        isbirthday(){
+            let tmp = [];
+            // if(this.carData){
+                tmp = this.carData.date.split("-")
+            // }else{
+                // return
+            // }
+            let s = new Date(this.startob.year,this.startob.month,this.startob.date,parseInt(this.startob.shi),parseInt(this.startob.fen))
+            let e = new Date(this.endob.year,this.endob.month,this.endob.date,parseInt(this.endob.shi),parseInt(this.endob.fen))
+            let b1 = new Date(this.startob.year,tmp[0]-1,tmp[1]);
+            let b2 = new Date(this.endob.year,tmp[0]-1,tmp[1]);
+            //跨年租车，生日在年前
+            let t1 = (b1<=e)&&(b1>=s)
+            //跨年租车，生日在年后
+            let t2 = (b2<=e)&&(b2>=s)
+            if(t1||t2){
+                return true;
+            }else{
+                return false;
+            }
+        },
+        total(){
+            //有生日
+            if(this.isbirthday){
+                if((this.tokendays >= 7)&&(this.tokendays<30)){//周租折扣 有生日
+                    return ((this.tokendays-1) * this.carData.platinumPrice * this.carData.week * 0.1) + (this.carData.platinumPrice * this.carData.birthday * 0.1)
+                }else if(this.tokendays>=30){//月租折扣 有生日
+                    return (this.tokendays-1) * this.carData.platinumPrice * this.carData.month * 0.1 + (this.carData.platinumPrice * 0.5)                    
+                }else{//只有生日
+                    return (this.tokendays-1) * this.carData.platinumPrice + (this.carData.platinumPrice * 0.5)
+                }
+            }else{//没生日
+                if((this.tokendays >= 7)&&(this.tokendays<30)){//周租折扣 没生日
+                    return this.tokendays * this.carData.platinumPrice * this.carData.week * 0.1
+                }else if(this.tokendays>=30){//月租折扣 mei生日
+                    return this.tokendays * this.carData.platinumPrice * this.carData.month * 0.1
+                }else{//mei生日
+                    return this.tokendays * this.carData.platinumPrice
+                }
+            }
         }
     },
     methods:{
@@ -127,6 +213,37 @@ export default {
 </script>
 
 <style scoped>
+.warn{
+    width: 100%;
+    height: 0.6rem;
+    background: #d8434d;
+    display: block;
+    margin-top: 0.2rem;
+    text-align: center;
+    line-height: 0.6rem;
+    font-size: 0.24rem;
+    color: #ffffff;
+}
+.c{
+    width: 1.62rem!important;
+    text-align: right;
+}
+.bdd span{
+    font-size: 0.24rem!important;
+    color: #999999!important;
+    width:4rem;
+}
+.bdd{
+    margin-left: 0.5rem;
+    display: block;
+    height: 0.6rem;
+}
+.clear{
+    width: 6.25rem;
+    height: 1px;
+    background: #39424a;
+    margin-left: 0.5rem;
+}
 .submit{
     background: #fed945;
     color: #333333;
@@ -141,8 +258,8 @@ export default {
 }
 .com .rr{
     display: inline-block;
-    width: 5.9rem;
-    border-bottom: 1px solid #39424a;
+    width: 6.25rem;
+    border-top: 1px solid #39424a;
 }
 .com span{
     font-size: 0.26rem;
@@ -153,15 +270,14 @@ export default {
     margin-bottom: 0.38rem;
 }
 .com{
-    width: 6.5rem;
+    width: 6.8rem;
     display: block;
     margin: auto;
-    height: 3.1rem;
+    /* height: 3.1rem; */
     background: #273039;
     border-radius: 4px;
     margin-top: 0.2rem;
     padding-left: 0.3rem;
-    padding-right: 0.3rem;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #999999; opacity:1; 
@@ -194,6 +310,7 @@ input::-webkit-input-placeholder{
     float: right;
     position: relative;
     top: 0.1rem;
+    right: 0.3rem;
 }
 .date img{
     display: inline-block;
@@ -234,13 +351,13 @@ input::-webkit-input-placeholder{
 }
 .useinfo{
     background: #273039;
-    width: 6.5rem;
+    width: 6.8rem;
     height: 3.06rem;
     display: block;
     margin: auto;
     margin-top: 0.2rem;
     border-radius: 4px;
-    padding: 0.67rem 0.3rem 0.67rem 0.3rem;
+    padding: 0.67rem 0rem 0.67rem 0.3rem;
 }
 .carstar{
     color: #ffffff!important;
