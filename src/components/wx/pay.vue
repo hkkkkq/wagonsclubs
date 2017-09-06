@@ -92,9 +92,10 @@
                 <span style="color:#f4d144!important" class='c'>¥{{total}}</span>
             </div>
         </div>
-        <div class='submit'>
+        <div v-if='orderType == 0' class='submit'>
             提交订单
         </div>
+        <div v-if='orderType == 1'><div class='sl'>需预付定金<span style="color:#fed945">2000.00元</span></div><div class='sr'>提交订单</div></div>
     </div>
 </div>
 </template>
@@ -161,11 +162,11 @@ export default {
         },
         isbirthday(){
             let tmp = [];
-            // if(this.carData){
+            if(this.carData.date){
                 tmp = this.carData.date.split("-")
-            // }else{
-                // return
-            // }
+            }else{
+                return
+            }
             let s = new Date(this.startob.year,this.startob.month,this.startob.date,parseInt(this.startob.shi),parseInt(this.startob.fen))
             let e = new Date(this.endob.year,this.endob.month,this.endob.date,parseInt(this.endob.shi),parseInt(this.endob.fen))
             let b1 = new Date(this.startob.year,tmp[0]-1,tmp[1]);
@@ -213,6 +214,34 @@ export default {
 </script>
 
 <style scoped>
+.sl{
+    display: inline-block;
+    width: 60%;
+    height: 1rem;
+    font-size: 0.26rem;
+    color: #ffffff;
+    border-top: 1px solid #39424a;
+    vertical-align: top;
+    position: absolute;
+    bottom: 0;
+    line-height: 1rem;
+    text-align: center
+}
+.sr{
+    display: inline-block;
+    width: 40%;
+    height: 1rem;
+    background: #fed945;    
+    color: #333333;
+    font-size: 0.32rem;
+    text-align: center;
+    vertical-align: top;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    line-height: 1rem;
+    text-align: center
+}
 .warn{
     width: 100%;
     height: 0.6rem;
