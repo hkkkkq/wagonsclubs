@@ -31,6 +31,8 @@ const wx_hd = resolve => require(['../components/wx/hd.vue'], resolve);
 const wx_collocation = resolve => require(['../components/wx/collocation.vue'], resolve);
 const wx_pay = resolve => require(['../components/wx/pay.vue'], resolve);
 const wx_datepicker = resolve => require(['../components/wx/datepicker.vue'], resolve);
+const wx_paysuccess = resolve => require(['../components/wx/paysuccess.vue'], resolve);
+const wx_onlinepay = resolve => require(['../components/wx/onlinepay.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -104,7 +106,8 @@ export default new Router({
         { path: '/wx/collocation', component: wx_collocation },
         { path: '/wx/pay', component: wx_pay },
         { path: '/wx/datepicker', component: wx_datepicker },
-
+        { path: '/wx/paysuccess', component: wx_paysuccess },
+        { path: '/wx/onlinepay', component: wx_onlinepay },
         //重写移动端
         { path: '/mobile', component: mobile },
         { path: '/mobile/join', component: join },

@@ -41,7 +41,6 @@
 require('../app/rem.js')(window,document)
 require('swiper/dist/css/swiper.css')
 import { Loadmore } from 'mint-ui';
-
 export default {
     name:"findcar",
     data(){
@@ -141,7 +140,10 @@ export default {
             this.topStatus = status;
         },
         handleScroll(){
-            if(document.body.scrollHeight == document.body.scrollTop+window.screen.height){
+            // console.log(document.body.scrollHeight,document.body.scrollTop+window.screen.height)
+            // console.log(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0)
+            // console.log(window.screen.height)
+            if(document.body.scrollHeight == (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0)+window.screen.height){
                 if(this.hasNext){
                     this.$ajax(BASE_URL+"/car/carsList?pageIndex="+ Number(this.currpage + 1))
                     .then((res)=>{

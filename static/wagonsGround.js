@@ -76,8 +76,8 @@ function android_init() {
             athene.exec(success, fail, wagons, wagons.getApiToken, []);
             return false;
         },
-        reservation: function(id) {
-            wagons.reservation(id);
+        reservation: function(isPlan, carId) {
+            wagons.reservation(isPlan, carId);
             return false;
         },
         callPhone: function() {
@@ -260,8 +260,8 @@ function ios_init(obj) {
     }
     window['Wground']['hideHeader'] = hideHeader;
 
-    function reservation(isPlan) {
-        var args = "{\"isPlan\":\"" + isPlan + "\"}";
+    function reservation(isPlan, carId) {
+        var args = "{\"isPlan\":\"" + isPlan + "\", \"carId\":\"" + carId + "\"}";
         var call = "{\"method\":\"reservation:\",\"arg\":" + args + "}";
         baseCall(call);
     }

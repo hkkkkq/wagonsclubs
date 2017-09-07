@@ -198,15 +198,15 @@ export default {
                         if(res.data.success == true){
                             if(res.data.data.JumpInfo.review == true){
                                 if((res.data.data.JumpInfo.userType == 4)||(res.data.data.JumpInfo.userType == 5)){
-                                    window.Wground.reservation(false)
+                                    window.Wground.reservation(false,this.carId)
                                 }else{
                                     if(res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable){
-                                        window.Wground.reservation(true)                                    
+                                        window.Wground.reservation(true,this.carId)                                    
                                     }else if(res.data.data.JumpInfo.carUseable == false){
                                         this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
                                         return ;
                                     }else if(res.data.data.JumpInfo.dateUseable == false){
-                                        window.Wground.reservation(false)
+                                        window.Wground.reservation(false,this.carId)
                                     }
                                 }
                             }else{

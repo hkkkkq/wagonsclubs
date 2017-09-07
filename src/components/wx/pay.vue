@@ -92,16 +92,19 @@
                 <span style="color:#f4d144!important" class='c'>¥{{total}}</span>
             </div>
         </div>
-        <div v-if='orderType == 0' class='submit'>
+        <!-- 计划 -->
+        <div @click='pay0' v-if='orderType == 0' class='submit'>
             提交订单
         </div>
-        <div v-if='orderType == 1'><div class='sl'>需预付定金<span style="color:#fed945">2000.00元</span></div><div class='sr'>提交订单</div></div>
+        <!-- 会员 -->
+        <div @click='pay1' v-if='orderType == 1'><div class='sl'>需预付定金<span style="color:#fed945">2000.00元</span></div><div class='sr'>提交订单</div></div>
     </div>
 </div>
 </template>
 
 <script>
 require('../app/rem.js')(window,document)
+import qs from 'qs';
 export default {
     data(){
         return{
@@ -208,6 +211,56 @@ export default {
         },
         endtime(){
             this.$router.push({path:'/wx/datepicker',query:{type:'endtime'}})            
+        },
+        pay0(){
+            var vm = this
+            this.$ajax({
+                method:"POST",
+                url: BASE_URL+"/car/deposit",
+                data:qs.stringify({
+                    carId:vm.carId,
+                    rentStartAt :vm.startob.year+"-"+(vm.startob.month+1)+"-"+vm.startob.date+" "+parseInt(vm.startob.shi)+":"+parseInt(vm.startob.fen),
+                    rentEndAt:vm.endob.year+"-"+(vm.endob.month+1)+"-"+vm.endob.date+" "+parseInt(vm.endob.shi)+":"+parseInt(vm.endob.fen),
+                    sendAddr:vm.startadd,
+                    returnAddr:vm.endadd, 
+                    orderType : 0 
+                    }),
+                    headers: {"Content-Type": "application/x-www-form-urlencoded",}
+                }).then((res)=>{
+                    console.log(res.data)
+                    if(res.data.success){
+                        alert('成功')
+                    }else{
+                    alert("失败");                        
+                    }
+                })
+        },
+        pay1(){
+            var vm = this
+            this.$ajax({
+                method:"POST",
+                url: BASE_URL+"/car/deposit",
+                data:qs.stringify({
+                    carId:vm.carId,
+                    rentStartAt :vm.startob.year+"-"+(vm.startob.month+1)+"-"+vm.startob.date+" "+parseInt(vm.startob.shi)+":"+parseInt(vm.startob.fen),
+                    rentEndAt:vm.endob.year+"-"+(vm.endob.month+1)+"-"+vm.endob.date+" "+parseInt(vm.endob.shi)+":"+parseInt(vm.endob.fen),
+                    sendAddr:vm.startadd,
+                    returnAddr:vm.endadd, 
+                    orderType : 0,
+                    totalFee:vm.total,
+                    cashFee:2000,
+                    orderType:1
+                    }),
+                    headers: {"Content-Type": "application/x-www-form-urlencoded",}
+                }).then((res)=>{
+                    console.log(res.data)
+                    if(res.data.success){
+                        alert('成功')
+                        this.$router.push('wx/onlinepay')
+                    }else{
+                    alert("失败");                        
+                    }
+                })
         }
     }
 }
