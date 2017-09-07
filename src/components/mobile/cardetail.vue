@@ -262,13 +262,14 @@ export default {
 
 <style scoped>
 .nodis{
-    position: relative;
     font-size: 0.18rem;
     color: #808796;
-    top: -0.32rem;
-    left: 2.68rem;
     text-decoration-line: line-through;
     -webkit-text-decoration-line: line-through;
+    display: inline-block;
+    /* vertical-align: top; */
+    line-height: 0.65rem;
+    margin-left: 0.2rem;
 }
 .share img {
     position:fixed;
@@ -538,6 +539,8 @@ img[lazy=loaded]{
     line-height: 0.52rem;
     font-size: 0.18rem;
     color: #f65641;
+    display: inline-block;
+    /* vertical-align: top; */
 }
 .car_info .star {
      float: right; 
@@ -559,6 +562,7 @@ img[lazy=loaded]{
     box-sizing: border-box;
     padding: 0.03rem 0 0 0.35rem;
     border-bottom: 1px solid #eceef1;
+    font-size: 0;
 }
 .lunbo{
     position: relative;

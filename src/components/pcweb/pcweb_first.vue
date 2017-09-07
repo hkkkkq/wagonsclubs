@@ -32,7 +32,7 @@
         </div>
         <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(5)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-          <img src="../../assets/zl4.jpg" />
+          <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/ej66.JPG" />
           <transition name="fade">
               <h4 v-if="mask3" class="mask">
                 超跑发光，撩妹不慌
@@ -105,12 +105,12 @@
           <p class="ddes">{{currentcar.car.carDesc}}</p>  
           <div class="ppri">
             <h1>
-              会员价:
+              会员价格
             </h1>
             <h2><span>{{currentcar.level5?currentcar.level5:''}}</span> 元/天</h2>
           </div> 
-          <span style="color: rgb(186, 186, 186);font-size: 12px;display: block;position: relative;top: 17px;left: 84px;">基础价格:</span>
-          <span style="color: rgb(186, 186, 186);font-size: 12px;display: block;text-align: right;margin-right: 9px;margin-top: 5px;">{{currentcar.car.dailyRentPrice}}元/天</span>
+          <span style="color: #8e8e8e;font-size: 12px;display: block;position: relative;top: 20px;left: 80px;">基础价格:</span>
+          <span style="color: #8e8e8e;font-size: 12px;display: block;text-align: right;margin-right: 9px;margin-top: 8px;">{{currentcar.car.dailyRentPrice}} 元/天</span>
         </div>
       </div>
       <div class="car_list">
@@ -251,29 +251,26 @@ require('swiper/dist/css/swiper.css')
   opacity: 0
 }
 .ppri h1{
-    color: white;
+  color: #8e8e8e;
     font-size: 14px;
-    width: 80px;
+    width: 60px;
     display: inline-block;
-    margin-top: 30px;
-    text-align: right;
+    margin-top: 16px;
+
 }
 .ppri h2{
-    color: white;
+    color: #8e8e8e;
     float: right;
     font-size: 12px;
     display: inline-block;
-    position: relative;
-    top: 6px;
     margin-right: 10px;
-    margin-top: 21px;
-
+    margin-top: 12px;
 }
 .ppri h2 span{
-  font-size: 24px;
-  color: #ffeb61;
-  font-weight: bolder;
-  letter-spacing: 1px;
+    font-size: 28px;
+    color: #ffeb61;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 .ppri{
   border-top: 1px solid #8e8e8e;
@@ -290,7 +287,7 @@ require('swiper/dist/css/swiper.css')
 }
 .ddes{
   font-size: 12px;
-    color: #bababa;
+    color: #8e8e8e;
     width: 204px;
     height: 48px;
     padding-top: 12px;

@@ -40,7 +40,7 @@
         </div>
     </div>
         <div @click="goar(5)" class="ff">
-        <img src="../../assets/zl4.jpg">
+        <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/ej66.JPG">
         <div class="gg">
             <p class="title">超跑一发光，撩妹不用慌 丨 埃及之夜，时尚SHOW<span>2017-09-6  18:32:00</span></p>
             <div class="cc">8月19日，WAGONS光速超跑与美丽的环球旅游小姐相约在珠江紫宸山。打入秘密据点，最会玩的人都在这里！这场由珠江紫宸山主办、WAGONS光速超跑携手环球旅游小姐网络大赛组委会共同协办的“埃及之夜......</div>
