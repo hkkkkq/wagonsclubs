@@ -25,7 +25,7 @@
                 <span><img style="display:block;width:100%;margin-top: 0.02rem;" src="../../assets/hyj.jpg"></span>
                 ¥<i>{{discountprice}}</i>/天
             </p>
-            <p class="nodis">¥<i>{{info.car.dailyRentPrice}}</i>/天</p>
+            <p class="nodis">¥<i style="font-size:0.24rem">{{info.car.dailyRentPrice}}</i>/天</p>
     </div>
     <div class="car_intro">
             <h3>本车特色</h3>
@@ -264,8 +264,8 @@ export default {
 .nodis{
     font-size: 0.18rem;
     color: #808796;
-    text-decoration-line: line-through;
-    -webkit-text-decoration-line: line-through;
+    /* text-decoration-line: line-through; */
+    /* -webkit-text-decoration-line: line-through; */
     display: inline-block;
     /* vertical-align: top; */
     line-height: 0.65rem;
