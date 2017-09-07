@@ -6,23 +6,11 @@
         <span class="cons"></span><p class="conp">最新动态</p>
         <p style="height: 24px;"></p>
         <div style="font-size:0">
-          <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(2)' class="f1">
-            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-              <img src="../../assets/nn21.jpg" />
-          <transition name="fade">
-              <h4 v-if="mask1" class="mask">
-                盛夏七月，品鉴试驾
-              </h4>
-          </transition>
-            </div>
-          <h1>WAGONS光速超跑举办首次高端试驾品</h1>
-          <div>盛夏7月，WAGONS光速超跑在北京当代MOMA商务中心WAGONS俱乐部举行了首次......</div>
-        </div>
-        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(3)' style="margin: 0 20px;" class="f1">
+          <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(3)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
           <img src="../../assets/news2.jpg" />
           <transition name="fade">
-              <h4 v-if="mask2" class="mask">
+              <h4 v-if="mask1" class="mask">
                 为爱提速，超跑动心  
               </h4>
           </transition>
@@ -30,17 +18,29 @@
           <h1>为爱提速、超跑动心 | WAGONS为留守</h1>
           <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
         </div>
-        <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(4)' class="f1">
+        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(4)' style="margin: 0 20px;" class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
           <img src="../../assets/zl4.jpg" />
           <transition name="fade">
-              <h4 v-if="mask3" class="mask">
+              <h4 v-if="mask2" class="mask">
                 浪漫七夕，精彩漂移
-              </h4>        
-          </transition>  
+              </h4>
+          </transition>
             </div>
           <h1>我学会了漂移，正在前往拯救世界的路上</h1>
           <div>对不起，吴京 你能一个人打赢一群海盗我是信的，你能一个人打赢一个反政府军队我也.....</div>
+        </div>
+        <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(5)' class="f1">
+            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
+          <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/ej66.JPG" />
+          <transition name="fade">
+              <h4 v-if="mask3" class="mask">
+                超跑发光，撩妹不慌
+              </h4>        
+          </transition>  
+            </div>
+          <h1>超跑一发光，撩妹不用慌 丨 埃及之夜</h1>
+          <div>8月19日，WAGONS光速超跑与美丽的环球旅游小姐相约在珠江紫宸山。打入秘密据点.....</div>
         </div>
         </div>
       </div>  
@@ -105,10 +105,12 @@
           <p class="ddes">{{currentcar.car.carDesc}}</p>  
           <div class="ppri">
             <h1>
-              {{currentcar.memberNick5}}价:
+              会员价格
             </h1>
             <h2><span>{{currentcar.level5?currentcar.level5:''}}</span> 元/天</h2>
           </div> 
+          <span style="color: #8e8e8e;font-size: 12px;display: block;position: relative;top: 20px;left: 80px;">基础价格:</span>
+          <span style="color: #8e8e8e;font-size: 12px;display: block;text-align: right;margin-right: 9px;margin-top: 8px;">{{currentcar.car.dailyRentPrice}} 元/天</span>
         </div>
       </div>
       <div class="car_list">
@@ -191,6 +193,7 @@ require('swiper/dist/css/swiper.css')
           this.$ajax(BASE_URL+'/car/carDetail?carId='+firstid)
           .then((resolve)=>{
             this.currentcar = resolve.data.data;
+            console.log(this.currentcar)
           })
 
           for(let i = 1;i<this.cars.length;i++){
@@ -248,28 +251,26 @@ require('swiper/dist/css/swiper.css')
   opacity: 0
 }
 .ppri h1{
-color: white;
+  color: #8e8e8e;
     font-size: 14px;
-    width: 80px;
+    width: 60px;
     display: inline-block;
-        margin-top: 30px;
+    margin-top: 16px;
+
 }
 .ppri h2{
-    color: white;
+    color: #8e8e8e;
     float: right;
     font-size: 12px;
     display: inline-block;
-    position: relative;
-    top: 6px;
     margin-right: 10px;
-    margin-top: 21px;
-
+    margin-top: 12px;
 }
 .ppri h2 span{
-  font-size: 24px;
-  color: #ffeb61;
-  font-weight: bolder;
-  letter-spacing: 1px;
+    font-size: 28px;
+    color: #ffeb61;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 .ppri{
   border-top: 1px solid #8e8e8e;
@@ -286,7 +287,7 @@ color: white;
 }
 .ddes{
   font-size: 12px;
-    color: #bababa;
+    color: #8e8e8e;
     width: 204px;
     height: 48px;
     padding-top: 12px;
