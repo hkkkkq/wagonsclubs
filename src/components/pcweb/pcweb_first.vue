@@ -6,17 +6,17 @@
         <span class="cons"></span><p class="conp">最新动态</p>
         <p style="height: 24px;"></p>
         <div style="font-size:0">
-          <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(3)' class="f1">
+          <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(7)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-          <img src="../../assets/news2.jpg" />
+          <img src="../../assets/zl32.jpeg" />
           <transition name="fade">
               <h4 v-if="mask1" class="mask">
-                为爱提速，超跑动心  
+                私人驾驭，精美沙龙
               </h4>
           </transition>
             </div>
-          <h1>为爱提速、超跑动心 | WAGONS为留守</h1>
-          <div>赠人玫瑰之手，经久犹有余香。WAGONS光速超跑通过当代MOMA了解到有这么一群......</div>
+          <h1>WAGONS的互联网沙龙</h1>
+          <div>8月31日，由《首席财务官》杂志和奇点金服共同主办的“人工智能来了，移动互联网时代......</div>
         </div>
         <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(4)' style="margin: 0 20px;" class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">

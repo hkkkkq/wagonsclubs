@@ -6,7 +6,7 @@
         <p>扫码即刻体验</p>
       </div>
     <div class="s_banner"></div>
-    <div style="display:block;height:1506px">
+    <div style="display:block;height:2108px">
     <div  @click="goar(1)" class="ff">
         <img src="../../assets/news1.png">
         <div class="gg">
@@ -39,11 +39,27 @@
             <span>阅读更多 >></span>
         </div>
     </div>
-        <div @click="goar(5)" class="ff">
+    <div @click="goar(5)" class="ff">
         <img src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/ej66.JPG">
         <div class="gg">
             <p class="title">超跑一发光，撩妹不用慌 丨 埃及之夜，时尚SHOW<span>2017-09-6  18:32:00</span></p>
             <div class="cc">8月19日，WAGONS光速超跑与美丽的环球旅游小姐相约在珠江紫宸山。打入秘密据点，最会玩的人都在这里！这场由珠江紫宸山主办、WAGONS光速超跑携手环球旅游小姐网络大赛组委会共同协办的“埃及之夜......</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
+    <div @click="goar(7)" class="ff">
+        <img src="../../assets/zl32.jpeg">
+        <div class="gg">
+            <p class="title">WAGONS的互联网沙龙<span>2017-09-7  14:17:09</span></p>
+            <div class="cc">8月31日，由《首席财务官》杂志和奇点金服共同主办的“人工智能来了，移动互联网时代的财务绩效管理怎么‘破’”主题沙龙在北京WAGONS光速超跑俱乐部顺利举行，来自北京各个行业的财务高管40余人参加此次活动......</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
+    <div @click="goar(6)" class="ff">
+        <img src="../../assets/zl24.png">
+        <div class="gg">
+            <p class="title">有人开超跑把美女主播约走啦<span>2017-09-6  18:35:00</span></p>
+            <div class="cc">这个七夕，追随WAGONS的脚步，开着炸街超跑载着美女主播 去 约 会 ！......</div>
             <span>阅读更多 >></span>
         </div>
     </div>
