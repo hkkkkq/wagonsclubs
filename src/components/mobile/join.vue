@@ -88,7 +88,7 @@
                 </ul>
             </div>
 
-            <div class="card_grade" style="border-bottom: none">
+            <div class="card_grade" style="border-bottom: none;padding-bottom:0">
                 <h4>至尊计划</h4>
                 <p>358000元／年<span @click="showcars(3)" class="support_car zhi">支持车型一览<img src="../../assets/gt.jpg" alt=""></span></p>
                 <h6>权益细则:</h6>
@@ -139,7 +139,7 @@
                 <i class="line" style="right:2.47rem;"></i>
                 <p>散租</p>
             </div>
-            <div class="card_grade" style="border-bottom: none">
+            <div class="card_grade" style="border-bottom: none;padding-bottom:0">
                 <ul class="list">
                     <li>
                         <i>1</i><span>只需缴纳少量押金，即可开走顶级跑车</span>
@@ -150,8 +150,35 @@
                     <li>
                         <i>3</i><span>优质老客户还有多重优惠，有机会免押金用车</span>
                     </li>
+                    <li style="padding-top: 0.4rem;">
+                        <a style="font-size: 0.24rem;text-decoration-line: none;color: cornflowerblue;" href="https://toweringcapital.cn/?pcode=wagons">点此购买合作方私募基金可减免押金</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="none_box"></div>        
+        <div style="height: 8.7rem;" class="scatter">
+            <div class="head">
+                <i class="line" style="left:1.7rem;"></i>
+                <i class="line" style="right:1.7rem;"></i>
+                <p>充值有礼 多充多送</p>
+            </div>
+            <div class="card_grade" style="border-bottom: none">
+                <ul class="list">
                     <li>
-                        <a style="font-size: 0.24rem;float: right;text-decoration-line: none;color: cornflowerblue;" href="https://toweringcapital.cn/?pcode=wagons">点此购买合作方私募基金可减免押金</a>
+                        <span style="width:5.8rem">如果您有多次用车需求，可以办理充值卡，享受更加优惠的价格及更多VIP待遇。</span>
+                    </li>
+                </ul>
+                <div class="tb">
+                    <p><span>充值金额</span><span>赠送礼金</span><span style="border:0">折扣力度</span></p>
+                    <p><span>10000元</span><span class="or">800元</span><span class="or" style="border:0">9.2折</span></p>
+                    <p><span>30000元</span><span class="or">3600元</span><span class="or" style="border:0">8.8折</span></p>
+                    <p><span>50000元</span><span class="or">7500元</span><span class="or" style="border:0">8.5折</span></p>
+                    <p style="border:0"><span>100000元</span><span class="or">20000元</span><span class="or" style="border:0">8折</span></p>
+                </div>
+                <ul style="position: relative;top: 4.8rem;" class="list">
+                    <li>
+                        <span style="width:5.8rem">您可以到店咨询办理实体卡。</span>
                     </li>
                 </ul>
             </div>
@@ -268,6 +295,35 @@ export default {
 }
 </script>
 <style scoped>
+.tb .or{
+    color: #fd5151!important;
+}
+.tb>p>span{
+    height: 100%;
+    display: inline-block;
+    width: 2.1rem;
+    text-align: center;
+    line-height: 0.7rem;
+    border-right: 1px solid #d7d7d7;
+}
+.tb>p{
+    border-bottom: 1px solid #d7d7d7;
+    height: 0.7rem!important;
+    font-size: 0.24rem!important;
+    color: #252525!important;
+}
+.tb{
+    width: 6.34rem;
+    height: 3.55rem;
+    display: block;
+    margin: auto;
+    border: 0.14rem solid #f3f3f3;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 0.48rem;
+    margin-bottom:2.5rem; 
+}
 .share{
     position: relative;
     top: -0.4rem;
@@ -327,7 +383,6 @@ export default {
     text-align: center;
     background: #ffd320;
     font-size: 0.32rem;
-    font-weight: bold;
 }
 .more span {
     display: inline-block;

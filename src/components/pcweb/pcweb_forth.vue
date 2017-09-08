@@ -119,17 +119,26 @@
               <p class="line"><span class="left">11</span><span class="right">俱乐部组织的高端定制游等自费活动，享受7折优惠</span></p>
               <p class="line"><span class="left">12</span><span class="right">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span></p>
           </div>
-          <div class="jihua1">
+          <div style="height: 208px;" class="jihua1">
               <p class="jihuaname">散租</p>
-              <!-- <div class="jihuaname1">
-                  <p class='detail'>权益细则</p>
-                  <p class='price'>98000元／年</p>
-              </div>            -->
               <div class='clear1'></div>
               <p class="line"><span class="left">1</span><span class="right">只需缴纳少量押金，即可开走顶级跑车</span></p>
               <p class="line"><span class="left">2</span><span class="right">尊享会员折扣价，长租还享折上折</span></p>
               <p class="line"><span class="left">3</span><span class="right">优质老客户还有多重优惠，有机会免押金用车</span></p>
-              <p><a style="font-size: 14px;margin-left: 112px;position: relative;top: 16px;text-decoration-line: none;color: cornflowerblue;" href="https://toweringcapital.cn/?pcode=wagons">点此购买合作方私募基金可减免押金</a></p>
+              <p><a style="font-size: 14px;margin-left: 80px;position: relative;top: 32px;text-decoration-line: none;color: cornflowerblue;" href="https://toweringcapital.cn/?pcode=wagons">点此购买合作方私募基金可减免押金</a></p>
+          </div>
+            <div class="jihua1">
+              <p class="jihuaname">充值有礼 多冲多送</p>
+              <div class='clear1'></div>
+              <p class="line"><span style="margin-left:0;width:550px" class="right">如果您有多次用车需求，可以办理充值卡，享受更加优惠的价格及更多VIP待遇。</span></p>
+              <div class="tb">
+                    <p><span>充值金额</span><span>赠送礼金</span><span style="border:0">折扣力度</span></p>
+                    <p><span>10000元</span><span class="or">800元</span><span class="or" style="border:0">9.2折</span></p>
+                    <p><span>30000元</span><span class="or">3600元</span><span class="or" style="border:0">8.8折</span></p>
+                    <p><span>50000元</span><span class="or">7500元</span><span class="or" style="border:0">8.5折</span></p>
+                    <p style="border:0"><span>100000元</span><span class="or">20000元</span><span class="or" style="border:0">8折</span></p>
+              </div>
+              <p class="line"><span style="margin-left:0" class="right">您可以到店咨询办理实体卡</span></p>
           </div>
           <div class='tips'>
               <p class="tips1">备注</p>
@@ -269,6 +278,31 @@ export default {
 }
 </script>
 <style scoped>
+.tb .or{
+    color: #fd5151!important;
+}
+.tb>p>span{
+    height: 100%;
+    display: inline-block;
+    width: 175px;
+    text-align: center;
+    line-height: 33px;
+    border-right: 1px solid #d7d7d7;
+}
+.tb>p{
+    border-bottom: 1px solid #d7d7d7;
+    height: 39px!important;
+    font-size: 14px!important;
+    color: #252525!important;
+}
+.tb{
+    width: 532px;
+    height: 198px;
+    display: block;
+    border: 8px solid #f3f3f3;
+    margin-left: 80px;
+    margin-top: 21px;
+}
  .qr_code{
     z-index: 100;
     position: fixed;
@@ -468,7 +502,7 @@ export default {
     color: red;
 }
 .jihua1{
-    margin-top: 52px;
+    margin-top: 70px;
 }
 .line{
     margin-top: 20px;
