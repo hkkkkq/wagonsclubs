@@ -264,12 +264,11 @@ export default {
 .nodis{
     font-size: 0.18rem;
     color: #808796;
-    /* text-decoration-line: line-through; */
-    /* -webkit-text-decoration-line: line-through; */
     display: inline-block;
-    /* vertical-align: top; */
     line-height: 0.65rem;
     margin-left: 0.2rem;
+    height: 0.3rem;
+    border-bottom: 1px solid #808797;
 }
 .share img {
     position:fixed;

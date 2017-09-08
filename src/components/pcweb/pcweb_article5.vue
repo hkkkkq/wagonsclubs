@@ -98,7 +98,8 @@
     <div class="fen">
         <!-- <a style="float:left;color: #acacac; cursor: no-drop;">上一页：没有了</a> -->
         <a href="/article/4" style="float:left">上一页：我学会了漂移 正在前往拯救世界的路上</a>
-        <a style="float:right;color: #acacac; cursor: no-drop;">没有了：下一页</a>
+        <!-- <a style="float:right;color: #acacac; cursor: no-drop;">没有了：下一页</a> -->
+        <a href="/article/6" style="float:right;">有人开超跑把美女主播约走啦：下一页</a>
     </div>
 </div>
 </template>
