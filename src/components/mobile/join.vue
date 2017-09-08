@@ -301,7 +301,7 @@ export default {
 .tb>p>span{
     height: 100%;
     display: inline-block;
-    width: 2.1rem;
+    width: 2.05rem;
     text-align: center;
     line-height: 0.7rem;
     border-right: 1px solid #d7d7d7;
