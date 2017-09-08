@@ -13,7 +13,17 @@
             </div>
             <div class="dates" :key="n" :line='n' v-for="(item,n) in this.dateform">
                 <!-- <p style="font-size:20px">{{n}}</p> -->
-                <span :line='n' :row='n2' @click="clickspan(n,n2)" :key="n2" v-for="(item2,n2) in item"><em :class="{'click':dateform[n][n2] == choose}">{{item2 == "k"?null:item2}}</em></span>
+                <span 
+                    :line='n'
+                    :row='n2' 
+                    @click="clickspan(n,n2)" 
+                    :key="n2" 
+                    v-for="(item2,n2) in item">
+                    <em :class="{'startclick':dateform[n][n2] == choose,'today':istoday == dateform[n][n2]}">
+                        {{item2 == "k"?null:item2}}
+                        <span class="hasrent" v-if="istoken(dateform[n][n2])">已出租</span>
+                    </em>
+                </span>
                 <pd-select-box v-if="show[n]" style="width: 7.1rem;margin: auto;position: relative;left: -0.3rem;">
                     <pd-select-item :listData="listData" v-model="shi"></pd-select-item>
                     <pd-select-item :listData="listData2" v-model="fen"></pd-select-item>
@@ -33,26 +43,45 @@ import pdSelectBox from './picker/slectBox.vue'
 export default {
     data(){
         return{
-            show:"",
-            curYear:"",
-            curMonth:"",   //0开头
-            dateform:[],
-            xqj:"",
+            show:"",//控制时间表盘显示
+            curYear:"",//选中年
+            curMonth:"",   //0开头  选中月
+            dateform:[], //日期数字 ，7个一组
+            xqj:"", // 每月的第一天是星期几
             listData: ['00时','01时','02时','03时','04时','05时','06时','07时','08时','09时','10时','11时','12时','13时','14时','15时','16时','17时','18时','19时','20时','21时','22时','23时',],
             listData2: ['00分','30分'],
-            shi: "",
-            fen: "",
-            choose:"",
-            nowxqj:"",
+            shi: "",//选中小时
+            fen: "",//选中分
+            choose:"",//选中日期
+            nowxqj:"",//选中那天是星期几
+            sdate:'',//当天是几号
+            // tokendays:["2018-09-06","2018-09-07"]
         }
     },
     computed:{
+        istoday(){
+            let y = this.curYear == new Date().getFullYear();
+            let m = this.curMonth == new Date().getMonth();
+            // let d = this.sdate == new Date().getDate();
+            console.log(this.sdate)
+            if(y&&m){
+                return this.sdate
+            }else{
+                return false
+            }
+        },
+
+        tokendays(){
+            return this.$store.state.rentdays
+        }
+
     },
     components:{
         pdSelectItem,
         pdSelectBox
     },
     watch:{
+        //监听月份的改变 0-11
         curMonth:function(data){
             this.xqj = new Date(this.curYear,this.curMonth,1).getDay()
             var form = new Array(this.xqj).fill("k")
@@ -71,12 +100,20 @@ export default {
         var curDate = new Date(); //当前日期
         this.curYear = curDate.getFullYear()  //当前年份
         this.curMonth = curDate.getMonth() //当前月份
-        this.choose = curDate.getDate()
+        this.sdate = curDate.getDate()
         //获取当月1号是周几
         this.xqj = new Date(this.curYear,this.curMonth,1).getDay()
 
     },
     methods:{
+       istoken(date){
+           let tmp = this.curYear+"-"+( (this.curMonth+1) < 10 ? ( "0" + (this.curMonth+1) ) : (this.curMonth+1) )+"-"+(date<10 ? ("0"+date):date );
+           if(!(this.tokendays.indexOf(tmp)== -1)){
+               return true
+           }else{
+               return false
+           }
+        },
         premonth(){
             this.choose = "";
             if(this.curMonth == 0){
@@ -127,6 +164,18 @@ export default {
 </script>
 
 <style scoped>
+.hasrent{
+    color: #ffffff;
+    opacity: 0.1;
+    font-size: 0.18rem;
+    position: absolute;
+    width: 1rem;
+    top: 0.35rem;
+    left: 0;
+}
+.today{
+    color: #d8434d;
+}
 .but1{
     display: block;
     width: 1rem;
@@ -140,12 +189,12 @@ export default {
     right: 0.2rem;
     position: absolute;
 }
-.click{
+.startclick{
     display: block;
     width: 0.68rem;
     margin: auto;
     height: 0.68rem;
-    background: #f4d144;
+    background: rgb(74, 200, 122);
     color: #0f1923;
     border-radius: 1000px;
     line-height: 0.7rem;

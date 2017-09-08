@@ -123,6 +123,7 @@ export default {
             .then((res)=>{
                 this.carData = res.data.data;
                 this.startadd = res.data.data.storeAdds
+                this.$store.commit("rentdays",res.data.data.takenDates)
                 console.log(this.carData)
             })
         

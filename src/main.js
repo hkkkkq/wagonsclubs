@@ -31,7 +31,8 @@ const store = new vuex.Store({
         'isNewApp': false,
         'applist': "",
         'starttime': "",
-        'endtime': ''
+        'endtime': '',
+        'rentdays': ''
     },
     mutations: {
         foot_left_click(state) {
@@ -53,6 +54,9 @@ const store = new vuex.Store({
         },
         endtime(state, data) {
             state.endtime = data
+        },
+        rentdays(state, data) {
+            state.rentdays = data
         }
     }
 })
