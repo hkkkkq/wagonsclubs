@@ -19,7 +19,7 @@
                     @click="clickspan(n,n2)" 
                     :key="n2" 
                     v-for="(item2,n2) in item">
-                    <em :class="{'startclick':dateform[n][n2] == choose,'today':istoday == dateform[n][n2]}">
+                    <em :class="{'rent':istoken(dateform[n][n2]),'startclick':dateform[n][n2] == choose,'today':istoday == dateform[n][n2]}">
                         {{item2 == "k"?null:item2}}
                         <span class="hasrent" v-if="istoken(dateform[n][n2])">已出租</span>
                     </em>
@@ -164,6 +164,9 @@ export default {
 </script>
 
 <style scoped>
+.rent{
+    opacity: 0.1;
+}
 .hasrent{
     color: #ffffff;
     opacity: 0.1;
