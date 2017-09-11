@@ -99,12 +99,12 @@ export default {
             carId:'',
             at:false,
             mes:'',
-            isapp:true
+            isapp:""
         }
     },
     created(){
         //判断是否是wagonsapp
-        if(false){
+        if(/From_Wagons/.test(navigator.userAgent.toLowerCase())){
             this.isapp = true            
         }else{
             this.isapp = false
