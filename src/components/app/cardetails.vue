@@ -99,7 +99,7 @@ export default {
             carId:'',
             at:false,
             mes:'',
-            isapp:false
+            isapp:true
         }
     },
     created(){
