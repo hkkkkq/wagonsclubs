@@ -128,7 +128,7 @@
               <p><a style="font-size: 14px;margin-left: 80px;position: relative;top: 32px;text-decoration-line: none;color: cornflowerblue;" href="https://toweringcapital.cn/?pcode=wagons">点此购买合作方私募基金可减免押金</a></p>
           </div>
             <div class="jihua1">
-              <p class="jihuaname">充值有礼 多冲多送</p>
+              <p class="jihuaname">充值有礼 多充多送</p>
               <div class='clear1'></div>
               <p class="line"><span style="margin-left:0;width:550px" class="right">如果您有多次用车需求，可以办理充值卡，享受更加优惠的价格及更多VIP待遇。</span></p>
               <div class="tb">
