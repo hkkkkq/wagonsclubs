@@ -18,7 +18,7 @@
             <img style="width:2.24rem;height:0.4rem;display:block;margin:auto" src="../../assets/tj.jpg">
             <swiper :options="swiperOption" ref="mySwiper"> 
                 <swiper-slide :key="n" v-for="(item,n) in tj.discount">
-                    <div @click="details(item.id)" class="tj">
+                    <div @click="mid(item.id)" class="tj">
                         <img v-if="item.rentingStatus" class="zz" src="../../assets/bz.png">
                         <img v-else class="zz" src="../../assets/tjb1.png">
                         <div class="tjcar">
@@ -127,7 +127,9 @@ export default {
         isNew(){ return this.$store.state.isNewApp},
     },
     methods:{
-
+        mid(mid){
+            this.$router.push({path:"/mobile/mid",query:{"id":mid}})
+        },
         details:function(i){
             this.$router.push({path:'/mobile/cardetail?isNewApp='+this.isNew,query:{carId:i}})
             // router.push({ name: 'user', params: { userId: 123 }})
