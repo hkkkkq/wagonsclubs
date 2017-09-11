@@ -22,10 +22,21 @@
                 <!-- <img v-if="info.car.starLevel == '1'" src="../../assets/1.png" class="star">  -->
             </p>
             <p class="price">
-                <span><img style="display:block;width:100%;margin-top: 0.02rem;" src="../../assets/hyj.jpg"></span>
-                ¥<i>{{discountprice}}</i>/天
+                <!-- <span v-if="info.car.currentDaydisc" style="width:1.3rem">
+                    <img style="display:block;width:100%;height:100%" src="../../assets/m-discount_vip.png">
+                    <p style="position: absolute;top: 0;color: white;left: 0;right: 0;line-height:0.4rem;font-size: 0.22rem;">每日特价</p>
+                    <img style="display:block;width:100%;margin-top: 0.02rem;" src="../../assets/hyj.jpg">
+                </span> -->
+                <span style="width:1.3rem">
+                    <img style="display:block;width:100%;height:100%" src="../../assets/m-discount_vip.png">
+                    <p style="position: absolute;top: 0;color: white;left: 0;right: 0;line-height:0.4rem;font-size: 0.22rem;">{{info.car.currentDaydisc?"每日特价":"会员价"}}</p>
+                    <!-- <img style="display:block;width:100%;margin-top: 0.02rem;" src="../../assets/hyj.jpg"> -->
+                </span>
+                <b class="bb">
+                ¥<i>{{info.car.currentDaydisc?info.car.currentDaydisc:discountprice}}</i>/天                    
+                </b>
             </p>
-            <p class="nodis">¥<i style="font-size:0.24rem">{{info.car.dailyRentPrice}}</i>/天</p>
+            <p class="nodis">¥<i style="font-size:0.22rem">{{info.car.dailyRentPrice}}</i>/天</p>
     </div>
     <div class="car_intro">
             <h3>本车特色</h3>
@@ -261,6 +272,10 @@ export default {
 </script>
 
 <style scoped>
+.bb{
+    position: relative;
+    top: -0.05rem;
+}
 .nodis{
     font-size: 0.18rem;
     color: #808796;
@@ -269,6 +284,8 @@ export default {
     margin-left: 0.2rem;
     height: 0.3rem;
     border-bottom: 1px solid #808797;
+    position: relative;
+    top: -0.05rem;
 }
 .share img {
     position:fixed;
@@ -521,17 +538,19 @@ img[lazy=loaded]{
     border-bottom: 3px solid #f2f3f5;
 }
 .car_info .price i {
-    font-size: 0.34rem;
+    font-size: 0.42rem;
     font-weight: bold;
+    line-height: 0.6rem;
 }
 .car_info .price span {
     display: inline-block;
-    width: 0.8rem;
-    height: 0.29rem;
     line-height: 0.28rem;
     text-align: center;
     margin: 0.1rem 0.16rem 0 0;
     background-size: 100% 100%;
+    vertical-align: top;
+    position: relative;
+    top: -0.05rem;
 }
 .car_info .price {
     height: 0.52rem;
