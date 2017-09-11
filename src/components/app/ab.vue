@@ -74,7 +74,7 @@ export default {
     },
     created(){
         //判断是否是wagonsapp
-        if(/From_Wagons/.test(navigator.userAgent.toLowerCase())){
+        if(/from_wagons/.test(navigator.userAgent.toLowerCase())){
             this.isapp = true            
         }else{
             this.isapp = false
