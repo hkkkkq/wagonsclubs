@@ -1,5 +1,5 @@
 <template>
-<div>
+<div  style="font-family: PingFangSC-Medium, sans-serif;">
     <!-- <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png"> -->
     <div style="position:relative">
         <div style="height:0;top: 1.3rem;" class="swiper-pagination"></div>       
