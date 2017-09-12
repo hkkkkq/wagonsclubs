@@ -16,7 +16,7 @@
         <p style="height:0.1rem;background:#eceef1"></p>
         <div style="background:#ffffff;width:100%;height:3.9rem;padding-top: 0.1rem;">
             <img style="width:2.24rem;height:0.4rem;display:block;margin:auto" src="../../assets/tj.jpg">
-            <swiper :options="swiperOption" ref="mySwiper"> 
+            <swiper :options="swiperOption2" ref="mySwiper"> 
                 <swiper-slide :key="n" v-for="(item,n) in tj.discount">
                     <div @click="mid(item.id)" class="tj">
                         <img v-if="item.rentingStatus" class="zz" src="../../assets/bz.png">
@@ -156,7 +156,7 @@ export default {
     },
     methods:{
         mid(mid){
-            this.$router.push({path:"/mobile/mid",query:{"carId":mid}})
+            this.$router.push({path:"/mobile/mid",query:{"carId":mid,"isNewApp":this.isNew}})
         },
         details:function(i){
             this.$router.push({path:'/mobile/cardetail?isNewApp='+this.isNew,query:{carId:i}})

@@ -1,7 +1,13 @@
 <template>
 <div style="font-family: PingFangSC-Medium, sans-serif;position: absolute;width:100%;height:100%">
     <div style="background:#ffffff;height:100%">
-        <div v-if="suc == false">
+        <div  class="head">
+            <!-- v-if="isNew" -->
+            <img class="goback" @click="goo" src="../../assets/m-goback.png">
+            <p>限时秒杀</p>
+            <img class="sha" @click="sha" src="../../assets/share.png">
+        </div>
+        <div style="position:relative" v-if="suc == false">
             <div class="carimg">
                 <p class="carname">
                     <img class="midal" src="../../assets/mida.jpg">
@@ -21,7 +27,7 @@
                 <img src="../../assets/miaoshawx.png">
             </div>
         </div>
-        <div class="success" v-else-if="suc == true">
+        <div class="success" style="position:relative" v-else-if="suc == true">
             <img src="../../assets/migs.png">
             <span>您已成功获得500元Gift Card</span>
             <div style="position: absolute;left: 0;right: 0;top: 2rem;" class="clear"></div>            
@@ -42,6 +48,11 @@ export default {
         }
     },
     created(){
+        if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            this.$store.commit('isNewApp')
+        }
+
         this.carId = this.$route.query.carId;
         this.$ajax(BASE_URL+'/car/leaseDetails?carId='+this.$route.query.carId+"&tt="+Date.parse(new Date()))
             .then((res)=>{
@@ -53,12 +64,58 @@ export default {
     methods:{
         but(){
             this.$router.push({path:"/mobile/cardetail",query:{"carId":this.carId}})
+        },
+        goo(){
+            this.$router.go(-1)
+        },
+        sha(){
+
         }
     }
 }
 </script>
 
 <style scoped>
+.sha{
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-left: 0.3rem;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+    margin-right: 0.3rem;
+    z-index:10;
+    position: relative;
+}
+.head p{
+    font-size: 0.36rem;
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+.goback{
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-left: 0.3rem;
+    display: inline-block;
+    vertical-align: top;
+    z-index:10;
+    position: relative;
+    float: left;
+}
+.head{
+    width: 100%;
+    height: 0.84rem;
+    background: #000000;
+    position: relative;
+    font-size: 0;
+    padding-top: .43rem;
+}
 .ci{
     position: absolute;
     z-index: 0;
