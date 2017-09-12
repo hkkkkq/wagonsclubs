@@ -155,6 +155,7 @@ export default {
             window.Wground.share("wagons光速超跑",window.location.href,'','www',[0,1,2,3])
         },
         sub(){
+            var vm = this;
             //获取token
             if(this.isapp){
                 window.Wground.getApiToken(suc,fail)//suc在下面
@@ -192,7 +193,8 @@ export default {
                 })
             }
             function suc(token){
-                this.$ajax({
+                vm.$ajax("http://www.baidu.com")
+                vm.$ajax({
                     url:BASE_URL+"/car/memberType?carId="+this.carId,
                     method:'GET',
                     headers:{"token":token}
@@ -222,7 +224,8 @@ export default {
                     })
                 };
             function fail(err){
-                this.ef("err")
+                alert(res)
+                vm.ef("err")
             }
         },
         cl(){
