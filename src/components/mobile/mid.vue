@@ -5,7 +5,7 @@
             <!-- v-if="isNew" -->
             <img class="goback" @click="goo" src="../../assets/m-goback.png">
             <p>限时秒杀</p>
-            <img class="sha" @click="sha" src="../../assets/share.png">
+            <!-- <img class="sha" @click="sha" src="../../assets/share.png"> -->
         </div>
         <div style="position:relative" v-if="suc == false">
             <div class="carimg">
@@ -48,6 +48,53 @@ export default {
         }
     },
     created(){
+
+        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
+            .then((res)=>{
+                wx.config({
+                    debug: false,
+                        appId: res.data.data.sign.appId,
+                        timestamp: res.data.data.sign.timestamp,
+                        nonceStr: res.data.data.sign.nonceStr,
+                        signature: res.data.data.sign.signature,
+                        jsApiList: [
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage',
+                            'onMenuShareQQ',
+                            'onMenuShareWeibo'
+                        ]
+                    });
+                var locationHref = window.location.href;
+                wx.ready(function () {
+                        wx.onMenuShareTimeline({
+                            title: 'WAGONS光速超跑',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
+
+                        wx.onMenuShareAppMessage({
+                            title: 'WAGONS光速超跑',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
+
+                        wx.onMenuShareQQ({
+                            title: 'WAGONS光速超跑',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
+
+                        wx.onMenuShareWeibo({
+                            title: 'WAGONS光速超跑',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
+                    });
+            }).catch((res)=>{alert(res)})
+
         if(this.$route.query.isNewApp == 'true'){
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
@@ -69,7 +116,7 @@ export default {
             this.$router.go(-1)
         },
         sha(){
-
+             window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
         }
     }
 }
@@ -255,7 +302,7 @@ export default {
     line-height: 0.8rem;
 }
 .carimg .img1{
-    width: 7.2rem;
+    /* width: 7.2rem; */
     height: 8rem;
     position: relative;
     left: 0;
