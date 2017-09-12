@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="font-family: PingFangSC-Medium, sans-serif;">
     <a @click="goo" class="back"></a>
     <span v-if='isNew' @click='share' class="share">
                             <img src="../../assets/wagons_lease_share.png" alt="">
@@ -14,7 +14,7 @@
     </div>
     <div class="car_info">
             <p class="car_name">
-                 <span>{{info.car.carName}}</span> 
+                 <span style="font-family: PingFangSC-Medium, sans-serif;">{{info.car.carName}}</span> 
                 <img v-if="info.car.starLevel == '5'" src="../../assets/5.png" class="star">
                 <img v-if="info.car.starLevel == '4'" src="../../assets/4.png" class="star">  
                 <img v-if="info.car.starLevel == '3'" src="../../assets/3.png" class="star">
@@ -33,7 +33,7 @@
                     <!-- <img style="display:block;width:100%;margin-top: 0.02rem;" src="../../assets/hyj.jpg"> -->
                 </span>
                 <b class="bb">
-                ¥<i>{{info.car.currentDaydisc?info.car.currentDaydisc:discountprice}}</i>/天                    
+                ¥<i style="">{{info.car.currentDaydisc?info.car.currentDaydisc:discountprice}}</i>/天                    
                 </b>
             </p>
             <p class="nodis">¥<i style="font-size:0.22rem">{{info.car.dailyRentPrice}}</i>/天</p>

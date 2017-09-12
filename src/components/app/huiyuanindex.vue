@@ -1,5 +1,5 @@
 <template>
-<div style="background:#0f1923">
+<div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923">
     <div class="head">
         <p @click="ll(1)" :class="{active:rightc}" style="    border-bottom-left-radius: 1rem;
     border-top-left-radius: 1rem;">会员权益</p><p @click="ll(2)" :class="{active:!rightc}" style="border-bottom-right-radius: 1rem;

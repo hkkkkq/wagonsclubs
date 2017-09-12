@@ -1,5 +1,5 @@
 <template>
-<div style="background:#0f1923;border:1px solid #3d454d">
+<div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923;border:0px solid #3d454d">
     <!-- <div v-if="iswx" class="t1">
         <img class="logo" src="../../assets/app/wlogo.png">
     </div> -->

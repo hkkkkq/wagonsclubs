@@ -1,5 +1,5 @@
 <template>
-<div class="all">
+<div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
     <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
@@ -23,8 +23,9 @@
             <span class="star">{{car.starLevel}}星级车</span>
         </div>
         <div class="pr">
-            <span class="level">白金会员</span>
+            <span class="level">会员价</span>
             <span class="price"><span class="number">{{car.dailyRentPrice}}</span>／天</span>
+            <span class="nodis"><b>2000</b>/天</span>
         </div>
         <p class="des">{{car.carDesc}}</p>
          
@@ -118,6 +119,7 @@ export default {
                 this.level5 = res.data.data.level5;
                 this.car = res.data.data.car;
                 this.carimgs = res.data.data.carImgShows;
+                console.log(res.data)
             }else{
                 alert('一定是后台小哥出现了什么问题！！！')
             }            
@@ -236,6 +238,17 @@ export default {
 </script>
 
 <style scoped>
+.nodis b{
+    font-size: 0.26rem;
+}
+.nodis{
+    font-size: 0.24rem;
+    color:#999999;
+    display:inline-block;
+    border-bottom: 1px solid #999999;
+    height: 0.1rem;
+    margin-left: 0.3rem;
+}
 .ms div{
     background: #fed945;
     height: 0.72rem;
@@ -390,25 +403,27 @@ video{
 .level{
     vertical-align: super;
     font-size: 0.18rem;
-    padding-left: 10px;
+    padding-left: 0.15rem;
     background-color: #fed945;
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
-    padding-right: 10px; 
+    padding-right: 0.2rem; 
     width: 1rem;
     height: 0.3rem;
     margin-right: 0.3rem;
 }
 .star{
     border-radius: 4px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 4px;
+    padding-right: 4px;
     border: 1px solid;
-    font-size: 0.2rem;
+    font-size: 0.18rem;
     color: #ffffff;
     float: right;
     padding-top: 2px;
     padding-bottom: 2px;
+    width: 0.96rem;
+    text-align: center;
 }
 .name{
     font-size: 0.3rem;

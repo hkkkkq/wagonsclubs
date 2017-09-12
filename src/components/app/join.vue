@@ -1,5 +1,5 @@
 <template>
-<div style="background:#0f1923">
+<div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923">
     <img class="banner" src="../../assets/app/joinbanner.png">
     <p class="uv">开始用车之前，您需要通过申请方式加入WAGONS，成功后即可自由选择购买优惠套餐，或采用单次散租的方式开始您的超跑自驾之旅。</p>
     <div class="cc">
@@ -13,26 +13,30 @@
             </div>
             <div class="ff">
                 <span>2</span>
-                <b>乐潮计划权益外用车，享受金卡会员折扣，即基础价7折</b>
+                <b>乐潮计划权益外用车，享受会员折扣，即基础价6折</b>
             </div>
             <div class="ff">
                 <span>3</span>
-                <b>生日当天用车半价，生日专属礼物</b>
+                <b>长租折上折，周租会员价9折，月租会员价7折</b>
             </div>
             <div class="ff">
                 <span>4</span>
-                <b>每邀请1位好友，可额外累计1天使用权</b>
+                <b>生日当天用车半价，生日专属礼物</b>
             </div>
             <div class="ff">
                 <span>5</span>
-                <b>一对一专属管家服务</b>
+                <b>每邀请1位好友，可额外累计1天使用权</b>
             </div>
             <div class="ff">
                 <span>6</span>
-                <b>俱乐部旗下修理厂每年1次免费深度车辆清洗</b>
+                <b>一对一专属管家服务</b>
             </div>
             <div class="ff">
                 <span>7</span>
+                <b>俱乐部旗下修理厂每年1次免费深度车辆清洗</b>
+            </div>
+            <div class="ff">
+                <span>8</span>
                 <b>俱乐部组织的高端定制游等自费活动，享受9折优惠</b>
             </div>
         </div>
@@ -41,50 +45,46 @@
             <h1><span style="color:#999999;float:left">全部权益明细</span><span @click="ch(2)" style="color:#009cff;float:right">支持车型一览</span></h1>
             <div class="ff">
                 <span>1</span>
-                <b>每月3天超跑使用权，每天可在俱乐部指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
+                <b>每月3天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
             </div>
             <div class="ff">
                 <span>2</span>
-                <b>获俱乐部价值100万白金会员资格，享白金会员所有权益</b>
+                <b>优享计划权益外用车，可享受会员折扣，即基础价6折</b>
             </div>
             <div class="ff">
                 <span>3</span>
-                <b>优享计划权益外用车，享受白金会员折扣，即基础价6折</b>
+                <b>长租折上折，周租会员价9折，月租会员价7折</b>
             </div>
             <div class="ff">
                 <span>4</span>
-                <b>长租折上折，周租白金价格9折，月租白金价格7折</b>
-            </div>
-            <div class="ff">
-                <span>5</span>
                 <b>生日当天用车半价，生日专属礼物</b>
             </div>
             <div class="ff">
-                <span>6</span>
+                <span>5</span>
                 <b>每邀请1位好友，可额外累计1天使用权</b>
             </div>
             <div class="ff">
-                <span>7</span>
+                <span>6</span>
                 <b>每月1次劳斯莱斯或宾利商务接送服务</b>
             </div>
             <div class="ff">
-                <span>8</span>
+                <span>7</span>
                 <b>一对一专属管家服务</b>
             </div>
             <div class="ff">
-                <span>9</span>
-                <b>每次用车免除3分及以内的违章罚金</b>
+                <span>8</span>
+                <b>每年用车免除3分及以内的违章罚金</b>
             </div>
             <div class="ff">
-                <span>10</span>
+                <span>9</span>
                 <b>俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</b>
             </div>
             <div class="ff">
-                <span>11</span>
-                <b>免费参与俱乐部组织的各类培训试驾，演唱会，观影，酒会派对，体育棋牌等活动</b>
+                <span>10</span>
+                <b>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</b>
             </div>
             <div class="ff">
-                <span>12</span>
+                <span>11</span>
                 <b>俱乐部组织的高端定制游等自费活动，享受8折优惠</b>
             </div>
         </div>
@@ -97,57 +97,53 @@
             </div>
             <div class="ff">
                 <span>2</span>
-                <b>获俱乐部价值100万白金会员资格，享白金会员所有权益</b>
+                <b>至尊计划权益外用车，可享受会员折扣，即基础价6折</b>
             </div>
             <div class="ff">
                 <span>3</span>
-                <b>优享计划权益外用车，享受白金会员折扣，即基础价6折</b>
+                <b>长租折上折，周租会员价9折，月租会员价7折</b>
             </div>
             <div class="ff">
                 <span>4</span>
-                <b>长租折上折，周租白金价格9折，月租白金价格7折</b>
+                <b>生日当天用车免费，生日专属礼物</b>
             </div>
             <div class="ff">
                 <span>5</span>
-                <b>生日当天用车半价，生日专属礼物</b>
-            </div>
-            <div class="ff">
-                <span>6</span>
                 <b>每邀请1位好友，可额外累计1天使用权</b>
             </div>
             <div class="ff">
-                <span>7</span>
+                <span>6</span>
                 <b>每月2次劳斯莱斯或宾利商务接送服务</b>
             </div>
             <div class="ff">
-                <span>8</span>
+                <span>7</span>
                 <b>一对一专属管家服务</b>
             </div>
             <div class="ff">
-                <span>9</span>
-                <b>每次用车免除6分及以内的违章罚金</b>
+                <span>8</span>
+                <b>每年用车免除6分及以内的违章罚金</b>
             </div>
             <div class="ff">
-                <span>10</span>
+                <span>9</span>
                 <b>俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</b>
             </div>
             <div class="ff">
+                <span>10</span>
+                <b>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</b>
+            </div>
+            <div class="ff">
                 <span>11</span>
-                <b>免费参与俱乐部组织的各类培训试驾，演唱会，观影，酒会派对，体育棋牌等活动</b>
+                <b>俱乐部组织的高端定制游等自费活动，享受7折优惠</b>
             </div>
             <div class="ff">
                 <span>12</span>
-                <b>俱乐部组织的高端定制游等自费活动，享受7折优惠</b>
-            </div>
-             <div class="ff">
-                <span>13</span>
-                <b>在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享受专属礼遇</b>
+                <b>在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</b>
             </div>
         </div>
         <p>散租</p>
         <div class="qq">
                 <b><span class="rad"></span>只需缴纳少量押金，即可开走顶级跑车</b>
-                <b><span class="rad"></span>尊享会员折扣价</b>       
+                <b><span class="rad"></span>尊享会员折扣价，长租还享折上折</b>       
                 <b><span class="rad"></span>优质老客户还有多重优惠，有机会免押金用车</b>  
         </div>
         <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link>

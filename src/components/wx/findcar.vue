@@ -1,5 +1,5 @@
 <template>
-<div style="background:rgb(15, 25, 35)">
+<div style="font-family: PingFangSC-Medium, sans-serif;background:rgb(15, 25, 35)">
         <!-- <keep-alive v-if="keep"> -->
     <div class="t1">
         <p>北京</p>
@@ -99,7 +99,7 @@ export default {
                 alert('接口出现了问题')
             }
         })
-        this.$ajax(BASE_URL+"/car/carsList?pageIndex="+this.currpage)
+        this.$ajax(BASE_URL+"/car/carsListPaginate?pageIndex="+this.currpage)
             .then((res)=>{
                 this.list = res.data.data.carsList.data;
                 this.$store.commit("saveAppList",this.list)

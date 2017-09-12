@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%;background:#0f1923;border:1px solid #3d454d">
+  <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;border:1px solid #3d454d">
       <div class="qq"></div>
       <div class="in">
           <p>
