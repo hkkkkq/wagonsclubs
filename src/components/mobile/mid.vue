@@ -1,8 +1,11 @@
 <template>
 <div style="font-family: PingFangSC-Medium, sans-serif;position: absolute;width:100%;height:100%">
     <div style="background:#ffffff;height:100%">
-        <div  class="head">
-            <!-- v-if="isNew" -->
+        <div @click="clo" v-if="yousa" class="yousa">
+            <img src="../../assets/mss.png">
+        </div>
+        <div v-if="isNew" class="head">
+            <!--  -->
             <img class="goback" @click="goo" src="../../assets/m-goback.png">
             <p>限时秒杀</p>
             <!-- <img class="sha" @click="sha" src="../../assets/share.png"> -->
@@ -24,13 +27,14 @@
             <div class="share">
                 <p class='sp'><b>-</b>分享到朋友圈<b>-</b></p>
                 <h1 class="sh">现在分享，就送满3000减500租车抵用券!</h1>
-                <img src="../../assets/miaoshawx.png">
+                <img @click="sha" src="../../assets/miaoshawx.png">
             </div>
         </div>
         <div class="success" style="position:relative" v-else-if="suc == true">
             <img src="../../assets/migs.png">
             <span>您已成功获得500元Gift Card</span>
-            <div style="position: absolute;left: 0;right: 0;top: 2rem;" class="clear"></div>            
+            <div style="position: absolute;left: -2rem;right: 0;top: 2rem;width:10rem" class="clear"></div>     
+            <img class="mmss" src="../../assets/mmss.png">       
         </div>
         
     </div>
@@ -44,15 +48,20 @@ export default {
         return{
             carId:"",
             suc:false,
-            car:""
+            car:"",
+            yousa:false
         }
     },
+    computed:{
+        isNew(){ return this.$store.state.isNewApp}
+    },
     created(){
-
+        var vm = this
+        // location.href
         this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
             .then((res)=>{
                 wx.config({
-                    debug: false,
+                    debug: true,
                         appId: res.data.data.sign.appId,
                         timestamp: res.data.data.sign.timestamp,
                         nonceStr: res.data.data.sign.nonceStr,
@@ -69,14 +78,35 @@ export default {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS光速超跑',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+                            success: function () { 
+                            // 用户确认分享后执行的回调函数
+                            vm.suc = true;
+                            alert('s')
+                            },
+                            cancel: function () { 
+                            // 用户取消分享后执行的回调函数
+                            vm.suc = true;
+                            alert('f')
+                            }
+
                         });
 
                         wx.onMenuShareAppMessage({
                             title: 'WAGONS光速超跑',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+                            success: function () { 
+                            // 用户确认分享后执行的回调函数
+                            vm.suc = true;
+                            alert('s')
+                            },
+                            cancel: function () { 
+                            // 用户取消分享后执行的回调函数
+                            vm.suc = true;
+                            alert('f')
+                            }
                         });
 
                         wx.onMenuShareQQ({
@@ -116,13 +146,40 @@ export default {
             this.$router.go(-1)
         },
         sha(){
-             window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            if(this.isNew){
+                window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+            }else{
+                this.yousa = true
+            }
+        },
+        clo(){
+            this.yousa = false;
         }
     }
 }
 </script>
 
 <style scoped>
+.mmss{
+    margin: 0!important;
+    display: block!important;
+    width: 100%!important;
+    height: auto!important;
+    margin-top: 0.4rem!important;
+}
+.yousa img{
+    width: 100%;
+    z-index: 12;
+}
+.yousa{
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 11;
+}
 .sha{
     width: 0.3rem;
     height: 0.3rem;
@@ -154,6 +211,7 @@ export default {
     z-index:10;
     position: relative;
     float: left;
+    margin-top: 0.06rem;
 }
 .head{
     width: 100%;
@@ -182,7 +240,7 @@ export default {
     margin-top: 0.95rem;
 }
 .success{
-    width: 6rem;
+    /* width: 6rem; */
     display: block;
     margin: auto;
 }
@@ -191,7 +249,7 @@ export default {
     height: 0.8rem;
     margin-top: 0.66rem;
     display: inline-block;
-
+    margin-left: 0.75rem;
 }
 .nodisp span {
     border-bottom: 2px solid #dab729;
@@ -318,7 +376,7 @@ export default {
     position: relative;
 }
 .clear{
-    height: 0.82%;
+    height: 0.1rem;
     width: 100%;
     background: #f6f6f6;
     
