@@ -195,30 +195,30 @@ export default {
             function suc(token){
                 vm.$ajax("http://www.baidu.com")
                 vm.$ajax({
-                    url:BASE_URL+"/car/memberType?carId="+this.carId,
+                    url:BASE_URL+"/car/memberType?carId="+vm.carId,
                     method:'GET',
                     headers:{"token":token}
                     }).then((res)=>{
                         if(res.data.success == true){
                             if(res.data.data.JumpInfo.review == true){
                                 if((res.data.data.JumpInfo.userType == 4)||(res.data.data.JumpInfo.userType == 5)){
-                                    window.Wground.reservation(false,this.carId)
+                                    window.Wground.reservation(false,vm.carId)
                                 }else{
                                     if(res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable){
-                                        window.Wground.reservation(true,this.carId)                                    
+                                        window.Wground.reservation(true,vm.carId)                                    
                                     }else if(res.data.data.JumpInfo.carUseable == false){
-                                        this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
+                                        vm.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
                                         return ;
                                     }else if(res.data.data.JumpInfo.dateUseable == false){
-                                        window.Wground.reservation(false,this.carId)
+                                        window.Wground.reservation(false,vm.carId)
                                     }
                                 }
                             }else{
-                                this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                                vm.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
                                 return ;
                             }
                         }else{
-                            this.ef("出现了什么问题，比如没登陆？")
+                            vm.ef("出现了什么问题，比如没登陆？")
                             return ;
                         }
                     })

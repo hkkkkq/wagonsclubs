@@ -83,7 +83,7 @@ export default {
     methods:{
         sub(){
             if(this.isapp){
-                //app
+                window.Wground.trusteeship();
             }else{
                 this.$router.push("/wx/collocation")
             }

@@ -119,6 +119,10 @@ function android_init() {
         goBack: function() {
             wagons.goBack();
             return false;
+        },
+        trusteeship: function() {
+            wagons.trusteeship();
+            return false;
         }
 
     };
@@ -150,6 +154,12 @@ function ios_init(obj) {
         window.location.href = "http://callobjc_" + _WagonsBridgeId;
         _WagonsBridgeId++;
     }
+
+    // function trusteeship() {
+    //     var call = "{\"method\":\"trusteeship\"}";
+    //     baseCall(call);
+    // }
+    // window['Wground']['trusteeship'] = trusteeship;
 
     function getArgs(bridgeId) {
         var args = _WagonsJSBridge_objArray[bridgeId];
