@@ -1,17 +1,18 @@
 <template>
-<div style="position: absolute;width:100%;height:100%">
+<div style="font-family: PingFangSC-Medium, sans-serif;position: absolute;width:100%;height:100%">
     <div style="background:#ffffff;height:100%">
         <div v-if="suc == false">
             <div class="carimg">
                 <p class="carname">
                     <img class="midal" src="../../assets/mida.jpg">
-                    <span>兰博基尼阿拉斯加呢3213</span>
+                    <span>{{car.car.carName}}</span>
                     <img class="midar" src="../../assets/mida.jpg">
                 </p>
-                <p class="disp"><b>¥110000</b>/天</p>
-                <p class="nodisp"><span>¥<b>101000</b>/天</span></p>
+                <p class="disp"><b>¥{{car.car.currentDaydisc}}</b>/天</p>
+                <p class="nodisp"><span>¥<b>{{car.car.dailyRentPrice}}</b>/天</span></p>
                 <img class="img1" src="../../assets/miaosha.png">
-                <div class="but">我要租车</div>
+                <img class="ci" :src="car.carImgShows[0]">
+                <div @click="but" class="but">我要租车</div>
             </div>
             <div class="clear"></div>
             <div class="share">
@@ -36,21 +37,38 @@ export default {
     data(){
         return{
             carId:"",
-            suc:true
+            suc:false,
+            car:""
         }
     },
     created(){
-        // this.carId = this.$route.query.id;
-        this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
+        this.carId = this.$route.query.carId;
+        this.$ajax(BASE_URL+'/car/leaseDetails?carId='+this.$route.query.carId+"&tt="+Date.parse(new Date()))
             .then((res)=>{
                 console.log(res.data)
+                this.car = res.data.data
             })
 
+    },
+    methods:{
+        but(){
+            this.$router.push({path:"/mobile/cardetail",query:{"carId":this.carId}})
+        }
     }
 }
 </script>
 
 <style scoped>
+.ci{
+    position: absolute;
+    z-index: 0;
+    width: 6rem;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 2.1rem;
+}
 .success span{
     display: inline-block;
     width: 4rem;
@@ -89,7 +107,8 @@ export default {
     -webkit-transform: rotate(-10deg);
     transform: rotate(-10deg);
     text-align: right;
-    width: 6rem;
+    width: 6rem;    
+    z-index: 3;
     font-style: italic;
 }
 .nodisp{
@@ -102,7 +121,9 @@ export default {
     display: block;
     text-align: right;
     width: 6.6rem;
-    font-style: italic;
+    font-style: italic;  
+    z-index: 3;
+
     /* border-bottom: 2px solid #dab729; */
 }
 .carname{
@@ -112,6 +133,7 @@ export default {
     right: 0;
     transform: rotate(-9.8deg);
     text-align: center;
+    z-index: 3;
 }
 .carname span{
     font-size: 0.23rem;
@@ -178,7 +200,7 @@ export default {
 .carimg .img1{
     width: 7.2rem;
     height: 8rem;
-    /* position: absolute; */
+    position: relative;
     left: 0;
     top: 0;
     margin: auto;

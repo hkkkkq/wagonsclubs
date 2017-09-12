@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="font-family: PingFangSC-Medium, sans-serif;">
     <a @click="goo" class="back"></a>
     <span v-if='isNew' @click='share' class="share">
                             <img src="../../assets/wagons_lease_share.png" alt="">
