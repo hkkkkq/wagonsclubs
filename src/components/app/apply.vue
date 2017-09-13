@@ -7,10 +7,10 @@
               <span>姓名</span><input v-model="name" placeholder="请填写真实姓名" />          
           </p>
           <p>
-              <span>身份证号</span><input v-model="idcard" placeholder="请填写身份证号" />          
+              <span>身份证号</span><input v-model="idCard" placeholder="请填写身份证号" />          
           </p>
           <p>
-              <span>手机号</span><input v-model="cellphone" placeholder="请填写手机号" />          
+              <span>手机号</span><input v-model="telephone" placeholder="请填写手机号" />          
           </p>
           <p @click="sel(1)">
               <span>婚姻状况</span><b :class="{'tian':istian1}">{{c1}}</b>
