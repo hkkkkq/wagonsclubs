@@ -33,9 +33,11 @@
 </template>
 
 <script>
+import qs from 'qs';
 export default {
     data(){
         return{
+            errmsg:"",
             name:'',
             idCard:'',
             telephone:'',
@@ -87,7 +89,7 @@ export default {
                 url:BASE_URL+'/regist',
                 data:qs.stringify({
                     maritalStatus:this.maritalStatus,
-                    name:this,name,
+                    name:this.name,
                     telephone:this.telephone,
                     idCard:this.idCard,
                     career:this.c2,
