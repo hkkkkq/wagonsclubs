@@ -42,7 +42,7 @@ const memberitro = resolve => require(['../components/mobile/memberitro.vue'], r
 const apply = resolve => require(['../components/mobile/apply.vue'], resolve);
 const cardetail = resolve => require(['../components/mobile/cardetail.vue'], resolve);
 const whoweare = resolve => require(['../components/mobile/whoweare.vue'], resolve);
-
+const mid = resolve => require(['../components/mobile/mid.vue'], resolve);
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router);
@@ -119,6 +119,7 @@ export default new Router({
         { path: '/mobile/apply', component: apply },
         { path: '/mobile/cardetail', component: cardetail },
         { path: '/mobile/whoweare', component: whoweare },
+        { path: '/mobile/mid', component: mid },
 
 
 

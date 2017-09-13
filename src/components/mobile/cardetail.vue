@@ -188,7 +188,6 @@ export default {
         this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':this.$route.query.carId,'tt': Date.parse(new Date()) }})
         .then((res)=>{if(res.data.success == true){
             this.info = res.data.data;
-            console.log(this.info)
             this.info.discount = res.data.data.maxDiscount;
             }else{
                 this.$router.push('/404') 

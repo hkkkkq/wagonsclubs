@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div style="font-family: PingFangSC-Medium, sans-serif;" class="body">
       <m-header></m-header>
       <pull :maxDistance=60 :topDistance=50 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
         <m-list  v-if="foot_left"></m-list>   

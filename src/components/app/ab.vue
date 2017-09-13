@@ -3,6 +3,7 @@
     <!-- <div v-if="iswx" class="t1">
         <img class="logo" src="../../assets/app/wlogo.png">
     </div> -->
+    <p style="height:0.5rem"></p>
     <p class="ti">基本信息</p>
     <img class="abb" src="../../assets/app/abb.png">
     <p class="de">WAGONS超跑俱乐部是国内首家专业超跑运营商，旗舰店坐落在京城高端商区当代MOMA商务中心，在库运营超跑涵盖世界各主流顶级品牌，专为精英人士及社群提供奢享级用车服务。</p>
@@ -157,7 +158,7 @@ export default {
     display: block;
     width: 7.1rem;
     margin: auto;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
 }
 
 .t1 .kefu{

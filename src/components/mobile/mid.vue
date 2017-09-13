@@ -13,7 +13,7 @@
             <!-- <img class="sha" @click="sha" src="../../assets/share.png"> -->
         </div>
         <div style="position:relative" v-if="suc == false">
-            <div class="carimg"></div>
+            <div class="carimg">
                 <p class="carname">
                     <img class="midal" src="../../assets/mida.jpg">
                     <span>{{car.car.carName}}</span>

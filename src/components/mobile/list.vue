@@ -1,9 +1,9 @@
 <template>
-<div>
+<div style="font-family: PingFangSC-Medium, sans-serif;">
     <!-- <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png"> -->
     <div style="position:relative">
-        <div style="height:0;top: 1.3rem;" class="swiper-pagination"></div>       
-        <swiper :options="swiperOption" ref="mySwiper"> 
+        <div style="height:0;top: 1.3rem;" class="swiper-pagination1"></div>       
+        <swiper :options="swiperOption1" ref="mySwiper"> 
             <swiper-slide :key="n" v-for="(item,n) in carousel">
                 <a :href='item.detailPath+"?isNewApp="+isNew'>
                     <img class="banner" :src="item.imagePath">
@@ -16,9 +16,9 @@
         <p style="height:0.1rem;background:#eceef1"></p>
         <div style="background:#ffffff;width:100%;height:3.9rem;padding-top: 0.1rem;">
             <img style="width:2.24rem;height:0.4rem;display:block;margin:auto" src="../../assets/tj.jpg">
-            <swiper :options="swiperOption" ref="mySwiper"> 
+            <swiper :options="swiperOption2" ref="mySwiper"> 
                 <swiper-slide :key="n" v-for="(item,n) in tj.discount">
-                    <div @click="details(item.id)" class="tj">
+                    <div @click="mid(item.id)" class="tj">
                         <img v-if="item.rentingStatus" class="zz" src="../../assets/bz.png">
                         <img v-else class="zz" src="../../assets/tjb1.png">
                         <div class="tjcar">
@@ -61,11 +61,39 @@ require('swiper/dist/css/swiper.css')
 export default {
     data(){
         return{
-             swiperOption: {
+             swiperOption1: {
               notNextTick: true,
               autoplay: 2000,
               autoplayDisableOnInteraction:false,
-              pagination : '.swiper-pagination',
+              pagination : '.swiper-pagination1',
+              paginationType:'custom',
+              paginationCustomRender:function(swiper, current, total){
+                  var _html = '';
+            for (var i = 1; i <= total; i++) {
+              if (current == i) {
+                _html += '<li style="background:#F3F3F3;display:inline-block;width:13px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:7px"></i>';
+              }else{
+                _html += '<li style="background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:7px"></i>';
+              }
+            }
+            return _html
+              },
+              direction : 'horizontal',
+              grabCursor : true,
+              setWrapperSize :true,
+              autoHeight: true,
+              slidesPerView : 1,
+              paginationClickable :false,
+              observeParents:true,
+              debugger: true,
+              watchSlidesVisibility : true,
+              onTransitionStart(swiper){},
+            },
+            swiperOption2: {
+              notNextTick: true,
+              autoplay: 1000,
+              autoplayDisableOnInteraction:false,
+              pagination : '.swiper-pagination2',
               paginationType:'custom',
               paginationCustomRender:function(swiper, current, total){
                   var _html = '';
@@ -127,7 +155,9 @@ export default {
         isNew(){ return this.$store.state.isNewApp},
     },
     methods:{
-
+        mid(mid){
+            this.$router.push({path:"/mobile/mid",query:{"carId":mid,"isNewApp":this.isNew}})
+        },
         details:function(i){
             this.$router.push({path:'/mobile/cardetail?isNewApp='+this.isNew,query:{carId:i}})
             // router.push({ name: 'user', params: { userId: 123 }})

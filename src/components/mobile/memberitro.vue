@@ -1,5 +1,5 @@
 <template>
-<div>
+<div  style="font-family: PingFangSC-Medium, sans-serif;">
     <div class="head_xz">
         <a @click="goback" class="goback" id="goback"></a>
         <p>会员说明</p>    
