@@ -30,21 +30,39 @@ export default {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS光速超跑测试',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+                            success:function(){
+                                alert('s')
+                            },
+                            cancel:function(){
+                                alert('c')
+                            }
                         });
 
                         wx.onMenuShareAppMessage({
                             title: 'WAGONS光速超跑测试',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+                            success:function(){
+                                alert('s')
+                            },
+                            cancel:function(){
+                                alert('c')
+                            }
                         });
 
                         wx.onMenuShareQQ({
                             title: 'WAGONS光速超跑测试',
                             desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+                            success:function(){
+                                alert('s')
+                            },
+                            cancel:function(){
+                                alert('c')
+                            }
                         });
 
                         wx.onMenuShareWeibo({
