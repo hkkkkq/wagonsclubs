@@ -1,8 +1,10 @@
 <template>
 <div style="font-family: PingFangSC-Medium, sans-serif;position: absolute;width:100%;height:100%">
     <div style="background:#ffffff;height:100%">
-        <div @click="clo" v-if="yousa" class="yousa">
-            <img src="../../assets/mss.png">
+        <div @click="clo" v-show="yousa" class="yousa">
+            <transition name="fade">
+                <img v-if="yousa" src="../../assets/mss.png">
+            </transition>
         </div>
         <div v-if="isNew" class="head">
             <!--  -->
@@ -56,9 +58,47 @@ export default {
         isNew(){ return this.$store.state.isNewApp}
     },
     created(){
-        var vm = this
+        // var vm = this
         // location.href
-        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
+       
+
+        if(this.$route.query.isNewApp == 'true'){
+            window.ground.hideHeader();
+            window.ground.dontRefresh();
+            this.$store.commit('isNewApp')
+        }
+
+        this.carId = this.$route.query.carId;
+        this.$ajax(BASE_URL+'/car/leaseDetails?carId='+this.$route.query.carId+"&tt="+Date.parse(new Date()))
+            .then((res)=>{
+                console.log(res.data)
+                this.car = res.data.data
+                var vmm = this
+                this.wx(vmm)
+            })
+
+    },
+    methods:{
+        but(){
+            this.$router.push({path:"/mobile/cardetail",query:{"carId":this.carId}})
+        },
+        goo(){
+            this.$router.go(-1)
+        },
+        sha(){
+            if(this.isNew){
+                this.suc = true
+                window.ground.share('WAGONS光速超跑限时秒杀，'+this.car.car.carName+'原价'+this.car.car.dailyRentPrice+'/天，现价'+this.car.car.currentDaydisc+'/天，有意者速抢', location.href.replace(/true/g,"false"), 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png', 'WAGONS光速超跑限时秒杀，宝马i8原价7000/天，现价3.6折2520/天，有意者速抢','1');
+            }else{
+                this.yousa = true
+            }
+        },
+        clo(){
+            this.yousa = false;
+        },
+        wx(vm){
+            console.log(vm.car.car.carName)
+ vm.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
             .then((res)=>{
                 wx.config({
                     debug: true,
@@ -73,28 +113,31 @@ export default {
                             'onMenuShareWeibo'
                         ]
                     });
+                    // vm.car.car.currentDaydisc
                 var locationHref = window.location.href;
                 wx.ready(function () {
                         wx.onMenuShareTimeline({
-                            title: 'WAGONS光速超跑',
+                            title: 'WAGONS光速超跑限时秒杀，'+vm.car.car.carName+'原价'+vm.car.car.dailyRentPrice+'/天，现价'+vm.car.car.dailyRentPrice+'/天，有意者速抢',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+                            imgUrl: 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png',
                             success: function () { 
                             // 用户确认分享后执行的回调函数
                             vm.suc = true;
+                            vm.yousa = false;
                             },
                             cancel: function () { 
                             // 用户取消分享后执行的回调函数
                             vm.suc = true;
+                            vm.yousa = false;
                             }
 
                         });
 
                         wx.onMenuShareAppMessage({
-                            title: 'WAGONS光速超跑',
-                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            title: '秒杀价体验超跑，仅此1天，仅此1款',
+                            desc: 'WAGONS光速超跑限时秒杀，'+vm.car.carName+'原价'+vm.car.dailyRentPrice+'/天，现价'+vm.car.currentDaydisc+'/天，有意者速抢',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+                            imgUrl: 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png',
                             success: function () { 
                             // 用户确认分享后执行的回调函数
                             vm.suc = true;
@@ -106,56 +149,32 @@ export default {
                         });
 
                         wx.onMenuShareQQ({
-                            title: 'WAGONS光速超跑',
-                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            title: '秒杀价体验超跑，仅此1天，仅此1款',
+                            desc: 'WAGONS光速超跑限时秒杀，宝马i8原价7000/天，现价3.6折2520/天，有意者速抢',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                            imgUrl: 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png'
                         });
 
                         wx.onMenuShareWeibo({
-                            title: 'WAGONS光速超跑',
-                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            title: '秒杀价体验超跑，仅此1天，仅此1款',
+                            desc: 'WAGONS光速超跑限时秒杀，宝马i8原价7000/天，现价3.6折2520/天，有意者速抢',
                             link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                            imgUrl: 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png'
                         });
                     });
             }).catch((res)=>{alert(res)})
-
-        if(this.$route.query.isNewApp == 'true'){
-            window.ground.hideHeader();
-            this.$store.commit('isNewApp')
-        }
-
-        this.carId = this.$route.query.carId;
-        this.$ajax(BASE_URL+'/car/leaseDetails?carId='+this.$route.query.carId+"&tt="+Date.parse(new Date()))
-            .then((res)=>{
-                console.log(res.data)
-                this.car = res.data.data
-            })
-
-    },
-    methods:{
-        but(){
-            this.$router.push({path:"/mobile/cardetail",query:{"carId":this.carId}})
-        },
-        goo(){
-            this.$router.go(-1)
-        },
-        sha(){
-            if(this.isNew){
-                window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
-            }else{
-                this.yousa = true
-            }
-        },
-        clo(){
-            this.yousa = false;
         }
     }
 }
 </script>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition:  transform .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  transform: translateY(-6.3rem)
+}
 .mmss{
     margin: 0!important;
     display: block!important;
@@ -207,11 +226,11 @@ export default {
     z-index:10;
     position: relative;
     float: left;
-    margin-top: 0.06rem;
+    /* margin-top: 0.06rem; */
 }
 .head{
     width: 100%;
-    height: 0.84rem;
+    height: 0.7rem;
     background: #000000;
     position: relative;
     font-size: 0;
@@ -220,12 +239,12 @@ export default {
 .ci{
     position: absolute;
     z-index: 0;
-    width: 6rem;
+    width: 5.7rem;
     display: block;
     margin: auto;
     left: 0;
     right: 0;
-    top: 2.1rem;
+    top: 2.24rem;
 }
 .success span{
     display: inline-block;
@@ -326,7 +345,7 @@ export default {
     display: block;
     width: 0.7rem;
     height: 0.7rem;
-    margin-top: 0.45rem;
+    margin-top: 0.3rem;
 }
 .sh{
     font-size: 0.3rem;

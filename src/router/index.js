@@ -23,19 +23,8 @@ const join = resolve => require(['../components/mobile/join.vue'], resolve);
 const memberitro = resolve => require(['../components/mobile/memberitro.vue'], resolve);
 const apply = resolve => require(['../components/mobile/apply.vue'], resolve);
 const cardetail = resolve => require(['../components/mobile/cardetail.vue'], resolve);
-const whoweare = resolve => require(['../components/mobile/whoweare.vue'], resolve); <<
-<<
-<<
-<
-HEAD
-const mid = resolve => require(['../components/mobile/mid.vue'], resolve); ===
-===
-=
-const test = resolve => require(['../components/mobile/test.vue'], resolve); >>>
->>>
->
-950039 f0a650d417da1836a65753d3ac4b62d98d
-
+const whoweare = resolve => require(['../components/mobile/whoweare.vue'], resolve);
+const mid = resolve => require(['../components/mobile/mid.vue'], resolve);
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router);

@@ -91,7 +91,7 @@ export default {
             },
             swiperOption2: {
               notNextTick: true,
-              autoplay: 2000,
+              autoplay: 1000,
               autoplayDisableOnInteraction:false,
               pagination : '.swiper-pagination2',
               paginationType:'custom',
