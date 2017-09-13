@@ -2,17 +2,18 @@
 <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;border:1px solid #3d454d">
     <div class="qq"></div>
     <img style="width:7.1rem;display:block;margin:auto" src="../../assets/app/suc.jpg">
-    <textarea v-model="area" placeholder="请填写您的详细地址" class="area"></textarea>
-    <p class="but">提交申请</p>
+    <textarea v-model="address" placeholder="请填写您的详细地址" class="area"></textarea>
+    <p @click="ok" class="but">提交申请</p>
 </div>
 </template>
 
 <script>
+import qs from 'qs';
 export default {
     data(){
         return{
             id:'',
-            area:''
+            address:''
         }
     },
     created(){
