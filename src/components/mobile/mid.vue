@@ -82,12 +82,10 @@ export default {
                             success: function () { 
                             // 用户确认分享后执行的回调函数
                             vm.suc = true;
-                            alert('s')
                             },
                             cancel: function () { 
                             // 用户取消分享后执行的回调函数
                             vm.suc = true;
-                            alert('f')
                             }
 
                         });
@@ -100,12 +98,10 @@ export default {
                             success: function () { 
                             // 用户确认分享后执行的回调函数
                             vm.suc = true;
-                            alert('s')
                             },
                             cancel: function () { 
                             // 用户取消分享后执行的回调函数
                             vm.suc = true;
-                            alert('f')
                             }
                         });
 

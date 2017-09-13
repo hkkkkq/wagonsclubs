@@ -1,5 +1,5 @@
 <template>
-<div class="join_us">
+<div style="font-family: PingFangSC-Medium, sans-serif;" class="join_us">
             <div class="none_box"></div>
             <div class="method">
                 <p>加入Wagons会员目前有两种方式</p>
