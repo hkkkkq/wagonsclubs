@@ -24,8 +24,8 @@
         </div>
         <div class="pr">
             <span class="level">会员价</span>
-            <span class="price"><span class="number">{{car.dailyRentPrice}}</span>／天</span>
-            <span class="nodis"><b>2000</b>/天</span>
+            <span class="price"><span class="number">{{String(car.dailyRentPrice*0.6) == "NaN"?'0':car.dailyRentPrice*0.6}}</span>／天</span>
+            <span class="nodis"><b>{{car.dailyRentPrice}}</b>/天</span>
         </div>
         <p class="des">{{car.carDesc}}</p>
          
@@ -404,16 +404,18 @@ video{
     font-size: 0.26rem;
 }
 .level{
-    vertical-align: super;
+    vertical-align: top;
     font-size: 0.18rem;
     padding-left: 0.15rem;
     background-color: #fed945;
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
-    padding-right: 0.2rem; 
-    width: 1rem;
-    height: 0.3rem;
+    padding-right: 0.2rem;
+    height: 0.32rem;
     margin-right: 0.3rem;
+    display: inline-block;
+    line-height: 0.3rem;
+    margin-top: 0.1rem;
 }
 .star{
     border-radius: 4px;

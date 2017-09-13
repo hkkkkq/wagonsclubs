@@ -2,14 +2,41 @@
 <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;border:1px solid #3d454d">
     <div class="qq"></div>
     <img style="width:7.1rem;display:block;margin:auto" src="../../assets/app/suc.jpg">
-    <textarea placeholder="请填写您的详细地址" class="area"></textarea>
+    <textarea v-model="area" placeholder="请填写您的详细地址" class="area"></textarea>
     <p class="but">提交申请</p>
 </div>
 </template>
 
 <script>
 export default {
-
+    data(){
+        return{
+            id:'',
+            area:''
+        }
+    },
+    created(){
+        this.id = this.$route.query.id;
+    },
+    methods:{
+        ok(){
+            this.$ajax({
+                method:'POST',
+                url:BASE_URL+"/addrBinding",
+                data:qs.stringify({
+                    id:this.id,
+                    address:this.address
+                }),
+                headers: {"Content-Type": "application/x-www-form-urlencoded",}
+            }).then((res)=>{
+                if(res.data.success){
+                    window.Wground.goBack();
+                }else{
+                    alert('填写失败，请稍后尝试')
+                }
+            })
+        }
+    }
 }
 </script>
 
