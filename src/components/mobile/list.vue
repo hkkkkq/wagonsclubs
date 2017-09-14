@@ -2,7 +2,8 @@
 <div style="font-family: PingFangSC-Medium, sans-serif;">
     <!-- <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png"> -->
     <div style="position:relative">
-        <div style="height:0;top: 1.3rem;" class="swiper-pagination1"></div>       
+        <!-- 活动轮播下biao -->
+        <div style="height:0;top: 1.3rem;" class="swiper-pagination"></div>       
         <swiper :options="swiperOption1" ref="mySwiper"> 
             <swiper-slide :key="n" v-for="(item,n) in carousel">
                 <a :href='item.detailPath+"?isNewApp="+isNew'>
@@ -34,7 +35,7 @@
     </div>
     <div v-if="loading == false" class="content">
         <ul>
-            <li @click="details(car.id)" v-for="car in carlist.data.carsList" class="car_details">
+            <li @click="details(car.id)" :key="index" v-for="(car,index) in carlist.data.carsList" class="car_details">
                 <img v-lazy="car.carImages" class="car_img">
                 <div v-if="car.rentingStatus" class="carShadow"><img class="lazy" src="../../assets/already_rent.png"></div>
                 <p class="carName">{{car.carName}}</p>
@@ -65,7 +66,7 @@ export default {
               notNextTick: true,
               autoplay: 2000,
               autoplayDisableOnInteraction:false,
-              pagination : '.swiper-pagination1',
+              pagination : '.swiper-pagination',
               paginationType:'custom',
               paginationCustomRender:function(swiper, current, total){
                   var _html = '';
