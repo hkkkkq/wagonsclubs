@@ -15,6 +15,7 @@ const pcweb_article4 = resolve => require(['../components/pcweb/pcweb_article4.v
 const pcweb_article5 = resolve => require(['../components/pcweb/pcweb_article5.vue'], resolve);
 const pcweb_article6 = resolve => require(['../components/pcweb/pcweb_article6.vue'], resolve);
 const pcweb_article7 = resolve => require(['../components/pcweb/pcweb_article7.vue'], resolve);
+const pcweb_article8 = resolve => require(['../components/pcweb/pcweb_article8.vue'], resolve);
 const notfound = resolve => require(['../components/404.vue'], resolve);
 //for app
 const app = resolve => require(['../components/app/index.vue'], resolve);
@@ -76,7 +77,8 @@ export default new Router({
                 { path: 'article/4', component: pcweb_article4 },
                 { path: 'article/5', component: pcweb_article5 },
                 { path: 'article/6', component: pcweb_article6 },
-                { path: 'article/7', component: pcweb_article7 }
+                { path: 'article/7', component: pcweb_article7 },
+                { path: 'article/8', component: pcweb_article8 }
             ]
         },
 
