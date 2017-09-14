@@ -7,6 +7,14 @@
       </div>
     <div class="s_banner"></div>
     <div style="display:block;height:2108px">
+    <div @click="goar(8)" class="ff">
+        <img src="../../assets/jd2.png">
+        <div class="gg">
+            <p class="title">WAGONS光速超跑，点亮焦点人生<span>2017-09-14  09:45:00</span></p>
+            <div class="cc">爱美之心人皆有之，美好的东西总是发光的，好看的钻石、好看的人、好看的跑车，都是一颗颗在人群中闪耀的星......</div>
+            <span>阅读更多 >></span>
+        </div>
+    </div>
     <div @click="goar(7)" class="ff">
         <img src="../../assets/zl32.jpeg">
         <div class="gg">
