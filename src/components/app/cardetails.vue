@@ -1,6 +1,6 @@
 <template>
 <div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
-    <video poster='poster' ref="video" v-if="car.videoUrl" controls="controls" :src="car.videoUrl">
+    <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
     <div class="lunbo">
@@ -12,7 +12,7 @@
                  <img class="vimg"  v-lazy="car.videoImg">                 
                  <img @click="pp" class="p11" src="../../assets/app/play.png" />
             </swiper-slide>
-            <swiper-slide :key="item" v-for='item in carimgs'>
+            <swiper-slide :key="index" v-for='(item,index) in carimgs'>
                  <img v-lazy="item"> 
             </swiper-slide>
         </swiper>
@@ -119,7 +119,7 @@ export default {
                 this.level5 = res.data.data.level5;
                 this.car = res.data.data.car;
                 this.carimgs = res.data.data.carImgShows;
-                // console.log(this.car)
+                console.log(res.data)
             }else{
                 alert('一定是后台小哥出现了什么问题！！！')
             }            
@@ -335,8 +335,13 @@ img[lazy=loaded]{
 .vimg{
     margin-top: 1rem;
 }
+.msl img{
+    widows: 100%;
+    height: auto;
+}
 .msl{
     top: -1rem!important;
+    height: 100%;
 }
 .p11{
     width: 0.9rem!important;

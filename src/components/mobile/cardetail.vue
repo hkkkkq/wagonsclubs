@@ -2,8 +2,8 @@
 <div style="font-family: PingFangSC-Medium, sans-serif;">
     <a @click="goo" class="back"></a>
     <span v-if='isNew' @click='share' class="share">
-                            <img src="../../assets/wagons_lease_share.png" alt="">
-                        </span>
+        <img src="../../assets/wagons_lease_share.png" alt="">
+    </span>
     <div class="lunbo">
          <div style="bottom:0px" class="swiper-pagination"></div>     
         <swiper class="swip1" :options="swiperOption" ref="mySwiper">
