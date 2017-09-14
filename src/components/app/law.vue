@@ -51,13 +51,14 @@ export default {
 <style scoped>
 h3{
     font-size: 0.18rem;
-    padding: 0 0.3rem;
+    padding: 0 0.6rem;
+    font-weight: 300;
 }
 h2{
     font-size: 0.3;
     font-weight: bolder;
     font-size: 0.3rem;
-    padding: 0 0.3rem;
+    padding: 0 0.6rem;
 }
 h1{
     font-size: 0.4rem;
@@ -66,6 +67,6 @@ h1{
 }
 p{
     font-size: 0.24rem;
-    padding: 0.1rem 0.3rem;
+    padding: 0.1rem 0.6rem;
 }
 </style>
