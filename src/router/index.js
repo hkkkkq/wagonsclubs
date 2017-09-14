@@ -28,6 +28,7 @@ const app_apply = resolve => require(['../components/app/apply.vue'], resolve);
 const app_applysuc = resolve => require(['../components/app/applysuc.vue'], resolve);
 const app_ab = resolve => require(['../components/app/ab.vue'], resolve);
 const app_warning = resolve => require(['../components/app/warning.vue'], resolve);
+const app_law = resolve => require(['../components/app/law.vue'], resolve);
 //wechat
 const wx_findcar = resolve => require(['../components/wx/findcar.vue'], resolve);
 const wx_hd = resolve => require(['../components/wx/hd.vue'], resolve);
@@ -94,6 +95,7 @@ export default new Router({
                 { path: 'applysuc', component: app_applysuc },
                 { path: 'ab', component: app_ab },
                 { path: 'warning', component: app_warning },
+                { path: 'law', component: app_law },
                 {
                     path: 'memindex',
                     component: app_memindex,

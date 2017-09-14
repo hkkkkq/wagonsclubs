@@ -1,5 +1,7 @@
 <template>
-  <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;border:1px solid #3d454d">
+  <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
+        <!-- 清浮动 -->
+      <p style="width: 100%;height: 1px;"></p>
     <div v-show="iserr" class="alert_err">{{errmsg}}</div>
       <div class="qq"></div>
       <div class="in">
@@ -210,7 +212,7 @@ input::-webkit-input-placeholder{
     color: #a9acb0;
     float: right;
     margin-top: 0.2rem;
-
+    outline: none;
 }
 .in span{
     vertical-align: middle;
