@@ -1,6 +1,6 @@
 <template>
 <div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
-    <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
+    <video poster='poster' ref="video" v-if="car.videoUrl" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
     <div class="lunbo">
@@ -8,7 +8,7 @@
         <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>                       
         <swiper :options="swiperOption" class="msl" ref="mySwiper">
-            <swiper-slide style="position:relative">
+            <swiper-slide v-if="car.videoImg" style="position:relative">
                  <img class="vimg"  v-lazy="car.videoImg">                 
                  <img @click="pp" class="p11" src="../../assets/app/play.png" />
             </swiper-slide>
@@ -119,7 +119,7 @@ export default {
                 this.level5 = res.data.data.level5;
                 this.car = res.data.data.car;
                 this.carimgs = res.data.data.carImgShows;
-                console.log(res.data)
+                // console.log(this.car)
             }else{
                 alert('一定是后台小哥出现了什么问题！！！')
             }            
@@ -241,6 +241,26 @@ export default {
 </script>
 
 <style scoped>
+img[lazy=error]{
+    /* //your code */
+    background-image: url('../../assets/loading12.gif');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 0.5rem;
+  
+}
+img[lazy=loading]{
+    /* //your code */
+    background-image: url('../../assets/loading12.gif');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 0.5rem;
+}
+
+img[lazy=loaded]{
+    /* //your code */
+  animation:fade 0.5s;
+}
 .nodis b{
     font-size: 0.26rem;
 }
