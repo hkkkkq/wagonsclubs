@@ -110,7 +110,54 @@ export default {
         }else{
             this.isapp = false
         }
+        //获取微信分享4要素
+        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
+        .then((res)=>{
+            wx.config({
+                        debug: false,
+                        appId: res.data.data.sign.appId,
+                        timestamp: res.data.data.sign.timestamp,
+                        nonceStr: res.data.data.sign.nonceStr,
+                        signature: res.data.data.sign.signature,
+                        jsApiList: [
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage',
+                            'onMenuShareQQ',
+                            'onMenuShareWeibo'
+                        ]
+                    });
+            var locationHref = window.location.origin;
+            wx.ready(function () {
+                        wx.onMenuShareTimeline({
+                            title: 'WAGONS光速超跑',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
 
+                        wx.onMenuShareAppMessage({
+                            title: 'WAGONS光速超跑',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
+
+                        wx.onMenuShareQQ({
+                            title: 'WAGONS光速超跑',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
+
+                        wx.onMenuShareWeibo({
+                            title: 'WAGONS光速超跑',
+                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                            link: locationHref,
+                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                        });
+                    });
+            })
+
+        //获取车辆详情
         this.carId = deurl(location).carId;
         this.$ajax(BASE_URL+'/car/leaseDetails?carId='+deurl(location).carId)
         .then((res)=>{
@@ -152,7 +199,7 @@ export default {
             }
         },
         share(){
-            window.Wground.share("wagons光速超跑",window.location.href,'','www',[0,1,2,3])
+            window.Wground.share('WAGONS光速超跑', window.location.origin , 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
         },
         sub(){
             var vm = this;
