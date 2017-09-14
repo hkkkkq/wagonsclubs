@@ -18,17 +18,17 @@
           <h1>WAGONS的互联网沙龙</h1>
           <div>8月31日，由《首席财务官》杂志和奇点金服共同主办的“人工智能来了，移动互联网时代......</div>
         </div>
-        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(4)' style="margin: 0 20px;" class="f1">
+        <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(8)' style="margin: 0 20px;" class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-          <img src="../../assets/zl4.jpg" />
+          <img src="../../assets/jd2.png" />
           <transition name="fade">
               <h4 v-if="mask2" class="mask">
-                浪漫七夕，精彩漂移
+                光速超跑，焦点人生
               </h4>
           </transition>
             </div>
-          <h1>我学会了漂移，正在前往拯救世界的路上</h1>
-          <div>对不起，吴京 你能一个人打赢一群海盗我是信的，你能一个人打赢一个反政府军队我也.....</div>
+          <h1>WAGONS光速超跑，点亮焦点人生</h1>
+          <div>爱美之心人皆有之，美好的东西总是发光的，好看的钻石、好看的人、好看的跑车，都是.....</div>
         </div>
         <div @mouseenter="min(3)" @mouseleave="mout(3)" @click='goar(5)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
@@ -57,7 +57,7 @@
         <div class="right">
           <p class="name">{{currentcar.car.carName}}</p>
           <p style="margin-top: 14px;    margin-bottom: 20px;">
-            <img style="margin: 0 10px 0 0;" v-for="i in currentcar.car.starLevel" src='../../assets/xingxing.png'>
+            <img style="margin: 0 10px 0 0;" :key="i" v-for="i in currentcar.car.starLevel" src='../../assets/xingxing.png'>
           </p>
           <p class="chexing">车型信息</p>
           <span class="ddd">
