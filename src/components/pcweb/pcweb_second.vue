@@ -6,7 +6,7 @@
         <p>扫码即刻体验</p>
       </div>
     <div class="s_banner"></div>
-    <div style="display:block;height:2108px">
+    <div style="display:block;height:2409px">
     <div @click="goar(8)" class="ff">
         <img src="../../assets/jd2.png">
         <div class="gg">
