@@ -7,7 +7,7 @@
     <p class="ti">基本信息</p>
     <img class="abb" src="../../assets/app/abb.png">
     <p class="de">WAGONS超跑俱乐部是国内首家专业超跑运营商，旗舰店坐落在京城高端商区当代MOMA商务中心，在库运营超跑涵盖世界各主流顶级品牌，专为精英人士及社群提供奢享级用车服务。</p>
-    <div style="position:relative;padding-bottom: 0.3rem;border-bottom: 1px solid #273039;width: 7.1rem;margin: 0 auto .3rem auto;">
+    <div style="position:relative;padding-bottom: 0.3rem;border-bottom: 1px solid #273039;width: 7.1rem;margin: 0 auto .4rem auto;">
         <div style="bottom:0px" class="swiper-pagination"></div>     
         <swiper class="sw1" :options="swiperOption" ref="mySwiper">
             <swiper-slide class="sw2" >
@@ -112,7 +112,7 @@ export default {
     width: 7.1rem;
     margin: auto;
     margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
 }
 .co span{
     color: #fed945;
