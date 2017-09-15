@@ -1,5 +1,6 @@
 <template>
-<div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923;border:1px solid #3d454d">
+<div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923">
+    <p style="width:100%;height:1px"></p>
     <p class="ti">用车流程</p>
     <p class="df"><span></span><b>申请加入wagons光速超跑</b></p>
     <p class="df"><span></span><b>选择喜欢的超跑</b></p>

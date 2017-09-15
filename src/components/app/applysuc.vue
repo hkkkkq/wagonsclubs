@@ -1,5 +1,6 @@
 <template>
-<div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;border:1px solid #3d454d">
+<div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
+    <p style="width:100%;height:1px"></p>
     <div class="qq"></div>
     <img style="width:7.1rem;display:block;margin:auto" src="../../assets/app/suc.jpg">
     <textarea v-model="address" placeholder="请填写您的详细地址" class="area"></textarea>
