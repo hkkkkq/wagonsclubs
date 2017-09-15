@@ -71,7 +71,6 @@ export default {
         this.carId = this.$route.query.carId;
         this.$ajax(BASE_URL+'/car/leaseDetails?carId='+this.$route.query.carId+"&tt="+Date.parse(new Date()))
             .then((res)=>{
-                console.log(res.data)
                 this.car = res.data.data
                 var vmm = this
                 this.wx(vmm)
@@ -88,7 +87,7 @@ export default {
         sha(){
             if(this.isNew){
                 this.suc = true
-                window.ground.share('WAGONS光速超跑限时秒杀，'+this.car.car.carName+'原价'+this.car.car.dailyRentPrice+'/天，现价'+this.car.car.currentDaydisc+'/天，有意者速抢', location.href.replace(/true/g,"false"), 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png', 'WAGONS光速超跑限时秒杀，宝马i8原价7000/天，现价3.6折2520/天，有意者速抢','1');
+                window.ground.share(this.car.car.carName+'限时秒杀，原价'+this.car.car.dailyRentPrice+'/天，现价'+this.car.car.currentDaydisc+'/天，有意者速抢', location.href.replace(/true/g,"false"), 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png', 'WAGONS光速超跑限时秒杀，宝马i8原价7000/天，现价3.6折2520/天，有意者速抢','1');
             }else{
                 this.yousa = true
             }
@@ -97,11 +96,10 @@ export default {
             this.yousa = false;
         },
         wx(vm){
-            console.log(vm.car.car.carName)
  vm.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
             .then((res)=>{
                 wx.config({
-                    debug: true,
+                    debug: false,
                         appId: res.data.data.sign.appId,
                         timestamp: res.data.data.sign.timestamp,
                         nonceStr: res.data.data.sign.nonceStr,
@@ -113,11 +111,11 @@ export default {
                             'onMenuShareWeibo'
                         ]
                     });
-                    // vm.car.car.currentDaydisc
+                    // 
                 var locationHref = window.location.href;
                 wx.ready(function () {
                         wx.onMenuShareTimeline({
-                            title: 'WAGONS光速超跑限时秒杀，'+vm.car.car.carName+'原价'+vm.car.car.dailyRentPrice+'/天，现价'+vm.car.car.dailyRentPrice+'/天，有意者速抢',
+                            title: vm.car.car.carName+'限时秒杀，原价'+vm.car.car.dailyRentPrice+'/天，现价'+vm.car.car.currentDaydisc+'/天，有意者速抢',
                             link: locationHref,
                             imgUrl: 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png',
                             success: function () { 
@@ -135,7 +133,7 @@ export default {
 
                         wx.onMenuShareAppMessage({
                             title: '秒杀价体验超跑，仅此1天，仅此1款',
-                            desc: 'WAGONS光速超跑限时秒杀，'+vm.car.carName+'原价'+vm.car.dailyRentPrice+'/天，现价'+vm.car.currentDaydisc+'/天，有意者速抢',
+                            desc: vm.car.carName+'限时秒杀，原价'+vm.car.dailyRentPrice+'/天，现价'+vm.car.currentDaydisc+'/天，有意者速抢',
                             link: locationHref,
                             imgUrl: 'http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/199E727409CD4B3FBB3DDFC2C3FD0FA4.png',
                             success: function () { 
@@ -170,10 +168,17 @@ export default {
 
 <style scoped>
 .fade-enter-active, .fade-leave-active {
-  transition:  transform .5s
+    transition:  transform .5s;
+    -moz-transition:  transform .5s; /* Firefox 4 */
+    -webkit-transition:  transform .5s; /* Safari 和 Chrome */
+    -o-transition:  transform .5s; /* Opera */
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
-  transform: translateY(-6.3rem)
+    transform: translateY(-6.3rem);
+    -ms-transform: translateY(-6.3rem); 	/* IE 9 */
+    -moz-transform: translateY(-6.3rem); 	/* Firefox */
+    -webkit-transform: translateY(-6.3rem); /* Safari 和 Chrome */
+    -o-transform: translateY(-6.3rem); 	/* Opera */
 }
 .mmss{
     margin: 0!important;
