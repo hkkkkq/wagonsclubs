@@ -32,7 +32,8 @@
     <img class="abb" src="../../assets/app/abt.png">   
     <p class="de">您可以将闲置的跑车托管到WAGONS平台上运营，我们会与您协商具体运营模式并向您支付相应费用。</p> 
     <p @click="sub" style="margin-bottom: 0.38rem;" class="but">申请托管</p>   
-    <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
+    <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;margin-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
+    <p style="width:100%;height:1px"></p>
 </div>
 </template>
 

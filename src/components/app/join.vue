@@ -149,24 +149,26 @@
         <!-- <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link> -->
         <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
     </div>
+    <transition name="fade">
     <div v-show="at" class="al">
-        <div class="att" v-if="lechao">
+        <div class="att" v-show="lechao">
         <img class="at" src="../../assets/app/lc.png">
         <h1 class="yl">乐潮计划车型一览</h1>
         <div class="ms">兰博基尼加拉多，阿斯顿马丁V8 Vantage，法拉利加利福尼亚，奥迪R8，奔驰SLS AMG，奔驰G55 AMG，奔驰AMG GT，玛莎拉蒂GranCabrio，玛莎拉蒂GranTurismo，保时捷911，宝马i8，宝马640i，宝马z4，科尔维特，科迈罗等</div>
         </div>
-        <div class="att" v-else-if="youxiang">
+        <div class="att" v-show="youxiang">
         <img class="at" src="../../assets/app/yx.png">
         <h1 class="yl">优享计划车型一览</h1>
         <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
         </div>
-        <div class="att" v-if="zhizun">
+        <div class="att" v-show="zhizun">
         <img class="at" src="../../assets/app/zz.png">
         <h1 class="yl">至尊计划车型一览</h1>
         <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
         </div>
         <img @click="cl" class="ax" src="../../assets/app/xx.png">
     </div>
+    </transition>
 </div>
 </template>
 
@@ -199,6 +201,15 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+    -moz-transition:  opacity .5s; /* Firefox 4 */
+    -webkit-transition:  opacity .5s; /* Safari 和 Chrome */
+    -o-transition:  opacity .5s; /* Opera */
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
 .att{
     position: absolute;
     bottom: 3.1rem;
