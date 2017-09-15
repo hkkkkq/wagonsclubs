@@ -145,7 +145,7 @@ export default {
             // console.log(window.screen.height)
             if(document.body.scrollHeight == (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0)+window.screen.height){
                 if(this.hasNext){
-                    this.$ajax(BASE_URL+"/car/carsList?pageIndex="+ Number(this.currpage + 1))
+                    this.$ajax(BASE_URL+"/car/carsListPaginate?pageIndex="+ Number(this.currpage + 1))
                     .then((res)=>{
                         for(let i=0;i < res.data.data.carsList.data.length; i++){
                             this.list.push(res.data.data.carsList.data[i]);

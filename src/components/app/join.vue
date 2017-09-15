@@ -146,7 +146,7 @@
                 <b><span class="rad"></span>尊享会员折扣价，长租还享折上折</b>       
                 <b><span class="rad"></span>优质老客户还有多重优惠，有机会免押金用车</b>  
         </div>
-        <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link>
+        <!-- <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link> -->
         <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
     </div>
     <div v-show="at" class="al">
@@ -201,7 +201,7 @@ export default {
 <style scoped>
 .att{
     position: absolute;
-    bottom: 5.1rem;
+    bottom: 3.1rem;
     left: 0;
     right: 0;
 }
