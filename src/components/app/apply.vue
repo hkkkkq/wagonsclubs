@@ -48,9 +48,9 @@ export default {
             istian2:false,
             istian3:false,
             wh:'',
-            c1:'请选择  >',
-            c2:'请选择  >',
-            c3:'请选择  >',
+            c1:'请选择',
+            c2:'请选择',
+            c3:'请选择',
             maritalStatus:'',
             l1:false,
             currlist:"",
@@ -129,6 +129,9 @@ export default {
 }
 .tian{
     color: #a9acb0!important;
+    background: url()!important;
+    text-align: right!important;
+    padding-right: 0.05rem!important;
 }
 .mask p {
     z-index: 100;
@@ -190,9 +193,13 @@ input::-webkit-input-placeholder{
     color: #636364;
     vertical-align: middle;
     width: 4.4rem;
-    text-align: right;
     float: right;
     margin-top: 0.4rem;
+    background: url('../../assets/app/applya.png');
+    background-size: 0.2rem;
+    background-repeat: no-repeat;
+    background-position: 4.15rem 0.02rem;
+    text-indent: 3.2rem;
 }
 .in p{
     height: 1rem;

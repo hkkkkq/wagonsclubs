@@ -106,7 +106,7 @@ export default {
     text-align: center;
     line-height: 0.7rem;
     margin-top: 0rem;
-    border-radius: 4px;
+    border-radius: 0.04rem;
 }
 .bo{
     border-bottom: 1px solid #273039;
