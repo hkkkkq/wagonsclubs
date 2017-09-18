@@ -570,11 +570,11 @@ vertical-align: top;
     width: auto;
     height: 9rem;
     z-index: 0;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -ms-filter: blur(5px);
-    -o-filter: blur(5px);
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -ms-filter: blur(7px);
+    -o-filter: blur(7px);
 }
 .allzzz{
     position: absolute;
