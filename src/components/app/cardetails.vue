@@ -429,7 +429,6 @@ video{
     color: #333333;
     text-align: center;
     font-size: 0.32rem;
-    font-family: -webkit-body;
 }
 .but{
     line-height: 1rem;
@@ -442,6 +441,7 @@ video{
     text-align: center;
     background-color: #fed945;
     font-size: 0.32rem;
+    font-family: -webkit-body;    
 }
 .tips{
     padding-top: 5px;
