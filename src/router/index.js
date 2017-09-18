@@ -27,6 +27,7 @@ const cardetail = resolve => require(['../components/mobile/cardetail.vue'], res
 const whoweare = resolve => require(['../components/mobile/whoweare.vue'], resolve);
 const mid = resolve => require(['../components/mobile/mid.vue'], resolve);
 const zw = resolve => require(['../components/mobile/zw.vue'], resolve);
+const activelist = resolve => require(['../components/mobile/activelist.vue'], resolve);
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router);
@@ -74,6 +75,7 @@ export default new Router({
         { path: '/mobile/whoweare', component: whoweare },
         { path: '/mobile/mid', component: mid },
         { path: '/mobile/zw', component: zw },
+        { path: '/mobile/activelist', component: activelist },
 
 
         //404
