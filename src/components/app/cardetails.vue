@@ -498,14 +498,14 @@ video{
     padding-left: 0.04rem;
     padding-right: 0.04rem;
     border: 1px solid;
-    font-size: 0.18rem;
+    font-size: 0.2rem;
     color: #ffffff;
     float: right;
     padding-bottom: 2px;
     width: 0.96rem;
     text-align: center;
-    height: 0.3rem;
-    line-height: 0.3rem;
+    height: 0.28rem;
+    line-height: 0.28rem;
 }
 .name{
     font-size: 0.3rem;
