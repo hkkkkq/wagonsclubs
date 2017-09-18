@@ -1,5 +1,9 @@
 <template>
-<div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
+<div style="font-family: PingFangSC-Medium, sans-serif;" class="all" >
+    <div style="positon:relative">
+        <div class="allzzz"></div>
+        <img :src='bg' class="allzz"></img>
+    </div>
     <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
@@ -74,9 +78,9 @@ export default {
                   var _html = '';
             for (var i = 1; i <= total; i++) {
               if (current == i) {
-                _html += '<li style="background:#ffffff;display:inline-block;width:5px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:14px"></i>';
+                _html += '<li style="background:#ffffff;display:inline-block;width:5px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:9px"></i>';
               }else{
-                _html += '<li style="opacity:0.3;background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:14px"></i>';
+                _html += '<li style="opacity:0.3;background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:9px"></i>';
               }
             }
             return _html
@@ -100,7 +104,8 @@ export default {
             carId:'',
             at:false,
             mes:'',
-            isapp:""
+            isapp:"",
+            bg:''
         }
     },
     created(){
@@ -166,6 +171,7 @@ export default {
                 this.level5 = res.data.data.level5;
                 this.car = res.data.data.car;
                 this.carimgs = res.data.data.carImgShows;
+                this.bg = res.data.data.carImgShows[0]
                 console.log(res.data)
             }else{
                 alert('一定是后台小哥出现了什么问题！！！')
@@ -294,6 +300,7 @@ img[lazy=error]{
     background-repeat: no-repeat;
     background-position:center;
     background-size: 0.5rem;
+    z-index: 1;
   
 }
 img[lazy=loading]{
@@ -302,13 +309,16 @@ img[lazy=loading]{
     background-repeat: no-repeat;
     background-position:center;
     background-size: 0.5rem;
+    z-index: 1;
 }
 
 img[lazy=loaded]{
     /* //your code */
+    z-index: 1;
   animation:fade 0.5s;
 }
 .nodis b{
+    z-index: 1;
     font-size: 0.26rem;
 }
 .nodis{
@@ -317,6 +327,7 @@ img[lazy=loaded]{
     display: inline-block;
     border-bottom: 1px solid #999999;
     height: 0.1rem;
+    z-index: 1;
     margin-left: 0.3rem;
 }
 .ms div{
@@ -329,6 +340,7 @@ img[lazy=loaded]{
     border-radius: 4px;
     font-size: 0.26rem;
     text-align: center;
+    z-index: 1;
     line-height: 0.7rem;
 }
 .ax{
@@ -337,6 +349,7 @@ img[lazy=loaded]{
     height: 0.68rem;
     display: block;
     margin: auto;
+    z-index: 1;
     margin-top: 2.24rem;
 }
 .ms{
@@ -348,6 +361,7 @@ img[lazy=loaded]{
     width: 4.52rem;
     padding: 0.48rem 0.32rem 0 0.32rem;
     line-height: 0.4rem;
+    z-index: 1;
     display: block;
     margin: auto;
     border-bottom-left-radius: 4px;
@@ -357,6 +371,7 @@ img[lazy=loaded]{
     width: 5.17rem;
     margin: auto;
     display: block;
+    z-index: 1;
     margin-top: 3rem;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -366,6 +381,7 @@ img[lazy=loaded]{
     color: #ffffff;
     position: absolute;
     top: 13em;
+    z-index: 1;
     left: 2.5rem;
 }
 .al{
@@ -375,18 +391,22 @@ img[lazy=loaded]{
     display: block;
     z-index: 1;
     top: 0;
+    z-index: 1;
     left: 0;
     font-size: 0;
     background: rgba(0,0,0,0.7);
 }
 .vimg{
+    z-index: 1;
     margin-top: 1rem;
 }
 .msl img{
+    z-index: 1;
     widows: 100%;
     height: auto;
 }
 .msl{
+    z-index: 1;
     top: -1rem!important;
     height: 100%;
 }
@@ -395,6 +415,7 @@ img[lazy=loaded]{
     height: 0.9rem!important;
     position: absolute;
     display: block!important;
+    z-index: 1;
     margin: auto!important;
     top: 2.5rem!important;
     left: 3.2rem;
@@ -409,6 +430,7 @@ img[lazy=loaded]{
 }
 .share{
     top:0.6rem;
+    z-index: 2;
     right: 0.3rem;
     z-index: 2;
     width: 0.45rem!important;
@@ -416,6 +438,7 @@ img[lazy=loaded]{
     position: absolute;
 }
 video{
+    z-index: 1;
     display: block;
     width: 0;
     height: 0;
@@ -428,9 +451,11 @@ video{
     height: 0.98rem;
     color: #333333;
     text-align: center;
+    z-index: 1;
     font-size: 0.32rem;
 }
 .but{
+    z-index: 1;
     line-height: 1rem;
     position: fixed;
     bottom: 0;
@@ -454,30 +479,39 @@ video{
     color: #ffffff;
     margin-right: 0.2rem;
     display: inline-block;
+    position: relative;
+    z-index: 1;
     margin-bottom: 0.2rem;
 }
 .des{
     margin-top: 0.2rem;
+    position: relative;
     font-size: 0.24rem;
     line-height: 0.5rem;
     color: #ffffff;
+    z-index: 1;
     margin-bottom: 0.34rem;
 }
 .pr{
     margin-top: 0.32rem;
     padding-bottom: 0.32rem;
+    z-index: 1;
     border-bottom: 1px solid rgba(213,213,190,0.1);
+    position: relative;
 }
 .number{
     font-size: 0.5rem;
+    z-index: 1;
     color: #fed945;
 }
 .price{
+    z-index: 1;
     color: #fed945;
     font-size: 0.26rem;
 }
 .level{
 vertical-align: top;
+    z-index: 1;
     font-size: 0.18rem;
     padding-left: 0.15rem;
     background-color: #fed945;
@@ -497,6 +531,7 @@ vertical-align: top;
     padding-left: 0.03rem;
     padding-right: 0.04rem;
     border: 1px solid;
+    z-index: 1;
     font-size: 0.2rem;
     color: #ffffff;
     float: right;
@@ -509,35 +544,67 @@ vertical-align: top;
 .name{
     font-size: 0.3rem;
     color: #ffffff;
+    z-index: 1;
     line-height: 0.3rem;
 }
 .it{
     display: block;
     width: 92%;
+    z-index: 1;
     margin: auto;
     padding-top: 0.1rem;
+    position: relative;
     font-size: 0;
 }
 .all{
     min-height: 100%;
-    background-image: url('../../assets/a_bj.png');
-    background-repeat: repeat-y;
-    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    z-index: -3;
+
+}
+.allzz{
+    z-index:-2!important; 
+    position: absolute;
+    top: 0;
+    left: -3rem;
+    width: auto;
+    height: 100%;
+    z-index: 0;
+    filter:blur(10px);
+    -webkit-filter:blur(10px);
+    -moz-filter:blur(10px);
+    -ms-filter:blur(10px);
+    -o-filter:blur(10px);
+}
+.allzzz{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0f1923;
+    opacity: 0.9;
+    min-height: 100%;
+    z-index: 1;
 }
 .lunbo{
     height: 5.7rem;
+    z-index: 1;
     width: 100%;
     margin-bottom: 0.32rem;
 }
 .lunbo img{
     width: 100%;
+    z-index: 2;
     height: 100%;
 }
 .swiper-pagination{
+    z-index: 1;
     position: relative;
     top: 4.6rem;
 }
 .swiper-pagination-bullets span{
+    z-index: 1;
     background-color: white!important;
 }
 </style>
