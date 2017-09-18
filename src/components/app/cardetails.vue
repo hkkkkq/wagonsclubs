@@ -490,7 +490,7 @@ video{
     height: 0.32rem;
     margin-right: 0.3rem;
     display: inline-block;
-    line-height: 0.3rem;
+    line-height: 0.32rem;
     margin-top: 0.1rem;
 }
 .star{
@@ -505,7 +505,7 @@ video{
     width: 0.96rem;
     text-align: center;
     height: 0.28rem;
-    line-height: 0.28rem;
+    line-height: 0.3rem;
 }
 .name{
     font-size: 0.3rem;
