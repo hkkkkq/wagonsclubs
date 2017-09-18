@@ -1,6 +1,6 @@
 <template>
 <div style="font-family: PingFangSC-Medium, sans-serif;" class="all" >
-    <div style="positon:relative">
+    <div class="cr">
         <div class="allzzz"></div>
         <img :src='bg' class="allzz"></img>
     </div>
@@ -47,7 +47,7 @@
         立即预订
     </p>
     <div v-show="at" class="al">
-        <div>
+        <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
         <img class="at" src="../../assets/app/xqt1.png">
         <div class="ms">
             {{mes}}
@@ -294,6 +294,12 @@ export default {
 </script>
 
 <style scoped>
+.cr{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
 img[lazy=error]{
     /* //your code */
     background-image: url('../../assets/loading12.gif');
@@ -344,13 +350,16 @@ img[lazy=loaded]{
     line-height: 0.7rem;
 }
 .ax{
-    z-index: 1;
     width: 0.68rem;
     height: 0.68rem;
-    display: block;
-    margin: auto;
     z-index: 1;
     margin-top: 2.24rem;
+    position: absolute;
+    bottom: 1.2rem;
+    left: 0;
+    margin: auto;
+    display: block;
+    right: 0;
 }
 .ms{
     position: relative;
@@ -558,6 +567,8 @@ vertical-align: top;
 }
 .all{
     min-height: 100%;
+    width: 100%;
+    overflow: hidden;
     background-repeat: no-repeat;
     background-size: auto 100%;
     z-index: -3;
@@ -570,11 +581,11 @@ vertical-align: top;
     width: auto;
     height: 9rem;
     z-index: 0;
-    filter: blur(7px);
-    -webkit-filter: blur(7px);
-    -moz-filter: blur(7px);
-    -ms-filter: blur(7px);
-    -o-filter: blur(7px);
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -ms-filter: blur(8px);
+    -o-filter: blur(8px);
 }
 .allzzz{
     position: absolute;
@@ -598,7 +609,7 @@ vertical-align: top;
     height: 100%;
 }
 .swiper-pagination{
-    z-index: 1;
+    z-index: 2;
     position: relative;
     top: 4.6rem;
 }
