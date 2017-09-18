@@ -1,5 +1,6 @@
 <template>
-<div style="font-family: PingFangSC-Medium, sans-serif;">
+<div>
+    <!-- style="font-family: PingFangSC-Medium, sans-serif;" -->
     <!-- <img @click="whoweare" class="banner" src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/assets/carousel/20170607195218_769.png"> -->
     <div style="position:relative">
         <!-- 活动轮播下biao -->

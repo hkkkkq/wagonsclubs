@@ -46,6 +46,7 @@ const apply = resolve => require(['../components/mobile/apply.vue'], resolve);
 const cardetail = resolve => require(['../components/mobile/cardetail.vue'], resolve);
 const whoweare = resolve => require(['../components/mobile/whoweare.vue'], resolve);
 const mid = resolve => require(['../components/mobile/mid.vue'], resolve);
+const zw = resolve => require(['../components/mobile/zw.vue'], resolve);
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router);
@@ -128,6 +129,7 @@ export default new Router({
         { path: '/mobile/cardetail', component: cardetail },
         { path: '/mobile/whoweare', component: whoweare },
         { path: '/mobile/mid', component: mid },
+        { path: '/mobile/zw', component: zw },
 
 
 
