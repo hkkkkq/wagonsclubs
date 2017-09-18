@@ -20,7 +20,7 @@
                     <img class="midar" src="../../assets/mida.jpg">
                 </p>
                 <p class="disp"><b>¥{{car.car.currentDaydisc}}</b>/天</p>
-                <p class="nodisp"><span>¥<b>{{car.car.dailyRentPrice}}</b>/天</span></p>
+                <p class="nodisp"><span><b>¥{{car.car.dailyRentPrice}}</b>/天</span></p>
                 <img class="img1" src="../../assets/miaosha.png">
                 <img class="ci" :src="car.carImgShows[0]">
                 <div @click="but" class="but">我要租车</div>
@@ -167,6 +167,10 @@ export default {
 </script>
 
 <style scoped>
+@font-face { 
+  font-family: "DIN Alternate Bold"; 
+  src: url('../../assets/DIN Alternate Bold.ttf'); 
+} 
 .fade-enter-active, .fade-leave-active {
     transition:  transform .5s;
     -moz-transition:  transform .5s; /* Firefox 4 */
@@ -276,9 +280,15 @@ export default {
     height: 0.25rem;
     display: inline-block;
 }
+.nodisp b {
+    font-size: 0.5rem;
+}
 .disp b{
     font-weight: bolder;
     font-size: 0.75rem;
+    font-family: DIN Alternate Bold;
+    position: relative;
+    top: 0.05rem;
 
 }
 .disp{
@@ -294,7 +304,7 @@ export default {
     font-style: italic;
 }
 .nodisp{
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     position: absolute;
     color: #dab729;
     top: 7.2rem;
@@ -305,7 +315,7 @@ export default {
     width: 6.6rem;
     font-style: italic;  
     z-index: 3;
-
+    font-family: DIN Alternate Bold;
     /* border-bottom: 2px solid #dab729; */
 }
 .carname{
