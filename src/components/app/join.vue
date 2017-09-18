@@ -334,7 +334,7 @@ export default {
 }
 .qq{
     width: 6.5rem;
-    border-radius: 6px;
+    border-radius: 4px;
     background: #273039;
     padding: 0.3rem 0.3rem 0.3rem 0.3rem;
     margin-bottom: 0.2rem;

@@ -32,7 +32,7 @@ export default {
                 headers: {"Content-Type": "application/x-www-form-urlencoded",}
             }).then((res)=>{
                 if(res.data.success){
-                    window.Wground.goBack();
+                    window.Wground.close();
                 }else{
                     alert('填写失败，请稍后尝试')
                 }

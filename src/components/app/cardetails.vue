@@ -490,7 +490,7 @@ video{
     margin-top: 0.1rem;
 }
 .star{
-    border-radius: 4px;
+    border-radius: 3px;
     padding-left: 4px;
     padding-right: 4px;
     border: 1px solid;
