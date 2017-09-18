@@ -1,6 +1,5 @@
 <template>
-<div style="" class="all">
-    <!-- font-family: PingFangSC-Medium, sans-serif; -->
+<div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
     <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
@@ -430,6 +429,7 @@ video{
     color: #333333;
     text-align: center;
     font-size: 0.32rem;
+    font-family: -webkit-body;
 }
 .but{
     line-height: 1rem;
