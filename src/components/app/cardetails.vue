@@ -494,7 +494,7 @@ video{
 }
 .pr{
     margin-top: 0.32rem;
-    padding-bottom: 0.32rem;
+    padding-bottom: 0.28rem;
     z-index: 1;
     border-bottom: 1px solid rgba(213,213,190,0.1);
     position: relative;
@@ -564,18 +564,17 @@ vertical-align: top;
 
 }
 .allzz{
-    z-index:-2!important; 
+    z-index: -2!important;
     position: absolute;
-    top: 0;
-    left: -3rem;
+    bottom: 0;
     width: auto;
-    height: 100%;
+    height: 9rem;
     z-index: 0;
-    filter:blur(10px);
-    -webkit-filter:blur(10px);
-    -moz-filter:blur(10px);
-    -ms-filter:blur(10px);
-    -o-filter:blur(10px);
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -o-filter: blur(5px);
 }
 .allzzz{
     position: absolute;
