@@ -1,5 +1,6 @@
 <template>
-<div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
+<div style="" class="all">
+    <!-- font-family: PingFangSC-Medium, sans-serif; -->
     <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
         您的浏览器不支持 video 标签。
     </video>   
@@ -318,8 +319,6 @@ img[lazy=loaded]{
     border-bottom: 1px solid #999999;
     height: 0.1rem;
     margin-left: 0.3rem;
-    position: relative;
-    top: -0.05rem;
 }
 .ms div{
     background: #fed945;
@@ -476,11 +475,9 @@ video{
 .price{
     color: #fed945;
     font-size: 0.26rem;
-    position: relative;
-    top: -0.05rem;
 }
 .level{
-    vertical-align: top;
+vertical-align: top;
     font-size: 0.18rem;
     padding-left: 0.15rem;
     background-color: #fed945;
@@ -492,10 +489,12 @@ video{
     display: inline-block;
     line-height: 0.32rem;
     margin-top: 0.1rem;
+    position: relative;
+    top: 0.01rem;
 }
 .star{
     border-radius: 0.04rem;
-    padding-left: 0.04rem;
+    padding-left: 0.03rem;
     padding-right: 0.04rem;
     border: 1px solid;
     font-size: 0.2rem;
