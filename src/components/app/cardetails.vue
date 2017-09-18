@@ -313,11 +313,13 @@ img[lazy=loaded]{
 }
 .nodis{
     font-size: 0.24rem;
-    color:#999999;
-    display:inline-block;
+    color: #999999;
+    display: inline-block;
     border-bottom: 1px solid #999999;
     height: 0.1rem;
     margin-left: 0.3rem;
+    position: relative;
+    top: -0.05rem;
 }
 .ms div{
     background: #fed945;
@@ -474,6 +476,8 @@ video{
 .price{
     color: #fed945;
     font-size: 0.26rem;
+    position: relative;
+    top: -0.05rem;
 }
 .level{
     vertical-align: top;
@@ -491,16 +495,17 @@ video{
 }
 .star{
     border-radius: 0.04rem;
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 0.04rem;
+    padding-right: 0.04rem;
     border: 1px solid;
     font-size: 0.18rem;
     color: #ffffff;
     float: right;
-    padding-top: 2px;
     padding-bottom: 2px;
     width: 0.96rem;
     text-align: center;
+    height: 0.3rem;
+    line-height: 0.3rem;
 }
 .name{
     font-size: 0.3rem;
