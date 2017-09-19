@@ -33,7 +33,7 @@
         </div>
         <p class="des">{{car.carDesc}}</p>
          
-        <span class="tips">{{car.carSeats}}座</span>
+        <span class="tips">{{car.carSeats}}</span>
         <span v-if="car.gearLevel == 2" class="tips">自动挡</span>
         <span v-else class="tips">手动挡</span>        
         <span class="tips">{{car.carColor}}</span>
