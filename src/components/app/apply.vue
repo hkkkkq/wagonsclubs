@@ -132,6 +132,7 @@ export default {
     background: url()!important;
     text-align: right!important;
     padding-right: 0.05rem!important;
+    text-indent: 0!important;
 }
 .mask p {
     z-index: 100;
