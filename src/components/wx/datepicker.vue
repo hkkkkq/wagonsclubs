@@ -21,9 +21,12 @@
                     v-for="(item2,n2) in item">
                     <em 
                         :class="{'rent':istoken(dateform[n][n2]),
-                                'startclick':dateform[n][n2] == choose,
+                                'startclick':(dateform[n][n2] == choose)&&(type == 'starttime'),
                                 'today':istoday == dateform[n][n2],
-                                'lessthan':lessthan(dateform[n][n2])}">
+                                'lessthan':lessthan(dateform[n][n2]),
+                                'beforeTodayDays':isbeforeTodayDays(dateform[n][n2]),
+                                'isstartclick':(isstartdate(dateform[n][n2]))&&(type == 'endtime'),
+                                'endclick':(dateform[n][n2] == choose)&&(type == 'endtime')}">
                         {{item2 == "k"?null:item2}}
                         <span class="hasrent" v-if="istoken(dateform[n][n2])">已出租</span>
                     </em>
@@ -64,6 +67,8 @@ export default {
             nowxqj:"",//选中那天是星期几
             sdate:'',//当天是几号
             // tokendays:["2018-09-06","2018-09-07"]
+            beforeTodayDays:30,
+            type:''
         }
     },
     computed:{
@@ -71,18 +76,18 @@ export default {
             let y = this.curYear == new Date().getFullYear();
             let m = this.curMonth == new Date().getMonth();
             // let d = this.sdate == new Date().getDate();
-            console.log(this.sdate)
             if(y&&m){
                 return this.sdate
             }else{
                 return false
             }
         },
-
         tokendays(){
             return this.$store.state.rentdays
-        }
-
+        },
+        startob(){//获取开始时间
+            return this.$store.state.starttime
+        },
     },
     components:{
         pdSelectItem,
@@ -104,7 +109,7 @@ export default {
         }
     },
     created(){
-
+        this.type = this.$route.query.type;
         var curDate = new Date(); //当前日期
         this.curYear = curDate.getFullYear()  //当前年份
         this.curMonth = curDate.getMonth() //当前月份
@@ -114,13 +119,46 @@ export default {
 
     },
     methods:{
+        isstartdate(date){
+            if(this.type == 'starttime'){
+                return false;
+            }else{
+                if((this.startob.year == this.curYear)&&(this.startob.month == this.curMonth)&&(this.startob.date == date )){
+                    return true
+                }else{
+                    return false
+                }
+            }
+        },
+        isbeforeTodayDays(date){
+            let nowdate = new Date()
+            let enddate,endmonth = nowdate.getMonth(),endyear = nowdate.getFullYear()
+            let count = new Date(nowdate.getFullYear(),nowdate.getMonth()+1,0).getDate()
+            let tmp = this.sdate + this.beforeTodayDays;
+            if(tmp > count){
+                enddate = tmp - count;
+                endmonth = endmonth + 1;
+                if(endmonth > 11){
+                    endmonth = 0
+                    endyear = endyear + 1
+                }
+            }else{
+                enddate = tmp
+            }
+            //至此，已经得出戒指日期，接下来做比较即可
+            if(this.curYear > endyear){ return true }
+            if((this.curYear == endyear)&&(this.curMonth > endmonth)){ return true }
+            if((date > enddate)&&(this.curMonth == endmonth)){ return true }
+            nowdate=enddate=endmonth=endyear=count=tmp=null
+            return false
+        },
         lessthan(date){
             let tmp = new Date()
-            if(this.curYear < tmp.getFullYear()){
+            /*if(this.curYear < tmp.getFullYear()){
                 tmp = null;
                 return true
-            }
-            if(this.curMonth < tmp.getMonth()){
+            }*/
+            if((this.curMonth < tmp.getMonth())&&(this.curYear<=tmp.getFullYear())){
                 tmp = null;
                 return true                
             }
@@ -170,6 +208,15 @@ export default {
             return tmp.getDate();
         },
         clickspan(n,n2){
+            console.log(new Date(this.tokendays[0]))
+            console.log(new Date(2017,8,5,8,0,10))
+            console.log((new Date(this.tokendays[0]))<(new Date(2017,8,5,8,0,10)))
+            if(this.isstartdate(this.dateform[n][n2])){
+                return ;
+            }
+            if(this.isbeforeTodayDays(this.dateform[n][n2])){
+                return ;
+            }
             if(this.lessthan(this.dateform[n][n2])){
                 return ;
             }
@@ -183,10 +230,21 @@ export default {
             }
         },
         su(){
-            if(this.$route.query.type == "starttime"){
+            if(this.type == "starttime"){
                 this.$store.commit('starttime',{year:this.curYear,month:this.curMonth,date:this.choose,xqj:this.nowxqj,shi:this.shi,fen:this.fen})
                 this.$router.go(-1)
             }else{
+                let startstring = new Date(this.startob.year,this.startob.month,this.startob.date,parseInt(this.startob.shi),parseInt(this.startob.fen),0)
+                let endstring = new Date(this.curYear,this.curMonth,this.choose,parseInt(this.shi),parseInt(this.fen),0)
+                console.log(startstring)
+                console.log(endstring)
+                for(let i = 0; i<=this.tokendays.length ; i++ ){
+                    console.log(new Date(this.tokendays[i]))
+                    if( (new Date(this.tokendays[i])<endstring)&&(new Date(this.tokendays[i])>startstring) ){
+                        alert('结束日期不能在开始日期之前');
+                        return false
+                    }
+                }
                 this.$store.commit('endtime',{year:this.curYear,month:this.curMonth,date:this.choose,xqj:this.nowxqj,shi:this.shi,fen:this.fen})
                 this.$router.go(-1)
             }
@@ -196,6 +254,20 @@ export default {
 </script>
 
 <style scoped>
+.endclick{
+    display: block;
+    width: 0.68rem;
+    margin: auto;
+    height: 0.68rem;
+    background: #f4d144;
+    color: #0f1923;
+    border-radius: 1000px;
+    line-height: 0.7rem;
+}
+.beforeTodayDays{
+    color: #ffffff;
+    opacity: 0.1;
+}
 .lessthan{
     color: #ffffff;
     opacity: 0.1;
@@ -214,7 +286,7 @@ export default {
     font-size: 0.18rem;
     position: absolute;
     width: 1rem;
-    top: 0.35rem;
+    top: 0.3rem;
     left: 0;
 }
 .today{
@@ -232,6 +304,16 @@ export default {
     border-radius: 4px;
     right: 0.2rem;
     position: absolute;
+}
+.isstartclick{
+    display: block;
+    width: 0.68rem;
+    margin: auto;
+    height: 0.68rem;
+    background: rgb(74, 200, 122);
+    color: #0f1923;
+    border-radius: 1000px;
+    line-height: 0.7rem;
 }
 .startclick{
     display: block;
