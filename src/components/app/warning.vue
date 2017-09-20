@@ -77,7 +77,7 @@ export default {
 
 .df b {
     display: inline-block;
-    width: 6.5rem;
+    width: 6.4rem;
 }
 
 .bo {
