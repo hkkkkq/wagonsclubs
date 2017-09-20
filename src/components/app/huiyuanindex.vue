@@ -2,10 +2,13 @@
     <div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923">
         <div class="head">
             <p @click="ll(1)" :class="{active:rightc}" style="    border-bottom-left-radius: 1rem;
-        border-top-left-radius: 1rem;">会员权益</p><p @click="ll(2)" :class="{active:!rightc}" style="border-bottom-right-radius: 1rem;
+        border-top-left-radius: 1rem;">会员权益</p>
+            <p @click="ll(2)" :class="{active:!rightc}" style="border-bottom-right-radius: 1rem;
         border-top-right-radius: 1rem;">如何加入</p>
         </div>
+        <transition name="slide-fade">
         <router-view></router-view>
+        </transition>
         <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
     </div>
 </template>
@@ -40,6 +43,42 @@ export default {
 </script>
 
 <style scoped>
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+/* .slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+} */
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+
+.slid-enter-active{
+    animation: slider 0.5s;
+}
+.slid-leave-active{
+    animation: slider1 0.5s;
+}
+@keyframes slider {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes slider1 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 .head p.active {
     background: #fcd82f;
     color: #0f1923;
