@@ -1,14 +1,14 @@
 <template>
-<div class='wrap'>
-    <router-view></router-view>
-</div>
+    <div class='wrap'>
+        <router-view></router-view>
+    </div>
 </template>
 <script>
-require('./rem.js')(window,document)
+require('./rem.js')(window, document)
 </script>
 
 <style scoped>
-.wrap{
+.wrap {
     position: absolute;
     width: 100%;
     height: 100%;

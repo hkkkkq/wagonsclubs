@@ -1,287 +1,289 @@
 <template>
-<div style="font-family: PingFangSC-Medium, sans-serif;" class="all" >
-    <div class="cr">
-        <div class="allzzz"></div>
-        <img :src='bg' class="allzz"></img>
-    </div>
-    <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
-        您的浏览器不支持 video 标签。
-    </video>   
-    <div class="lunbo">
-        <img @click="back" src="../../assets/app/back.png" class="back"></img>
-        <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
-            <div class="swiper-pagination"></div>                       
-        <swiper :options="swiperOption" class="msl" ref="mySwiper">
-            <swiper-slide v-if="car.videoImg" style="position:relative">
-                 <img class="vimg"  v-lazy="car.videoImg">                 
-                 <img @click="pp" class="p11" src="../../assets/app/play.png" />
-            </swiper-slide>
-            <swiper-slide :key="index" v-for='(item,index) in carimgs'>
-                 <img v-lazy="item"> 
-            </swiper-slide>
-        </swiper>
-    </div>
-    <div class="it">
-        <div>
-            <span class="name">{{car.carName}}</span>
-            <span class="star">{{car.starLevel}}星级车</span>
+    <div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
+        <div class="cr">
+            <div class="allzzz"></div>
+            <img :src='bg' class="allzz"></img>
         </div>
-        <div class="pr">
-            <span class="level">会员价</span>
-            <span class="price"><span class="number">{{String(car.dailyRentPrice*0.6) == "NaN"?'0':car.dailyRentPrice*0.6}}</span>／天</span>
-            <span class="nodis"><b>{{car.dailyRentPrice}}</b>/天</span>
+        <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
+            您的浏览器不支持 video 标签。
+        </video>
+        <div class="lunbo">
+            <img @click="back" src="../../assets/app/back.png" class="back"></img>
+            <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
+            <div class="swiper-pagination"></div>
+            <swiper :options="swiperOption" class="msl" ref="mySwiper">
+                <swiper-slide v-if="car.videoImg" style="position:relative">
+                    <img class="vimg" v-lazy="car.videoImg">
+                    <img @click="pp" class="p11" src="../../assets/app/play.png" />
+                </swiper-slide>
+                <swiper-slide :key="index" v-for='(item,index) in carimgs'>
+                    <img v-lazy="item">
+                </swiper-slide>
+            </swiper>
         </div>
-        <p class="des">{{car.carDesc}}</p>
-         
-        <span class="tips">{{car.carSeats}}</span>
-        <span v-if="car.gearLevel == 2" class="tips">自动挡</span>
-        <span v-else class="tips">手动挡</span>        
-        <span class="tips">{{car.carColor}}</span>
-        <span class="tips">{{car.carEngineDisplacement}}排量</span>
-        <span v-if="car.convertible == 1" class="tips">敞篷</span>
-        <span v-if="car.convertible == 2" class="tips">硬顶敞篷</span>
-        <span v-if="car.convertible == 3" class="tips">软顶敞篷</span>
+        <div class="it">
+            <div>
+                <span class="name">{{car.carName}}</span>
+                <span class="star">{{car.starLevel}}星级车</span>
+            </div>
+            <div class="pr">
+                <span class="level">会员价</span>
+                <span class="price">
+                    <span class="number">{{String(car.dailyRentPrice*0.6) == "NaN"?'0':car.dailyRentPrice*0.6}}</span>／天</span>
+                <span class="nodis">
+                    <b>{{car.dailyRentPrice}}</b>/天</span>
+            </div>
+            <p class="des">{{car.carDesc}}</p>
+
+            <span class="tips">{{car.carSeats}}</span>
+            <span v-if="car.gearLevel == 2" class="tips">自动挡</span>
+            <span v-else class="tips">手动挡</span>
+            <span class="tips">{{car.carColor}}</span>
+            <span class="tips">{{car.carEngineDisplacement}}排量</span>
+            <span v-if="car.convertible == 1" class="tips">敞篷</span>
+            <span v-if="car.convertible == 2" class="tips">硬顶敞篷</span>
+            <span v-if="car.convertible == 3" class="tips">软顶敞篷</span>
+        </div>
+        <p class="but1"></p>
+        <p @click="sub" class="but">
+            立即预订
+        </p>
+        <div v-show="at" class="al">
+            <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
+                <img class="at" src="../../assets/app/xqt1.png">
+                <div class="ms">
+                    {{mes}}
+                    <div @click="cl">我知道了</div>
+                </div>
+            </div>
+            <img @click="cl" class="ax" src="../../assets/app/xx.png">
+        </div>
     </div>
-    <p class="but1"></p>
-    <p @click="sub" class="but">
-        立即预订
-    </p>
-    <div v-show="at" class="al">
-        <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
-        <img class="at" src="../../assets/app/xqt1.png">
-        <div class="ms">
-            {{mes}}
-            <div @click="cl">我知道了</div>
-        </div>
-        </div>
-        <img @click="cl" class="ax" src="../../assets/app/xx.png">
-    </div>
-</div>
 </template>
 
 <script>
-import {swiper} from "vue-awesome-swiper"
+import { swiper } from "vue-awesome-swiper"
 require('swiper/dist/css/swiper.css')
 var deurl = require('./url.js')
 export default {
-    components: {swiper},
-    name:"cardetails",
-    data(){
-        return{
+    components: { swiper },
+    name: "cardetails",
+    data() {
+        return {
             swiperOption: {
-              notNextTick: true,
-              autoplay: 3000,
-              autoplayDisableOnInteraction:false,
-              pagination : '.swiper-pagination',
-              paginationType:'custom',
-              paginationCustomRender:function(swiper, current, total){
-                  var _html = '';
-            for (var i = 1; i <= total; i++) {
-              if (current == i) {
-                _html += '<li style="background:#ffffff;display:inline-block;width:5px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:9px"></i>';
-              }else{
-                _html += '<li style="opacity:0.3;background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:9px"></i>';
-              }
-            }
-            return _html
-              },
-              direction : 'horizontal',
-              grabCursor : true,
-              setWrapperSize :true,
-              autoHeight: true,
-              slidesPerView : 1,
-              paginationClickable :false,
-              observeParents:true,
-              debugger: true,
-              watchSlidesVisibility : true,
-              onTransitionStart(swiper){},
+                notNextTick: true,
+                autoplay: 3000,
+                autoplayDisableOnInteraction: false,
+                pagination: '.swiper-pagination',
+                paginationType: 'custom',
+                paginationCustomRender: function(swiper, current, total) {
+                    var _html = '';
+                    for (var i = 1; i <= total; i++) {
+                        if (current == i) {
+                            _html += '<li style="background:#ffffff;display:inline-block;width:5px;height:5px;border-radius:5px"></li><i style="display:inline-block;width:9px"></i>';
+                        } else {
+                            _html += '<li style="opacity:0.3;background:#F3F3F3;display:inline-block;width:5px;height:5px;border-radius:50%"></li><i style="display:inline-block;width:9px"></i>';
+                        }
+                    }
+                    return _html
+                },
+                direction: 'horizontal',
+                grabCursor: true,
+                setWrapperSize: true,
+                autoHeight: true,
+                slidesPerView: 1,
+                paginationClickable: false,
+                observeParents: true,
+                debugger: true,
+                watchSlidesVisibility: true,
+                onTransitionStart(swiper) { },
             },
             // isplay:false
-            memberNick5:'',
-            level5:'',
-            car:'',
-            carimgs:'',
-            carId:'',
-            at:false,
-            mes:'',
-            isapp:"",
-            bg:''
+            memberNick5: '',
+            level5: '',
+            car: '',
+            carimgs: '',
+            carId: '',
+            at: false,
+            mes: '',
+            isapp: "",
+            bg: ''
         }
     },
-    created(){
+    created() {
         //判断是否是wagonsapp
-        if(/from_wagons/.test(navigator.userAgent.toLowerCase())){
-            this.isapp = true            
-        }else{
+        if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+            this.isapp = true
+        } else {
             this.isapp = false
         }
         //获取微信分享4要素
-        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
-        .then((res)=>{
-            wx.config({
-                        debug: false,
-                        appId: res.data.data.sign.appId,
-                        timestamp: res.data.data.sign.timestamp,
-                        nonceStr: res.data.data.sign.nonceStr,
-                        signature: res.data.data.sign.signature,
-                        jsApiList: [
-                            'onMenuShareTimeline',
-                            'onMenuShareAppMessage',
-                            'onMenuShareQQ',
-                            'onMenuShareWeibo'
-                        ]
+        this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
+            .then((res) => {
+                wx.config({
+                    debug: false,
+                    appId: res.data.data.sign.appId,
+                    timestamp: res.data.data.sign.timestamp,
+                    nonceStr: res.data.data.sign.nonceStr,
+                    signature: res.data.data.sign.signature,
+                    jsApiList: [
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo'
+                    ]
+                });
+                var locationHref = window.location.origin;
+                wx.ready(function() {
+                    wx.onMenuShareTimeline({
+                        title: 'WAGONS光速超跑',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                     });
-            var locationHref = window.location.origin;
-            wx.ready(function () {
-                        wx.onMenuShareTimeline({
-                            title: 'WAGONS光速超跑',
-                            link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-                        });
-                        wx.onMenuShareAppMessage({
-                            title: 'WAGONS光速超跑',
-                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-                            link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-                        });
-                        wx.onMenuShareQQ({
-                            title: 'WAGONS光速超跑',
-                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-                            link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-                        });
-                        wx.onMenuShareWeibo({
-                            title: 'WAGONS光速超跑',
-                            desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-                            link: locationHref,
-                            imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-                        });
+                    wx.onMenuShareAppMessage({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                     });
+                    wx.onMenuShareQQ({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                    wx.onMenuShareWeibo({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                });
             })
 
         //获取车辆详情
         this.carId = deurl(location).carId;
-        this.$ajax(BASE_URL+'/car/leaseDetails?carId='+deurl(location).carId)
-        .then((res)=>{
-            if(res.data.success == true){
-                this.memberNick5 = res.data.data.memberNick5;
-                this.level5 = res.data.data.level5;
-                this.car = res.data.data.car;
-                this.carimgs = res.data.data.carImgShows;
-                this.bg = res.data.data.carImgShows[0]
-                console.log(res.data)
-            }else{
-                alert('一定是后台小哥出现了什么问题！！！')
-            }            
+        this.$ajax(BASE_URL + '/car/leaseDetails?carId=' + deurl(location).carId)
+            .then((res) => {
+                if (res.data.success == true) {
+                    this.memberNick5 = res.data.data.memberNick5;
+                    this.level5 = res.data.data.level5;
+                    this.car = res.data.data.car;
+                    this.carimgs = res.data.data.carImgShows;
+                    this.bg = res.data.data.carImgShows[0]
+                    console.log(res.data)
+                } else {
+                    alert('一定是后台小哥出现了什么问题！！！')
+                }
             })
-        .catch(()=>{alert('一定是你的手机出了什么问题！！！')})
+            .catch(() => { alert('一定是你的手机出了什么问题！！！') })
     },
     computed: {
     },
-    methods:{
-        full(element){
-            if(element.requestFullscreen) {
+    methods: {
+        full(element) {
+            if (element.requestFullscreen) {
                 element.requestFullscreen();
-             } else if(element.mozRequestFullScreen) {
+            } else if (element.mozRequestFullScreen) {
                 element.mozRequestFullScreen();
-            } else if(element.webkitRequestFullscreen) {
+            } else if (element.webkitRequestFullscreen) {
                 element.webkitRequestFullscreen();
-            } else if(element.msRequestFullscreen) {
+            } else if (element.msRequestFullscreen) {
                 element.msRequestFullscreen();
             }
         },
-        pp(){
-                this.full(this.$refs.video)
-                this.$refs.video.play();
+        pp() {
+            this.full(this.$refs.video)
+            this.$refs.video.play();
         },
-        back(){
-            if(this.isapp){
+        back() {
+            if (this.isapp) {
                 window.Wground.goBack();
-            }else{
+            } else {
                 this.$router.go(-1);
             }
         },
-        share(){
-            window.Wground.share('WAGONS光速超跑', window.location.origin , 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+        share() {
+            window.Wground.share('WAGONS光速超跑', window.location.origin, 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务', '0,1,2,3');
         },
-        sub(){
+        sub() {
             var vm = this;
             //获取token
-            if(this.isapp){
-                window.Wground.getApiToken(suc,fail)//suc在下面
-            }else{
+            if (this.isapp) {
+                window.Wground.getApiToken(suc, fail)//suc在下面
+            } else {
                 // alert(11)在微信中
                 this.$ajax({
-                    url:BASE_URL+"/car/memberType?carId="+this.carId,
-                    method:'GET',
-                }).then((res)=>{
-                    if(res.data.success == true){//请求成功
-                        if(res.data.data.JumpInfo.review == true){//审核通过
-                            if((res.data.data.JumpInfo.userType == 4)||(res.data.data.JumpInfo.userType == 5)){//白金会员和散租
+                    url: BASE_URL + "/car/memberType?carId=" + this.carId,
+                    method: 'GET',
+                }).then((res) => {
+                    if (res.data.success == true) {//请求成功
+                        if (res.data.data.JumpInfo.review == true) {//审核通过
+                            if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
                                 // window.Wground.reservation(false)
-                                this.$router.push({path:"/wx/pay",query:{orderType:1,carId:this.carId},})                                
-                            }else{//三计划用户
-                                if(res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable){//车可用，日期可用
+                                this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
+                            } else {//三计划用户
+                                if (res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable) {//车可用，日期可用
                                     // window.Wground.reservation(true)                                    
-                                    this.$router.push({path:"/wx/pay",query:{orderType:0,carId:this.carId},})
-                                }else if(res.data.data.JumpInfo.carUseable == false){//车不可用
+                                    this.$router.push({ path: "/wx/pay", query: { orderType: 0, carId: this.carId }, })
+                                } else if (res.data.data.JumpInfo.carUseable == false) {//车不可用
                                     this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
-                                    return ;
-                                }else if(res.data.data.JumpInfo.dateUseable == false){//日期不可用
+                                    return;
+                                } else if (res.data.data.JumpInfo.dateUseable == false) {//日期不可用
                                     // window.Wground.reservation(false)
-                                    this.$router.push({path:"/wx/pay",query:{orderType:1,carId:this.carId},})
+                                    this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
                                 }
                             }
-                        }else{
+                        } else {
                             this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
-                            return ;
+                            return;
                         }
-                    }else{
+                    } else {
                         this.ef("出现了什么问题，比如没登陆？")
-                        return ;
+                        return;
                     }
                 })
             }
-            function suc(token){
+            function suc(token) {
                 vm.$ajax("http://www.baidu.com")
                 vm.$ajax({
-                    url:BASE_URL+"/car/memberType?carId="+vm.carId,
-                    method:'GET',
-                    headers:{"token":token}
-                    }).then((res)=>{
-                        if(res.data.success == true){
-                            if(res.data.data.JumpInfo.review == true){
-                                if((res.data.data.JumpInfo.userType == 4)||(res.data.data.JumpInfo.userType == 5)){
-                                    window.Wground.reservation(false,vm.carId)
-                                }else{
-                                    if(res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable){
-                                        window.Wground.reservation(true,vm.carId)                                    
-                                    }else if(res.data.data.JumpInfo.carUseable == false){
-                                        vm.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
-                                        return ;
-                                    }else if(res.data.data.JumpInfo.dateUseable == false){
-                                        window.Wground.reservation(false,vm.carId)
-                                    }
+                    url: BASE_URL + "/car/memberType?carId=" + vm.carId,
+                    method: 'GET',
+                    headers: { "token": token }
+                }).then((res) => {
+                    if (res.data.success == true) {
+                        if (res.data.data.JumpInfo.review == true) {
+                            if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {
+                                window.Wground.reservation(false, vm.carId)
+                            } else {
+                                if (res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable) {
+                                    window.Wground.reservation(true, vm.carId)
+                                } else if (res.data.data.JumpInfo.carUseable == false) {
+                                    vm.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
+                                    return;
+                                } else if (res.data.data.JumpInfo.dateUseable == false) {
+                                    window.Wground.reservation(false, vm.carId)
                                 }
-                            }else{
-                                vm.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
-                                return ;
                             }
-                        }else{
-                            vm.ef("出现了什么问题，比如没登陆？")
-                            return ;
+                        } else {
+                            vm.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                            return;
                         }
-                    })
-                };
-            function fail(err){
+                    } else {
+                        vm.ef("出现了什么问题，比如没登陆？")
+                        return;
+                    }
+                })
+            };
+            function fail(err) {
                 alert(res)
                 vm.ef("err")
             }
         },
-        cl(){
+        cl() {
             this.at = false
         },
-        ef(msg){
+        ef(msg) {
             this.mes = msg
             this.at = true;
         }
@@ -291,40 +293,43 @@ export default {
 </script>
 
 <style scoped>
-.cr{
+.cr {
     position: absolute;
     width: 100%;
     min-height: 100%;
     overflow: hidden;
 }
-img[lazy=error]{
+
+img[lazy=error] {
     /* //your code */
     background-image: url('../../assets/loading12.gif');
     background-repeat: no-repeat;
-    background-position:center;
-    background-size: 0.5rem;
-    z-index: 1;
-  
-}
-img[lazy=loading]{
-    /* //your code */
-    background-image: url('../../assets/loading12.gif');
-    background-repeat: no-repeat;
-    background-position:center;
+    background-position: center;
     background-size: 0.5rem;
     z-index: 1;
 }
 
-img[lazy=loaded]{
+img[lazy=loading] {
+    /* //your code */
+    background-image: url('../../assets/loading12.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.5rem;
+    z-index: 1;
+}
+
+img[lazy=loaded] {
     /* //your code */
     z-index: 1;
-  animation:fade 0.5s;
+    animation: fade 0.5s;
 }
-.nodis b{
+
+.nodis b {
     z-index: 1;
     font-size: 0.26rem;
 }
-.nodis{
+
+.nodis {
     font-size: 0.24rem;
     color: #999999;
     display: inline-block;
@@ -333,7 +338,8 @@ img[lazy=loaded]{
     z-index: 1;
     margin-left: 0.3rem;
 }
-.ms div{
+
+.ms div {
     background: #fed945;
     height: 0.72rem;
     color: #333333;
@@ -346,7 +352,8 @@ img[lazy=loaded]{
     z-index: 1;
     line-height: 0.7rem;
 }
-.ax{
+
+.ax {
     width: 0.68rem;
     height: 0.68rem;
     z-index: 1;
@@ -358,7 +365,8 @@ img[lazy=loaded]{
     display: block;
     right: 0;
 }
-.ms{
+
+.ms {
     position: relative;
     background: #ffffff;
     font-size: 0.24rem;
@@ -373,7 +381,8 @@ img[lazy=loaded]{
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
 }
-.al .at{
+
+.al .at {
     width: 5.17rem;
     margin: auto;
     display: block;
@@ -382,7 +391,8 @@ img[lazy=loaded]{
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
-.yl{
+
+.yl {
     font-size: 0.3rem;
     color: #ffffff;
     position: absolute;
@@ -390,7 +400,8 @@ img[lazy=loaded]{
     z-index: 1;
     left: 2.5rem;
 }
-.al{
+
+.al {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -400,23 +411,27 @@ img[lazy=loaded]{
     z-index: 1;
     left: 0;
     font-size: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
 }
-.vimg{
+
+.vimg {
     z-index: 1;
     margin-top: 1rem;
 }
-.msl img{
+
+.msl img {
     z-index: 1;
     widows: 100%;
     height: auto;
 }
-.msl{
+
+.msl {
     z-index: 1;
     top: -1rem!important;
     height: 100%;
 }
-.p11{
+
+.p11 {
     width: 0.9rem!important;
     height: 0.9rem!important;
     position: absolute;
@@ -426,16 +441,18 @@ img[lazy=loaded]{
     top: 2.5rem!important;
     left: 3.2rem;
 }
-.back{
-    top:0.6rem;
+
+.back {
+    top: 0.6rem;
     left: 0.3rem;
     z-index: 2;
     width: 0.45rem!important;
     height: 0.45rem!important;
     position: absolute;
 }
-.share{
-    top:0.6rem;
+
+.share {
+    top: 0.6rem;
     z-index: 2;
     right: 0.3rem;
     z-index: 2;
@@ -443,13 +460,15 @@ img[lazy=loaded]{
     height: 0.45rem!important;
     position: absolute;
 }
-video{
+
+video {
     z-index: 1;
     display: block;
     width: 0;
     height: 0;
 }
-.but1{
+
+.but1 {
     position: relative;
     bottom: 0;
     display: block;
@@ -460,7 +479,8 @@ video{
     z-index: 1;
     font-size: 0.32rem;
 }
-.but{
+
+.but {
     z-index: 1;
     line-height: 1rem;
     position: fixed;
@@ -472,9 +492,10 @@ video{
     text-align: center;
     background-color: #fed945;
     font-size: 0.32rem;
-    font-family: -webkit-body;    
+    font-family: -webkit-body;
 }
-.tips{
+
+.tips {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
@@ -489,7 +510,8 @@ video{
     z-index: 1;
     margin-bottom: 0.2rem;
 }
-.des{
+
+.des {
     margin-top: 0.2rem;
     position: relative;
     font-size: 0.24rem;
@@ -498,25 +520,29 @@ video{
     z-index: 1;
     margin-bottom: 0.34rem;
 }
-.pr{
+
+.pr {
     margin-top: 0.32rem;
     padding-bottom: 0.28rem;
     z-index: 1;
-    border-bottom: 1px solid rgba(213,213,190,0.1);
+    border-bottom: 1px solid rgba(213, 213, 190, 0.1);
     position: relative;
 }
-.number{
+
+.number {
     font-size: 0.5rem;
     z-index: 1;
     color: #fed945;
 }
-.price{
+
+.price {
     z-index: 1;
     color: #fed945;
     font-size: 0.26rem;
 }
-.level{
-vertical-align: top;
+
+.level {
+    vertical-align: top;
     z-index: 1;
     font-size: 0.18rem;
     padding-left: 0.15rem;
@@ -532,7 +558,8 @@ vertical-align: top;
     position: relative;
     top: 0.01rem;
 }
-.star{
+
+.star {
     border-radius: 0.04rem;
     padding-left: 0.03rem;
     padding-right: 0.04rem;
@@ -547,13 +574,15 @@ vertical-align: top;
     height: 0.28rem;
     line-height: 0.3rem;
 }
-.name{
+
+.name {
     font-size: 0.3rem;
     color: #ffffff;
     z-index: 1;
     line-height: 0.3rem;
 }
-.it{
+
+.it {
     display: block;
     width: 92%;
     z-index: 1;
@@ -562,16 +591,17 @@ vertical-align: top;
     position: relative;
     font-size: 0;
 }
-.all{
+
+.all {
     min-height: 100%;
     width: 100%;
     overflow: hidden;
     background-repeat: no-repeat;
     background-size: auto 100%;
     z-index: -3;
-
 }
-.allzz{
+
+.allzz {
     z-index: -2!important;
     position: absolute;
     bottom: 0;
@@ -584,7 +614,8 @@ vertical-align: top;
     -ms-filter: blur(8px);
     -o-filter: blur(8px);
 }
-.allzzz{
+
+.allzzz {
     position: absolute;
     top: 0;
     left: 0;
@@ -594,23 +625,27 @@ vertical-align: top;
     min-height: 100%;
     z-index: 1;
 }
-.lunbo{
+
+.lunbo {
     height: 5.7rem;
     z-index: 1;
     width: 100%;
     margin-bottom: 0.32rem;
 }
-.lunbo img{
+
+.lunbo img {
     width: 100%;
     z-index: 2;
     height: 100%;
 }
-.swiper-pagination{
+
+.swiper-pagination {
     z-index: 2;
     position: relative;
     top: 4.6rem;
 }
-.swiper-pagination-bullets span{
+
+.swiper-pagination-bullets span {
     z-index: 1;
     background-color: white!important;
 }

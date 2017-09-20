@@ -1,110 +1,113 @@
 <template>
-  <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
+    <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
         <!-- 清浮动 -->
-      <p style="width: 100%;height: 1px;"></p>
-    <div v-show="iserr" class="alert_err">{{errmsg}}</div>
-      <div class="qq"></div>
-      <div class="in">
-          <p>
-              <span>姓名</span><input v-model="name" placeholder="请填写真实姓名" />          
-          </p>
-          <p>
-              <span>身份证号</span><input v-model="idCard" placeholder="请填写身份证号" />          
-          </p>
-          <p>
-              <span>手机号</span><input v-model="telephone" placeholder="请填写手机号" />          
-          </p>
-          <p @click="sel(1)">
-              <span>婚姻状况</span><b :class="{'tian':istian1}">{{c1}}</b>
-          </p>
-          <p @click="sel(2)">
-              <span>职业</span><b :class="{'tian':istian2}">{{c2}}</b>      
-          </p>
-          <p @click="sel(3)" style="border:0px">
-              <span>职务</span><b :class="{'tian':istian3}">{{c3}}</b>      
-          </p> 
-      </div>
-      <p @click="sub" class="but">提交申请</p>
-      <div @click="clo" v-show="l1" class="mask">
-          <div class="nu">
-              <p @click='cl(item,index)' :key="index" v-for="(item,index) in currlist">{{item}}</p>
-              <p @click="clo" style="color: rgb(215, 215, 215);">取消</p>
-          </div>
-      </div>
-  </div>
+        <p style="width: 100%;height: 1px;"></p>
+        <div v-show="iserr" class="alert_err">{{errmsg}}</div>
+        <div class="qq"></div>
+        <div class="in">
+            <p>
+                <span>姓名</span><input v-model="name" placeholder="请填写真实姓名" />
+            </p>
+            <p>
+                <span>身份证号</span><input v-model="idCard" placeholder="请填写身份证号" />
+            </p>
+            <p>
+                <span>手机号</span><input v-model="telephone" placeholder="请填写手机号" />
+            </p>
+            <p @click="sel(1)">
+                <span>婚姻状况</span>
+                <b :class="{'tian':istian1}">{{c1}}</b>
+            </p>
+            <p @click="sel(2)">
+                <span>职业</span>
+                <b :class="{'tian':istian2}">{{c2}}</b>
+            </p>
+            <p @click="sel(3)" style="border:0px">
+                <span>职务</span>
+                <b :class="{'tian':istian3}">{{c3}}</b>
+            </p>
+        </div>
+        <p @click="sub" class="but">提交申请</p>
+        <div @click="clo" v-show="l1" class="mask">
+            <div class="nu">
+                <p @click='cl(item,index)' :key="index" v-for="(item,index) in currlist">{{item}}</p>
+                <p @click="clo" style="color: rgb(215, 215, 215);">取消</p>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 import qs from 'qs';
 export default {
-    data(){
-        return{
-            errmsg:"",
-            name:'',
-            idCard:'',
-            telephone:'',
-            iserr:false,
-            istian1:false,
-            istian2:false,
-            istian3:false,
-            wh:'',
-            c1:'请选择',
-            c2:'请选择',
-            c3:'请选择',
-            maritalStatus:'',
-            l1:false,
-            currlist:"",
-            hunyinlist:["未婚","已婚","离异"],
-            zhiyelist:["国家机关／事业单位","计算机／互联网","金融业","建筑业","批发零售","文体教育","生产制造","交通运输","文化娱乐","能源环保","农／林／牧／渔业","其他"],
-            zhiwulist:["企业所有者","高管","经理","主管","一般职员","自由职业","学生","其他"],
+    data() {
+        return {
+            errmsg: "",
+            name: '',
+            idCard: '',
+            telephone: '',
+            iserr: false,
+            istian1: false,
+            istian2: false,
+            istian3: false,
+            wh: '',
+            c1: '请选择',
+            c2: '请选择',
+            c3: '请选择',
+            maritalStatus: '',
+            l1: false,
+            currlist: "",
+            hunyinlist: ["未婚", "已婚", "离异"],
+            zhiyelist: ["国家机关／事业单位", "计算机／互联网", "金融业", "建筑业", "批发零售", "文体教育", "生产制造", "交通运输", "文化娱乐", "能源环保", "农／林／牧／渔业", "其他"],
+            zhiwulist: ["企业所有者", "高管", "经理", "主管", "一般职员", "自由职业", "学生", "其他"],
         }
     },
-    methods:{
-        sel(n){
+    methods: {
+        sel(n) {
             this.l1 = true
-            if(n == 1){this.currlist = this.hunyinlist;this.wh = 1}
-            if(n == 2){this.currlist = this.zhiyelist;this.wh = 2}
-            if(n == 3){this.currlist = this.zhiwulist;this.wh = 3}
+            if (n == 1) { this.currlist = this.hunyinlist; this.wh = 1 }
+            if (n == 2) { this.currlist = this.zhiyelist; this.wh = 2 }
+            if (n == 3) { this.currlist = this.zhiwulist; this.wh = 3 }
         },
-        clo(){
+        clo() {
             this.l1 = false
         },
-        cl(str,index){
-            if(this.wh == 1){this.c1 = str;this.maritalStatus = index;this.istian1 = true}
-            if(this.wh == 2){this.c2 = str;this.istian2 = true}
-            if(this.wh == 3){this.c3 = str;this.istian3 = true}
+        cl(str, index) {
+            if (this.wh == 1) { this.c1 = str; this.maritalStatus = index; this.istian1 = true }
+            if (this.wh == 2) { this.c2 = str; this.istian2 = true }
+            if (this.wh == 3) { this.c3 = str; this.istian3 = true }
         },
-        err:function(str){
+        err: function(str) {
             this.errmsg = str;
             this.iserr = true;
-            setTimeout(()=>{ this.iserr = false},1500)
+            setTimeout(() => { this.iserr = false }, 1500)
         },
-        sub(){
-            if(this.name == ''){ this.err('请填写姓名'); return false }
-            if(this.idCard == ''){ this.err('请填写身份证号'); return false  }
-            if(this.telephone == ''){ this.err('请填写手机号'); return false  }
-            if(this.c1 === '请选择  >'){ this.err('请选择婚姻状况'); return false  }
-            if(this.c2 == '请选择  >'){ this.err('请选择职业'); return false  }
-            if(this.c3 == '请选择  >'){ this.err('请选择职务'); return false  }
+        sub() {
+            if (this.name == '') { this.err('请填写姓名'); return false }
+            if (this.idCard == '') { this.err('请填写身份证号'); return false }
+            if (this.telephone == '') { this.err('请填写手机号'); return false }
+            if (this.c1 === '请选择  >') { this.err('请选择婚姻状况'); return false }
+            if (this.c2 == '请选择  >') { this.err('请选择职业'); return false }
+            if (this.c3 == '请选择  >') { this.err('请选择职务'); return false }
             this.$ajax({
-                method:'POST',
-                url:BASE_URL+'/regist',
-                data:qs.stringify({
-                    maritalStatus:this.maritalStatus,
-                    name:this.name,
-                    telephone:this.telephone,
-                    idCard:this.idCard,
-                    career:this.c2,
-                    duty:this.c3,
-                    type:'3'
-                }),          
-                headers: {"Content-Type": "application/x-www-form-urlencoded"},
-            }).then((res)=>{
-                if(res.data.success == true){
-                    this.$router.push('/app/applysuc?id='+res.data.data.id)
+                method: 'POST',
+                url: BASE_URL + '/regist',
+                data: qs.stringify({
+                    maritalStatus: this.maritalStatus,
+                    name: this.name,
+                    telephone: this.telephone,
+                    idCard: this.idCard,
+                    career: this.c2,
+                    duty: this.c3,
+                    type: '3'
+                }),
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            }).then((res) => {
+                if (res.data.success == true) {
+                    this.$router.push('/app/applysuc?id=' + res.data.data.id)
                     // this.title = '提交成功'
                     // this.id = res.data.data.id;
-                }else{
+                } else {
                     this.err(res.data.message)
                 }
             })
@@ -114,26 +117,28 @@ export default {
 </script>
 
 <style scoped>
-.alert_err{
+.alert_err {
     position: fixed;
     top: 5rem;
     width: 6.8rem;
     height: 1.2rem;
     border-radius: 0.2rem;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     text-align: center;
     line-height: 1.2rem;
     font-size: 0.28rem;
     left: 0.4rem;
 }
-.tian{
+
+.tian {
     color: #a9acb0!important;
     background: url()!important;
     text-align: right!important;
     padding-right: 0.05rem!important;
     text-indent: 0!important;
 }
+
 .mask p {
     z-index: 100;
     height: 1rem;
@@ -145,6 +150,7 @@ export default {
     line-height: 1rem;
     bottom: 0;
 }
+
 .nu {
     position: absolute;
     left: 0;
@@ -154,16 +160,18 @@ export default {
     height: 3.8rem;
     overflow-y: auto;
 }
-.mask{
+
+.mask {
     z-index: 10;
     width: 100%;
     height: 100%;
     position: fixed;
     left: 0;
     top: 0;
-    background: rgba(0,0,0,.6);
+    background: rgba(0, 0, 0, .6);
 }
-.but{
+
+.but {
     width: 7.1rem;
     height: 0.72rem;
     margin: auto;
@@ -173,22 +181,30 @@ export default {
     text-align: center;
     line-height: 0.7rem;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #666666; opacity:1; 
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #666666;
+    opacity: 1;
 }
 
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #666666;opacity:1;
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #666666;
+    opacity: 1;
 }
 
-input:-ms-input-placeholder{
-    color: #666666;opacity:1;
+input:-ms-input-placeholder {
+    color: #666666;
+    opacity: 1;
 }
 
-input::-webkit-input-placeholder{
-    color: #666666;opacity:1;
+input::-webkit-input-placeholder {
+    color: #666666;
+    opacity: 1;
 }
-.in b{
+
+.in b {
     display: inline-block;
     font-size: 0.26rem;
     color: #636364;
@@ -202,16 +218,18 @@ input::-webkit-input-placeholder{
     background-position: 4.15rem 0.02rem;
     text-indent: 3.2rem;
 }
-.in p{
+
+.in p {
     height: 1rem;
     width: 6.5rem;
     display: block;
     margin: auto;
     border-bottom: 1px solid #3d454d;
 }
-.in input{
+
+.in input {
     font-size: 0.26rem;
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     border: 0;
     text-align: right;
     width: 4.4rem;
@@ -222,20 +240,23 @@ input::-webkit-input-placeholder{
     margin-top: 0.2rem;
     outline: none;
 }
-.in span{
+
+.in span {
     vertical-align: middle;
     color: #a9acb0;
     font-size: 0.26rem;
     display: inline-block;
     width: 1.5rem;
 }
-.in{
+
+.in {
     background: #273039;
     width: 7.1rem;
     margin: auto;
     margin-bottom: 0.3rem;
 }
-.qq{
+
+.qq {
     width: 7.1rem;
     height: 1rem;
     display: block;

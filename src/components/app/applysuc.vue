@@ -1,39 +1,39 @@
 <template>
-<div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
-    <p style="width:100%;height:1px"></p>
-    <div class="qq"></div>
-    <img style="width:7.1rem;display:block;margin:auto" src="../../assets/app/suc.jpg">
-    <textarea v-model="address" placeholder="请填写您的详细地址" class="area"></textarea>
-    <p @click="ok" class="but">提交申请</p>
-</div>
+    <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
+        <p style="width:100%;height:1px"></p>
+        <div class="qq"></div>
+        <img style="width:7.1rem;display:block;margin:auto" src="../../assets/app/suc.jpg">
+        <textarea v-model="address" placeholder="请填写您的详细地址" class="area"></textarea>
+        <p @click="ok" class="but">提交申请</p>
+    </div>
 </template>
 
 <script>
 import qs from 'qs';
 export default {
-    data(){
-        return{
-            id:'',
-            address:''
+    data() {
+        return {
+            id: '',
+            address: ''
         }
     },
-    created(){
+    created() {
         this.id = this.$route.query.id;
     },
-    methods:{
-        ok(){
+    methods: {
+        ok() {
             this.$ajax({
-                method:'POST',
-                url:BASE_URL+"/addrBinding",
-                data:qs.stringify({
-                    id:this.id,
-                    address:this.address
+                method: 'POST',
+                url: BASE_URL + "/addrBinding",
+                data: qs.stringify({
+                    id: this.id,
+                    address: this.address
                 }),
-                headers: {"Content-Type": "application/x-www-form-urlencoded",}
-            }).then((res)=>{
-                if(res.data.success){
+                headers: { "Content-Type": "application/x-www-form-urlencoded", }
+            }).then((res) => {
+                if (res.data.success) {
                     window.Wground.close();
-                }else{
+                } else {
                     alert('填写失败，请稍后尝试')
                 }
             })
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style scoped>
-.but{
+.but {
     width: 7.1rem;
     height: 0.72rem;
     margin: auto;
@@ -54,7 +54,8 @@ export default {
     line-height: 0.7rem;
     margin-top: 0.3rem;
 }
-.area{
+
+.area {
     width: 6.5rem;
     display: block;
     margin: auto;
@@ -70,7 +71,8 @@ export default {
     padding-top: 0.1rem;
     margin-top: 0.46rem;
 }
-.qq{
+
+.qq {
     width: 7.1rem;
     height: 1rem;
     display: block;
