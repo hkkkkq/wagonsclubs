@@ -94,7 +94,7 @@ export default {
         this.$ajax(BASE_URL+"/car/carousel.json?tt="+new Date().toUTCString())
         .then((res)=>{
             if(res.data.success == true){
-                this.carousel = res.data.data.cycleList
+                this.carousel = res.data.data.carousel
             }else{
                 alert('接口出现了问题')
             }
@@ -123,7 +123,7 @@ export default {
             this.$ajax(BASE_URL+"/car/carousel.json?tt="+new Date().toUTCString())
             .then((res)=>{
                 if(res.data.success == true){
-                    this.carousel = res.data.data.cycleList
+                    this.carousel = res.data.data.carousel
                 }else{
                     alert('接口出现了问题')
                 }

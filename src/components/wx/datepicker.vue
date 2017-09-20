@@ -13,20 +13,28 @@
             </div>
             <div class="dates" :key="n" :line='n' v-for="(item,n) in this.dateform">
                 <!-- <p style="font-size:20px">{{n}}</p> -->
-                <span 
+                <span
                     :line='n'
                     :row='n2' 
                     @click="clickspan(n,n2)" 
                     :key="n2" 
                     v-for="(item2,n2) in item">
-                    <em :class="{'rent':istoken(dateform[n][n2]),'startclick':dateform[n][n2] == choose,'today':istoday == dateform[n][n2]}">
+                    <em 
+                        :class="{'rent':istoken(dateform[n][n2]),
+                                'startclick':dateform[n][n2] == choose,
+                                'today':istoday == dateform[n][n2],
+                                'lessthan':lessthan(dateform[n][n2])}">
                         {{item2 == "k"?null:item2}}
                         <span class="hasrent" v-if="istoken(dateform[n][n2])">已出租</span>
                     </em>
                 </span>
-                <pd-select-box v-if="show[n]" style="width: 7.1rem;margin: auto;position: relative;left: -0.3rem;">
-                    <pd-select-item :listData="listData" v-model="shi"></pd-select-item>
-                    <pd-select-item :listData="listData2" v-model="fen"></pd-select-item>
+                <pd-select-box  style="width: 7.1rem;margin: auto;position: relative;left: -0.3rem;">
+                <transition name='slid'>
+                    <pd-select-item style="height:4.5rem" v-if="show[n]" :listData="listData" v-model="shi"></pd-select-item>
+                </transition>
+                <transition name='slid'>
+                    <pd-select-item style="height:4.5rem" v-if="show[n]" :listData="listData2" v-model="fen"></pd-select-item>
+                </transition>
                 </pd-select-box>
             </div>
         </div>
@@ -106,7 +114,24 @@ export default {
 
     },
     methods:{
-       istoken(date){
+        lessthan(date){
+            let tmp = new Date()
+            if(this.curYear < tmp.getFullYear()){
+                tmp = null;
+                return true
+            }
+            if(this.curMonth < tmp.getMonth()){
+                tmp = null;
+                return true                
+            }
+            if((date < this.sdate)&&(this.curMonth == tmp.getMonth())){
+                tmp = null;
+                return true
+            }
+            tmp = null;
+            return false;
+        },
+        istoken(date){
            let tmp = this.curYear+"-"+( (this.curMonth+1) < 10 ? ( "0" + (this.curMonth+1) ) : (this.curMonth+1) )+"-"+(date<10 ? ("0"+date):date );
            if(!(this.tokendays.indexOf(tmp)== -1)){
                return true
@@ -145,10 +170,17 @@ export default {
             return tmp.getDate();
         },
         clickspan(n,n2){
-            this.choose = this.dateform[n][n2];
-            this.show.fill(0)
-            this.show[n] = 1
-            this.nowxqj = new Date(this.curYear,this.curMonth,this.choose).getDay();
+            if(this.lessthan(this.dateform[n][n2])){
+                return ;
+            }
+            if(this.istoken(this.dateform[n][n2])){//判断是否已租，已租不能点
+                return ;
+            }else{
+                this.choose = this.dateform[n][n2];
+                this.show.fill(0)
+                this.show[n] = 1
+                this.nowxqj = new Date(this.curYear,this.curMonth,this.choose).getDay();
+            }
         },
         su(){
             if(this.$route.query.type == "starttime"){
@@ -164,12 +196,21 @@ export default {
 </script>
 
 <style scoped>
+.lessthan{
+    color: #ffffff;
+    opacity: 0.1;
+}
+.slid-enter-active, .slid-leave-active{
+  transition: height .5s
+}
+.slid-enter, .slid-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  height: 0!important
+}
 .rent{
     opacity: 0.1;
 }
 .hasrent{
     color: #ffffff;
-    opacity: 0.1;
     font-size: 0.18rem;
     position: absolute;
     width: 1rem;
