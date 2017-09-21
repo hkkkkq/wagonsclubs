@@ -2,15 +2,11 @@
 <div style="font-size:0;background: rgba(0,0,0,0.6);">
     <div class="head">
         <a @click="goback" class="goback"></a>
-        你就是焦点
+        <img class="nl" src="../../assets/newlogo.png">
         <a v-if="isNew" @click="share" class="share"></a>
+         <!--  -->
     </div>
-    <div class="co">
-        <img src="">
-    </div>
-    <div :key="index" v-for="(item,index) in imgs" class="co">
-        <img v-once @click="tod(index)" :src="item">
-    </div>
+    <div :key="index" v-for="(item,index) in imgs" class="co"><img v-once @click="tod(index)" :src="item"></div>
 </div>
 </template>
 
@@ -39,9 +35,10 @@ export default {
         }
     },
     created(){
+            // window.ground.hideHeader()
+        window.ground.showheader()
         if(this.$route.query.isNewApp){
             this.isNew = true;
-            // window.ground.hideHeader()
         }
 
 
@@ -142,6 +139,10 @@ export default {
 </script>
 
 <style scoped>
+.nl{
+    width: 2.86rem;
+    height: .28rem;
+}
 img[lazy=error]{
     /* //your code */
     background-image: url('../../assets/loading12.gif');
@@ -174,8 +175,8 @@ img[lazy=loaded]{
     top: 0.4rem;
     margin-right: 0.3rem;
     display: block;
-    width: 0.35rem;
-    height: 0.35rem;
+    width: 0.28rem;
+    height: 0.34rem;
     z-index: 1000000;
     background-image: url('../../assets/share.png');
     background-repeat: no-repeat;

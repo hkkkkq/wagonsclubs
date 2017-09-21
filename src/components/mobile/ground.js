@@ -162,6 +162,12 @@ function ios_init(obj) {
     var _HuoqiuBridgeId = 0;
     var _HuoqiuJSBridge_shakecack = 0;
 
+    function showheader() {
+        var call = "{\"method\":\"showheader\"}";
+        baseCall(call);
+    }
+    window['ground']['showheader'] = showheader;
+
     function show() {
         //alert("back2Application..");
         var call = "{\"method\":\"show\"}";
