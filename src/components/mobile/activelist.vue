@@ -139,9 +139,9 @@ export default {
                 // alert(1)
                 setTimeout(function() {
                     goo(n)
-                }, 2000);
+                }, 1300);
             } else {
-                alert(2)
+                // alert(2)
                 goo(n)
             }
 
