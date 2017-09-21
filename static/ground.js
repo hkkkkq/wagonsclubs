@@ -162,6 +162,15 @@ function ios_init(obj) {
     var _HuoqiuBridgeId = 0;
     var _HuoqiuJSBridge_shakecack = 0;
 
+
+
+
+    // function showHeader() {
+    //     var call = "{\"method\":\"showHeader\"}";
+    //     baseCall(call);
+    // }
+    // window['ground']['showHeader'] = showHeader;
+
     function show() {
         //alert("back2Application..");
         var call = "{\"method\":\"show\"}";
@@ -337,6 +346,13 @@ function ios_init(obj) {
         baseCall(call);
     }
     window['ground']['hideHeader'] = hideHeader;
+
+    function showHeader() {
+        var call = "{\"method\":\"showHeader\"}";
+        baseCall(call);
+        alert('show111122')
+    }
+    window['ground']['showHeader'] = showHeader;
 
     function goBack() {
         var call = "{\"method\":\"goBack\"}";

@@ -35,10 +35,10 @@ export default {
         }
     },
     created(){
-            // window.ground.hideHeader()
-        window.ground.showheader()
+            // 
         if(this.$route.query.isNewApp){
             this.isNew = true;
+            window.ground.hideHeader()
         }
 
 
@@ -88,6 +88,49 @@ export default {
     },
     methods:{
         tod(n){
+            if((this.$route.query.isNewApp)&&(/iPhone|iPod/i.test(navigator.userAgent))){
+                window.ground.showHeader()       
+                setTimeout(function() {
+                    switch(n){
+                        case 1:
+                        location.href = 'http://mp.weixin.qq.com/s/P7xBsD02noQSgwwTGPOLgA'
+                        break;
+                        case 2:
+                        location.href = 'http://mp.weixin.qq.com/s/yVR6zMW0UFJgGtxA8cIzyg'
+                        break;
+                        case 3:
+                        location.href = 'http://mp.weixin.qq.com/s/Yjlb_TGTf3klkoAm9GdR0A'
+                        break;
+                        case 4:
+                        location.href = 'http://mp.weixin.qq.com/s/QOeH8Z13HrcczR2Y1HdmVQ'
+                        break;
+                        case 5:
+                        location.href = 'http://mp.weixin.qq.com/s/W82Q3ihluAgcg05iFRgpPA'
+                        break;
+                        case 6:
+                        location.href = 'http://mp.weixin.qq.com/s/6lOwMpRaq5jdPJqXYPXp3A'
+                        break;
+                        case 7:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                        case 8:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                        case 9:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                        case 10:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                        case 11:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                        case 12:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                    }
+                }, 1000);     
+            }
             switch(n){
                 case 1:
                 location.href = 'http://mp.weixin.qq.com/s/P7xBsD02noQSgwwTGPOLgA'
@@ -132,7 +175,6 @@ export default {
         },
         goback(){
             this.$router.go(-1)
-            // window.ground.close()
         }
     }
 }

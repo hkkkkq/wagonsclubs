@@ -260,8 +260,8 @@ export default {
     float: right;
     margin-right: 0.3rem;
     display: block;
-    width: 0.35rem;
-    height: 0.35rem;
+    width: 0.28rem;
+    height: 0.34rem;
     z-index: 1000000;
     background-image: url('../../assets/share.png');
     background-repeat: no-repeat;
