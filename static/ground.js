@@ -350,7 +350,6 @@ function ios_init(obj) {
     function showHeader() {
         var call = "{\"method\":\"showHeader\"}";
         baseCall(call);
-        alert('show111122')
     }
     window['ground']['showHeader'] = showHeader;
 
