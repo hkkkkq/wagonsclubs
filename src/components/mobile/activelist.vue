@@ -129,7 +129,7 @@ export default {
                         location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
                         break;
                     }
-                }, 1000);     
+                }, 2000);     
             }
             switch(n){
                 case 1:
