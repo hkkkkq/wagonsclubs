@@ -128,11 +128,11 @@ export default {
                         break;
                 }
             }
-            if ((this.$route.query.isNewApp) && (/iPhone|iPod/i.test(navigator.userAgent))) {
+            if ((this.$route.query.isNewApp == true) && (/iPhone|iPod/i.test(navigator.userAgent))) {
                 window.ground.showHeader()
                 setTimeout(function() {
                     goo(n)
-                }, 1300);
+                }, 2000);
             } else {
                 goo(n)
             }
