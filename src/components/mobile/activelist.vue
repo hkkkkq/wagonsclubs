@@ -132,7 +132,7 @@ export default {
                 window.ground.showHeader()
                 setTimeout(function() {
                     goo(n)
-                }, 2000);
+                }, 1300);
             } else {
                 goo(n)
             }
