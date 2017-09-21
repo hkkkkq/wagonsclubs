@@ -133,7 +133,7 @@ export default {
                 setTimeout(function() {
                     goo(n)
                 }, 2000);
-            }else{
+            } else {
                 goo(n)
             }
 
