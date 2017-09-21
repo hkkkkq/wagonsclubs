@@ -15,7 +15,7 @@ require('./rem.js')(window, document)
 export default {
     data() {
         return {
-            isNew: false,
+            isNew: 'false',
             imgs: [
                 require("../../assets/njd1_02.png"),
                 require("../../assets/njd2_02.png"),
@@ -35,9 +35,12 @@ export default {
         }
     },
     created() {
-        // 
-        if (this.$route.query.isNewApp == true) {
-            this.isNew = true;
+        // console.log(navigator.userAgent)
+        // console.log(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))
+        //s
+        // console.log(this.$route.query.isNewApp)
+        if (this.$route.query.isNewApp == 'true') {
+            this.isNew = 'true';
             window.ground.hideHeader()
         }
 
@@ -89,7 +92,7 @@ export default {
     methods: {
         tod(n) {
             function goo(x) {
-                switch (n) {
+                switch (x) {
                     case 1:
                         location.href = 'http://mp.weixin.qq.com/s/P7xBsD02noQSgwwTGPOLgA'
                         break;
@@ -128,12 +131,17 @@ export default {
                         break;
                 }
             }
-            if ((this.$route.query.isNewApp == true) && (/iPhone|iPod/i.test(navigator.userAgent))) {
+            // console.log(this.isNew)
+            // console.log(this.isNew == 'false')
+            // console.log(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))
+            if ((this.isNew == 'true') && (/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))) {
                 window.ground.showHeader()
+                // alert(1)
                 setTimeout(function() {
                     goo(n)
                 }, 2000);
             } else {
+                alert(2)
                 goo(n)
             }
 
