@@ -36,7 +36,7 @@ export default {
     },
     created(){
             // 
-        if(this.$route.query.isNewApp){
+        if(this.$route.query.isNewApp == true){
             this.isNew = true;
             window.ground.hideHeader()
         }
