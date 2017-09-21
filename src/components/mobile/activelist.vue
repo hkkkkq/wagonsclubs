@@ -1,22 +1,22 @@
 <template>
-<div style="font-size:0;background: rgba(0,0,0,0.6);">
-    <div class="head">
-        <a @click="goback" class="goback"></a>
-        <img class="nl" src="../../assets/newlogo.png">
-        <a v-if="isNew" @click="share" class="share"></a>
-         <!--  -->
+    <div style="font-size:0;background: rgba(0,0,0,0.6);">
+        <div class="head">
+            <a @click="goback" class="goback"></a>
+            <img class="nl" src="../../assets/newlogo.png">
+            <a v-if="isNew" @click="share" class="share"></a>
+            <!--  -->
+        </div>
+        <div :key="index" v-for="(item,index) in imgs" class="co"><img v-once @click="tod(index)" :src="item"></div>
     </div>
-    <div :key="index" v-for="(item,index) in imgs" class="co"><img v-once @click="tod(index)" :src="item"></div>
-</div>
 </template>
 
 <script>
-require('./rem.js')(window,document)
+require('./rem.js')(window, document)
 export default {
-    data(){
-        return{
-            isNew:false,
-            imgs:[
+    data() {
+        return {
+            isNew: 'false',
+            imgs: [
                 require("../../assets/njd1_02.png"),
                 require("../../assets/njd2_02.png"),
                 require("../../assets/njd3_02.jpg"),
@@ -34,143 +34,163 @@ export default {
             ]
         }
     },
-    created(){
-            // window.ground.hideHeader()
-        window.ground.showheader()
-        if(this.$route.query.isNewApp){
-            this.isNew = true;
+    created() {
+        // console.log(navigator.userAgent)
+        // console.log(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))
+        //s
+        // console.log(this.$route.query.isNewApp)
+        if (this.$route.query.isNewApp == 'true') {
+            this.isNew = 'true';
+            window.ground.hideHeader()
         }
 
 
 
-        this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
-        .then((res)=>{
-            wx.config({
-                debug: false,
-                appId: res.data.data.sign.appId,
-                timestamp: res.data.data.sign.timestamp,
-                nonceStr: res.data.data.sign.nonceStr,
-                signature: res.data.data.sign.signature,
-                jsApiList: [
-                    'onMenuShareTimeline',
-                    'onMenuShareAppMessage',
-                    'onMenuShareQQ',
-                    'onMenuShareWeibo'
-                ]
-            });
-            var locationHref = window.location.href;
-            wx.ready(function () {
-                wx.onMenuShareTimeline({
-                    title: 'WAGONS光速超跑',
-                    link: locationHref,
-                    imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+        this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
+            .then((res) => {
+                wx.config({
+                    debug: false,
+                    appId: res.data.data.sign.appId,
+                    timestamp: res.data.data.sign.timestamp,
+                    nonceStr: res.data.data.sign.nonceStr,
+                    signature: res.data.data.sign.signature,
+                    jsApiList: [
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo'
+                    ]
                 });
-                wx.onMenuShareAppMessage({
-                    title: 'WAGONS光速超跑',
-                    desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-                    link: locationHref,
-                    imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                var locationHref = window.location.href;
+                wx.ready(function() {
+                    wx.onMenuShareTimeline({
+                        title: 'WAGONS光速超跑',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                    wx.onMenuShareAppMessage({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                    wx.onMenuShareQQ({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                    wx.onMenuShareWeibo({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
                 });
-                wx.onMenuShareQQ({
-                    title: 'WAGONS光速超跑',
-                    desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-                    link: locationHref,
-                    imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-                });
-                wx.onMenuShareWeibo({
-                    title: 'WAGONS光速超跑',
-                    desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-                    link: locationHref,
-                    imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-                });
-            });
-            }).catch((res)=>{alert(res)})
+            }).catch((res) => { alert(res) })
     },
-    methods:{
-        tod(n){
-            switch(n){
-                case 1:
-                location.href = 'http://mp.weixin.qq.com/s/P7xBsD02noQSgwwTGPOLgA'
-                break;
-                case 2:
-                location.href = 'http://mp.weixin.qq.com/s/yVR6zMW0UFJgGtxA8cIzyg'
-                break;
-                case 3:
-                location.href = 'http://mp.weixin.qq.com/s/Yjlb_TGTf3klkoAm9GdR0A'
-                break;
-                case 4:
-                location.href = 'http://mp.weixin.qq.com/s/QOeH8Z13HrcczR2Y1HdmVQ'
-                break;
-                case 5:
-                location.href = 'http://mp.weixin.qq.com/s/W82Q3ihluAgcg05iFRgpPA'
-                break;
-                case 6:
-                location.href = 'http://mp.weixin.qq.com/s/6lOwMpRaq5jdPJqXYPXp3A'
-                break;
-                case 7:
-                location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
-                break;
-                case 8:
-                location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
-                break;
-                case 9:
-                location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
-                break;
-                case 10:
-                location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
-                break;
-                case 11:
-                location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
-                break;
-                case 12:
-                location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
-                break;
+    methods: {
+        tod(n) {
+            function goo(x) {
+                switch (x) {
+                    case 1:
+                        location.href = 'http://mp.weixin.qq.com/s/P7xBsD02noQSgwwTGPOLgA'
+                        break;
+                    case 2:
+                        location.href = 'http://mp.weixin.qq.com/s/yVR6zMW0UFJgGtxA8cIzyg'
+                        break;
+                    case 3:
+                        location.href = 'http://mp.weixin.qq.com/s/Yjlb_TGTf3klkoAm9GdR0A'
+                        break;
+                    case 4:
+                        location.href = 'http://mp.weixin.qq.com/s/QOeH8Z13HrcczR2Y1HdmVQ'
+                        break;
+                    case 5:
+                        location.href = 'http://mp.weixin.qq.com/s/W82Q3ihluAgcg05iFRgpPA'
+                        break;
+                    case 6:
+                        location.href = 'http://mp.weixin.qq.com/s/6lOwMpRaq5jdPJqXYPXp3A'
+                        break;
+                    case 7:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                    case 8:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                    case 9:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                    case 10:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                    case 11:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                    case 12:
+                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        break;
+                }
             }
+            // console.log(this.isNew)
+            // console.log(this.isNew == 'false')
+            // console.log(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))
+            if ((this.isNew == 'true') && (/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))) {
+                window.ground.showHeader()
+                // alert(1)
+                setTimeout(function() {
+                    goo(n)
+                }, 1300);
+            } else {
+                // alert(2)
+                goo(n)
+            }
+
         },
-        share(){
-            window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
+        share() {
+            window.ground.share('WAGONS光速超跑', location.href.replace(/true/g, "false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务', '0,1,2,3');
         },
-        goback(){
+        goback() {
             this.$router.go(-1)
-            // window.ground.close()
         }
     }
 }
 </script>
 
 <style scoped>
-.nl{
+.nl {
     width: 2.86rem;
     height: .28rem;
 }
-img[lazy=error]{
+
+img[lazy=error] {
     /* //your code */
     background-image: url('../../assets/loading12.gif');
     background-repeat: no-repeat;
-    background-position:center;
-    background-size: 0.5rem;
-  
-}
-img[lazy=loading]{
-    /* //your code */
-    background-image: url('../../assets/loading12.gif');
-    background-repeat: no-repeat;
-    background-position:center;
+    background-position: center;
     background-size: 0.5rem;
 }
 
-img[lazy=loaded]{
+img[lazy=loading] {
     /* //your code */
-  animation:fade 0.5s;
+    background-image: url('../../assets/loading12.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.5rem;
 }
-.co img{
+
+img[lazy=loaded] {
+    /* //your code */
+    animation: fade 0.5s;
+}
+
+.co img {
     width: 100%;
     height: auto;
 }
-.co{
 
-}
-.share{
+.co {}
+
+.share {
     position: absolute;
     top: 0.4rem;
     margin-right: 0.3rem;
@@ -183,6 +203,7 @@ img[lazy=loaded]{
     background-size: 100% 100%;
     right: 0;
 }
+
 .goback {
     position: absolute;
     left: 0.06rem;
@@ -192,7 +213,8 @@ img[lazy=loaded]{
     background: url("../../assets/m-goback.png") no-repeat center center;
     background-size: 0.3rem 0.3rem;
 }
-.head{
+
+.head {
     width: 100%;
     height: 1.29rem;
     background: #000000;
@@ -201,5 +223,4 @@ img[lazy=loaded]{
     text-align: center;
     line-height: 1.29rem;
 }
-
 </style>
