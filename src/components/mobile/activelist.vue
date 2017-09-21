@@ -9,7 +9,7 @@
         <img src="">
     </div>
     <div :key="index" v-for="(item,index) in imgs" class="co">
-        <img v-once @click="tod(index)" :src="item">
+        <img v-once @click="tod(index)" :src="imgs[index]">
     </div>
 </div>
 </template>
@@ -41,7 +41,7 @@ export default {
     created(){
         if(this.$route.query.isNewApp){
             this.isNew = true;
-            window.ground.hideHeader()
+            // window.ground.hideHeader()
         }
 
 
