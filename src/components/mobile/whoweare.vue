@@ -24,7 +24,7 @@ export default {
         'm-header':header,
     },
     created(){
-        if(/isNewApp=true/.test(document.referrer)){
+        if(/isNewApp=true/.test(location.href)){
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
         }
