@@ -1,15 +1,15 @@
 <template>
 <div style="font-size:0;background: rgba(0,0,0,0.6);">
-    <div v-if="isNew" class="head">
+    <div class="head">
         <a @click="goback" class="goback"></a>
         你就是焦点
-        <a @click="share" class="share"></a>
+        <a v-if="isNew" @click="share" class="share"></a>
     </div>
     <div class="co">
         <img src="">
     </div>
     <div :key="index" v-for="(item,index) in imgs" class="co">
-        <img v-once @click="tod(index)" :src="imgs[index]">
+        <img v-once @click="tod(index)" :src="item">
     </div>
 </div>
 </template>
@@ -134,7 +134,8 @@ export default {
             window.ground.share('WAGONS光速超跑', location.href.replace(/true/g,"false"), 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务','0,1,2,3');
         },
         goback(){
-            window.ground.close()
+            this.$router.go(-1)
+            // window.ground.close()
         }
     }
 }
