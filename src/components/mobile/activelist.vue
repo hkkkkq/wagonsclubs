@@ -4,7 +4,6 @@
             <a @click="goback" class="goback"></a>
             <img class="nl" src="../../assets/newlogo.png">
             <a v-if="isNew" @click="share" class="share"></a>
-            <!--  -->
         </div>
         <div :key="index" v-for="(item,index) in imgs" class="co"><img v-once @click="tod(index)" :src="item"></div>
     </div>
@@ -35,10 +34,6 @@ export default {
         }
     },
     created() {
-        // console.log(navigator.userAgent)
-        // console.log(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))
-        //s
-        // console.log(this.$route.query.isNewApp)
         if (this.$route.query.isNewApp == 'true') {
             this.isNew = 'true';
             window.ground.hideHeader()
@@ -131,9 +126,6 @@ export default {
                         break;
                 }
             }
-            // console.log(this.isNew)
-            // console.log(this.isNew == 'false')
-            // console.log(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))
             if ((this.isNew == 'true') && (/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))) {
                 window.ground.showHeader()
                 // alert(1)
