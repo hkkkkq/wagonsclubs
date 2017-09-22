@@ -43,6 +43,8 @@
             <span v-if="car.convertible == 1" class="tips">敞篷</span>
             <span v-if="car.convertible == 2" class="tips">硬顶敞篷</span>
             <span v-if="car.convertible == 3" class="tips">软顶敞篷</span>
+            <span v-if="car.plateNumberBj" class="tips">京牌</span>
+            <span v-if="!car.plateNumberBj" class="tips">非京牌</span>
         </div>
         <p class="but1"></p>
         <p @click="sub" class="but">
@@ -570,6 +572,11 @@ video {
     padding-left: 0.03rem;
     padding-right: 0.04rem;
     border: 1px solid;
+    /* border: 10px solid; */
+/* border-image: -webkit-linear-gradient( rgba(255,255,255),rgba(0,0,0,0)) 30 30; */
+/* border-image: -moz-linear-gradient( red, blue) 30 30; */
+    /* border-bottom-image: linear-gradient( rgba(255,255,255,0), rgba(255,255,255,1)) ; */
+    /* border-bottom-image: linear-gradient( rgba(255,255,255,0), rgba(255,255,255,1)) 1 1; */
     z-index: 1;
     font-size: 0.2rem;
     color: #ffffff;
