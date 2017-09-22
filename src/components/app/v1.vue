@@ -1,6 +1,6 @@
 <template>
 <div>
-    无良火球
+    lalallalalalalalal
 </div>
 </template>
 

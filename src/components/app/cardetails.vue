@@ -29,7 +29,7 @@
             <div class="pr">
                 <span class="level">会员价</span>
                 <span class="price">
-                    <span class="number">{{String(car.dailyRentPrice*0.6) == "NaN"?'0':car.dailyRentPrice*0.6}}</span>／天</span>
+                    <span class="number">{{car.memberRentPrice}}</span>／天</span>
                 <span class="nodis">
                     <b>{{car.dailyRentPrice}}</b>/天</span>
             </div>
@@ -500,7 +500,7 @@ video {
     padding-bottom: 5px;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #444b52;
+    background-color: rgba(255,255,255,0.15);
     font-size: 0.24rem;
     border-radius: 15px;
     color: #ffffff;
@@ -509,21 +509,26 @@ video {
     position: relative;
     z-index: 1;
     margin-bottom: 0.2rem;
+    font-family: PingFangSC-Light, sans-serif;
 }
 
 .des {
-    margin-top: 0.2rem;
+    margin-top: 0.16rem;
     position: relative;
     font-size: 0.24rem;
     line-height: 0.5rem;
     color: #ffffff;
     z-index: 1;
     margin-bottom: 0.34rem;
+    font-family: PingFangSC-Light, sans-serif;
+    font-weight: lighter;
+
+    
 }
 
 .pr {
-    margin-top: 0.32rem;
-    padding-bottom: 0.28rem;
+    margin-top: 0.3rem;
+    padding-bottom: 0.22rem;
     z-index: 1;
     border-bottom: 1px solid rgba(213, 213, 190, 0.1);
     position: relative;
@@ -542,6 +547,7 @@ video {
 }
 
 .level {
+    font-family: PingFangSC-Light, sans-serif;
     vertical-align: top;
     z-index: 1;
     font-size: 0.18rem;
@@ -572,7 +578,10 @@ video {
     width: 0.96rem;
     text-align: center;
     height: 0.28rem;
-    line-height: 0.3rem;
+    line-height: 0.32rem;
+    position: relative;
+    top: -0.05rem;
+
 }
 
 .name {
@@ -608,11 +617,11 @@ video {
     width: auto;
     height: 9rem;
     z-index: 0;
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    -moz-filter: blur(8px);
-    -ms-filter: blur(8px);
-    -o-filter: blur(8px);
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -ms-filter: blur(10px);
+    -o-filter: blur(10px);
 }
 
 .allzzz {
@@ -630,7 +639,7 @@ video {
     height: 5.7rem;
     z-index: 1;
     width: 100%;
-    margin-bottom: 0.32rem;
+    margin-bottom: 0.22rem;
 }
 
 .lunbo img {

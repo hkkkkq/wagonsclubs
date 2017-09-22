@@ -129,6 +129,7 @@ export default {
 }
 
 .co {
+    font-family: PingFangSC-Light, sans-serif;
     font-size: 0.24rem;
     color: #999999;
     width: 7.1rem;
@@ -152,6 +153,7 @@ export default {
 }
 
 .de {
+    font-family: PingFangSC-Light, sans-serif;
     display: block;
     width: 7.1rem;
     font-size: 0.24rem;
