@@ -572,11 +572,6 @@ video {
     padding-left: 0.03rem;
     padding-right: 0.04rem;
     border: 1px solid;
-    /* border: 10px solid; */
-/* border-image: -webkit-linear-gradient( rgba(255,255,255),rgba(0,0,0,0)) 30 30; */
-/* border-image: -moz-linear-gradient( red, blue) 30 30; */
-    /* border-bottom-image: linear-gradient( rgba(255,255,255,0), rgba(255,255,255,1)) ; */
-    /* border-bottom-image: linear-gradient( rgba(255,255,255,0), rgba(255,255,255,1)) 1 1; */
     z-index: 1;
     font-size: 0.2rem;
     color: #ffffff;

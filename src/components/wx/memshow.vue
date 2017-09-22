@@ -30,7 +30,7 @@
             <div>
                 <p class="ti">
                     <span class="ty">我的特权</span>
-                    <span class="tc">套餐升级</span>
+                    <span @click="tcsj" class="tc">套餐升级</span>
                 </p>
                 <div class="car car1">
                     <p class="p1">
@@ -58,7 +58,7 @@
             <div class="qq">
                 <h1>
                     <span style="color: rgb(153, 153, 153); float: left;">全部权益明细</span>
-                    <span style="color: rgb(0, 156, 255); float: right;">支持车型一览</span>
+                    <span @click="ch(1)" style="color: rgb(0, 156, 255); float: right;">支持车型一览</span>
                 </h1>
                 <div class="ff">
                     <span>1</span>
@@ -106,10 +106,38 @@
                 </div>
             </div>
             <img style="width: 5.22rem;margin: 0.74rem auto auto;padding-bottom: 0.78rem;display:block;bottom: 0;left: 0;right: 0;" src="../../assets/app/blogo.png">
-            <div class="alert">
-                <img src="../../assets/app/tcsj.png">
-                <div></div>
-            </div>
+            <transition name="fade">
+                <div v-show="istcsj" class="alert">
+                    <img src="../../assets/app/tcsj.png">
+                    <div class="atc">
+                        <p>您当前可以升级套餐至优享计划或至尊计划，享受更高等级特权和服务。如需升级，请随时与我们联系。</p>
+                        <div @click="wysj" class="sj">
+                            我要升级
+                        </div>
+                    </div>
+                    <img @click="close" class='xx' src="../../assets/app/xx.png">
+                </div>
+            </transition>
+            <transition name="fade">
+                <div v-show="at" class="al">
+                    <div class="att" v-show="lechao">
+                        <img class="at" src="../../assets/app/lc.png">
+                        <h1 class="yl">乐潮计划车型一览</h1>
+                        <div class="ms">兰博基尼加拉多，阿斯顿马丁V8 Vantage，法拉利加利福尼亚，奥迪R8，奔驰SLS AMG，奔驰G55 AMG，奔驰AMG GT，玛莎拉蒂GranCabrio，玛莎拉蒂GranTurismo，保时捷911，宝马i8，宝马640i，宝马z4，科尔维特，科迈罗等</div>
+                    </div>
+                    <div class="att" v-show="youxiang">
+                        <img class="at" src="../../assets/app/yx.png">
+                        <h1 class="yl">优享计划车型一览</h1>
+                        <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
+                    </div>
+                    <div class="att" v-show="zhizun">
+                        <img class="at" src="../../assets/app/zz.png">
+                        <h1 class="yl">至尊计划车型一览</h1>
+                        <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
+                    </div>
+                    <img @click="close" class='xx' src="../../assets/app/xx.png">
+                </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -117,21 +145,146 @@
 <script>
 require('../app/rem.js')(window, document)
 export default {
-
+    data() {
+        return {
+            istcsj: false,
+            at: false,
+            lechao: false,
+            youxiang: false,
+            zhizun: false,
+        }
+    },
+    methods: {
+        tcsj() {
+            this.istcsj = true
+        },
+        close() {
+            this.istcsj = false;
+            this.at = false;
+        },
+        wysj() {
+            location.href = "tel:18688888888"
+        },
+        ch(n) {
+            this.lechao = this.youxiang = this.zhizun = false
+            if (n == 1) { this.lechao = true }
+            if (n == 2) { this.youxiang = true }
+            if (n == 3) { this.zhizun = true }
+            this.at = true;
+        },
+    }
 }
 </script>
 
 <style scoped>
-.alert>div{
+.ms {
+    background: #ffffff;
+    font-size: 0.24rem;
+    color: #333333;
+    min-height: 2.28rem;
+    width: 4.52rem;
+    padding: 0.4rem 0.32rem 0.48rem 0.32rem;
+    line-height: 0.4rem;
+    display: block;
+    margin: auto;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.al .at {
     width: 5.17rem;
-    height: 3.26rem;
+    margin: auto;
+    display: block;
+    margin-top: 3rem;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.yl {
+    font-size: 0.3rem;
+    color: #ffffff;
+    position: absolute;
+    top: 13em;
+    left: 2.5rem;
+}
+
+.al {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: block;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-size: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    /* Firefox 4 */
+    -webkit-transition: opacity .5s;
+    /* Safari 和 Chrome */
+    -o-transition: opacity .5s;
+    /* Opera */
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active in below version 2.1.8 */
+
+{
+    opacity: 0
+}
+
+.xx {
+    z-index: 1!important;
+    width: 0.68rem!important;
+    height: 0.68rem!important;
+    display: block!important;
+    margin: auto!important;
+    position: fixed!important;
+    bottom: 1.18rem!important;
+    left: 0!important;
+    right: 0!important;
+}
+
+.atc .sj {
+    background: #fed945;
+    width: 4.54rem;
+    height: 0.7rem;
+    text-align: center;
+    line-height: 0.7rem;
+    font-size: 0.26rem;
+    color: #333333;
+    border-radius: 0.04rem;
+    margin-top: 0.6rem;
+}
+
+.atc p {
+    color: #333333;
+    font-size: 0.24rem;
+    line-height: 0.4rem;
+}
+
+.atc {
+    width: 4.51rem;
+    height: 2.78rem;
     background: #ffffff;
     left: 0;
     right: 0;
     margin: auto;
     display: block;
+    bottom: 4.1rem;
+    position: absolute;
+    padding: 0.48rem 0.33rem 0 0.33rem;
+    border-bottom-left-radius: 0.04rem;
+    border-bottom-right-radius: 0.04rem;
 }
-.alert img{
+
+.alert img {
     position: absolute;
     width: 5.17rem;
     height: 2rem;
@@ -143,15 +296,17 @@ export default {
     border-top-left-radius: 0.04rem;
     border-top-right-radius: 0.04rem;
 }
-.alert{
+
+.alert {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.7);
     top: 0;
     left: 0;
     font-size: 0;
 }
+
 .ff b {
     margin-left: 0.13rem;
     font-size: 0.22rem;
