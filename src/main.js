@@ -21,7 +21,6 @@ Vue.use(VueLazyload, {
     listenEvents: ['scroll', 'mousewheel']
 })
 
-
 Vue.prototype.$ajax = axios; //将axios写入vue的原型方法
 Vue.use(vuex)
 const store = new vuex.Store({
