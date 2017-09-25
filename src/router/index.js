@@ -43,6 +43,7 @@ const wx_onlinepay = resolve => require(['../components/wx/onlinepay.vue'], reso
 const wx_pending = resolve => require(['../components/wx/pending.vue'], resolve);
 const wx_applying = resolve => require(['../components/wx/applying.vue'], resolve);
 const wx_memshow = resolve => require(['../components/wx/memshow.vue'], resolve);
+const wx_wxmember = resolve => require(['../components/wx/wxmember.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -68,26 +69,63 @@ export default new Router({
                 // console.log(navigator.userAgent)
                 if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
                     // window.location.href = 'http://wap.wagonsclub.com/car/index'
-                    next({ path: '/mobile' })
+                    next({
+                        path: '/mobile'
+                    })
                 } else {
                     next();
                 }
             },
             component: pcweb,
             redirect: '/first',
-            children: [
-                { path: 'first', component: pcweb_first },
-                { path: 'second', component: pcweb_second },
-                { path: 'third', component: pcweb_third },
-                { path: 'forth', component: pcweb_forth },
-                { path: 'article/1', component: pcweb_article1 },
-                { path: 'article/2', component: pcweb_article2 },
-                { path: 'article/3', component: pcweb_article3 },
-                { path: 'article/4', component: pcweb_article4 },
-                { path: 'article/5', component: pcweb_article5 },
-                { path: 'article/6', component: pcweb_article6 },
-                { path: 'article/7', component: pcweb_article7 },
-                { path: 'article/8', component: pcweb_article8 }
+            children: [{
+                    path: 'first',
+                    component: pcweb_first
+                },
+                {
+                    path: 'second',
+                    component: pcweb_second
+                },
+                {
+                    path: 'third',
+                    component: pcweb_third
+                },
+                {
+                    path: 'forth',
+                    component: pcweb_forth
+                },
+                {
+                    path: 'article/1',
+                    component: pcweb_article1
+                },
+                {
+                    path: 'article/2',
+                    component: pcweb_article2
+                },
+                {
+                    path: 'article/3',
+                    component: pcweb_article3
+                },
+                {
+                    path: 'article/4',
+                    component: pcweb_article4
+                },
+                {
+                    path: 'article/5',
+                    component: pcweb_article5
+                },
+                {
+                    path: 'article/6',
+                    component: pcweb_article6
+                },
+                {
+                    path: 'article/7',
+                    component: pcweb_article7
+                },
+                {
+                    path: 'article/8',
+                    component: pcweb_article8
+                }
             ]
         },
 
@@ -96,57 +134,157 @@ export default new Router({
         {
             path: '/app',
             component: app,
-            children: [
-                { path: 'cardetails', component: app_details },
-                { path: 'join', component: app_join },
-                { path: 'apply', component: app_apply },
-                { path: 'applysuc', component: app_applysuc },
-                { path: 'ab', component: app_ab },
-                { path: 'warning', component: app_warning },
-                { path: 'law', component: app_law },
+            children: [{
+                    path: 'cardetails',
+                    component: app_details
+                },
+                {
+                    path: 'join',
+                    component: app_join
+                },
+                {
+                    path: 'apply',
+                    component: app_apply
+                },
+                {
+                    path: 'applysuc',
+                    component: app_applysuc
+                },
+                {
+                    path: 'ab',
+                    component: app_ab
+                },
+                {
+                    path: 'warning',
+                    component: app_warning
+                },
+                {
+                    path: 'law',
+                    component: app_law
+                },
                 {
                     path: 'test',
                     component: app_test,
-                    children: [
-                        { path: "v1", component: app_v1 },
-                        { path: "v2", component: app_v2 }
+                    children: [{
+                            path: "v1",
+                            component: app_v1
+                        },
+                        {
+                            path: "v2",
+                            component: app_v2
+                        }
                     ]
                 },
                 {
                     path: 'memindex',
                     component: app_memindex,
                     redirect: "memindex/memright",
-                    children: [
-                        { path: "memright", component: app_memright },
-                        { path: "memjoin", component: app_memjoin }
+                    children: [{
+                            path: "memright",
+                            component: app_memright
+                        },
+                        {
+                            path: "memjoin",
+                            component: app_memjoin
+                        }
                     ]
                 },
             ]
         },
 
         //for wx
-        { path: '/wx/findcar', component: wx_findcar },
-        { path: '/wx/hd', component: wx_hd },
-        { path: '/wx/collocation', component: wx_collocation },
-        { path: '/wx/pay', component: wx_pay },
-        { path: '/wx/datepicker', component: wx_datepicker },
-        { path: '/wx/paysuccess', component: wx_paysuccess },
-        { path: '/wx/onlinepay', component: wx_onlinepay },
-        { path: '/wx/pending', component: wx_pending },
-        { path: '/wx/applying', component: wx_applying },
-        { path: '/wx/memshow', component: wx_memshow },
+        {
+            path: '/wx/findcar',
+            component: wx_findcar
+        },
+        {
+            path: '/wx/hd',
+            component: wx_hd
+        },
+        {
+            path: '/wx/collocation',
+            component: wx_collocation
+        },
+        {
+            path: '/wx/pay',
+            component: wx_pay
+        },
+        {
+            path: '/wx/datepicker',
+            component: wx_datepicker
+        },
+        {
+            path: '/wx/paysuccess',
+            component: wx_paysuccess
+        },
+        {
+            path: '/wx/onlinepay',
+            component: wx_onlinepay
+        },
+        {
+            path: '/wx/applying',
+            component: wx_applying
+        },
+        {
+            path: '/wx/wxmember',
+            component: wx_wxmember,
+            children: [{
+                    path: 'pending',
+                    component: wx_pending
+                },
+                {
+                    path: 'memshow',
+                    component: wx_memshow
+                }
+            ]
+        },
+        // {
+        //     path: '/wx/pending',
+        //     component: wx_pending
+        // },
+        // {
+        //     path: '/wx/memshow',
+        //     component: wx_memshow
+        // },
 
 
         //重写移动端
-        { path: '/mobile', component: mobile },
-        { path: '/mobile/join', component: join },
-        { path: '/mobile/memberitro', component: memberitro },
-        { path: '/mobile/apply', component: apply },
-        { path: '/mobile/cardetail', component: cardetail },
-        { path: '/mobile/whoweare', component: whoweare },
-        { path: '/mobile/mid', component: mid },
-        { path: '/mobile/zw', component: zw },
-        { path: '/mobile/activelist', component: activelist },
+        {
+            path: '/mobile',
+            component: mobile
+        },
+        {
+            path: '/mobile/join',
+            component: join
+        },
+        {
+            path: '/mobile/memberitro',
+            component: memberitro
+        },
+        {
+            path: '/mobile/apply',
+            component: apply
+        },
+        {
+            path: '/mobile/cardetail',
+            component: cardetail
+        },
+        {
+            path: '/mobile/whoweare',
+            component: whoweare
+        },
+        {
+            path: '/mobile/mid',
+            component: mid
+        },
+        {
+            path: '/mobile/zw',
+            component: zw
+        },
+        {
+            path: '/mobile/activelist',
+            component: activelist
+        },
 
 
 

@@ -58,7 +58,7 @@
             <div class="qq">
                 <h1>
                     <span style="color: rgb(153, 153, 153); float: left;">全部权益明细</span>
-                    <span @click="ch(1)" style="color: rgb(0, 156, 255); float: right;">支持车型一览</span>
+                    <span @click="ch(2)" style="color: rgb(0, 156, 255); float: right;">支持车型一览</span>
                 </h1>
                 <div class="ff">
                     <span>1</span>
@@ -153,6 +153,10 @@ export default {
             youxiang: false,
             zhizun: false,
         }
+    },
+    created(){
+        this.$ajax(BASE_URL+'/member/privilege')
+        .then((res)=>{console.log(res)})
     },
     methods: {
         tcsj() {
