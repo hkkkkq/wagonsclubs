@@ -94,10 +94,9 @@
               <p class="line"><span class="left">5</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
               <p class="line"><span class="left">6</span><span class="right">每月1次劳斯莱斯或宾利商务接送服务</span></p>
               <p class="line"><span class="left">7</span><span class="right">一对一专属管家服务</span></p>
-              <p class="line"><span class="left">8</span><span class="right">每年用车免除3分及以内的违章罚金</span></p>
-              <p class="line"><span class="left">9</span><span class="right">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span></p>
-              <p class="line"><span class="left">10</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
-              <p class="line"><span class="left">11</span><span class="right">俱乐部组织的高端定制游等自费活动，享受8折优惠</span></p>
+              <p class="line"><span class="left">8</span><span class="right">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span></p>
+              <p class="line"><span class="left">9</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
+              <p class="line"><span class="left">10</span><span class="right">俱乐部组织的高端定制游等自费活动，享受8折优惠</span></p>
           </div>
           <div class="jihua1">
               <p class="jihuaname">至尊计划</p>
@@ -113,11 +112,10 @@
               <p class="line"><span class="left">5</span><span class="right">每邀请1位好友，可额外累计1天使用权</span></p>
               <p class="line"><span class="left">6</span><span class="right">每月2次劳斯莱斯或宾利商务接送服务</span></p>
               <p class="line"><span class="left">7</span><span class="right">一对一专属管家服务</span></p>
-              <p class="line"><span class="left">8</span><span class="right">每年用车免除6分及以内的违章罚金</span></p>
-              <p class="line"><span class="left">9</span><span class="right">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span></p>
-              <p class="line"><span class="left">10</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
-              <p class="line"><span class="left">11</span><span class="right">俱乐部组织的高端定制游等自费活动，享受7折优惠</span></p>
-              <p class="line"><span class="left">12</span><span class="right">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span></p>
+              <p class="line"><span class="left">8</span><span class="right">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span></p>
+              <p class="line"><span class="left">9</span><span class="right">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span></p>
+              <p class="line"><span class="left">10</span><span class="right">俱乐部组织的高端定制游等自费活动，享受7折优惠</span></p>
+              <p class="line"><span class="left">11</span><span class="right">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span></p>
           </div>
           <div style="height: 208px;" class="jihua1">
               <p class="jihuaname">散租</p>

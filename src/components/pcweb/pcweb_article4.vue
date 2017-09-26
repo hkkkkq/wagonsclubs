@@ -46,41 +46,6 @@
         <img src='../../assets/zl18.jpg'>        
         <img src='../../assets/zl19.jpg'>        
         <img src='../../assets/zl20.jpg'>        
-        <h1>有人开超跑把美女主播约走啦</h1>
-        <p>这个七夕，追随WAGONS的脚步，开着炸街超跑载着美女主播 去 约 会 ！</p>
-        <img src="../../assets/zl21.png">
-        <p>照片不足以体现，我们来看视频，直播镜头后的美女主播们依旧可爱迷人。</p>
-        <video style="display: block;width: 800px;" controls src="http://huoqiu.oss-cn-qingdao.aliyuncs.com/statics/images/wagons/zl.mp4"></video>
-        <p>为了这次七夕，WAGONS的工作人员布置了温馨的场地。</p>
-        <img src="../../assets/zl22.jpg">
-        <img src="../../assets/zl23.png">
-        <img src="../../assets/zl24.png">
-        <img src="../../assets/zl25.jpg">
-        <h1>WAGONS的互联网沙龙</h1>
-        <h1 style="height:20px"></h1>
-        <p>8月31日，由《首席财务官》杂志和奇点金服共同主办的“人工智能来了，移动互联网时代的财务绩效管理怎么‘破’”主题沙龙在北京WAGONS光速超跑俱乐部顺利举行，来自北京各个行业的财务高管40余人参加此次活动。</p>
-        <img src="../../assets/zl26.jpg">
-        <h1>京城的绯红派对</h1>
-        <h1 style="height:20px"></h1>
-        <p>8月26日夜，我们在东三环康莱德酒店五层Vivid Bar鉴证蚝友会的绯色晚宴。</p>
-        <img src="../../assets/zl27.jpg">
-        <img src="../../assets/zl28.jpg">
-        <img src="../../assets/zl29.jpg">
-        <img src="../../assets/zl30.jpg">
-        <p>曼妙的爵士音乐中，尽享夜色魅力。</p>
-        <h1>拥有超跑是什么感觉</h1>
-        <h1 style="height:20px"></h1>
-        <p>8月30日，WAGONS光速超跑为驾遇的汽车服务门店大咖带来一场全新私享驾驭体验。WAGONS将高端前沿，品趣相投的人聚集，它不仅是一段丰富的试驾体验，更是一次思维的头脑风暴，让你与有趣的灵魂相聚；把最盛大的体验与最简单的快乐相结合，满足每一颗热爱超跑、追求恣意的心。</p>        
-        <img src="../../assets/zl31.jpeg">        
-        <img src="../../assets/zl32.jpeg">     
-        <h1>WAGONS&翰亚 私享会</h1>   
-        <h1 style="height:20px"></h1>
-        <p>9月2日，WAGONS为翰亚举办了会员私享试驾会。</p>
-        <img src="../../assets/zl33.jpeg">        
-        <img src="../../assets/zl34.jpeg">        
-        <p>速度与激情的碰撞，每位会员满意而归。</p>
-        <img src="../../assets/zl35.jpeg">        
-        <img src="../../assets/zl36.jpeg">     
     </div>
     <div class="fen">
         <a href="/article/3" style="float:left">上一页：为爱提速、超跑动心 | WAGONS为留守儿童爱心捐赠</a>
