@@ -21,7 +21,7 @@ Vue.use(VueLazyload, {
     listenEvents: ['scroll', 'mousewheel']
 })
 
-axios.defaults.headers.common['token'] = 'fd9f6edcf51a4a62888ca0dc0347cabf';
+axios.defaults.headers.common['token'] = 'a31f4dd41f48444b81b1d36486920419';
 Vue.prototype.$ajax = axios; //将axios写入vue的原型方法
 Vue.use(vuex)
 const store = new vuex.Store({

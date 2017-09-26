@@ -10,15 +10,18 @@ export default {
         return {}
     },
     created() {
-        this.$ajax(BASE_URL + "/car/memberType")
+        this.$ajax(BASE_URL + "/member/privilege")
             .then(res => {
-                if (res.data.data.JumpInfo.userType == 0) {
+                console.log(res)
+                // return ;
+                if (res.data.data.member.memberType == 0) {
                     this.$router.push('/app/join')
-                } else if ((res.data.data.JumpInfo.userType == 1) || (res.data.data.JumpInfo.userType == 2) || (res.data.data.JumpInfo.userType == 3)) {
+                } else if ((res.data.data.member.memberType == 1) || (res.data.data.member.memberType == 2) || (res.data.data.member.memberType == 3)) {
                     this.$router.push('/wx/wxmember/memshow')
-                } else if (res.data.data.JumpInfo.userType == 5) {
+                } else if (res.data.data.member.memberType == 5) {
                     this.$router.push('/wx/wxmember/pending')
                 }else{
+                    // this.$router.push('/wx/wxmember/memshow')
                     alert('出现了不可预知的问题')
                 }
             })

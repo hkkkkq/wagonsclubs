@@ -44,6 +44,7 @@ const wx_pending = resolve => require(['../components/wx/pending.vue'], resolve)
 const wx_applying = resolve => require(['../components/wx/applying.vue'], resolve);
 const wx_memshow = resolve => require(['../components/wx/memshow.vue'], resolve);
 const wx_wxmember = resolve => require(['../components/wx/wxmember.vue'], resolve);
+const wx_orders = resolve => require(['../components/wx/orders.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -237,6 +238,10 @@ export default new Router({
                     component: wx_memshow
                 }
             ]
+        },
+        {
+            path: '/wx/orders',
+            component: wx_orders
         },
         // {
         //     path: '/wx/pending',

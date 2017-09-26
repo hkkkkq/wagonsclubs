@@ -1,27 +1,44 @@
 <template>
     <div style="position:absolute;width:100%;height:100%">
         <div style="width:100%;min-height:100%;background:#0f1923">
-            <div class="ban">
+            <div v-if="info.member.memberType == 1" class="ban">
                 <img class="hg" src="../../assets/app/lchg.png">
                 <img class="banimg" src="../../assets/app/slc.png">
                 <p class="planname">乐巢计划会员</p>
-                <p class="plandate">2017.05.27-2018.05.27有效</p>
+                <p class="plandate">{{info.member.memberTime}}有效</p>
+            </div>
+            <div v-if="info.member.memberType == 2" class="ban">
+                <img class="hg" src="../../assets/app/yxhg.png">
+                <img class="banimg" src="../../assets/app/syx.png">
+                <p class="planname">优享计划会员</p>
+                <p class="plandate">{{info.member.memberTime}}有效</p>
+            </div>
+            <div v-if="info.member.memberType == 3" class="ban">
+                <img class="hg" src="../../assets/app/zzhg.png">
+                <img class="banimg" src="../../assets/app/szz.png">
+                <p class="planname">至尊计划会员</p>
+                <p class="plandate">{{info.member.memberTime}}有效</p>
             </div>
             <!-- 订单 -->
-            <div>
+            <div v-if='info.member.carRentOrder'>
                 <p class="ti">
                     <span class="ty">当前订单</span>
                 </p>
                 <div class="car">
-                    <img src="../../assets/app/slc.png">
+                    <img :src="info.member.carRentOrder.carImages">
+                    <!-- <img src="../../assets/app/slc.png"> -->
                     <div>
                         <p class="d1">
-                            <span class="d1s">使用中</span>
-                            <span class="d1n">法拉利兰博基尼</span>
+                            <span v-if="info.member.carRentOrder.status == 0" class="d2s">准备中</span>
+                            <span v-if="info.member.carRentOrder.status == 1" class="d2s">送车中</span>
+                            <span v-if="info.member.carRentOrder.status == 2" class="d1s">使用中</span>
+                            <span class="d1n">{{info.member.carRentOrder.carName}}</span>
                         </p>
                         <p class="d2">
                             剩余
-                            <span class="hour">2天3小时</span>
+                            <span v-if="info.member.carRentOrder.status == 0" style="color:#ff4f5b" class="hour">2天3小时</span>
+                            <span v-if="info.member.carRentOrder.status == 1" style="color:#ff4f5b" class="hour">2天3小时</span>
+                            <span v-if="info.member.carRentOrder.status == 2" class="hour">2天3小时</span>
                         </p>
                     </div>
                 </div>
@@ -30,26 +47,32 @@
             <div>
                 <p class="ti">
                     <span class="ty">我的特权</span>
-                    <span @click="tcsj" class="tc">套餐升级</span>
+                    <span v-if="info.member.needUpgrade" @click="tcsj" class="tc">套餐升级</span>
                 </p>
                 <div class="car car1">
-                    <p class="p1">
-                        <img class="icon" src='../../assets/app/memcl.png'>
-                        <span class="span1">优享计划用车特权</span>
-                        <span class="span1 span2">15天可用</span>
-                        <span class="span1 span3">已用8天</span>
+                    <p v-if="info.member.privilegeList[0]" class="p1">
+                        <img class="icon" :src='info.member.privilegeList[0].privilegeImage'>
+                        <span class="span1">{{info.member.privilegeList[0].privilegeTitle}}</span>
+                        <span class="span1 span2">{{info.member.privilegeList[0].privilegeDays}}</span>
+                        <span class="span1 span3">{{info.member.privilegeList[0].privilegeUsed}}</span>
                     </p>
-                    <p class="p1">
-                        <img class="icon" src='../../assets/app/memxiche.png'>
-                        <span class="span1">本年度专业深度私车清洗</span>
-                        <span class="ob">电话预约</span>
-                        <span class="span1 span2">1次可用</span>
+                    <p v-if="info.member.privilegeList[1]" class="p1">
+                        <img class="icon" :src='info.member.privilegeList[1].privilegeImage'>
+                        <span class="span1">{{info.member.privilegeList[1].privilegeTitle}}</span>
+                        <span @click="wysj" class="ob">电话预约</span>
+                        <span class="span1 span2">{{info.member.privilegeList[1].privilegeDays}}</span>
                     </p>
-                    <p style='border:0' class="p1">
-                        <img class="icon" src='../../assets/app/memhaoyou.png'>
-                        <span class="span1">邀请好友免费用车</span>
+                    <p v-if="info.member.privilegeList[2]" style='border:0' class="p1">
+                        <img class="icon" :src='info.member.privilegeList[2].privilegeImage'>
+                        <span class="span1">{{info.member.privilegeList[2].privilegeTitle}}</span>
+                        <span @click="wysj" class="ob">电话预约</span>
+                        <span class="span1 span2">{{info.member.privilegeList[2].privilegeDays}}</span>
+                    </p>
+                    <p v-if="info.member.privilegeList[3]" style='border:0' class="p1">
+                        <img class="icon" :src='info.member.privilegeList[3].privilegeImage'>
+                        <span class="span1">{{info.member.privilegeList[3].privilegeTitle}}</span>
                         <span class="ob">马上邀请</span>
-                        <span class="span1 span2">2次可用</span>
+                        <span class="span1 span2">{{info.member.privilegeList[3].privilegeDays}}</span>
                     </p>
                 </div>
             </div>
@@ -60,49 +83,9 @@
                     <span style="color: rgb(153, 153, 153); float: left;">全部权益明细</span>
                     <span @click="ch(2)" style="color: rgb(0, 156, 255); float: right;">支持车型一览</span>
                 </h1>
-                <div class="ff">
-                    <span>1</span>
-                    <b>每月3天超跑使用权，每天可在俱乐部所有车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
-                </div>
-                <div class="ff">
-                    <span>2</span>
-                    <b>优享计划权益外用车，可享受会员折扣，即基础价6折</b>
-                </div>
-                <div class="ff">
-                    <span>3</span>
-                    <b>长租折上折，周租会员价9折，月租会员价7折</b>
-                </div>
-                <div class="ff">
-                    <span>4</span>
-                    <b>生日当天用车半价，生日专属礼物</b>
-                </div>
-                <div class="ff">
-                    <span>5</span>
-                    <b>每邀请1位好友，可额外累计1天使用权</b>
-                </div>
-                <div class="ff">
-                    <span>6</span>
-                    <b>每月1次劳斯莱斯或宾利商务接送服务</b>
-                </div>
-                <div class="ff">
-                    <span>7</span>
-                    <b>一对一专属管家服务</b>
-                </div>
-                <div class="ff">
-                    <span>8</span>
-                    <b>每年用车免除3分及以内的违章罚金</b>
-                </div>
-                <div class="ff">
-                    <span>9</span>
-                    <b>俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</b>
-                </div>
-                <div class="ff">
-                    <span>10</span>
-                    <b>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</b>
-                </div>
-                <div class="ff">
-                    <span>11</span>
-                    <b>俱乐部组织的高端定制游等自费活动，享受8折优惠</b>
+                <div :key="index" v-for="(item,index) in info.member.privilegeDetailList" class="ff">
+                    <span>{{index + 1}}</span>
+                    <b>{{item}}</b>
                 </div>
             </div>
             <img style="width: 5.22rem;margin: 0.74rem auto auto;padding-bottom: 0.78rem;display:block;bottom: 0;left: 0;right: 0;" src="../../assets/app/blogo.png">
@@ -120,17 +103,17 @@
             </transition>
             <transition name="fade">
                 <div v-show="at" class="al">
-                    <div class="att" v-show="lechao">
+                    <div class="att" v-if="lechao">
                         <img class="at" src="../../assets/app/lc.png">
                         <h1 class="yl">乐潮计划车型一览</h1>
                         <div class="ms">兰博基尼加拉多，阿斯顿马丁V8 Vantage，法拉利加利福尼亚，奥迪R8，奔驰SLS AMG，奔驰G55 AMG，奔驰AMG GT，玛莎拉蒂GranCabrio，玛莎拉蒂GranTurismo，保时捷911，宝马i8，宝马640i，宝马z4，科尔维特，科迈罗等</div>
                     </div>
-                    <div class="att" v-show="youxiang">
+                    <div class="att" v-if="youxiang">
                         <img class="at" src="../../assets/app/yx.png">
                         <h1 class="yl">优享计划车型一览</h1>
                         <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
                     </div>
-                    <div class="att" v-show="zhizun">
+                    <div class="att" v-if="zhizun">
                         <img class="at" src="../../assets/app/zz.png">
                         <h1 class="yl">至尊计划车型一览</h1>
                         <div class="ms">除乐潮计划车型外，还包括兰博基尼 LP700-4、兰博基尼 huracan、阿斯顿马丁、阿斯顿马丁 D89、法拉利 F12、法拉利 458、法拉利 FF、法拉利 488、劳斯莱斯魅影、劳斯莱斯 Ghost、宾利飞驰、宾利欧陆 GT、奔驰迈凯伦SLR、奔驰 G63 Amg、迈凯伦 MP4-12C、迈凯伦720s、KTM X-BOW、摩根4-4等</div>
@@ -152,11 +135,17 @@ export default {
             lechao: false,
             youxiang: false,
             zhizun: false,
+            info:''
         }
     },
     created(){
         this.$ajax(BASE_URL+'/member/privilege')
-        .then((res)=>{console.log(res)})
+        .then((res)=>{
+            this.info = res.data.data
+            if(this.info.member.memberType == 1){ this.lechao = true}
+            if(this.info.member.memberType == 2){ this.youxiang = true}
+            if(this.info.member.memberType == 3){ this.zhizun = true}
+        })
     },
     methods: {
         tcsj() {
@@ -170,10 +159,10 @@ export default {
             location.href = "tel:18688888888"
         },
         ch(n) {
-            this.lechao = this.youxiang = this.zhizun = false
-            if (n == 1) { this.lechao = true }
-            if (n == 2) { this.youxiang = true }
-            if (n == 3) { this.zhizun = true }
+            // this.lechao = this.youxiang = this.zhizun = false
+            // if (n == 1) { this.lechao = true }
+            // if (n == 2) { this.youxiang = true }
+            // if (n == 3) { this.zhizun = true }
             this.at = true;
         },
     }
@@ -462,6 +451,11 @@ export default {
     font-size: 0.2rem;
     background: #4ac87a;
     color: #ffffff;
+}
+.d2s{
+    font-size: 0.2rem;
+    background: #ff4f5b;
+    color: #333333;
 }
 
 .car>div {
