@@ -1,5 +1,5 @@
 <template>
-    <div style="position:absolute;height:100%;width:100%">
+    <div style="font-family: PingFangSC-Light, sans-serif;position:absolute;height:100%;width:100%">
         <div style="background:#0f1923;height:100%">
             <div v-if="ifsuccess">
                 <img class="suc" src="../../assets/app/collocation.jpg">
@@ -9,6 +9,7 @@
                 </div>
             </div>
             <div v-else>
+                <h1 style="width:100%;height:1px"></h1>
                 <p class="ti">请您填写车辆的基本信息，我们会在审核后与您取得联系。</p>
                 <div class="in">
                     <p>
@@ -64,7 +65,7 @@ export default {
                 if (res.data.success == true) {
                     this.ifsuccess = true
                 } else {
-                    alert('托管失败')
+                    alert(res.data.message)
                 }
             })
         }
@@ -180,9 +181,9 @@ input::-webkit-input-placeholder {
 .ti {
     color: #999999;
     font-size: 0.24rem;
-    padding-top: 0.38rem;
     width: 7.1rem;
     display: block;
     margin: auto;
+    margin-top: 0.38rem;
 }
 </style>
