@@ -27,7 +27,7 @@
                     <img v-lazy="item.appImg" @click="choose(n,item.id)">
                     <p class="name">{{item.carName}}</p>
                     <P class="star">{{item.starLevel}}星级车</P>
-                    <p class="pri">{{item.dailyRentPrice}}／天</p>
+                    <p class="pri">{{item.memberRentPrice}}／天</p>
                 </div>
             </div>
         </pull>
@@ -122,10 +122,10 @@ export default {
     },
     methods: {
         loadTop() {
-            this.$ajax(BASE_URL + "/car/carousel.json?tt=" + new Date().toUTCString())
+            this.$ajax(BASE_URL + "/car/carouselApp?tt=" + new Date().toUTCString())
                 .then((res) => {
                     if (res.data.success == true) {
-                        this.carousel = res.data.data.carousel
+                        this.carousel = res.data.data.cycleList
                     } else {
                         alert('接口出现了问题')
                     }

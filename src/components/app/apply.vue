@@ -1,5 +1,5 @@
 <template>
-    <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
+    <div style="font-family: PingFangSC-Light, sans-serif;height:100%;background:#0f1923;">
         <!-- 清浮动 -->
         <p style="width: 100%;height: 1px;"></p>
         <div v-show="iserr" class="alert_err">{{errmsg}}</div>
@@ -132,7 +132,7 @@ export default {
 }
 
 .tian {
-    color: #a9acb0!important;
+    color: #ffffff!important;
     background: url()!important;
     text-align: right!important;
     padding-right: 0.05rem!important;
@@ -179,6 +179,7 @@ export default {
     font-size: 0.26rem;
     color: #333333;
     text-align: center;
+    border-radius: 0.04rem;
     line-height: 0.7rem;
 }
 
@@ -217,13 +218,14 @@ input::-webkit-input-placeholder {
     background-repeat: no-repeat;
     background-position: 4.15rem 0.02rem;
     text-indent: 3.2rem;
+    margin-right: 0.3rem;
 }
 
 .in p {
     height: 1rem;
-    width: 6.5rem;
+    width: 6.8rem;
     display: block;
-    margin: auto;
+    margin-left: 0.3rem;
     border-bottom: 1px solid #3d454d;
 }
 
@@ -235,15 +237,17 @@ input::-webkit-input-placeholder {
     width: 4.4rem;
     height: 0.6rem;
     vertical-align: middle;
-    color: #a9acb0;
+    color: #ffffff;
     float: right;
     margin-top: 0.2rem;
     outline: none;
+    font-weight: 300;
+    margin-right: 0.3rem;
 }
 
 .in span {
     vertical-align: middle;
-    color: #a9acb0;
+    color: #ffffff;
     font-size: 0.26rem;
     display: inline-block;
     width: 1.5rem;
@@ -254,6 +258,7 @@ input::-webkit-input-placeholder {
     width: 7.1rem;
     margin: auto;
     margin-bottom: 0.3rem;
+    border-radius: 0.04rem;
 }
 
 .qq {
@@ -266,5 +271,6 @@ input::-webkit-input-placeholder {
     border-bottom: 1px solid #273039;
     margin-top: 0.42rem;
     margin-bottom: 0.4rem;
+    border-radius: 0.04rem;
 }
 </style>

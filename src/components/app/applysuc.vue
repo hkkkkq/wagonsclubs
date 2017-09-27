@@ -53,6 +53,7 @@ export default {
     text-align: center;
     line-height: 0.7rem;
     margin-top: 0.3rem;
+    border-radius: 0.04rem;
 }
 
 .area {
@@ -64,7 +65,7 @@ export default {
     color: #666666;
     font-size: 0.26rem;
     border: 0;
-    border-radius: 3px;
+    border-radius: 0.04rem;
     line-height: 0.4rem;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
@@ -83,5 +84,6 @@ export default {
     margin-top: 0.42rem;
     margin-bottom: 0.4rem;
     border-left: 1px solid #273039;
+    border-radius: 0.04rem;
 }
 </style>

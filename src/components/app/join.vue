@@ -337,14 +337,14 @@ export default {
     font-size: 0.16rem;
     color: white;
     display: inline-block;
-    width: 0.3rem;
-    height: 0.26rem;
+    width: 0.28rem;
+    height: 0.24rem;
     background: #4b535a;
     border-radius: 4px;
     text-align: center;
     padding-top: 0.04rem;
     margin-top: 0.04rem;
-    ;
+    line-height: 0.23rem;
 }
 
 .ff b {
