@@ -1,10 +1,10 @@
 <template>
-    <div style="font-family: PingFangSC-Medium, sans-serif;height:100%;background:#0f1923;">
+    <div style="font-family: PingFangSC-Light, sans-serif;height:100%;background:#0f1923;">
         <p style="width:100%;height:1px"></p>
         <div class="qq"></div>
         <img style="width:7.1rem;display:block;margin:auto" src="../../assets/app/suc.jpg">
         <textarea v-model="address" placeholder="请填写您的详细地址" class="area"></textarea>
-        <p @click="ok" class="but">提交申请</p>
+        <p @click="ok" class="but">完成</p>
     </div>
 </template>
 
@@ -62,7 +62,7 @@ export default {
     margin: auto;
     height: 1.3rem;
     background: #273039;
-    color: #666666;
+    color: #ffffff;
     font-size: 0.26rem;
     border: 0;
     border-radius: 0.04rem;
