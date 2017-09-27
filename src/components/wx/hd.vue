@@ -7,7 +7,7 @@
             <h1 style="width:100%;height:1px"></h1>
             <pull :topDistance=30 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
                 <div slot="top" class="mint-loadmore-top">
-                    <transition name="fade">
+                    <transition name="fade2">
                         <img v-if="topStatus == 'loading'" class="down" src="../../assets/app/ryg.gif">
                     </transition>
                     <transition name="fade1">
