@@ -213,9 +213,9 @@ export default {
             return tmp.getDate();
         },
         clickspan(n, n2) {
-            console.log(new Date(this.tokendays[0]))
-            console.log(new Date(2017, 8, 5, 8, 0, 10))
-            console.log((new Date(this.tokendays[0])) < (new Date(2017, 8, 5, 8, 0, 10)))
+            // console.log(new Date(this.tokendays[0]))
+            // console.log(new Date(2017, 8, 5, 8, 0, 10))
+            // console.log((new Date(this.tokendays[0])) < (new Date(2017, 8, 5, 8, 0, 10)))
             if (this.isstartdate(this.dateform[n][n2])) {
                 return;
             }
@@ -242,11 +242,15 @@ export default {
                 let startstring = new Date(this.startob.year, this.startob.month, this.startob.date, parseInt(this.startob.shi), parseInt(this.startob.fen), 0)
                 let endstring = new Date(this.curYear, this.curMonth, this.choose, parseInt(this.shi), parseInt(this.fen), 0)
                 console.log(startstring)
-                console.log(endstring)
+                console.log(endstring);
+                if(startstring >= endstring){
+                    alert('结束日期不能在开始日期之前')
+                    return false;
+                }
                 for (let i = 0; i <= this.tokendays.length; i++) {
-                    console.log(new Date(this.tokendays[i]))
+                    // console.log(new Date(this.tokendays[i]))
                     if ((new Date(this.tokendays[i]) < endstring) && (new Date(this.tokendays[i]) > startstring)) {
-                        alert('结束日期不能在开始日期之前');
+                        alert('起止日期间不允许间隔');
                         return false
                     }
                 }

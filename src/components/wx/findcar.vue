@@ -24,7 +24,7 @@
             <p class="ti">车型探索</p>
             <div v-if='f6'>
                 <div :key="n" v-for="(item,n) in carlist" class="car">
-                    <img v-lazy="item.carImages" @click="choose(n,item.id)">
+                    <img v-lazy="item.appImg" @click="choose(n,item.id)">
                     <p class="name">{{item.carName}}</p>
                     <P class="star">{{item.starLevel}}星级车</P>
                     <p class="pri">{{item.dailyRentPrice}}／天</p>
@@ -48,7 +48,8 @@ export default {
             swiperOption: {
                 notNextTick: true,
                 //   width:"200px",
-                autoplay: 2000,
+                autoplay: 1500,
+                loop:true,
                 autoplayDisableOnInteraction: false,
                 pagination: '.swiper-pagination',
                 centeredSlides: true,
@@ -64,11 +65,12 @@ export default {
                     }
                     return _html
                 },
+                // loop: true,
                 direction: 'horizontal',
                 grabCursor: true,
                 setWrapperSize: true,
                 autoHeight: true,
-                slidesPerView: "auto",
+                slidesPerView: 1.2,
                 paginationClickable: false,
                 observeParents: true,
                 debugger: true,
@@ -91,10 +93,10 @@ export default {
         //监听滚动事件        
         window.addEventListener('scroll', this.handleScroll);
 
-        this.$ajax(BASE_URL + "/car/carousel.json?tt=" + new Date().toUTCString())
+        this.$ajax(BASE_URL + "/car/carouselApp?tt=" + new Date().toUTCString())
             .then((res) => {
                 if (res.data.success == true) {
-                    this.carousel = res.data.data.carousel
+                    this.carousel = res.data.data.cycleList
                 } else {
                     alert('接口出现了问题')
                 }

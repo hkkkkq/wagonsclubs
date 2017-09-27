@@ -83,7 +83,7 @@ export default {
         }
     },
     created() {
-        this.$ajax(BASE_URL + "/car/orderDetail?carId=" + 17)
+        this.$ajax(BASE_URL + "/car/orderDetail?id=" + 17)
             .then((res) => { console.log(res) })
     }
 }

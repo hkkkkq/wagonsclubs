@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="!(tokendays<=carData.canMemberUse)" class='warn'>
+            <div v-if="!(tokendays<carData.canMemberUse)" class='warn'>
                 可用天数不足，请重新选择用车天数
             </div>
             <!-- 非计划会员 -->
