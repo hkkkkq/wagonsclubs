@@ -1,5 +1,6 @@
 <template>
-    <div style="line-height: 0.5rem;">
+    <div style="background: #ffffff;line-height: 0.5rem;">
+        <h1 style="width:100%;height:1px"></h1>
         <h1>用户注册协议</h1>
         <p>欢迎使用WAGONS光速超跑 —— 汽车共享平台。WAGONS光速超跑是由铭博顺通（北京）科技发展有限公司（以下简称“铭博顺通”）开发运营。本服务条款是您与铭博顺通之间的协议，并在必要的时候进行修订，且无需另行通知。修订后的条款一旦在网页上公布即有效代替原来的服务条款。</p>
         <h2>1、本网站的使用</h2>

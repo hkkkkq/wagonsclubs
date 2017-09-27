@@ -23,6 +23,7 @@ export default {
                 }else{
                     // this.$router.push('/wx/wxmember/memshow')
                     alert('出现了不可预知的问题')
+                    this.$router.push('/app/join')
                 }
             })
     }

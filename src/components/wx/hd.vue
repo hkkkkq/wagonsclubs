@@ -5,59 +5,141 @@
                 热门活动
             </div> -->
             <h1 style="width:100%;height:1px"></h1>
-            <div :key="index" v-for="(item,index) in info" class="co">
-                <!-- <span class="ing">报名中</span> -->
-                <h1>{{item.name}}</h1>
-                <p>{{item.description}}</p>
-                <img @click="goo(item.canClick,item.url)" :src="item.image">
-            </div>
+            <pull :topDistance=30 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
+                <div slot="top" class="mint-loadmore-top">
+                    <transition name="fade">
+                        <img v-if="topStatus == 'loading'" class="down" src="../../assets/app/ryg.gif">
+                    </transition>
+                    <transition name="fade1">
+                        <img v-if="topStatus == 'drop'" class="down" src='../../assets/app/ryg.png'>
+                    </transition>
+                    <!-- <img v-if="topStatus == 'pull'" class="down" src='../../assets/app/ryg.png'> -->
+                </div>
+                <div :key="index" v-for="(item,index) in info" class="co">
+                    <!-- <span class="ing">报名中</span> -->
+                    <h1>{{item.name}}</h1>
+                    <p>{{item.description}}</p>
+                    <img @click="goo(item.canClick,item.url)" :src="item.image">
+                </div>
+            </pull>
+
             <!-- <div class="co">
-                <span class="ed">已结束</span>
-                <img src="../../assets/car_guide_banner.jpg">
-            </div>
-            <div class="co">
-                <img src="../../assets/car_guide_banner.jpg">
-            </div>
-            <div class="co">
-                <img src="../../assets/car_guide_banner.jpg">
-            </div>
-            <div class="co">
-                <img src="../../assets/car_guide_banner.jpg">
-            </div> -->
+                                    <span class="ed">已结束</span>
+                                    <img src="../../assets/car_guide_banner.jpg">
+                                </div>
+                                <div class="co">
+                                    <img src="../../assets/car_guide_banner.jpg">
+                                </div>
+                                <div class="co">
+                                    <img src="../../assets/car_guide_banner.jpg">
+                                </div>
+                                <div class="co">
+                                    <img src="../../assets/car_guide_banner.jpg">
+                                </div> -->
             <img style="width: 100%;display:block;margin-top: 0.24rem;" src="../../assets/app/nomore.png">
         </div>
     </div>
 </template>
 
 <script>
-require('../app/rem.js')(window, document)
+require('../app/rem.js')(window, document);
+import { Loadmore } from 'mint-ui';
 export default {
-    data(){
-        return{
-            info:''
+    data() {
+        return {
+            info: '',
+            topStatus: '',
+
         }
     },
-    created(){
-        this.$ajax(BASE_URL+'/activity/list')
-        .then(res => {
-            if(res.data.success == true){
-                this.info = res.data.data.list
-            }else{
-                alert('一定是后台小哥出现了问题')
-            }
-        })
+    created() {
+        this.$ajax(BASE_URL + '/activity/list')
+            .then(res => {
+                if (res.data.success == true) {
+                    this.info = res.data.data.list
+                } else {
+                    alert('一定是后台小哥出现了问题')
+                }
+            })
     },
-    methods:{
-        goo(status,url){
-            if(status == true){
+    methods: {
+        goo(status, url) {
+            if (status == true) {
                 location.href = url
             }
-        }
-    }
+        },
+        loadTop() {
+            this.$ajax(BASE_URL + '/activity/list?tt=' + new Date().toUTCString())
+                .then(res => {
+                    if (res.data.success == true) {
+                        this.info = res.data.data.list
+                    } else {
+                        alert('一定是后台小哥出现了问题')
+                    }
+                })
+            // this.f5 = false
+            // this.$nextTick(function() {
+            //     this.f5 = true
+            // })
+            setTimeout(() => {
+                this.$refs.loadmore.onTopLoaded();
+            }, 1500)
+        },
+        handleTopChange(status) {
+            this.topStatus = status;
+        },
+    },
+    components: {
+        'pull': Loadmore
+    },
 }
 </script>
 
 <style scoped>
+.fade1-enter-active{
+    transition: transform 1s;
+    -moz-transition: transform 1s;
+    /* Firefox 4 */
+    -webkit-transition: transform 1s;
+    /* Safari 和 Chrome */
+    -o-transition: transform 1s;
+    /* Opera */
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: transform 1s;
+    -moz-transition: transform 1s;
+    /* Firefox 4 */
+    -webkit-transition: transform 1s;
+    /* Safari 和 Chrome */
+    -o-transition: transform 1s;
+    /* Opera */
+}
+
+.fade1-enter,
+.fade1-leave-to
+/* .fade-leave-active in below version 2.1.8 */
+
+{
+    transform: scale(0,0);
+    -ms-transform: scale(0,0); 	/* IE 9 */
+    -moz-transform: scale(0,0); 	/* Firefox */
+    -webkit-transform: scale(0,0); /* Safari 和 Chrome */
+    -o-transform: scale(0,0); 	/* Opera */
+}
+
+.down {
+    z-index: -1;
+    display: block;
+    margin: auto;
+    width: 1.5rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1rem;
+    margin: auto;
+}
+
 .co h1 {
     color: #ffffff;
     font-size: 0.28rem;
@@ -126,6 +208,7 @@ export default {
     height: 3.2rem;
     margin: auto;
     position: relative;
+    margin-bottom: 0.24rem;
     margin-top: 0.24rem;
 }
 
@@ -137,5 +220,8 @@ export default {
     width: 100%;
     display: block;
     line-height: 0.76rem;
+    position: absolute;
+    z-index: 100;
+    background: rgb(15, 25, 35);
 }
 </style>
