@@ -13,6 +13,10 @@ export default {
         this.$ajax(BASE_URL + "/member/privilege")
             .then(res => {
                 console.log(res)
+                if(res.data.code == -100){
+                    alert('微信中没有token')
+                    this.$router.push('/app/join')
+                }
                 // return ;
                 if (res.data.data.member.memberType == 0) {
                     this.$router.push('/app/join')
@@ -20,10 +24,8 @@ export default {
                     this.$router.push('/wx/wxmember/memshow')
                 } else if (res.data.data.member.memberType == 5) {
                     this.$router.push('/wx/wxmember/pending')
-                }else{
-                    // this.$router.push('/wx/wxmember/memshow')
+                }else {
                     alert('出现了不可预知的问题')
-                    this.$router.push('/app/join')
                 }
             })
     }
