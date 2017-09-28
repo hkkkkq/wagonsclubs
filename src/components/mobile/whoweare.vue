@@ -2,8 +2,8 @@
   <div>
       <m-header v-if="!wag"></m-header>
       <a @click="goo" class="goback"></a>
-      <span v-if="isNew" @click="call" class="share"></span>
-      <div class="empty"></div>
+      <span v-if="(isNew)&&(!wag)" @click="call" class="share"></span>
+      <div v-if="!wag" class="empty"></div>
       <div class="content"></div>
   </div>
 </template>
@@ -28,8 +28,8 @@ export default {
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
         }
-        alert(navigator.userAgent.toLowerCase())
-        alert(/from_wagons/.test(navigator.userAgent.toLowerCase()))
+        // alert(navigator.userAgent.toLowerCase())
+        // alert(/from_wagons/.test(navigator.userAgent.toLowerCase()))
         if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
             this.wag = true
         } else {
