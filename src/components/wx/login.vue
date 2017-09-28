@@ -42,6 +42,9 @@ export default {
             this.bg = true;
         },0)
     },
+    computed:{  
+        WAG() { return this.$store.state.WAG }
+    },
     methods: {
         getv() {
             this.$ajax({
@@ -52,6 +55,7 @@ export default {
                 }),
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
+                    "WAG":this.WAG
                 },
             })
                 .then(res => {
@@ -69,6 +73,7 @@ export default {
                 }),
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
+                    "WAG":this.WAG
                 },
             })
         }

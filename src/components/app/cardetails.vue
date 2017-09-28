@@ -181,6 +181,7 @@ export default {
             .catch(() => { alert('一定是你的手机出了什么问题！！！') })
     },
     computed: {
+        WAG() { return this.$store.state.WAG }
     },
     methods: {
         full(element) {
@@ -214,37 +215,89 @@ export default {
             if (this.isapp) {
                 window.Wground.getApiToken(suc, fail)//suc在下面
             } else {
-                // alert(11)在微信中
                 this.$ajax({
-                    url: BASE_URL + "/car/memberType?carId=" + this.carId,
+                    url: BASE_URL + "/car/isLogin",
                     method: 'GET',
-                }).then((res) => {
-                    if (res.data.success == true) {//请求成功
-                        if (res.data.data.JumpInfo.review == true) {//审核通过
-                            if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
-                                // window.Wground.reservation(false)
-                                this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
-                            } else {//三计划用户
-                                if (res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable) {//车可用，日期可用
-                                    // window.Wground.reservation(true)                                    
-                                    this.$router.push({ path: "/wx/pay", query: { orderType: 0, carId: this.carId }, })
-                                } else if (res.data.data.JumpInfo.carUseable == false) {//车不可用
-                                    this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
-                                    return;
-                                } else if (res.data.data.JumpInfo.dateUseable == false) {//日期不可用
-                                    // window.Wground.reservation(false)
-                                    this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
-                                }
-                            }
-                        } else {
-                            this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
-                            return;
-                        }
-                    } else {
-                        this.ef("出现了什么问题，比如没登陆？")
-                        return;
-                    }
+                    headers: { 'WAG': vm.WAG }
                 })
+                    .then(res => {
+                        if (res.data.success == false) {
+                            alert('去登陆')
+                            this.$router.push('/wx/login')
+                        } else {
+                            alert('去预定')
+                            this.$ajax({
+                                url: BASE_URL + "/car/memberType?carId=" + vm.carId,
+                                method: 'GET',
+                                headers: { 'WAG': vm.WAG,"token":1234 }
+                            })
+                                .then((res) => {
+                                    alert(res.data)
+                                    if (res.data.success == true) {//请求成功
+                                        if (res.data.data.JumpInfo.review == true) {//审核通过
+                                            if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
+                                                // window.Wground.reservation(false)
+                                                this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
+                                            } else {//三计划用户
+                                                if (res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable) {//车可用，日期可用
+                                                    // window.Wground.reservation(true)                                    
+                                                    this.$router.push({ path: "/wx/pay", query: { orderType: 0, carId: this.carId }, })
+                                                } else if (res.data.data.JumpInfo.carUseable == false) {//车不可用
+                                                    this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
+                                                    return;
+                                                } else if (res.data.data.JumpInfo.dateUseable == false) {//日期不可用
+                                                    // window.Wground.reservation(false)
+                                                    this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
+                                                }
+                                            }
+                                        } else {
+                                            this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                                            return;
+                                        }
+                                    } else {
+                                        this.ef("出现了什么问题，比如没登陆？")
+                                        return;
+                                    }
+                                })
+                        }
+                    })
+
+
+                // location.href = 'http://wenjj.cy.huoqiu.cn/weixin/redirect/memberType?carId='+this.carId
+                // alert(11)在微信中
+                // this.$ajax({
+                //     url: BASE_URL + "/car/memberType?carId=" + vm.carId,
+                //     method: 'GET',
+                //     headers:{'WAG':vm.WAG}
+                // })
+                // .then((res) => {
+                //     alert(res.data)
+                //     if (res.data.success == true) {//请求成功
+                //         if (res.data.data.JumpInfo.review == true) {//审核通过
+                //             if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
+                //                 // window.Wground.reservation(false)
+                //                 this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
+                //             } else {//三计划用户
+                //                 if (res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable) {//车可用，日期可用
+                //                     // window.Wground.reservation(true)                                    
+                //                     this.$router.push({ path: "/wx/pay", query: { orderType: 0, carId: this.carId }, })
+                //                 } else if (res.data.data.JumpInfo.carUseable == false) {//车不可用
+                //                     this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
+                //                     return;
+                //                 } else if (res.data.data.JumpInfo.dateUseable == false) {//日期不可用
+                //                     // window.Wground.reservation(false)
+                //                     this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
+                //                 }
+                //             }
+                //         } else {
+                //             this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
+                //             return;
+                //         }
+                //     } else {
+                //         this.ef("出现了什么问题，比如没登陆？")
+                //         return;
+                //     }
+                // })
             }
             function suc(token) {
                 vm.$ajax("http://www.baidu.com")
@@ -502,7 +555,7 @@ video {
     padding-bottom: 5px;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: rgba(255,255,255,0.15);
+    background-color: rgba(255, 255, 255, 0.15);
     font-size: 0.24rem;
     border-radius: 15px;
     color: #ffffff;
@@ -524,8 +577,6 @@ video {
     margin-bottom: 0.34rem;
     font-family: PingFangSC-Light, sans-serif;
     font-weight: lighter;
-
-    
 }
 
 .pr {
@@ -583,7 +634,6 @@ video {
     line-height: 0.32rem;
     position: relative;
     top: -0.05rem;
-
 }
 
 .name {

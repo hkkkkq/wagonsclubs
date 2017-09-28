@@ -90,6 +90,8 @@ export default {
         carlist() { return this.$store.state.applist }
     },
     created() {
+        // alert(this.$route.query.WAG)
+        this.$store.commit('setOpenId',this.$route.query.WAG)
         //监听滚动事件        
         window.addEventListener('scroll', this.handleScroll);
 

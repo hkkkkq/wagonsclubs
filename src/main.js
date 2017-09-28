@@ -21,7 +21,7 @@ Vue.use(VueLazyload, {
     listenEvents: ['scroll', 'mousewheel']
 })
 
-axios.defaults.headers.common['token'] = 'a31f4dd41f48444b81b1d36486920419';
+// axios.defaults.headers.common['token'] = 'a31f4dd41f48444b81b1d36486920419';
 Vue.prototype.$ajax = axios; //将axios写入vue的原型方法
 Vue.use(vuex)
 const store = new vuex.Store({
@@ -32,7 +32,8 @@ const store = new vuex.Store({
         'applist': "",
         'starttime': "",
         'endtime': '',
-        'rentdays': ''
+        'rentdays': '',
+        'WAG': ''
     },
     mutations: {
         foot_left_click(state) {
@@ -57,6 +58,9 @@ const store = new vuex.Store({
         },
         rentdays(state, data) {
             state.rentdays = data
+        },
+        setOpenId(state, data) {
+            state.WAG = data
         }
     }
 })

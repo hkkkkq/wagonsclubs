@@ -12,7 +12,7 @@
                 <span>身份证号</span><input v-model="idCard" placeholder="请填写身份证号" />
             </p>
             <p>
-                <span>手机号</span><input v-model="telephone" placeholder="请填写手机号" />
+                <span>手机号</span><input readonly v-model="telephone" placeholder="请填写手机号" />
             </p>
             <p @click="sel(1)">
                 <span>婚姻状况</span>
@@ -42,6 +42,7 @@ import qs from 'qs';
 export default {
     data() {
         return {
+            isapp: '',
             errmsg: "",
             name: '',
             idCard: '',
@@ -60,6 +61,39 @@ export default {
             hunyinlist: ["未婚", "已婚", "离异"],
             zhiyelist: ["国家机关／事业单位", "计算机／互联网", "金融业", "建筑业", "批发零售", "文体教育", "生产制造", "交通运输", "文化娱乐", "能源环保", "农／林／牧／渔业", "其他"],
             zhiwulist: ["企业所有者", "高管", "经理", "主管", "一般职员", "自由职业", "学生", "其他"],
+        }
+    },
+    created() {
+        var vm = this
+        //判断是否是wagonsapp
+        if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+            this.isapp = true
+        } else {
+            this.isapp = false
+        }
+
+        if (this.isapp == true) {
+            window.Wground.getApiToken(suc, fail)
+        } else {
+            // alert('微信中')
+            // this.$ajax({
+            //     url: BASE_URL + "/member/applicationCell",
+            //     method: 'GET',
+            //     headers: { "token": "782379c61ed4485c86466af872a73c25" }
+            // })
+            //     .then(res => {
+            //         vm.telephone == res.data.data.cell
+            //     })
+        }
+        function suc(token) {
+            this.$ajax({
+                url: BASE_URL + "",
+                method: 'GET',
+                headers: { "token": token }
+            })
+                .then(res => {
+                    vm.telephone == res.data.data.applicationCell
+                })
         }
     },
     methods: {
