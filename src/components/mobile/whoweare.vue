@@ -1,6 +1,6 @@
 <template>
   <div>
-      <m-header></m-header>
+      <m-header v-if="!wag"></m-header>
       <a @click="goo" class="goback"></a>
       <span v-if="isNew" @click="call" class="share"></span>
       <div class="empty"></div>
@@ -14,7 +14,7 @@ import header from './header.vue'
 export default {
     data(){
         return{
-
+            wag:''
         }
     },
     computed:{
@@ -27,6 +27,11 @@ export default {
         if(/isNewApp=true/.test(location.href)){
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
+        }
+        if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+            this.wag = true
+        } else {
+            this.wag = false
         }
     },
     methods:{

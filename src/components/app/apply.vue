@@ -87,7 +87,7 @@ export default {
         }
         function suc(token) {
             this.$ajax({
-                url: BASE_URL + "",
+                url: BASE_URL + "/member/applicationCell",
                 method: 'GET',
                 headers: { "token": token }
             })

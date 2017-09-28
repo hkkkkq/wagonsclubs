@@ -1,6 +1,6 @@
 <template>
     <div style="font-size:0;background: rgba(0,0,0,0.6);">
-        <div class="head">
+        <div v-if="!wag" class="head">
             <a @click="goback" class="goback"></a>
             <img class="nl" src="../../assets/newlogo.png">
             <a v-if="isNew" @click="share" class="share"></a>
@@ -39,7 +39,11 @@ export default {
             window.ground.hideHeader()
         }
 
-
+        if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+            this.wag = true
+        } else {
+            this.wag = false
+        }
 
         this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
             .then((res) => {

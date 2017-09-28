@@ -1,40 +1,45 @@
 <template>
-<div style="font-size:0">
-    <m-header></m-header>
-    <a @click="goo" class="goback"></a>
-    <span v-if="isNew" @click="call" class="share"></span>
-    <div class="empty"></div>
-    <img src="../../assets/zw1.png">
-    <img src="../../assets/zw2.png">
-    <img src="../../assets/zw3.jpg">
-    <img src="../../assets/zw4.png">
-</div>
+    <div style="font-size:0">
+        <m-header v-if="!wag"></m-header>
+        <a @click="goo" class="goback"></a>
+        <span v-if="isNew" @click="call" class="share"></span>
+        <div class="empty"></div>
+        <img src="../../assets/zw1.png">
+        <img src="../../assets/zw2.png">
+        <img src="../../assets/zw3.jpg">
+        <img src="../../assets/zw4.png">
+    </div>
 </template>
 
 <script>
-require('./rem.js')(window,document);
+require('./rem.js')(window, document);
 import header from './header.vue'
 
 export default {
-    data(){
-        return{
+    data() {
+        return {
 
         }
     },
-    computed:{
-        isNew(){ return this.$store.state.isNewApp}
+    computed: {
+        isNew() { return this.$store.state.isNewApp }
     },
-    components:{
-        'm-header':header,
+    components: {
+        'm-header': header,
     },
-    created(){
-        if(/isNewApp=true/.test(document.referrer)){
+    created() {
+        if (/isNewApp=true/.test(document.referrer)) {
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
         }
+        if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+            this.wag = true
+        } else {
+            this.wag = false
+        }
     },
-    methods:{
-        goo(){
+    methods: {
+        goo() {
             this.$router.go(-1)
         }
     }
@@ -42,11 +47,12 @@ export default {
 </script>
 
 <style scoped>
-img{
+img {
     width: 100%;
     display: block;
 }
-.share{
+
+.share {
     position: relative;
     top: -0.8rem;
     float: right;
@@ -59,6 +65,7 @@ img{
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
+
 .goback {
     z-index: 1000;
     position: fixed;
@@ -69,6 +76,7 @@ img{
     background: url('../../assets/m-goback.png') no-repeat center center;
     background-size: 0.3rem 0.3rem;
 }
+
 .content {
     width: 7.5rem;
     height: 52.85rem;
@@ -76,6 +84,7 @@ img{
     background: url('../../assets/groundBJ.jpg') no-repeat;
     background-size: 100% 100%;
 }
+
 .empty {
     width: 7.5rem;
     height: 1.27rem;
