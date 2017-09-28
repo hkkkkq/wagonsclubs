@@ -68,11 +68,8 @@ export default {
         var vm = this
         //判断是否是wagonsapp
         if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
-            alert('begin')
             window.Wground.getApiToken(suc, fail)
-            alert('end')
         } else {
-            alert('aaaa')
         }
 
         // if (this.isapp == true) {
@@ -95,9 +92,7 @@ export default {
                 headers: { "token": token }
             })
                 .then(res => {
-                    alert(111)
                     vm.telephone = res.data.data.applicationCell
-                    alert(222)
                 })
         }
         function fail(data) {
