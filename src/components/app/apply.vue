@@ -68,14 +68,13 @@ export default {
         var vm = this
         //判断是否是wagonsapp
         if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
-            this.isapp = true
-        } else {
-            this.isapp = false
-        }
-
-        if (this.isapp == true) {
             window.Wground.getApiToken(suc, fail)
         } else {
+            alert('aaaa')
+        }
+
+        // if (this.isapp == true) {
+        // } else {
             // alert('微信中')
             // this.$ajax({
             //     url: BASE_URL + "/member/applicationCell",
@@ -85,7 +84,7 @@ export default {
             //     .then(res => {
             //         vm.telephone == res.data.data.cell
             //     })
-        }
+        // }
         function suc(token) {
             this.$ajax({
                 url: BASE_URL + "/member/applicationCell",
