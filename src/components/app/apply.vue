@@ -68,7 +68,9 @@ export default {
         var vm = this
         //判断是否是wagonsapp
         if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+            alert('begin')
             window.Wground.getApiToken(suc, fail)
+            alert('end')
         } else {
             alert('aaaa')
         }
@@ -86,6 +88,7 @@ export default {
             //     })
         // }
         function suc(token) {
+            alert(token)
             this.$ajax({
                 url: BASE_URL + "/member/applicationCell",
                 method: 'GET',
