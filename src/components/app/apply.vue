@@ -96,7 +96,7 @@ export default {
             })
                 .then(res => {
                     alert(111)
-                    vm.telephone == res.data.data.applicationCell
+                    vm.telephone = res.data.data.applicationCell
                     alert(222)
                 })
         }
