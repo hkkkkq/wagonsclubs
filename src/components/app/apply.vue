@@ -89,7 +89,7 @@ export default {
         // }
         function suc(token) {
             alert(token)
-            this.$ajax({
+            vm.$ajax({
                 url: BASE_URL + "/member/applicationCell",
                 method: 'GET',
                 headers: { "token": token }
