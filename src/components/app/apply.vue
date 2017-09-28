@@ -31,7 +31,8 @@
         <div @click="clo" v-show="l1" class="mask">
             <div class="nu">
                 <p @click='cl(item,index)' :key="index" v-for="(item,index) in currlist">{{item}}</p>
-                <p @click="clo" style="color: rgb(215, 215, 215);">取消</p>
+                <p style="border:0"></p>
+                <p @click="clo" style="height:0.9rem;line-height:0.9rem;font-size: 0.24rem;color: rgb(215, 215, 215);position: fixed;bottom: 0;left: 0;right: 0;;">取消</p>
             </div>
         </div>
     </div>
@@ -94,6 +95,9 @@ export default {
                 .then(res => {
                     vm.telephone == res.data.data.applicationCell
                 })
+        }
+        function fail(data) {
+            alert(data)
         }
     },
     methods: {
@@ -191,7 +195,7 @@ export default {
     bottom: 0;
     width: 100%;
     background: #fff;
-    height: 3.8rem;
+    height: 5.5rem;
     overflow-y: auto;
 }
 
@@ -246,7 +250,7 @@ input::-webkit-input-placeholder {
     vertical-align: middle;
     width: 4.4rem;
     float: right;
-    margin-top: 0.4rem;
+    margin: auto;
     background: url('../../assets/app/applya.png');
     background-size: 0.2rem;
     background-repeat: no-repeat;
@@ -258,7 +262,7 @@ input::-webkit-input-placeholder {
 .in p {
     height: 1rem;
     width: 6.8rem;
-    display: block;
+    display: flex;
     margin-left: 0.3rem;
     border-bottom: 1px solid #3d454d;
 }
@@ -273,7 +277,7 @@ input::-webkit-input-placeholder {
     vertical-align: middle;
     color: #ffffff;
     float: right;
-    margin-top: 0.2rem;
+    margin: auto;
     outline: none;
     font-weight: 300;
     margin-right: 0.3rem;
@@ -285,6 +289,9 @@ input::-webkit-input-placeholder {
     font-size: 0.26rem;
     display: inline-block;
     width: 1.5rem;
+    height: 0.3rem;
+    margin: auto;
+    margin-left: 0.1rem;
 }
 
 .in {
