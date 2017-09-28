@@ -95,7 +95,9 @@ export default {
                 headers: { "token": token }
             })
                 .then(res => {
+                    alert(111)
                     vm.telephone == res.data.data.applicationCell
+                    alert(222)
                 })
         }
         function fail(data) {
