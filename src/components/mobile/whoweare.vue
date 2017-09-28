@@ -1,7 +1,7 @@
 <template>
   <div>
       <m-header v-if="!wag"></m-header>
-      <a @click="goo" class="goback"></a>
+      <a  v-if="!wag" @click="goo" class="goback"></a>
       <span v-if="(isNew)&&(!wag)" @click="call" class="share"></span>
       <div v-if="!wag" class="empty"></div>
       <div class="content"></div>

@@ -1,9 +1,9 @@
 <template>
     <div style="font-size:0">
         <m-header v-if="!wag"></m-header>
-        <a @click="goo" class="goback"></a>
-        <span v-if="isNew" @click="call" class="share"></span>
-        <div class="empty"></div>
+        <a  v-if="!wag" @click="goo" class="goback"></a>
+        <span v-if="(isNew)&&(!wag)" @click="call" class="share"></span>
+        <div  v-if="!wag" class="empty"></div>
         <img src="../../assets/zw1.png">
         <img src="../../assets/zw2.png">
         <img src="../../assets/zw3.jpg">
