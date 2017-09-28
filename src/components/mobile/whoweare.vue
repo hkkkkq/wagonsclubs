@@ -28,6 +28,8 @@ export default {
             window.ground.hideHeader();
             this.$store.commit('isNewApp')
         }
+        alert(navigator.userAgent.toLowerCase())
+        alert(/from_wagons/.test(navigator.userAgent.toLowerCase()))
         if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
             this.wag = true
         } else {
