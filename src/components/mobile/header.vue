@@ -42,7 +42,8 @@ export default {
                             'onMenuShareWeibo'
                         ]
                     });
-            var locationHref = window.location.href;
+            var locationHref = 'http://www.wagonsclub.com/mobile';
+            console.log(locationHref)
             wx.ready(function () {
                         wx.onMenuShareTimeline({
                             title: 'WAGONS光速超跑',

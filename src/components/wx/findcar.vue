@@ -41,7 +41,7 @@
                 <img src="../../assets/app/downloadlogo.png">
                 <p>下载APP 体验更多</p>
             </div>
-            <div class="godown">立即下载</div>
+            <div @click="download" class="godown">立即下载</div>
         </div>
     </div>
 </template>
@@ -136,6 +136,13 @@ export default {
         'pull': Loadmore
     },
     methods: {
+        download(){
+            if(/iPhone|iPod/i.test(navigator.userAgent)){
+                location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
+            }else{//安卓应用宝下载
+                location.href = 'itms-apps://itunes.apple.com/app/id1279198452'                
+            }
+        },
         loadTop() {
             this.$ajax(BASE_URL + "/car/carouselApp?tt=" + new Date().toUTCString())
                 .then((res) => {
