@@ -8,9 +8,9 @@
                     <span v-if="item.orderType == 0" class="status0">待接单</span>
                     <span v-if="item.orderType == 1" class="status0">准备中</span>
                     <span v-if="item.orderType == 2" class="status0">准备中</span>
-                    <span v-if="item.orderType == 3" class="status0">使用中</span>                    
+                    <span v-if="item.orderType == 3" class="status0">使用中</span>
                     <span v-if="item.orderType == 4" class="status2">已还车</span>
-                    <img v-if="item.orderType == 5" class="ordered" src="../../assets/app/ordered1.png">                    
+                    <img v-if="item.orderType == 5" class="ordered" src="../../assets/app/ordered1.png">
                     <span v-if="item.orderType == 6" class="status3">已还车</span>
                 </p>
                 <div class="info">
@@ -24,58 +24,58 @@
                 </div>
             </div>
             <!-- <div class="one">
-                    <p class="title">
-                        <span class="carname">法拉利兰博基尼</span>
-                        <span class="status1">使用中</span>
-                    </p>
-                    <div class="info">
-                        <img src="../../assets/app/slc.png">
-                        <div class="deta">
-                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                            <p>租用三天：已付 ¥5000.00</p>                        
-                        </div>
-                    </div>
-                </div>
-                <div class="one">
-                    <p class="title">
-                        <span class="carname">法拉利兰博基尼</span>
-                        <span class="status2">使用中</span>
-                    </p>
-                    <div class="info">
-                        <img src="../../assets/app/slc.png">
-                        <div class="deta">
-                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                            <p>租用三天：已付 ¥5000.00</p>                        
-                        </div>
-                    </div>
-                </div>
-              <div class="one">
-                    <p class="title">
-                        <span class="carname">法拉利兰博基尼</span>
-                        <span class="status3">已取消</span>
-                    </p>
-                    <div class="info">
-                        <img src="../../assets/app/slc.png">
-                        <div class="deta">
-                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                            <p>租用三天：已付 ¥5000.00</p>                        
-                        </div>
-                    </div>
-                </div>
-                <div class="one">
-                    <p class="title">
-                        <span class="carname">法拉利兰博基尼</span>
-                        <span class="status0">使用中</span>
-                        <img class="ordered" src="../../assets/app/ordered1.png">
-                    </p>
-                    <div class="info">
-                        <img src="../../assets/app/slc.png">
-                        <div class="deta">
-                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                            <p>租用三天：已付 ¥5000.00</p>                        
-                        </div>
-                    </div>
-                </div> -->
+                                    <p class="title">
+                                        <span class="carname">法拉利兰博基尼</span>
+                                        <span class="status1">使用中</span>
+                                    </p>
+                                    <div class="info">
+                                        <img src="../../assets/app/slc.png">
+                                        <div class="deta">
+                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
+                                            <p>租用三天：已付 ¥5000.00</p>                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="one">
+                                    <p class="title">
+                                        <span class="carname">法拉利兰博基尼</span>
+                                        <span class="status2">使用中</span>
+                                    </p>
+                                    <div class="info">
+                                        <img src="../../assets/app/slc.png">
+                                        <div class="deta">
+                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
+                                            <p>租用三天：已付 ¥5000.00</p>                        
+                                        </div>
+                                    </div>
+                                </div>
+                              <div class="one">
+                                    <p class="title">
+                                        <span class="carname">法拉利兰博基尼</span>
+                                        <span class="status3">已取消</span>
+                                    </p>
+                                    <div class="info">
+                                        <img src="../../assets/app/slc.png">
+                                        <div class="deta">
+                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
+                                            <p>租用三天：已付 ¥5000.00</p>                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="one">
+                                    <p class="title">
+                                        <span class="carname">法拉利兰博基尼</span>
+                                        <span class="status0">使用中</span>
+                                        <img class="ordered" src="../../assets/app/ordered1.png">
+                                    </p>
+                                    <div class="info">
+                                        <img src="../../assets/app/slc.png">
+                                        <div class="deta">
+                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
+                                            <p>租用三天：已付 ¥5000.00</p>                        
+                                        </div>
+                                    </div>
+                                </div> -->
             <div class="nomore">
                 <img src="../../assets/app/nomore.png">
             </div>
@@ -92,8 +92,25 @@ export default {
         }
     },
     created() {
-        this.$ajax(BASE_URL + "/car/orderList")
-            .then((res) => { this.resdata = res.data })
+        var vm = this
+        //获取openid
+        this.$store.commit('setOpenId', this.$route.query.WAG)
+        alert(this.$route.query.WAG)
+        //isbinding
+        this.$ajax({
+            url: BASE_URL + "/car/isBinding",
+            method: 'GET',
+            headers: { 'WAG': this.$route.query.WAG }
+        })
+            .then((res) => {
+                if (res.data.success == false) {
+                    alert('去登陆')
+                    this.$router.push('/wx/login')
+                } else {
+                    this.$ajax(BASE_URL + "/car/orderList")
+                        .then((res) => { this.resdata = res.data })
+                }
+            })
     }
 }
 </script>

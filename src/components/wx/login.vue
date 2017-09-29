@@ -75,7 +75,10 @@ export default {
                     "Content-Type": "application/x-www-form-urlencoded",
                     "WAG":this.WAG
                 },
-            })
+            }).then(()=>{
+                this.$router.go(-1)
+            }
+            )
         }
     }
 }
@@ -85,12 +88,12 @@ export default {
 
 .scale-enter-active,
 .scale-leave-active {
-    transition: transform 1s;
-    -moz-transition: transform 1s;
+    transition: transform 1.5s;
+    -moz-transition: transform 1.5s;
     /* Firefox 4 */
-    -webkit-transition: transform 1s;
+    -webkit-transition: transform 1.5s;
     /* Safari 和 Chrome */
-    -o-transition: transform 1s;
+    -o-transition: transform 1.5s;
     /* Opera */
 }
 
@@ -104,12 +107,12 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 1s;
-    -moz-transition: opacity 1s;
+    transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
     /* Firefox 4 */
-    -webkit-transition: opacity 1s;
+    -webkit-transition: opacity 1.5s;
     /* Safari 和 Chrome */
-    -o-transition: opacity 1s;
+    -o-transition: opacity 1.5s;
     /* Opera */
 }
 

@@ -231,7 +231,8 @@ export default {
                     rentEndAt: vm.endob.year + "-" + (vm.endob.month + 1) + "-" + vm.endob.date + " " + parseInt(vm.endob.shi) + ":" + parseInt(vm.endob.fen),
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
-                    orderType: 0
+                    orderType: 0,
+                    dayOrdered:vm.tokendays
                 }),
                 headers: { "Content-Type": "application/x-www-form-urlencoded", }
             }).then((res) => {

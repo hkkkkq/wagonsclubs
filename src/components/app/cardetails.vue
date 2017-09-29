@@ -227,7 +227,7 @@ export default {
                 window.Wground.getApiToken(suc, fail)//suc在下面
             } else {
                 this.$ajax({
-                    url: BASE_URL + "/car/isBingind",
+                    url: BASE_URL + "/car/isBinding",
                     method: 'GET',
                     headers: { 'WAG': vm.WAG }
                 })
@@ -240,10 +240,10 @@ export default {
                             this.$ajax({
                                 url: BASE_URL + "/car/memberType?carId=" + vm.carId,
                                 method: 'GET',
-                                headers: { 'WAG': vm.WAG, "token": 1234 }
+                                headers: { 'WAG': vm.WAG}
                             })
                                 .then((res) => {
-                                    alert(res.data)
+                                    alert(res.data.data.JumpInfo.userType)
                                     if (res.data.success == true) {//请求成功
                                         if (res.data.data.JumpInfo.review == true) {//审核通过
                                             if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
