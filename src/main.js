@@ -33,7 +33,8 @@ const store = new vuex.Store({
         'starttime': "",
         'endtime': '',
         'rentdays': '',
-        'WAG': ''
+        'WAG': '',
+        'wxAppShare': false,
     },
     mutations: {
         foot_left_click(state) {
@@ -61,6 +62,9 @@ const store = new vuex.Store({
         },
         setOpenId(state, data) {
             state.WAG = data
+        },
+        wxAppShare(state, data) {
+            state.wxAppShare = true
         }
     }
 })

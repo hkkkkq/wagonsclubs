@@ -48,7 +48,8 @@
         </div>
         <p class="but1"></p>
         <p @click="sub" class="but">
-            立即预订
+            <span v-if="wxAppShare">下载APP 开始用车</span>
+            <span v-else>立即预订</span>
         </p>
         <div v-show="at" class="al">
             <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
@@ -60,6 +61,8 @@
             </div>
             <img @click="cl" class="ax" src="../../assets/app/xx.png">
         </div>
+        <div class="wxempty"></div>
+        <div v-if="wxAppShare" class="download"></div>
     </div>
 </template>
 
@@ -113,6 +116,11 @@ export default {
         }
     },
     created() {
+        console.log(location.href)
+        //微信分享出去
+        if (this.$route.query.wxAppShare == 'true') {
+            this.$store.commit('wxAppShare')
+        }
         //判断是否是wagonsapp
         if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
             this.isapp = true
@@ -181,7 +189,8 @@ export default {
             .catch(() => { alert('一定是你的手机出了什么问题！！！') })
     },
     computed: {
-        WAG() { return this.$store.state.WAG }
+        WAG() { return this.$store.state.WAG },
+        wxAppShare() { return this.$store.state.wxAppShare }
     },
     methods: {
         full(element) {
@@ -207,16 +216,18 @@ export default {
             }
         },
         share() {
-            window.Wground.share('WAGONS光速超跑', window.location.origin, 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务', '0,1,2,3');
+            window.Wground.share('WAGONS光速超跑', window.location.href+"&wxAppShare=true", 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务', '0,1,2,3');
         },
         sub() {
+            // this.$router.push('/wx/login');
+            // return;
             var vm = this;
             //获取token
             if (this.isapp) {
                 window.Wground.getApiToken(suc, fail)//suc在下面
             } else {
                 this.$ajax({
-                    url: BASE_URL + "/car/isLogin",
+                    url: BASE_URL + "/car/isBingind",
                     method: 'GET',
                     headers: { 'WAG': vm.WAG }
                 })
@@ -229,7 +240,7 @@ export default {
                             this.$ajax({
                                 url: BASE_URL + "/car/memberType?carId=" + vm.carId,
                                 method: 'GET',
-                                headers: { 'WAG': vm.WAG,"token":1234 }
+                                headers: { 'WAG': vm.WAG, "token": 1234 }
                             })
                                 .then((res) => {
                                     alert(res.data)
@@ -348,6 +359,20 @@ export default {
 </script>
 
 <style scoped>
+/* .download{
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 1.36rem;
+    background: rgba(0,0,0,0.8);
+}
+.wxempty{
+    display: block;
+    width: 100%;
+    height: 1.36rem;
+} */
+
 .cr {
     position: absolute;
     width: 100%;

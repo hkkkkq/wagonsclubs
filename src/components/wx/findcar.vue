@@ -24,6 +24,7 @@
             <p class="ti">车型探索</p>
             <div v-if='f6'>
                 <div :key="n" v-for="(item,n) in carlist" class="car">
+                    <img v-if="item.isNew" class='inew' src="../../assets/app/inew.png">
                     <img v-lazy="item.appImg" @click="choose(n,item.id)">
                     <p class="name">{{item.carName}}</p>
                     <P class="star">{{item.starLevel}}星级车</P>
@@ -33,7 +34,15 @@
         </pull>
         <img v-if="hasNext" class="down" src="../../assets/app/ryg.gif">
         <img v-else style="width: 100%;display:block;margin-top:0.4rem" src="../../assets/app/nomore.png">
-        <!-- </keep-alive v-if="keep"> -->
+        <div v-if="wxAppShare" class="wxempty"></div>
+        <div v-if="wxAppShare" class="download">
+            <img class="icon" src="../../assets/app/downloadicon.png">
+            <div class="logo">
+                <img src="../../assets/app/downloadlogo.png">
+                <p>下载APP 体验更多</p>
+            </div>
+            <div class="godown">立即下载</div>
+        </div>
     </div>
 </template>
 
@@ -87,9 +96,13 @@ export default {
         }
     },
     computed: {
-        carlist() { return this.$store.state.applist }
+        carlist() { return this.$store.state.applist },
+        wxAppShare() { return this.$store.state.wxAppShare }        
     },
     created() {
+        if(this.$route.query.wxAppShare == 'true'){
+            this.$store.commit('wxAppShare')
+        }
         // alert(this.$route.query.WAG)
         this.$store.commit('setOpenId',this.$route.query.WAG)
         //监听滚动事件        
@@ -173,6 +186,62 @@ export default {
 </script>
 
 <style scoped>
+.godown{
+    background: #fed945;
+    font-size: 0.28rem;
+    color: #000000;
+    width: 1.85rem;
+    height: 0.58rem;
+    margin: auto;
+    line-height: 0.58rem;
+    text-align: center;
+    border-radius: 0.04rem;
+    margin-right: 0.2rem;
+}
+.download .logo p{
+    font-size: 0.24rem;
+    color: #ffffff;
+    font-family: initial;
+    margin-top: 0.15rem!important;
+}
+.download .logo img{
+    width: 2.55rem;
+    margin-top: 0.35rem;
+    height: 0.3rem;
+}
+.download .logo{
+    width: 3rem;
+    display: inline-block;
+    font-size: 0;
+}
+.download .icon{
+    width:0.97rem;
+    height:0.97rem;
+    margin: auto;
+    margin-left: 0.2rem;
+    margin-right: 0.26rem;
+    display: inline-block;
+}
+.download{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 1.36rem;
+    background: rgba(0,0,0,0.8);
+}
+.wxempty{
+    display: block;
+    width: 100%;
+    height: 1.36rem;
+}
+.inew{
+    position: absolute;
+    top: 0.2rem;
+    left: .15rem;
+    width:0.74rem!important;
+    height: 0.35rem!important;
+}
 img[lazy=error] {
     /* //your code */
     background-image: url('../../assets/loading12.gif');
@@ -239,6 +308,7 @@ img[lazy=loaded] {
 .car {
     padding: 0 0.2rem 0 0.2rem;
     margin-bottom: 0.4rem;
+    position: relative;
 }
 
 .ti {

@@ -10,8 +10,13 @@ export default {
         return {}
     },
     created() {
-        this.$ajax(BASE_URL + "/member/privilege")
+        this.$ajax({
+            url:BASE_URL + "/wxPrivilege",
+            method:'GET',
+            headers:{WAG:'oZyXk0kQ0moZWIIJVF58Pr4_XZq8'}
+            })
             .then(res => {
+                alert('sss')
                 console.log(res)
                 if(res.data.code == -100){
                     alert('微信中没有token')

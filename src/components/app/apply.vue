@@ -64,25 +64,37 @@ export default {
             zhiwulist: ["企业所有者", "高管", "经理", "主管", "一般职员", "自由职业", "学生", "其他"],
         }
     },
+    computed: {
+        WAG() { return this.$store.state.WAG }
+    },
     created() {
         var vm = this
         //判断是否是wagonsapp
         if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
             window.Wground.getApiToken(suc, fail)
         } else {
+            this.$ajax({
+                url: BASE_URL + '/wxApplicationCell',
+                method: 'GET',
+                // headers: { 'WAG': this.WAG }
+                headers: { 'WAG': "oZyXk0kQ0moZWIIJVF58Pr4_XZq8" }
+            })
+                .then(res => {
+                    vm.telephone = res.data.data.wxCell
+                })
         }
 
         // if (this.isapp == true) {
         // } else {
-            // alert('微信中')
-            // this.$ajax({
-            //     url: BASE_URL + "/member/applicationCell",
-            //     method: 'GET',
-            //     headers: { "token": "782379c61ed4485c86466af872a73c25" }
-            // })
-            //     .then(res => {
-            //         vm.telephone == res.data.data.cell
-            //     })
+        // alert('微信中')
+        // this.$ajax({
+        //     url: BASE_URL + "/member/applicationCell",
+        //     method: 'GET',
+        //     headers: { "token": "782379c61ed4485c86466af872a73c25" }
+        // })
+        //     .then(res => {
+        //         vm.telephone == res.data.data.cell
+        //     })
         // }
         function suc(token) {
             alert(token)
