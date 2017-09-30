@@ -108,7 +108,7 @@ export default {
         //监听滚动事件        
         window.addEventListener('scroll', this.handleScroll);
 
-        this.$ajax(BASE_URL + "/car/carouselApp?tt=" + new Date().toUTCString())
+        this.$ajax(BASE_URL + "/appCar/carouselApp?tt=" + new Date().toUTCString())
             .then((res) => {
                 if (res.data.success == true) {
                     this.carousel = res.data.data.cycleList
@@ -116,7 +116,7 @@ export default {
                     alert('接口出现了问题')
                 }
             })
-        this.$ajax(BASE_URL + "/car/carsListPaginate?pageIndex=" + this.currpage)
+        this.$ajax(BASE_URL + "/appCar/carsListPaginate?pageIndex=" + this.currpage)
             .then((res) => {
                 this.list = res.data.data.carsList.data;
                 this.$store.commit("saveAppList", this.list)
@@ -169,7 +169,7 @@ export default {
             // console.log(window.screen.height)
             if (document.body.scrollHeight == (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) + window.screen.height) {
                 if (this.hasNext) {
-                    this.$ajax(BASE_URL + "/car/carsListPaginate?pageIndex=" + Number(this.currpage + 1))
+                    this.$ajax(BASE_URL + "/appCar/carsListPaginate?pageIndex=" + Number(this.currpage + 1))
                         .then((res) => {
                             for (let i = 0; i < res.data.data.carsList.data.length; i++) {
                                 this.list.push(res.data.data.carsList.data[i]);

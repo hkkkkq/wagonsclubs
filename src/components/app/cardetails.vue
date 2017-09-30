@@ -173,7 +173,7 @@ export default {
 
         //获取车辆详情
         this.carId = deurl(location).carId;
-        this.$ajax(BASE_URL + '/car/leaseDetails?carId=' + deurl(location).carId)
+        this.$ajax(BASE_URL + '/appCar/carDetails?carId=' + deurl(location).carId)
             .then((res) => {
                 if (res.data.success == true) {
                     this.memberNick5 = res.data.data.memberNick5;
