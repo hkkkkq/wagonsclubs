@@ -16,7 +16,7 @@
                 <div style="height:0;top: 2.2rem;" class="swiper-pagination"></div>
                 <swiper :options="swiperOption" ref="mySwiper">
                     <swiper-slide :key="n" v-for="(item,n) in carousel" class="w">
-                        <img class="ss" :src="item.cycleImage">
+                        <img @click="goActive(item.url)" class="ss" :src="item.cycleImage">
                     </swiper-slide>
                 </swiper>
             </div>
@@ -57,7 +57,7 @@ export default {
             swiperOption: {
                 notNextTick: true,
                 //   width:"200px",
-                autoplay: 1500,
+                autoplay: 3000,
                 loop:true,
                 autoplayDisableOnInteraction: false,
                 pagination: '.swiper-pagination',
@@ -136,6 +136,10 @@ export default {
         'pull': Loadmore
     },
     methods: {
+        goActive(url){
+            alert(url)
+            location.href = url
+        },
         download(){
             if(/iPhone|iPod/i.test(navigator.userAgent)){
                 location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
