@@ -97,7 +97,7 @@ export default {
         //     })
         // }
         function suc(token) {
-            alert(token)
+            // alert(token)
             vm.$ajax({
                 url: BASE_URL + "/member/applicationCell",
                 method: 'GET',
