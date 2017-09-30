@@ -61,8 +61,8 @@
             </div>
             <img @click="cl" class="ax" src="../../assets/app/xx.png">
         </div>
-        <div class="wxempty"></div>
-        <div v-if="wxAppShare" class="download"></div>
+        <!-- <div class="wxempty"></div> -->
+        <!-- <div v-if="wxAppShare" class="download"></div> -->
     </div>
 </template>
 
@@ -109,7 +109,7 @@ export default {
             car: '',
             carimgs: '',
             carId: '',
-            at: false,
+            at: true,
             mes: '',
             isapp: "",
             bg: ''
@@ -486,9 +486,8 @@ img[lazy=loaded] {
     height: 100%;
     position: fixed;
     display: block;
-    z-index: 1;
     top: 0;
-    z-index: 1;
+    z-index: 3;
     left: 0;
     font-size: 0;
     background: rgba(0, 0, 0, 0.7);

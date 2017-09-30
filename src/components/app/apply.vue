@@ -77,7 +77,7 @@ export default {
                 url: BASE_URL + '/wxApplicationCell',
                 method: 'GET',
                 // headers: { 'WAG': this.WAG }
-                headers: { 'WAG': "oZyXk0kQ0moZWIIJVF58Pr4_XZq8" }
+                // headers: { 'WAG': "oZyXk0kQ0moZWIIJVF58Pr4_XZq8" }
             })
                 .then(res => {
                     vm.telephone = res.data.data.wxCell
