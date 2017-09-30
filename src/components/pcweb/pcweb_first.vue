@@ -107,7 +107,7 @@
             <h1>
               会员价格
             </h1>
-            <h2><span>{{currentcar.level5?currentcar.level5:''}}</span> 元/天</h2>
+            <h2><span>{{currentcar.car.memberRentPrice}}</span> 元/天</h2>
           </div> 
           <span style="color: #8e8e8e;font-size: 12px;display: block;position: relative;top: 20px;left: 80px;">基础价格:</span>
           <span style="color: #8e8e8e;font-size: 12px;display: block;text-align: right;margin-right: 9px;margin-top: 8px;">{{currentcar.car.dailyRentPrice}} 元/天</span>
