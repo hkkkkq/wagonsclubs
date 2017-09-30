@@ -226,7 +226,7 @@ export default {
             if (this.isapp) {
                 window.Wground.getApiToken(suc, fail)//suc在下面
             } else {
-                if (this.wxAppShare == 'true') {
+                if (this.wxAppShare == true) {
                     //去下载
                     if (/iPhone|iPod/i.test(navigator.userAgent)) {
                         location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
