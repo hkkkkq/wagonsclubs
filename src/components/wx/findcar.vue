@@ -137,18 +137,18 @@ export default {
     },
     methods: {
         goActive(url){
-            alert(url)
+            // alert(url)
             location.href = url
         },
         download(){
             if(/iPhone|iPod/i.test(navigator.userAgent)){
                 location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
             }else{//安卓应用宝下载
-                location.href = 'itms-apps://itunes.apple.com/app/id1279198452'                
+                location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'                
             }
         },
         loadTop() {
-            this.$ajax(BASE_URL + "/car/carouselApp?tt=" + new Date().toUTCString())
+            this.$ajax(BASE_URL + "/appCar/carouselApp?tt=" + new Date().toUTCString())
                 .then((res) => {
                     if (res.data.success == true) {
                         this.carousel = res.data.data.cycleList
@@ -314,6 +314,7 @@ img[lazy=loaded] {
     width: 100%;
     height: 3.7rem;
     display: block;
+    border-radius: 0.04rem;
 }
 
 .car {

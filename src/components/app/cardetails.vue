@@ -219,6 +219,17 @@ export default {
             window.Wground.share('WAGONS光速超跑', window.location.href + "&wxAppShare=true", 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务', '0,1,2,3');
         },
         sub() {
+
+            if (this.wxAppShare == true) {
+                if (/iPhone|iPod/i.test(navigator.userAgent)) {
+                    location.href = 'itms-apps://itunes.apple.com/app/id1279198452';
+                    return
+                } else {
+                    location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
+                    return
+                }
+            }
+
             // this.$router.push('/wx/login');
             // return;
             var vm = this;
@@ -281,45 +292,6 @@ export default {
                             }
                         })
                 }
-
-
-
-
-                // location.href = 'http://wenjj.cy.huoqiu.cn/weixin/redirect/memberType?carId='+this.carId
-                // alert(11)在微信中
-                // this.$ajax({
-                //     url: BASE_URL + "/car/memberType?carId=" + vm.carId,
-                //     method: 'GET',
-                //     headers:{'WAG':vm.WAG}
-                // })
-                // .then((res) => {
-                //     alert(res.data)
-                //     if (res.data.success == true) {//请求成功
-                //         if (res.data.data.JumpInfo.review == true) {//审核通过
-                //             if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
-                //                 // window.Wground.reservation(false)
-                //                 this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
-                //             } else {//三计划用户
-                //                 if (res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable) {//车可用，日期可用
-                //                     // window.Wground.reservation(true)                                    
-                //                     this.$router.push({ path: "/wx/pay", query: { orderType: 0, carId: this.carId }, })
-                //                 } else if (res.data.data.JumpInfo.carUseable == false) {//车不可用
-                //                     this.ef("尊敬的用户，您所选择的车辆不在乐潮计划的服务范围内，您可以升级到更高套餐或选择其他车辆。")
-                //                     return;
-                //                 } else if (res.data.data.JumpInfo.dateUseable == false) {//日期不可用
-                //                     // window.Wground.reservation(false)
-                //                     this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
-                //                 }
-                //             }
-                //         } else {
-                //             this.ef("尊敬的用户，您尚未加入WAGONS光速超跑，请在“会员”页面查看详情并提交必要资料，等待评估完成后即可预定用车。")
-                //             return;
-                //         }
-                //     } else {
-                //         this.ef("出现了什么问题，比如没登陆？")
-                //         return;
-                //     }
-                // })
             }
             function suc(token) {
                 vm.$ajax("http://www.baidu.com")
