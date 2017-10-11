@@ -60,11 +60,11 @@
                     </div>
                 </div>
             </div>
-            <div v-if="!(tokendays<carData.canMemberUse)" class='warn'>
+            <div v-if="(!(tokendays<carData.canMemberUse))&&(orderType == 0)" class='warn'>
                 可用天数不足，请重新选择用车天数
             </div>
             <!-- 非计划会员 -->
-            <div v-if='orderType == 1' class='com'>
+            <div v-if='orderType == 2' class='com'>
                 <span style="background:#3d454d" class="rad"></span>
                 <span>费用明细</span>
                 <p class='clear'></p>
@@ -74,7 +74,7 @@
                 </div>
                 <div class='bdd'>
                     <span>会员价</span>
-                    <span class='c'>{{carData.platinumPrice}}元/天</span>
+                    <span class='c'>{{carData.memberRentPrice}}元/天</span>
                 </div>
                 <div v-if='(tokendays >= 7)&&(tokendays<30)' class='bdd'>
                     <span>周租折扣</span>
@@ -99,9 +99,9 @@
                 提交订单
             </div>
             <!-- 会员 -->
-            <div @click='pay1' v-if='orderType == 1'>
+            <div @click='pay1' v-if='orderType == 2'>
                 <div class='sl'>需预付定金
-                    <span style="color:#fed945">2000.00元</span>
+                    <span style="color:#fed945">{{cashFee}}元</span>
                 </div>
                 <div class='sr'>提交订单</div>
             </div>
@@ -119,10 +119,40 @@ export default {
             carId: '',
             carData: '',
             startadd: '',
-            endadd: ''
+            endadd: '',
+            orderId: ''
+            // cashFee:0
         }
     },
     created() {
+        // function onBridgeReady() {
+        //     WeixinJSBridge.invoke(
+        //         'getBrandWCPayRequest', {
+        //             "appId": "wx2421b1c4370ec43b",     //公众号名称，由商户传入     
+        //             "timeStamp": "1395712654",         //时间戳，自1970年以来的秒数     
+        //             "nonceStr": "e61463f8efa94090b1f366cccfbbb444", //随机串     
+        //             "package": "prepay_id=u802345jgfjsdfgsdg888",
+        //             "signType": "MD5",         //微信签名方式：     
+        //             "paySign": "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名 
+        //         },
+        //         function(res) {
+        //             if (res.err_msg == "get_brand_wcpay_request:ok") { }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+        //         }
+        //     );
+        // }
+        // if (typeof WeixinJSBridge == "undefined") {
+        //     if (document.addEventListener) {
+        //         document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        //     } else if (document.attachEvent) {
+        //         document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+        //         document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        //     }
+        // } else {
+        //     onBridgeReady();
+        // }
+
+
+
         this.carId = this.$route.query.carId
         this.orderType = this.$route.query.orderType
         //请求用户数据和车辆信息
@@ -131,11 +161,16 @@ export default {
                 this.carData = res.data.data;
                 this.startadd = res.data.data.storeAdds
                 this.$store.commit("rentdays", res.data.data.takenDates)
-                console.log(this.carData)
             })
 
     },
     computed: {
+                WAG() { return this.$store.state.WAG },
+
+        cashFee() {
+            let tmp = Math.floor(this.total * 0.2);
+            return tmp > 2000 ? 2000 : tmp;
+        },
         startob() { return this.$store.state.starttime },
         endob() { return this.$store.state.endtime },
         sxqj() {
@@ -165,7 +200,10 @@ export default {
         tokendays() {
             let s = new Date(this.startob.year, this.startob.month, this.startob.date, parseInt(this.startob.shi), parseInt(this.startob.fen))
             let e = new Date(this.endob.year, this.endob.month, this.endob.date, parseInt(this.endob.shi), parseInt(this.endob.fen))
-            if ((s == "Invalid Date") || (s == "Invalid Date")) {
+            console.log(s == "Invalid Date", 1)
+            console.log(e == "Invalid Date", 2)
+            console.log((s == "Invalid Date") || (e == "Invalid Date"))
+            if ((s == "Invalid Date") || (e == "Invalid Date")) {
                 return 0
             } else {
                 return Math.floor((e - s) / (60 * 60 * 24 * 1000)) + ((((e - s) % (60 * 60 * 24 * 1000)) / (60 * 60 * 1000)) > this.carData.extraHours ? 1 : 0);
@@ -196,19 +234,19 @@ export default {
             //有生日
             if (this.isbirthday) {
                 if ((this.tokendays >= 7) && (this.tokendays < 30)) {//周租折扣 有生日
-                    return ((this.tokendays - 1) * this.carData.platinumPrice * this.carData.week * 0.1) + (this.carData.platinumPrice * this.carData.birthday * 0.1)
+                    return ((this.tokendays - 1) * this.carData.memberRentPrice * this.carData.week * 0.1) + (this.carData.memberRentPrice * this.carData.birthday * 0.1)
                 } else if (this.tokendays >= 30) {//月租折扣 有生日
-                    return (this.tokendays - 1) * this.carData.platinumPrice * this.carData.month * 0.1 + (this.carData.platinumPrice * 0.5)
+                    return (this.tokendays - 1) * this.carData.memberRentPrice * this.carData.month * 0.1 + (this.carData.memberRentPrice * 0.5)
                 } else {//只有生日
-                    return (this.tokendays - 1) * this.carData.platinumPrice + (this.carData.platinumPrice * 0.5)
+                    return (this.tokendays - 1) * this.carData.memberRentPrice + (this.carData.memberRentPrice * 0.5)
                 }
             } else {//没生日
                 if ((this.tokendays >= 7) && (this.tokendays < 30)) {//周租折扣 没生日
-                    return this.tokendays * this.carData.platinumPrice * this.carData.week * 0.1
+                    return this.tokendays * this.carData.memberRentPrice * this.carData.week * 0.1
                 } else if (this.tokendays >= 30) {//月租折扣 mei生日
-                    return this.tokendays * this.carData.platinumPrice * this.carData.month * 0.1
+                    return this.tokendays * this.carData.memberRentPrice * this.carData.month * 0.1
                 } else {//mei生日
-                    return this.tokendays * this.carData.platinumPrice
+                    return this.tokendays * this.carData.memberRentPrice
                 }
             }
         }
@@ -232,17 +270,22 @@ export default {
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
                     orderType: 0,
-                    dayOrdered:vm.tokendays
+                    dayOrdered: vm.tokendays
                 }),
                 headers: { "Content-Type": "application/x-www-form-urlencoded", }
             }).then((res) => {
-                console.log(res.data)
                 if (res.data.success) {
+                    vm.orderId = res.data.data.orderId
                     alert('成功')
+
                 } else {
                     alert("失败");
                 }
             })
+            // vm.$ajax(BASE_URL + "/car/order/check?orderId=" + vm.orderId + "orderType=" + vm.orderType)
+            //     .then((res) => {
+            //         console.log(res)
+            //     })
         },
         pay1() {
             var vm = this
@@ -255,17 +298,47 @@ export default {
                     rentEndAt: vm.endob.year + "-" + (vm.endob.month + 1) + "-" + vm.endob.date + " " + parseInt(vm.endob.shi) + ":" + parseInt(vm.endob.fen),
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
-                    orderType: 0,
                     totalFee: vm.total,
-                    cashFee: 2000,
-                    orderType: 1
+                    cashFee: 101,
+                    // cashFee: vm.cashFee,
+                    orderType: 2
                 }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded", }
+                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG":"e585b6e5ae9ee5be88e6988ee799bd"/*vm.WAG*/ }
             }).then((res) => {
-                console.log(res.data)
                 if (res.data.success) {
+                    alert(res.data.data.package)
                     alert('成功')
-                    this.$router.push('wx/onlinepay')
+                    function onBridgeReady() {
+                        WeixinJSBridge.invoke(
+                            'getBrandWCPayRequest', {
+                                "appId": '"'+res.data.data.appId+'"',     //公众号名称，由商户传入     
+                                "timeStamp": '"'+res.data.data.timeStamp+'"',         //时间戳，自1970年以来的秒数     
+                                "nonceStr": '"'+res.data.data.nonceStr+'"', //随机串     
+                                "package": '"'+res.data.data.package+'"',
+                                "signType": '"'+res.data.data.signType+'"',         //微信签名方式：     
+                                "paySign": '"'+res.data.data.paySign+'"' //微信签名 
+                            },
+                            function(res) {
+                                if (res.err_msg == "get_brand_wcpay_request:ok") { }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+                            }
+                        );
+                    }
+                    if (typeof WeixinJSBridge == "undefined") {
+                        if (document.addEventListener) {
+                            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                        } else if (document.attachEvent) {
+                            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                        }
+                    } else {
+                        alert('去支付')
+                        onBridgeReady();
+                        // vm.$ajax(BASE_URL + "/car/order/check?orderId=" + vm.orderId + "orderType=" + vm.orderType)
+                        //     .then((res) => {
+                        //         console.log(res)
+                        //     })
+                    }
+                    // this.$router.push('wx/onlinepay')
                 } else {
                     alert("失败");
                 }

@@ -57,8 +57,8 @@ export default {
             swiperOption: {
                 notNextTick: true,
                 //   width:"200px",
-                autoplay: 3000,
-                loop:true,
+                autoplay: 4000,
+                loop: true,
                 autoplayDisableOnInteraction: false,
                 pagination: '.swiper-pagination',
                 centeredSlides: true,
@@ -97,14 +97,14 @@ export default {
     },
     computed: {
         carlist() { return this.$store.state.applist },
-        wxAppShare() { return this.$store.state.wxAppShare }        
+        wxAppShare() { return this.$store.state.wxAppShare }
     },
     created() {
-        if(this.$route.query.wxAppShare == 'true'){
+        if (this.$route.query.wxAppShare == 'true') {
             this.$store.commit('wxAppShare')
         }
         // alert(this.$route.query.WAG)
-        this.$store.commit('setOpenId',this.$route.query.WAG)
+        this.$store.commit('setOpenId', this.$route.query.WAG)
         //监听滚动事件        
         window.addEventListener('scroll', this.handleScroll);
 
@@ -123,6 +123,51 @@ export default {
                 this.hasNext = res.data.data.carsList.hasNext;
                 this.currpage = res.data.data.carsList.pageIndex;
             })
+        //微信分享
+        this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href) + "&t=" + new Date().toDateString())
+            .then((res) => {
+                wx.config({
+                    debug: false,
+                    appId: res.data.data.sign.appId,
+                    timestamp: res.data.data.sign.timestamp,
+                    nonceStr: res.data.data.sign.nonceStr,
+                    signature: res.data.data.sign.signature,
+                    jsApiList: [
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo'
+                    ]
+                });
+                var locationHref = window.location.href;
+                wx.ready(function() {
+                    wx.onMenuShareTimeline({
+                        title: 'WAGONS光速超跑',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                    wx.onMenuShareAppMessage({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                    wx.onMenuShareQQ({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                    wx.onMenuShareWeibo({
+                        title: 'WAGONS光速超跑',
+                        desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
+                        link: locationHref,
+                        imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+                    });
+                });
+            }).catch((err)=>{
+                alert(err)
+            })
     },
     mounted() {
         // document.body.scrollTop = 5000;
@@ -136,15 +181,15 @@ export default {
         'pull': Loadmore
     },
     methods: {
-        goActive(url){
+        goActive(url) {
             // alert(url)
             location.href = url
         },
-        download(){
-            if(/iPhone|iPod/i.test(navigator.userAgent)){
+        download() {
+            if (/iPhone|iPod/i.test(navigator.userAgent)) {
                 location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
-            }else{//安卓应用宝下载
-                location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'                
+            } else {//安卓应用宝下载
+                location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
             }
         },
         loadTop() {
@@ -197,7 +242,7 @@ export default {
 </script>
 
 <style scoped>
-.godown{
+.godown {
     background: #fed945;
     font-size: 0.28rem;
     color: #000000;
@@ -209,50 +254,58 @@ export default {
     border-radius: 0.04rem;
     margin-right: 0.2rem;
 }
-.download .logo p{
+
+.download .logo p {
     font-size: 0.24rem;
     color: #ffffff;
     font-family: initial;
     margin-top: 0.15rem!important;
 }
-.download .logo img{
+
+.download .logo img {
     width: 2.55rem;
     margin-top: 0.35rem;
     height: 0.3rem;
 }
-.download .logo{
+
+.download .logo {
     width: 3rem;
     display: inline-block;
     font-size: 0;
 }
-.download .icon{
-    width:0.97rem;
-    height:0.97rem;
+
+.download .icon {
+    width: 0.97rem;
+    height: 0.97rem;
     margin: auto;
     margin-left: 0.2rem;
     margin-right: 0.26rem;
     display: inline-block;
 }
-.download{
+
+.download {
     display: flex;
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 1.36rem;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
 }
-.wxempty{
+
+.wxempty {
     display: block;
     width: 100%;
     height: 1.36rem;
 }
-.inew{
+
+.inew {
     position: absolute;
     top: 0.2rem;
     left: .15rem;
-    width:0.74rem!important;
+    width: 0.74rem!important;
     height: 0.35rem!important;
 }
+
 img[lazy=error] {
     /* //your code */
     background-image: url('../../assets/loading12.gif');

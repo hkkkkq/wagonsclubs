@@ -262,12 +262,13 @@ export default {
                                     headers: { 'WAG': vm.WAG }
                                 })
                                     .then((res) => {
-                                        alert(res.data.data.JumpInfo.userType)
+                                        // alert(res.data.data.JumpInfo)
+                                        // alert(res.data.data.JumpInfo.userType)
                                         if (res.data.success == true) {//请求成功
                                             if (res.data.data.JumpInfo.review == true) {//审核通过
                                                 if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
                                                     // window.Wground.reservation(false)
-                                                    this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
+                                                    this.$router.push({ path: "/wx/pay", query: { orderType: 2, carId: this.carId }, })
                                                 } else {//三计划用户
                                                     if (res.data.data.JumpInfo.carUseable && res.data.data.JumpInfo.dateUseable) {//车可用，日期可用
                                                         // window.Wground.reservation(true)                                    
@@ -288,6 +289,9 @@ export default {
                                             this.ef("出现了什么问题，比如没登陆？")
                                             return;
                                         }
+                                    })
+                                    .catch((error)=>{
+                                        alert(error)
                                     })
                             }
                         })
