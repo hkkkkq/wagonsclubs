@@ -219,7 +219,7 @@ export default {
             window.Wground.share('WAGONS光速超跑', window.location.href + "&wxAppShare=true", 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务', '0,1,2,3');
         },
         sub() {
-
+            // alert(this.WAG)
             if (this.wxAppShare == true) {
                 if (/iPhone|iPod/i.test(navigator.userAgent)) {
                     location.href = 'itms-apps://itunes.apple.com/app/id1279198452';
@@ -229,22 +229,18 @@ export default {
                     return
                 }
             }
-
-            // this.$router.push('/wx/login');
-            // return;
             var vm = this;
-            //获取token
             if (this.isapp) {
                 window.Wground.getApiToken(suc, fail)//suc在下面
             } else {
-                if (this.wxAppShare == true) {
-                    //去下载
-                    if (/iPhone|iPod/i.test(navigator.userAgent)) {
-                        location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
-                    } else {//安卓应用宝下载
-                        location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
-                    }
-                } else {
+                // if (this.wxAppShare == true) {
+                //     //去下载
+                //     if (/iPhone|iPod/i.test(navigator.userAgent)) {
+                //         location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
+                //     } else {//安卓应用宝下载
+                //         location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
+                //     }
+                // } else {
                     this.$ajax({
                         url: BASE_URL + "/car/isBinding",
                         method: 'GET',
@@ -295,10 +291,9 @@ export default {
                                     })
                             }
                         })
-                }
+                // }
             }
             function suc(token) {
-                vm.$ajax("http://www.baidu.com")
                 vm.$ajax({
                     url: BASE_URL + "/car/memberType?carId=" + vm.carId,
                     method: 'GET',
