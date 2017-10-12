@@ -44,6 +44,7 @@ const wx_pending = resolve => require(['../components/wx/pending.vue'], resolve)
 const wx_applying = resolve => require(['../components/wx/applying.vue'], resolve);
 const wx_memshow = resolve => require(['../components/wx/memshow.vue'], resolve);
 const wx_wxmember = resolve => require(['../components/wx/wxmember.vue'], resolve);
+const wx_review = resolve => require(['../components/wx/review.vue'], resolve);
 const wx_orders = resolve => require(['../components/wx/orders.vue'], resolve);
 const wx_orderdetail = resolve => require(['../components/wx/orderdetail.vue'], resolve);
 const wx_login = resolve => require(['../components/wx/login.vue'], resolve);
@@ -238,6 +239,10 @@ export default new Router({
                 {
                     path: 'memshow',
                     component: wx_memshow
+                },
+                {
+                    path: 'review',
+                    component: wx_review
                 }
             ]
         },

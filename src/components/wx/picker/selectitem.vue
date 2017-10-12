@@ -42,7 +42,10 @@
         type: String,
         default: 'line'
       },
-      value: {}
+      value: {
+        // type:String,
+        // default:'09时'
+      }
     },
     computed: {
       renderData () {

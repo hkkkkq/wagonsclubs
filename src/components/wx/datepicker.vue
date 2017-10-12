@@ -26,12 +26,12 @@
                     <!-- <p style="font-size:20px">{{n}}</p> -->
                     <span :line='n' :row='n2' @click="clickspan(n,n2)" :key="n2" v-for="(item2,n2) in item">
                         <em :class="{'rent':istoken(dateform[n][n2]),
-                                    'startclick':(dateform[n][n2] == choose)&&(type == 'starttime'),
-                                    'today':istoday == dateform[n][n2],
-                                    'lessthan':lessthan(dateform[n][n2]),
-                                    'beforeTodayDays':isbeforeTodayDays(dateform[n][n2]),
-                                    'isstartclick':(isstartdate(dateform[n][n2]))&&(type == 'endtime'),
-                                    'endclick':(dateform[n][n2] == choose)&&(type == 'endtime')}">
+                                            'startclick':(dateform[n][n2] == choose)&&(type == 'starttime'),
+                                            'today':istoday == dateform[n][n2],
+                                            'lessthan':lessthan(dateform[n][n2]),
+                                            'beforeTodayDays':isbeforeTodayDays(dateform[n][n2]),
+                                            'isstartclick':(isstartdate(dateform[n][n2]))&&(type == 'endtime'),
+                                            'endclick':(dateform[n][n2] == choose)&&(type == 'endtime')}">
                             {{item2 == "k"?null:item2}}
                             <span class="hasrent" v-if="istoken(dateform[n][n2])">已出租</span>
                         </em>
@@ -59,6 +59,7 @@ import pdSelectBox from './picker/slectBox.vue'
 export default {
     data() {
         return {
+            aa:"09时",
             show: "",//控制时间表盘显示
             curYear: "",//选中年
             curMonth: "",   //0开头  选中月
@@ -66,8 +67,8 @@ export default {
             xqj: "", // 每月的第一天是星期几
             listData: ['00时', '01时', '02时', '03时', '04时', '05时', '06时', '07时', '08时', '09时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时',],
             listData2: ['00分', '30分'],
-            shi: "",//选中小时
-            fen: "",//选中分
+            shi: "09时",//选中小时
+            fen: "00分",//选中分
             choose: "",//选中日期
             nowxqj: "",//选中那天是星期几
             sdate: '',//当天是几号
@@ -236,14 +237,20 @@ export default {
         },
         su() {
             if (this.type == "starttime") {
-                this.$store.commit('starttime', { year: this.curYear, month: this.curMonth, date: this.choose, xqj: this.nowxqj, shi: this.shi, fen: this.fen })
-                this.$router.go(-1)
+                if (this.choose) {
+                    this.$store.commit('starttime', { year: this.curYear, month: this.curMonth, date: this.choose, xqj: this.nowxqj, shi: this.shi, fen: this.fen })
+                    this.$store.commit('endtime', "")
+                    this.$router.go(-1)
+                } else {
+                    this.$router.go(-1)
+                }
+
             } else {
                 let startstring = new Date(this.startob.year, this.startob.month, this.startob.date, parseInt(this.startob.shi), parseInt(this.startob.fen), 0)
                 let endstring = new Date(this.curYear, this.curMonth, this.choose, parseInt(this.shi), parseInt(this.fen), 0)
                 console.log(startstring)
                 console.log(endstring);
-                if(startstring >= endstring){
+                if (startstring >= endstring) {
                     alert('结束日期不能在开始日期之前')
                     return false;
                 }
@@ -254,8 +261,13 @@ export default {
                         return false
                     }
                 }
-                this.$store.commit('endtime', { year: this.curYear, month: this.curMonth, date: this.choose, xqj: this.nowxqj, shi: this.shi, fen: this.fen })
-                this.$router.go(-1)
+                if (this.choose) {
+                    this.$store.commit('endtime', { year: this.curYear, month: this.curMonth, date: this.choose, xqj: this.nowxqj, shi: this.shi, fen: this.fen })
+                    this.$router.go(-1)
+                } else {
+                    this.$router.go(-1)
+                }
+
             }
         }
     }

@@ -49,6 +49,7 @@ export default {
         getv() {
             this.$ajax({
                 method: 'POST',
+                // url:"http://192.168.10.212:8095/login/send",
                 url: BASE_URL + "/login/send",
                 data: qs.stringify({
                     cell: this.cell
@@ -66,6 +67,7 @@ export default {
             this.butcl = true
             this.$ajax({
                 method: 'POST',
+                // url:"http://192.168.10.212:8095/login/verify",
                 url: BASE_URL + "/login/verify",
                 data: qs.stringify({
                     cell: this.cell,
@@ -75,8 +77,13 @@ export default {
                     "Content-Type": "application/x-www-form-urlencoded",
                     "WAG":this.WAG
                 },
-            }).then(()=>{
-                this.$router.go(-1)
+            }).then((res)=>{
+                console.log(res)
+                if(res.data.success == false){
+                    alert(res.data.message)
+                }else{
+                    this.$router.go(-1)
+                }
             }
             )
         }
