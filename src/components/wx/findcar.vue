@@ -93,6 +93,7 @@ export default {
             list: '',
             hasNext: false,
             currpage: 1,
+            lock:true
         }
     },
     computed: {
@@ -165,17 +166,11 @@ export default {
                         imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
                     });
                 });
-            }).catch((err)=>{
+            }).catch((err) => {
                 alert(err)
             })
     },
     mounted() {
-        // document.body.scrollTop = 5000;
-        // console.log(Number(sessionStorage.getItem("pos")));
-        setTimeout(function() {
-            // document.body.scrollTop = 5000;
-            // console.log(document.body.scrollTop);
-        }, 100)
     },
     components: {
         'pull': Loadmore
@@ -212,10 +207,10 @@ export default {
             this.topStatus = status;
         },
         handleScroll() {
-            // console.log(document.body.scrollHeight,document.body.scrollTop+window.screen.height)
-            // console.log(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0)
-            // console.log(window.screen.height)
-            if (document.body.scrollHeight == (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) + window.screen.height) {
+            var SH = document.body.scrollHeight - 100;//在到达底部的前100px就开始加载
+            var RH = (window.pageYOffset || document.body.scrollTop) + window.screen.height //滚动条实际高度
+            if ((RH>=SH)&&this.lock) {
+                this.lock = false
                 if (this.hasNext) {
                     this.$ajax(BASE_URL + "/appCar/carsListPaginate?pageIndex=" + Number(this.currpage + 1))
                         .then((res) => {
@@ -225,6 +220,7 @@ export default {
                             this.$store.commit("saveAppList", this.list)
                             this.hasNext = res.data.data.carsList.hasNext;
                             this.currpage = res.data.data.carsList.pageIndex;
+                            this.lock = true
                         })
                 } else {
                     return;
@@ -233,7 +229,6 @@ export default {
             }
         },
         choose(n, id) {
-            // sessionStorage.setItem("pos",document.body.scrollTop)
             this.$router.push("/app/cardetails?carId=" + id)
         }
     },
@@ -330,7 +325,7 @@ img[lazy=loaded] {
     z-index: -1;
     display: block;
     margin: auto;
-    width: 1.5rem;
+    width: 1.28rem;
 }
 
 .car .pri {
