@@ -48,6 +48,7 @@ const wx_review = resolve => require(['../components/wx/review.vue'], resolve);
 const wx_orders = resolve => require(['../components/wx/orders.vue'], resolve);
 const wx_orderdetail = resolve => require(['../components/wx/orderdetail.vue'], resolve);
 const wx_login = resolve => require(['../components/wx/login.vue'], resolve);
+const wx_test = resolve => require(['../components/wx/test.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -258,10 +259,10 @@ export default new Router({
             path: '/wx/login',
             component: wx_login
         },
-        // {
-        //     path: '/wx/pending',
-        //     component: wx_pending
-        // },
+        {
+            path: '/wx/test',
+            component: wx_test
+        },
         // {
         //     path: '/wx/memshow',
         //     component: wx_memshow
