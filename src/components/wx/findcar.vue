@@ -140,7 +140,7 @@ export default {
                         'onMenuShareWeibo'
                     ]
                 });
-                var locationHref = window.location.href;
+                var locationHref = window.location.href+"chen";
                 wx.ready(function() {
                     wx.onMenuShareTimeline({
                         title: 'WAGONS光速超跑',
