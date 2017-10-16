@@ -4,7 +4,7 @@
         <div class="t1">
             <p>北京</p>
             <img class="logo" src="../../assets/app/wlogo.png">
-            <img class="kefu" src="../../assets/app/kefu.png">
+            <img @click="wysj" class="kefu" src="../../assets/app/kefu.png">
         </div>
         <pull :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
             <div slot="top" class="mint-loadmore-top">
@@ -93,7 +93,7 @@ export default {
             list: '',
             hasNext: false,
             currpage: 1,
-            lock:true
+            lock: true
         }
     },
     computed: {
@@ -104,7 +104,11 @@ export default {
         if (this.$route.query.wxAppShare == 'true') {
             this.$store.commit('wxAppShare')
         }
-        this.$store.commit('setOpenId', this.$route.query.WAG)
+        if (this.$route.query.WAG) {
+            this.$store.commit('setOpenId', this.$route.query.WAG)
+        } else {
+            return true;
+        }
         // this.$store.commit('setOpenId', "oEUUVv_6lXDk2XuAwSIWaqtvXbDI")
         //监听滚动事件        
         window.addEventListener('scroll', this.handleScroll);
@@ -140,7 +144,7 @@ export default {
                         'onMenuShareWeibo'
                     ]
                 });
-                var locationHref = window.location.href+"chen";
+                var locationHref = window.location.href;
                 wx.ready(function() {
                     wx.onMenuShareTimeline({
                         title: 'WAGONS光速超跑',
@@ -176,6 +180,9 @@ export default {
         'pull': Loadmore
     },
     methods: {
+        wysj() {
+            location.href = "tel:4008625700"
+        },
         goActive(url) {
             location.href = url
         },
@@ -209,7 +216,7 @@ export default {
         handleScroll() {
             var SH = document.body.scrollHeight - 100;//在到达底部的前100px就开始加载
             var RH = (window.pageYOffset || document.body.scrollTop) + window.screen.height //滚动条实际高度
-            if ((RH>=SH)&&this.lock) {
+            if ((RH >= SH) && this.lock) {
                 this.lock = false
                 if (this.hasNext) {
                     this.$ajax(BASE_URL + "/appCar/carsListPaginate?pageIndex=" + Number(this.currpage + 1))

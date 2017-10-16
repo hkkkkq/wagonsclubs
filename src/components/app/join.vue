@@ -169,6 +169,10 @@
             </div>
             <!-- <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link> -->
             <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
+            <p style="height: 0.5rem;"></p>
+            <p @click="goapply" class="but">
+                <span>立即申请</span>
+            </p>
         </div>
         <transition name="fade">
             <div v-show="at" class="al">
@@ -217,11 +221,30 @@ export default {
             if (n == 3) { this.zhizun = true }
             this.at = true;
         },
+        goapply(){
+            this.$router.push('/app/apply')
+        }
     }
 }
 </script>
 
 <style scoped>
+.but{
+    margin: 0!important;
+        z-index: 1!important;
+    line-height: 1rem!important;
+    position: fixed!important;
+    bottom: 0!important;
+    display: block!important;
+    width: 100%!important;
+    height: 0.98rem!important;
+    color: #333333!important;
+    text-align: center!important;
+    background-color: #fed945!important;
+    font-size: 0.32rem!important;
+    font-family: -webkit-body!important;
+    left: 0;
+}
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity .5s;

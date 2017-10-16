@@ -15,7 +15,7 @@
             <div class="in">
                 <img class="icon" src="../../assets/app/loginverify.png">
                 <input v-model="userInput" placeholder="验证码" type="text" class="text" style="width:2rem;">
-                <span @click="getv" class="get">获取验证码</span>
+                <span @click="getv" class="get">{{ve}}</span>
             </div>
             <div @click="login" :class="{'butcl':butcl}" class="but">登陆</div>
             <p class="law">点击登录表示您已阅读并同意<router-link style="color: #ffffff;" to="/app/law">《用户协议》</router-link> </p>
@@ -33,7 +33,8 @@ export default {
             userInput: '',
             butcl:false,
             bgzz:false,
-            bg:false
+            bg:false,
+            ve:"获取验证码"
         }
     },
     created() {
@@ -47,6 +48,10 @@ export default {
     },
     methods: {
         getv() {
+            var vm = this
+            if(!(vm.ve == '获取验证码')){
+                return;
+            }
             this.$ajax({
                 method: 'POST',
                 // url:"http://192.168.10.212:8095/login/send",
@@ -60,7 +65,20 @@ export default {
                 },
             })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
+                    if(res.data.success == true){
+                        vm.ve = 59;
+                        var timer = setInterval(()=>{
+                            if(vm.ve == 0){
+                                vm.ve = '获取验证码'
+                                clearInterval(timer)
+                            }else{
+                                vm.ve = vm.ve - 1;
+                            }
+                        },1000)
+                    }else{
+                        alert(res.data.message)
+                    }
                 })
         },
         login() {

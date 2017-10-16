@@ -156,7 +156,7 @@ export default {
             this.at = false;
         },
         wysj() {
-            location.href = "tel:18688888888"
+            location.href = "tel:4008625700"
         },
         ch(n) {
             // this.lechao = this.youxiang = this.zhizun = false
