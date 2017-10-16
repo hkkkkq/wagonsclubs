@@ -106,8 +106,6 @@ export default {
         }
         if (this.$route.query.WAG) {
             this.$store.commit('setOpenId', this.$route.query.WAG)
-        } else {
-            // return true;
         }
         // this.$store.commit('setOpenId', "oEUUVv_6lXDk2XuAwSIWaqtvXbDI")
         //监听滚动事件        

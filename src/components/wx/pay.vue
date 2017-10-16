@@ -260,13 +260,15 @@ export default {
                     rentEndAt: vm.endob.year + "-" + (vm.endob.month + 1) + "-" + vm.endob.date + " " + parseInt(vm.endob.shi) + ":" + parseInt(vm.endob.fen),
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
-                    totalFee: vm.total*100,
-                    cashFee: vm.cashFee*100,
+                    totalFee: vm.total * 100,
+                    cashFee: 1,
                     orderType: 2
                 }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG }//oEUUVv_6lXDk2XuAwSIWaqtvXbDI
+                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG}//oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
             }).then((res) => {
                 if (res.data.success) {
+                    vm.orderId = res.data.data.orderId
+                    alert(res.data.data.appId)
                     function onBridgeReady() {
                         WeixinJSBridge.invoke(
                             'getBrandWCPayRequest', {
@@ -279,9 +281,23 @@ export default {
                             },
                             function(res) {
                                 if (res.err_msg == "get_brand_wcpay_request:ok") {
-                                    vm.$router.push("/wx/paysuccess")
+                                    var check = function() {
+                                        vm.$ajax(BASE_URL + "/car/order/check?orderId=" + vm.orderId + "&orderType=2")
+                                            .then((res1) => {
+                                                if (res1.data.data.orderStatus == 0) {
+                                                    setTimeout(() => {
+                                                        check()
+                                                    }, 500)
+                                                } else if (res1.data.data.orderStatus == 1) {
+                                                    vm.$router.push("/wx/paysuccess")
+                                                } else if (res1.data.data.orderStatus == 2) {
+                                                    alert('支付查询失败')
+                                                }
+                                            })
+                                    }
+                                    check();
                                 } else {
-                                    alert('支付失败')
+                                    alert('支付失败了')
                                 }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
                             }
                         );
