@@ -268,7 +268,6 @@ export default {
             }).then((res) => {
                 if (res.data.success) {
                     vm.orderId = res.data.data.orderId
-                    alert(res.data.data.appId)
                     function onBridgeReady() {
                         WeixinJSBridge.invoke(
                             'getBrandWCPayRequest', {
