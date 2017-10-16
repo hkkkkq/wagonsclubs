@@ -8,14 +8,7 @@ const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], 
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
 const pcweb_third = resolve => require(['../components/pcweb/pcweb_third.vue'], resolve);
 const pcweb_forth = resolve => require(['../components/pcweb/pcweb_forth.vue'], resolve);
-const pcweb_article1 = resolve => require(['../components/pcweb/pcweb_article1.vue'], resolve);
-const pcweb_article2 = resolve => require(['../components/pcweb/pcweb_article2.vue'], resolve);
-const pcweb_article3 = resolve => require(['../components/pcweb/pcweb_article3.vue'], resolve);
-const pcweb_article4 = resolve => require(['../components/pcweb/pcweb_article4.vue'], resolve);
-const pcweb_article5 = resolve => require(['../components/pcweb/pcweb_article5.vue'], resolve);
-const pcweb_article6 = resolve => require(['../components/pcweb/pcweb_article6.vue'], resolve);
-const pcweb_article7 = resolve => require(['../components/pcweb/pcweb_article7.vue'], resolve);
-const pcweb_article8 = resolve => require(['../components/pcweb/pcweb_article8.vue'], resolve);
+const pcweb_article = resolve => require(['../components/pcweb/pcweb_article.vue'], resolve);
 const notfound = resolve => require(['../components/404.vue'], resolve);
 //for app
 const app = resolve => require(['../components/app/index.vue'], resolve);
@@ -100,37 +93,9 @@ export default new Router({
                     component: pcweb_forth
                 },
                 {
-                    path: 'article/1',
-                    component: pcweb_article1
+                    path: 'article/:id',
+                    component: pcweb_article
                 },
-                {
-                    path: 'article/2',
-                    component: pcweb_article2
-                },
-                {
-                    path: 'article/3',
-                    component: pcweb_article3
-                },
-                {
-                    path: 'article/4',
-                    component: pcweb_article4
-                },
-                {
-                    path: 'article/5',
-                    component: pcweb_article5
-                },
-                {
-                    path: 'article/6',
-                    component: pcweb_article6
-                },
-                {
-                    path: 'article/7',
-                    component: pcweb_article7
-                },
-                {
-                    path: 'article/8',
-                    component: pcweb_article8
-                }
             ]
         },
 
