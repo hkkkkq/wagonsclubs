@@ -29,16 +29,20 @@
                     <!-- <img src="../../assets/app/slc.png"> -->
                     <div>
                         <p class="d1">
-                            <span v-if="info.member.carRentOrder.status == 0" class="d2s">准备中</span>
-                            <span v-if="info.member.carRentOrder.status == 1" class="d2s">送车中</span>
-                            <span v-if="info.member.carRentOrder.status == 2" class="d1s">使用中</span>
+                            <span v-if="info.member.carRentOrder.status == 0" class="d2s">待接单</span>
+                            <span v-if="info.member.carRentOrder.status == 1" class="d2s">准备中</span>
+                            <span v-if="info.member.carRentOrder.status == 2" class="d2s">送车中</span>
+                            <span v-if="info.member.carRentOrder.status == 3" class="d1s">使用中</span>
+                            <span v-if="info.member.carRentOrder.status == 4" class="d1s">已还车</span>
+                            <img v-if="info.member.carRentOrder.status  == 5" class="ordered" src="../../assets/app/ordered1.png">
+                            <span v-if="info.member.carRentOrder.status == 6" class="d1s">已还车</span>
                             <span class="d1n">{{info.member.carRentOrder.carName}}</span>
                         </p>
                         <p class="d2">
-                            剩余
-                            <span v-if="info.member.carRentOrder.status == 0" style="color:#ff4f5b" class="hour">2天3小时</span>
-                            <span v-if="info.member.carRentOrder.status == 1" style="color:#ff4f5b" class="hour">2天3小时</span>
-                            <span v-if="info.member.carRentOrder.status == 2" class="hour">2天3小时</span>
+                            <span v-if="info.member.carRentOrder.status == 0" style="color:#ff4f5b" class="hour">{{info.member.carRentOrder.orderTime}}</span>
+                            <span v-if="info.member.carRentOrder.status == 1" style="color:#ff4f5b" class="hour">{{info.member.carRentOrder.orderTime}}</span>
+                            <span v-if="info.member.carRentOrder.status == 2" style="color:#ff4f5b" class="hour">{{info.member.carRentOrder.orderTime}}</span>
+                            <span v-if="info.member.carRentOrder.status == 3" class="hour">{{info.member.carRentOrder.orderTime}}</span>
                         </p>
                     </div>
                 </div>
@@ -135,17 +139,17 @@ export default {
             lechao: false,
             youxiang: false,
             zhizun: false,
-            info:''
+            info: ''
         }
     },
-    created(){
-        this.$ajax(BASE_URL+'/member/privilege')
-        .then((res)=>{
-            this.info = res.data.data
-            if(this.info.member.memberType == 1){ this.lechao = true}
-            if(this.info.member.memberType == 2){ this.youxiang = true}
-            if(this.info.member.memberType == 3){ this.zhizun = true}
-        })
+    created() {
+        this.$ajax(BASE_URL + '/member/privilege')
+            .then((res) => {
+                this.info = res.data.data
+                if (this.info.member.memberType == 1) { this.lechao = true }
+                if (this.info.member.memberType == 2) { this.youxiang = true }
+                if (this.info.member.memberType == 3) { this.zhizun = true }
+            })
     },
     methods: {
         tcsj() {
@@ -156,7 +160,7 @@ export default {
             this.at = false;
         },
         wysj() {
-            location.href = "tel:18688888888"
+            location.href = "tel:4008625700"
         },
         ch(n) {
             // this.lechao = this.youxiang = this.zhizun = false
@@ -452,7 +456,8 @@ export default {
     background: #4ac87a;
     color: #ffffff;
 }
-.d2s{
+
+.d2s {
     font-size: 0.2rem;
     background: #ff4f5b;
     color: #333333;

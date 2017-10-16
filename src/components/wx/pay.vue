@@ -121,38 +121,9 @@ export default {
             startadd: '',
             endadd: '',
             orderId: ''
-            // cashFee:0
         }
     },
     created() {
-        // function onBridgeReady() {
-        //     WeixinJSBridge.invoke(
-        //         'getBrandWCPayRequest', {
-        //             "appId": "wx2421b1c4370ec43b",     //公众号名称，由商户传入     
-        //             "timeStamp": "1395712654",         //时间戳，自1970年以来的秒数     
-        //             "nonceStr": "e61463f8efa94090b1f366cccfbbb444", //随机串     
-        //             "package": "prepay_id=u802345jgfjsdfgsdg888",
-        //             "signType": "MD5",         //微信签名方式：     
-        //             "paySign": "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名 
-        //         },
-        //         function(res) {
-        //             if (res.err_msg == "get_brand_wcpay_request:ok") { }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-        //         }
-        //     );
-        // }
-        // if (typeof WeixinJSBridge == "undefined") {
-        //     if (document.addEventListener) {
-        //         document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-        //     } else if (document.attachEvent) {
-        //         document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-        //         document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-        //     }
-        // } else {
-        //     onBridgeReady();
-        // }
-
-
-
         this.carId = this.$route.query.carId
         this.orderType = this.$route.query.orderType
         //请求用户数据和车辆信息
@@ -162,10 +133,9 @@ export default {
                 this.startadd = res.data.data.storeAdds
                 this.$store.commit("rentdays", res.data.data.takenDates)
             })
-
     },
     computed: {
-                WAG() { return this.$store.state.WAG },
+        WAG() { return this.$store.state.WAG },
 
         cashFee() {
             let tmp = Math.floor(this.total * 0.2);
@@ -200,9 +170,6 @@ export default {
         tokendays() {
             let s = new Date(this.startob.year, this.startob.month, this.startob.date, parseInt(this.startob.shi), parseInt(this.startob.fen))
             let e = new Date(this.endob.year, this.endob.month, this.endob.date, parseInt(this.endob.shi), parseInt(this.endob.fen))
-            console.log(s == "Invalid Date", 1)
-            console.log(e == "Invalid Date", 2)
-            console.log((s == "Invalid Date") || (e == "Invalid Date"))
             if ((s == "Invalid Date") || (e == "Invalid Date")) {
                 return 0
             } else {
@@ -275,18 +242,12 @@ export default {
                 headers: { "Content-Type": "application/x-www-form-urlencoded", }
             }).then((res) => {
                 if (res.data.success) {
-                    vm.orderId = res.data.data.orderId
-                    alert('成功')
-                    this.$router.push("/wx/paysuccess")
-
+                    // vm.orderId = res.data.data.orderId
+                    vm.$router.push("/wx/paysuccess")
                 } else {
-                    alert("失败");
+                    alert("下单失败");
                 }
             })
-            // vm.$ajax(BASE_URL + "/car/order/check?orderId=" + vm.orderId + "orderType=" + vm.orderType)
-            //     .then((res) => {
-            //         console.log(res)
-            //     })
         },
         pay1() {
             var vm = this
@@ -299,29 +260,28 @@ export default {
                     rentEndAt: vm.endob.year + "-" + (vm.endob.month + 1) + "-" + vm.endob.date + " " + parseInt(vm.endob.shi) + ":" + parseInt(vm.endob.fen),
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
-                    totalFee: vm.total,
-                    cashFee: 1,
-                    // cashFee: vm.cashFee,
+                    totalFee: vm.total*100,
+                    cashFee: vm.cashFee*100,
                     orderType: 2
                 }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG":vm.WAG }
+                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG }//oEUUVv_6lXDk2XuAwSIWaqtvXbDI
             }).then((res) => {
                 if (res.data.success) {
-                    alert(res.data.data.package)
-                    alert('成功')
                     function onBridgeReady() {
                         WeixinJSBridge.invoke(
                             'getBrandWCPayRequest', {
-                                "appId": '"'+res.data.data.appId+'"',     //公众号名称，由商户传入     
-                                "timeStamp": '"'+res.data.data.timeStamp+'"',         //时间戳，自1970年以来的秒数     
-                                "nonceStr": '"'+res.data.data.nonceStr+'"', //随机串     
-                                "package": res.data.data.package,
-                                "signType": '"'+res.data.data.signType+'"',         //微信签名方式：     
-                                "paySign": '"'+res.data.data.paySign+'"', //微信签名 
+                                "appId":res.data.data.appId,     //公众号名称，由商户传入     
+                                "timeStamp":res.data.data.timeStamp,         //时间戳，自1970年以来的秒数     
+                                "nonceStr":res.data.data.nonceStr, //随机串     
+                                "package":res.data.data.package,
+                                "signType":res.data.data.signType,         //微信签名方式：     
+                                "paySign":res.data.data.paySign, //微信签名 
                             },
                             function(res) {
-                                if (res.err_msg == "get_brand_wcpay_request:ok") { 
-                                    this.$router.push("/wx/paysuccess")
+                                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                                    vm.$router.push("/wx/paysuccess")
+                                } else {
+                                    alert('支付失败')
                                 }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
                             }
                         );
@@ -334,14 +294,8 @@ export default {
                             document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
                         }
                     } else {
-                        alert('去支付')
                         onBridgeReady();
-                        // vm.$ajax(BASE_URL + "/car/order/check?orderId=" + vm.orderId + "orderType=" + vm.orderType)
-                        //     .then((res) => {
-                        //         console.log(res)
-                        //     })
                     }
-                    // this.$router.push('wx/onlinepay')
                 } else {
                     alert("失败");
                 }

@@ -7,13 +7,13 @@
                     <span class="carname">{{item.carName}}</span>
                     <span v-if="item.orderType == 0" class="status0">待接单</span>
                     <span v-if="item.orderType == 1" class="status0">准备中</span>
-                    <span v-if="item.orderType == 2" class="status0">准备中</span>
-                    <span v-if="item.orderType == 3" class="status0">使用中</span>
+                    <span v-if="item.orderType == 2" class="status0">送车中</span>
+                    <span v-if="item.orderType == 3" class="status1">使用中</span>
                     <span v-if="item.orderType == 4" class="status2">已还车</span>
                     <img v-if="item.orderType == 5" class="ordered" src="../../assets/app/ordered1.png">
                     <span v-if="item.orderType == 6" class="status3">已还车</span>
                 </p>
-                <div class="info">
+                <div @click="toOrderDetail(item.orderId)" class="info">
                     <img :src="item.carImage">
                     <div class="deta">
                         <p>下单时间：
@@ -95,7 +95,6 @@ export default {
         var vm = this
         //获取openid
         this.$store.commit('setOpenId', this.$route.query.WAG)
-        alert(this.$route.query.WAG)
         //isbinding
         this.$ajax({
             url: BASE_URL + "/car/isBinding",
@@ -104,13 +103,17 @@ export default {
         })
             .then((res) => {
                 if (res.data.success == false) {
-                    alert('去登陆')
-                    this.$router.push('/wx/login')
+                    vm.$router.push('/wx/login')
                 } else {
-                    this.$ajax(BASE_URL + "/car/orderList")
+                    vm.$ajax(BASE_URL + "/car/orderList")
                         .then((res) => { this.resdata = res.data })
                 }
             })
+    },
+    methods:{
+        toOrderDetail(id){
+            this.$router.push('/wx/orderdetail?id='+id)
+        }
     }
 }
 </script>

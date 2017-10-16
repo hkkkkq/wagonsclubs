@@ -116,7 +116,6 @@ export default {
         }
     },
     created() {
-        console.log(location.href)
         //微信分享出去
         if (this.$route.query.wxAppShare == 'true') {
             this.$store.commit('wxAppShare')
@@ -181,7 +180,6 @@ export default {
                     this.car = res.data.data.car;
                     this.carimgs = res.data.data.carImgShows;
                     this.bg = res.data.data.carImgShows[0]
-                    console.log(res.data)
                 } else {
                     alert('一定是后台小哥出现了什么问题！！！')
                 }
@@ -219,7 +217,6 @@ export default {
             window.Wground.share('WAGONS光速超跑', window.location.href + "&wxAppShare=true", 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg', 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务', '0,1,2,3');
         },
         sub() {
-            // alert(this.WAG)
             if (this.wxAppShare == true) {
                 if (/iPhone|iPod/i.test(navigator.userAgent)) {
                     location.href = 'itms-apps://itunes.apple.com/app/id1279198452';
@@ -248,18 +245,14 @@ export default {
                     })
                         .then(res => {
                             if (res.data.success == false) {
-                                alert('去登陆')
                                 this.$router.push('/wx/login')
                             } else {
-                                alert('去预定')
                                 this.$ajax({
                                     url: BASE_URL + "/car/memberType?carId=" + vm.carId,
                                     method: 'GET',
                                     headers: { 'WAG': vm.WAG }
                                 })
                                     .then((res) => {
-                                        // alert(res.data.data.JumpInfo)
-                                        // alert(res.data.data.JumpInfo.userType)
                                         if (res.data.success == true) {//请求成功
                                             if (res.data.data.JumpInfo.review == true) {//审核通过
                                                 if ((res.data.data.JumpInfo.userType == 4) || (res.data.data.JumpInfo.userType == 5)) {//白金会员和散租
@@ -274,7 +267,7 @@ export default {
                                                         return;
                                                     } else if (res.data.data.JumpInfo.dateUseable == false) {//日期不可用
                                                         // window.Wground.reservation(false)
-                                                        this.$router.push({ path: "/wx/pay", query: { orderType: 1, carId: this.carId }, })
+                                                        this.$router.push({ path: "/wx/pay", query: { orderType: 2, carId: this.carId }, })
                                                     }
                                                 }
                                             } else {

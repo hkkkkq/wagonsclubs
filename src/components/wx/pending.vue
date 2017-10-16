@@ -3,13 +3,13 @@
         <div style="min-height:100%;background:rgb(15, 25, 35)">
             <p class="fw">尊敬的WAGONS会员，您好！</p>
             <img class="f" src="../../assets/app/pending.png">
-            <div v-if="type == 'C'">
+            <div v-if="member.subtype == 'C'">
                 <p class="pp">我的特权</p>
                 <div class="dd">
                     <img src="../../assets/app/c+.png">
                     <span class="hy">邀请好友免费用车</span>
                     <span class="msyq">马上邀请</span>
-                    <span class="days">1天可用</span>
+                    <span class="days">{{member.privilegeModel.privilegeDays}}</span>
                 </div>
                 <div style="height: 3.7rem;" class="co1">
                     <div class="co2">
@@ -36,14 +36,14 @@
                         </p>
                     </div>
                 </div>
-                <div class="sm">
+                <div @click="gosimu" class="sm">
                     购买合作方私募基金可减免押金
                     <span>></span>
                 </div>
             </div>
             <div v-else>
                 <p class="tp">我们根据您的情况为您推荐以下优惠套餐</p>
-                <div v-show="(type == 'B')||(type == 'A')" style="display:none" :class="{'pauto1':lc}" class="co1">
+                <div v-show="(member.subtype == 'B')||(member.subtype == 'A')" style="display:none" :class="{'pauto1':lc}" class="co1">
                     <div class="co2">
                         <transition name="fade">
                             <img v-if='!lc' @click="open(1)" class="zz" src="../../assets/app/pendingzz.png">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <!--   -->
-                <div v-show="type == 'A'" style="display:none" :class="{'pauto2':yx}" class="co1">
+                <div v-show="member.subtype == 'A'" style="display:none" :class="{'pauto2':yx}" class="co1">
                     <div class="co2">
                         <transition name="fade">
                             <img v-if='!yx' @click="open(2)" class="zz" src="../../assets/app/pendingzz.png">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <!-- -->
-                <div v-show="type == 'A'" style="display:none" :class="{'pauto3':zz}" class="co1">
+                <div v-show="member.subtype == 'A'" style="display:none" :class="{'pauto3':zz}" class="co1">
                     <div class="co2">
                         <transition name="fade">
                             <img v-if='!zz' @click="open(3)" class="zz" src="../../assets/app/pendingzz.png">
@@ -227,7 +227,7 @@ export default {
             lc: false,//关闭状态
             yx: false,
             zz: false,
-            type: ''
+            member: ''
         }
     },
     created() {
@@ -235,10 +235,15 @@ export default {
         this.$ajax.get(BASE_URL + "/member/privilege", )
             .then((res) => {
                 console.log(res)
-                this.type = res.data.data.member.subtype
+                this.member = res.data.data.member
             })
     },
     methods: {
+        gosimu(){
+            setTimeout(()=>{
+                location.href = "https://toweringcapital.cn/?pcode=wagons"
+            },200)
+        },
         open(n) {
             if (n == 1) { this.lc = true }
             if (n == 2) { this.yx = true }
@@ -250,7 +255,7 @@ export default {
             if (n == 3) { this.zz = false }
         },
         call() {
-            location.href = "tel:18688888888"
+            location.href = "tel:4008625700"
         }
     }
 }

@@ -132,7 +132,7 @@ export default {
     z-index: -1;
     display: block;
     margin: auto;
-    width: 1.5rem;
+    width: 1.28rem;
     position: absolute;
     left: 0;
     right: 0;

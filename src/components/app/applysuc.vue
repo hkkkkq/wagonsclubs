@@ -32,7 +32,11 @@ export default {
                 headers: { "Content-Type": "application/x-www-form-urlencoded", }
             }).then((res) => {
                 if (res.data.success) {
-                    window.Wground.close();
+                    if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+                        window.Wground.close();
+                    } else {
+                        this.$router.push('/wx/findcar')
+                    }
                 } else {
                     alert('填写失败，请稍后尝试')
                 }
