@@ -132,18 +132,14 @@
                             </p>
                             <p class="cp">
                                 <span class="num">8</span>
-                                <span class="des">每年用车免除3分及以内的违章罚金</span>
-                            </p>
-                            <p class="cp">
-                                <span class="num">9</span>
                                 <span class="des">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span>
                             </p>
                             <p class="cp">
-                                <span class="num">10</span>
+                                <span class="num">9</span>
                                 <span class="des">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
                             </p>
                             <p class="cp">
-                                <span class="num">11</span>
+                                <span class="num">10</span>
                                 <span class="des">俱乐部组织的高端定制游等自费活动，享受8折优惠</span>
                             </p>
                             <img @click="close(2)" class="pull" src="../../assets/app/pendingp.png">
@@ -192,22 +188,18 @@
                             </p>
                             <p class="cp">
                                 <span class="num">8</span>
-                                <span class="des"> 每年用车免除6分及以内的违章罚金</span>
-                            </p>
-                            <p class="cp">
-                                <span class="num">9</span>
                                 <span class="des">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span>
                             </p>
                             <p class="cp">
-                                <span class="num">10</span>
+                                <span class="num">9</span>
                                 <span class="des">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
                             </p>
                             <p class="cp">
-                                <span class="num">11</span>
+                                <span class="num">10</span>
                                 <span class="des">俱乐部组织的高端定制游等自费活动，享受7折优惠</span>
                             </p>
                             <p class="cp">
-                                <span class="num">12</span>
+                                <span class="num">11</span>
                                 <span class="des">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span>
                             </p>
                             <img @click="close(3)" class="pull" src="../../assets/app/pendingp.png">

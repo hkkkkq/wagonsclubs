@@ -85,18 +85,14 @@
                 </div>
                 <div class="ff">
                     <span>8</span>
-                    <b>每年用车免除3分及以内的违章罚金</b>
-                </div>
-                <div class="ff">
-                    <span>9</span>
                     <b>俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</b>
                 </div>
                 <div class="ff">
-                    <span>10</span>
+                    <span>9</span>
                     <b>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</b>
                 </div>
                 <div class="ff">
-                    <span>11</span>
+                    <span>10</span>
                     <b>俱乐部组织的高端定制游等自费活动，享受8折优惠</b>
                 </div>
             </div>
@@ -139,22 +135,18 @@
                 </div>
                 <div class="ff">
                     <span>8</span>
-                    <b>每年用车免除6分及以内的违章罚金</b>
-                </div>
-                <div class="ff">
-                    <span>9</span>
                     <b>俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</b>
                 </div>
                 <div class="ff">
-                    <span>10</span>
+                    <span>9</span>
                     <b>免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</b>
                 </div>
                 <div class="ff">
-                    <span>11</span>
+                    <span>10</span>
                     <b>俱乐部组织的高端定制游等自费活动，享受7折优惠</b>
                 </div>
                 <div class="ff">
-                    <span>12</span>
+                    <span>11</span>
                     <b>在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</b>
                 </div>
             </div>
