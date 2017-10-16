@@ -107,7 +107,7 @@ export default {
         if (this.$route.query.WAG) {
             this.$store.commit('setOpenId', this.$route.query.WAG)
         } else {
-            return true;
+            // return true;
         }
         // this.$store.commit('setOpenId', "oEUUVv_6lXDk2XuAwSIWaqtvXbDI")
         //监听滚动事件        
@@ -187,10 +187,15 @@ export default {
             location.href = url
         },
         download() {
+            // this.$router.push("http://www.baidu.com")
             if (/iPhone|iPod/i.test(navigator.userAgent)) {
-                location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
+                setTimeout(() => {
+                    location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
+                }, 200)
             } else {//安卓应用宝下载
-                location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
+                setTimeout(() => {
+                    location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
+                }, 200)
             }
         },
         loadTop() {

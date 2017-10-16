@@ -108,6 +108,11 @@ export default {
 </script>
 
 <style scoped>
+.ordered {
+    width: 1rem;
+    float: right;
+    margin-right: 0.3rem;
+}
 .wz>h2 {
     display: inline-block;
     color: #ffffff;

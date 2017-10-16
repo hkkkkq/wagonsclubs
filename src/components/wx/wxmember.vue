@@ -9,6 +9,9 @@ export default {
     data() {
         return {}
     },
+    computed: {
+        WAG() { return this.$store.state.WAG },
+    },
     created() {
         var vm = this
         //获取openid
@@ -18,7 +21,7 @@ export default {
         this.$ajax({
             url: BASE_URL + "/car/isBinding",
             method: 'GET',
-            headers: { 'WAG': this.$route.query.WAG }
+            headers: { 'WAG': this.WAG }
         })
             .then((res) => {//没绑定
                 if (res.data.success == false) {
@@ -27,7 +30,7 @@ export default {
                     this.$ajax({
                         url: BASE_URL + "/wxPrivilege",
                         method: 'GET',
-                        // headers: { WAG: 'oZyXk0kQ0moZWIIJVF58Pr4_XZq8' }
+                        headers: { WAG:  this.WAG }
                     })
                         .then(res => {
                             if (res.data.code == -100) {
@@ -47,9 +50,6 @@ export default {
                         })
                 }
             })
-
-
-
     }
 }
 </script>

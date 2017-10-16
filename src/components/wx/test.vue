@@ -10,7 +10,7 @@
       会员中心
       <br>
       <!-- <a href="http://www.test.wagonsclub.com/app/ab">关于我们</a> -->
-      <a href="http:/localhost:8080/app/ab">关于我们</a>
+      <a href="http://localhost:8080/app/ab">关于我们</a>
       <br>
       <!-- <a href="http://www.test.wagonsclub.com/wx/wxmember">会员权益</a> -->
       <a href="http://localhost:8080/wx/wxmember?WAG=oZyXk0rsoVgmkc7pEBmxP7DPce0s">会员权益</a>

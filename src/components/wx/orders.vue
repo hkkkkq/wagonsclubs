@@ -8,7 +8,7 @@
                     <span v-if="item.orderType == 0" class="status0">待接单</span>
                     <span v-if="item.orderType == 1" class="status0">准备中</span>
                     <span v-if="item.orderType == 2" class="status0">送车中</span>
-                    <span v-if="item.orderType == 3" class="status0">使用中</span>
+                    <span v-if="item.orderType == 3" class="status1">使用中</span>
                     <span v-if="item.orderType == 4" class="status2">已还车</span>
                     <img v-if="item.orderType == 5" class="ordered" src="../../assets/app/ordered1.png">
                     <span v-if="item.orderType == 6" class="status3">已还车</span>
