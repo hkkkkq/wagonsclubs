@@ -261,7 +261,7 @@ export default {
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
                     totalFee: vm.total * 100,
-                    cashFee: 1,
+                    cashFee: vm.cashFee*100,
                     orderType: 2
                 }),
                 headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG}//oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
