@@ -139,7 +139,6 @@ input::-webkit-input-placeholder {
     font-size: 0.26rem;
     color: #636364;
     vertical-align: middle;
-    width: 4.4rem;
     text-align: right;
 }
 
@@ -156,10 +155,12 @@ input::-webkit-input-placeholder {
     background: rgba(0, 0, 0, 0);
     border: 0;
     text-align: right;
-    width: 4.4rem;
+    width: 4rem;
     height: 0.6rem;
     vertical-align: middle;
     color: #ffffff;
+    float: right;
+    margin-top: 0.3rem;
 }
 
 .in span {

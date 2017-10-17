@@ -430,7 +430,6 @@ export default {
     width: 6.8rem;
     display: block;
     margin: auto;
-    /* height: 3.1rem; */
     background: #273039;
     border-radius: 4px;
     margin-top: 0.2rem;
