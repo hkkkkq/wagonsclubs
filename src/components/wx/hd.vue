@@ -22,20 +22,6 @@
                     <img @click="goo(item.canClick,item.url)" :src="item.image">
                 </div>
             </pull>
-
-            <!-- <div class="co">
-                                    <span class="ed">已结束</span>
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div>
-                                <div class="co">
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div>
-                                <div class="co">
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div>
-                                <div class="co">
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div> -->
             <img style="width: 100%;display:block;margin-top: 0.24rem;" src="../../assets/app/nomore.png">
         </div>
     </div>
@@ -49,7 +35,6 @@ export default {
         return {
             info: '',
             topStatus: '',
-
         }
     },
     created() {
@@ -77,10 +62,6 @@ export default {
                         alert('一定是后台小哥出现了问题')
                     }
                 })
-            // this.f5 = false
-            // this.$nextTick(function() {
-            //     this.f5 = true
-            // })
             setTimeout(() => {
                 this.$refs.loadmore.onTopLoaded();
             }, 1500)
@@ -97,22 +78,22 @@ export default {
 
 <style scoped>
 .fade1-enter-active{
-    transition: transform 1s;
-    -moz-transition: transform 1s;
+    transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
     /* Firefox 4 */
-    -webkit-transition: transform 1s;
+    -webkit-transition: transform 0.5s;
     /* Safari 和 Chrome */
-    -o-transition: transform 1s;
+    -o-transition: transform 0.5s;
     /* Opera */
 }
 .fade-enter-active,
 .fade-leave-active {
-    transition: transform 1s;
-    -moz-transition: transform 1s;
+    transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
     /* Firefox 4 */
-    -webkit-transition: transform 1s;
+    -webkit-transition: transform 0.5s;
     /* Safari 和 Chrome */
-    -o-transition: transform 1s;
+    -o-transition: transform 0.5s;
     /* Opera */
 }
 
@@ -121,11 +102,11 @@ export default {
 /* .fade-leave-active in below version 2.1.8 */
 
 {
-    transform: scale(0,0);
-    -ms-transform: scale(0,0); 	/* IE 9 */
-    -moz-transform: scale(0,0); 	/* Firefox */
-    -webkit-transform: scale(0,0); /* Safari 和 Chrome */
-    -o-transform: scale(0,0); 	/* Opera */
+    transform: scale(0.2,0.2);
+    -ms-transform: scale(0.2,0.2); 	/* IE 9 */
+    -moz-transform: scale(0.2,0.2); 	/* Firefox */
+    -webkit-transform: scale(0.2,0.2); /* Safari 和 Chrome */
+    -o-transform: scale(0.2,0.2); 	/* Opera */
 }
 
 .down {

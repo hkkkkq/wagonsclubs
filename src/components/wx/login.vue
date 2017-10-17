@@ -17,7 +17,7 @@
                 <input v-model="userInput" placeholder="验证码" type="text" class="text" style="width:2rem;">
                 <span @click="getv" class="get">{{ve}}</span>
             </div>
-            <div @click="login" :class="{'butcl':butcl}" class="but">登陆</div>
+            <div @click="login" :class="{'butcl':butcl}" class="but">登录</div>
             <p class="law">点击登录表示您已阅读并同意<router-link style="color: #ffffff;" to="/app/law">《用户协议》</router-link> </p>
         </div>
     </div>
@@ -65,7 +65,6 @@ export default {
                 },
             })
                 .then(res => {
-                    // console.log(res)
                     if(res.data.success == true){
                         vm.ve = 59;
                         var timer = setInterval(()=>{
@@ -96,7 +95,6 @@ export default {
                     "WAG":this.WAG
                 },
             }).then((res)=>{
-                console.log(res)
                 if(res.data.success == false){
                     alert(res.data.message)
                 }else{
@@ -222,10 +220,10 @@ input::-webkit-input-placeholder {
 }
 
 .icon {
-    width: 0.36rem;
-    height: 0.42rem;
+width: 0.3rem;
+    height: 0.36rem;
     margin-left: 0.25rem;
-    margin-top: 0.15rem;
+    margin-top: 0.18rem;
     margin-right: 0.25rem;
     display: inline-block;
 }
@@ -245,7 +243,7 @@ input::-webkit-input-placeholder {
     width: 3rem;
     margin: auto;
     display: block;
-    padding-top: 2.33rem;
+    padding-top: 3rem;
     margin-bottom: 0.8rem;
 }
 

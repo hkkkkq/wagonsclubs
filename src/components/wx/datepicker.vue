@@ -1,18 +1,17 @@
 <template>
-    <div style="position:absolute;height:100%;width:100%">
+    <div style="font-family:PingFangSC-Medium, sans-serif;position:absolute;height:100%;width:100%">
         <div style="background:#0f1923;min-height:100%">
             <p style="height:0.2rem"></p>
             <p @click="su" class='but1'>确定</p>
-            <p style="height:0.8rem"></p>
             <div class="con">
-                <img @click="premonth" style="float:left" src="../../assets/app/pickerleft.jpg">
-                <p>
-                    <span>{{curYear}}</span>
-                    <span>年</span>
-                    <span>{{(curMonth+1)>9?(curMonth+1):("0"+(curMonth+1))}}</span>
-                    <span>月</span>
-                </p>
-                <img @click="nextmonth" style="float:right" src="../../assets/app/pickerright.jpg">
+                    <img @click="premonth" style="margin-left: 1.5rem;" src="../../assets/app/pickerleft.jpg">
+                    <p>
+                        <span>{{curYear}}</span>
+                        <span>年</span>
+                        <span>{{(curMonth+1)>9?(curMonth+1):("0"+(curMonth+1))}}</span>
+                        <span>月</span>
+                    </p>
+                    <img @click="nextmonth" src="../../assets/app/pickerright.jpg">
                 <div class="days">
                     <span>日</span>
                     <span>一</span>
@@ -26,12 +25,12 @@
                     <!-- <p style="font-size:20px">{{n}}</p> -->
                     <span :line='n' :row='n2' @click="clickspan(n,n2)" :key="n2" v-for="(item2,n2) in item">
                         <em :class="{'rent':istoken(dateform[n][n2]),
-                                            'startclick':(dateform[n][n2] == choose)&&(type == 'starttime'),
-                                            'today':istoday == dateform[n][n2],
-                                            'lessthan':lessthan(dateform[n][n2]),
-                                            'beforeTodayDays':isbeforeTodayDays(dateform[n][n2]),
-                                            'isstartclick':(isstartdate(dateform[n][n2]))&&(type == 'endtime'),
-                                            'endclick':(dateform[n][n2] == choose)&&(type == 'endtime')}">
+                                                    'startclick':(dateform[n][n2] == choose)&&(type == 'starttime'),
+                                                    'today':istoday == dateform[n][n2],
+                                                    'lessthan':lessthan(dateform[n][n2]),
+                                                    'beforeTodayDays':isbeforeTodayDays(dateform[n][n2]),
+                                                    'isstartclick':(isstartdate(dateform[n][n2]))&&(type == 'endtime'),
+                                                    'endclick':(dateform[n][n2] == choose)&&(type == 'endtime')}">
                             {{item2 == "k"?null:item2}}
                             <span class="hasrent" v-if="istoken(dateform[n][n2])">已出租</span>
                         </em>
@@ -59,7 +58,7 @@ import pdSelectBox from './picker/slectBox.vue'
 export default {
     data() {
         return {
-            aa:"09时",
+            aa: "09时",
             show: "",//控制时间表盘显示
             curYear: "",//选中年
             curMonth: "",   //0开头  选中月
@@ -214,9 +213,6 @@ export default {
             return tmp.getDate();
         },
         clickspan(n, n2) {
-            // console.log(new Date(this.tokendays[0]))
-            // console.log(new Date(2017, 8, 5, 8, 0, 10))
-            // console.log((new Date(this.tokendays[0])) < (new Date(2017, 8, 5, 8, 0, 10)))
             if (this.isstartdate(this.dateform[n][n2])) {
                 return;
             }
@@ -248,14 +244,11 @@ export default {
             } else {
                 let startstring = new Date(this.startob.year, this.startob.month, this.startob.date, parseInt(this.startob.shi), parseInt(this.startob.fen), 0)
                 let endstring = new Date(this.curYear, this.curMonth, this.choose, parseInt(this.shi), parseInt(this.fen), 0)
-                console.log(startstring)
-                console.log(endstring);
                 if (startstring >= endstring) {
                     alert('结束日期不能在开始日期之前')
                     return false;
                 }
                 for (let i = 0; i <= this.tokendays.length; i++) {
-                    // console.log(new Date(this.tokendays[i]))
                     if ((new Date(this.tokendays[i]) < endstring) && (new Date(this.tokendays[i]) > startstring)) {
                         alert('起止日期间不允许间隔');
                         return false
@@ -330,14 +323,15 @@ export default {
     display: block;
     width: 1rem;
     height: 0.6rem;
-    font-size: 0.3rem;
+    font-size: 0.24rem;
     color: #ffffff;
-    background: #273039;
+    /* background: #273039; */
     text-align: center;
     line-height: 0.6rem;
     border-radius: 4px;
     right: 0.2rem;
     position: absolute;
+    top: 0.5rem
 }
 
 .isstartclick {
@@ -409,7 +403,7 @@ export default {
 .con>p {
     text-align: center;
     display: inline-block;
-    width: 5.3rem;
+    width: 2.3rem;
     margin: auto;
 }
 

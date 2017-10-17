@@ -139,27 +139,29 @@ input::-webkit-input-placeholder {
     font-size: 0.26rem;
     color: #636364;
     vertical-align: middle;
-    width: 4.4rem;
     text-align: right;
 }
 
 .in p {
     height: 1rem;
     width: 6.5rem;
-    display: block;
+    display: flex;
+    display: -webkit-flex;
     margin: auto;
     border-bottom: 1px solid #3d454d;
 }
 
 .in input {
+    margin: auto;
     font-size: 0.26rem;
     background: rgba(0, 0, 0, 0);
     border: 0;
     text-align: right;
-    width: 4.4rem;
+    width: 4rem;
     height: 0.6rem;
     vertical-align: middle;
     color: #ffffff;
+    float: right;
 }
 
 .in span {
@@ -168,6 +170,7 @@ input::-webkit-input-placeholder {
     font-size: 0.26rem;
     display: inline-block;
     width: 2rem;
+    margin: auto;
 }
 
 .in {

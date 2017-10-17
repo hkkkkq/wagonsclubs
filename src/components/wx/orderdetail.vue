@@ -95,7 +95,6 @@ export default {
     created() {
         this.$ajax(BASE_URL + "/car/orderDetail?id=" + this.$route.query.id)
             .then((res) => {
-                console.log(res)
                 if (!res.data.success) {
                     alert('获取订单详情失败')
                 } else {

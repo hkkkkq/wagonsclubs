@@ -124,7 +124,6 @@ export default {
         window.scrollTo(0,0);
         this.$ajax(BASE_URL+'/car/weixinShare?url='+escape(location.href))
         .then((res)=>{
-            // console.log(res.data.sign.appId)
             wx.config({
                         debug: false,
                         appId: res.data.data.sign.appId,

@@ -1,5 +1,5 @@
 <template>
-    <div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923">
+    <div style="font-family: PingFangSC-Light, sans-serif;background:#0f1923">
         <p style="width:100%;height:1px"></p>
         <p class="ti">用车流程</p>
         <p class="df">
@@ -91,7 +91,7 @@ export default {
     color: #999999;
     font-size: 0.22rem;
     margin-top: 0.3rem;
-    padding-left: 0.75rem;
+    padding-left: 0.85rem;
 }
 
 .df {

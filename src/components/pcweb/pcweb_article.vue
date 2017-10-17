@@ -25,11 +25,6 @@ export default {
     },
     created(){
         window.scroll(0,0)
-        this.$ajax(BASE_URL+"/xxxx")
-        .then((res)=>{
-            item = res.data.data
-        })
-        this.$route.params.id
     }
 }
 </script>

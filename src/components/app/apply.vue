@@ -258,7 +258,7 @@ input::-webkit-input-placeholder {
     font-size: 0.26rem;
     color: #636364;
     vertical-align: middle;
-    width: 4.4rem;
+    width: 3.5rem;
     float: right;
     margin: auto;
     background: url('../../assets/app/applya.png');
@@ -282,7 +282,7 @@ input::-webkit-input-placeholder {
     background: rgba(0, 0, 0, 0);
     border: 0;
     text-align: right;
-    width: 4.4rem;
+    width: 3rem;
     height: 0.6rem;
     vertical-align: middle;
     color: #ffffff;

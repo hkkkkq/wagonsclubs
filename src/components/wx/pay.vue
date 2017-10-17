@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 100%;position: absolute;width: 100%;">
+    <div style="font-family:PingFangSC-Medium, sans-serif;height: 100%;position: absolute;width: 100%;">
         <div style="background:rgb(15, 25, 35);min-height:100%">
             <p style="height:0.2rem"></p>
             <div class="carinfo">
@@ -219,6 +219,9 @@ export default {
         }
     },
     methods: {
+        checkparam() {
+
+        },
         starttime() {
             this.$router.push({ path: '/wx/datepicker', query: { type: 'starttime' } })
         },
@@ -227,6 +230,10 @@ export default {
         },
         pay0() {
             var vm = this
+            if (this.startob == "") { alert('请选择开始时间'); return false }
+            if (this.endob == "") { alert('请选择结束时间'); return false }
+            if (this.endadd == "") { alert('请选择填写还车地址'); return false }
+            if (this.startadd == "") { alert('请选择填写取车地址'); return false }
             this.$ajax({
                 method: "POST",
                 url: BASE_URL + "/car/deposit",
@@ -251,6 +258,10 @@ export default {
         },
         pay1() {
             var vm = this
+            if (this.startob == "") { alert('请选择开始时间'); return false }
+            if (this.endob == "") { alert('请选择结束时间'); return false }
+            if (this.endadd == "") { alert('请选择填写还车地址'); return false }
+            if (this.startadd == "") { alert('请选择填写取车地址'); return false }
             this.$ajax({
                 method: "POST",
                 url: BASE_URL + "/car/deposit",
@@ -260,15 +271,14 @@ export default {
                     rentEndAt: vm.endob.year + "-" + (vm.endob.month + 1) + "-" + vm.endob.date + " " + parseInt(vm.endob.shi) + ":" + parseInt(vm.endob.fen),
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
-                    totalFee: vm.total * 100,
-                    cashFee: 1,
+                    totalFee: vm.total*100,
+                    cashFee: vm.cashFee*100,
                     orderType: 2
                 }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG}//oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
+                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG }//oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
             }).then((res) => {
                 if (res.data.success) {
                     vm.orderId = res.data.data.orderId
-                    alert(res.data.data.appId)
                     function onBridgeReady() {
                         WeixinJSBridge.invoke(
                             'getBrandWCPayRequest', {
@@ -420,7 +430,6 @@ export default {
     width: 6.8rem;
     display: block;
     margin: auto;
-    /* height: 3.1rem; */
     background: #273039;
     border-radius: 4px;
     margin-top: 0.2rem;

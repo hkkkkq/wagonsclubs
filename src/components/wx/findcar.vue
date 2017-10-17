@@ -1,15 +1,14 @@
 <template>
     <div style="font-family: PingFangSC-Medium, sans-serif;background:rgb(15, 25, 35)">
-        <!-- <keep-alive v-if="keep"> -->
-        <div class="t1">
-            <p>北京</p>
-            <img class="logo" src="../../assets/app/wlogo.png">
-            <img @click="wysj" class="kefu" src="../../assets/app/kefu.png">
-        </div>
-        <pull :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
+        <h1 style="width:100%;height:1px"></h1>
+        <pull :topDistance=30 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
             <div slot="top" class="mint-loadmore-top">
-                <img v-if="topStatus == 'loading'" class="down" src="../../assets/app/ryg.gif">
-                <img v-else class="down" src='../../assets/app/ryg.png'>
+                <transition name="fade2">
+                    <img v-if="topStatus == 'loading'" class="down1" src="../../assets/app/ryg.gif">
+                </transition>
+                <transition name="fade1">
+                    <img v-if="topStatus == 'drop'" class="down1" src='../../assets/app/ryg.png'>
+                </transition>
             </div>
             <!-- 轮播图 -->
             <div v-if="f5" style="position:relative;height: 3.2rem;">
@@ -28,7 +27,9 @@
                     <img v-lazy="item.appImg" @click="choose(n,item.id)">
                     <p class="name">{{item.carName}}</p>
                     <P class="star">{{item.starLevel}}星级车</P>
-                    <p class="pri">{{item.memberRentPrice}}／天</p>
+                    <p class="pri">{{item.memberRentPrice}} /
+                        <b style="font-size:0.26rem">天</b>
+                    </p>
                 </div>
             </div>
         </pull>
@@ -56,10 +57,11 @@ export default {
         return {
             swiperOption: {
                 notNextTick: true,
-                //   width:"200px",
-                autoplay: 4000,
+                autoplay: 0,
                 loop: true,
-                autoplayDisableOnInteraction: false,
+                loopAdditionalSlides: 4,
+                loopedSlides: 8,
+                autoplayDisableOnInteraction: true,
                 pagination: '.swiper-pagination',
                 centeredSlides: true,
                 paginationType: 'custom',
@@ -79,11 +81,9 @@ export default {
                 grabCursor: true,
                 setWrapperSize: true,
                 autoHeight: true,
-                slidesPerView: 1.2,
-                paginationClickable: false,
+                slidesPerView: 'auto',
                 observeParents: true,
                 debugger: true,
-                watchSlidesVisibility: true,
                 onTransitionStart(swiper) { },
             },
             topStatus: '',
@@ -98,7 +98,8 @@ export default {
     },
     computed: {
         carlist() { return this.$store.state.applist },
-        wxAppShare() { return this.$store.state.wxAppShare }
+        wxAppShare() { return this.$store.state.wxAppShare },
+        swiper() { return this.$refs.mySwiper.swiper }
     },
     created() {
         if (this.$route.query.wxAppShare == 'true') {
@@ -142,7 +143,7 @@ export default {
                         'onMenuShareWeibo'
                     ]
                 });
-                var locationHref = window.location.href;
+                var locationHref = window.location.origin+window.location.pathname+"?wxAppShare=true";
                 wx.ready(function() {
                     wx.onMenuShareTimeline({
                         title: 'WAGONS光速超跑',
@@ -173,6 +174,12 @@ export default {
             })
     },
     mounted() {
+        setTimeout(() => {
+            this.swiper.slideNext();
+        }, 10)
+        setInterval(() => {
+            this.swiper.slideNext();
+        }, 4000)
     },
     components: {
         'pull': Loadmore
@@ -246,6 +253,55 @@ export default {
 </script>
 
 <style scoped>
+.fade1-enter-active {
+    transition: transform 0.8s;
+    -moz-transition: transform 0.8s;
+    /* Firefox 4 */
+    -webkit-transition: transform 0.8s;
+    /* Safari 和 Chrome */
+    -o-transition: transform 0.8s;
+    /* Opera */
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: transform 0.8s;
+    -moz-transition: transform 0.8s;
+    /* Firefox 4 */
+    -webkit-transition: transform 0.8s;
+    /* Safari 和 Chrome */
+    -o-transition: transform 0.8s;
+    /* Opera */
+}
+
+.fade1-enter,
+.fade1-leave-to
+/* .fade-leave-active in below version 2.1.8 */
+
+{
+    transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
+    /* IE 9 */
+    -moz-transform: scale(0, 0);
+    /* Firefox */
+    -webkit-transform: scale(0, 0);
+    /* Safari 和 Chrome */
+    -o-transform: scale(0, 0);
+    /* Opera */
+}
+
+.down1 {
+    z-index: -1;
+    display: block;
+    margin: auto;
+    width: 1.28rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -0.8rem;
+    margin: auto;
+}
+
 .godown {
     background: #fed945;
     font-size: 0.28rem;
@@ -340,7 +396,7 @@ img[lazy=loaded] {
 
 .car .pri {
     color: #fcd82f;
-    font-size: 0.24rem;
+    font-size: 0.3rem;
     margin-top: -0.25rem;
 }
 

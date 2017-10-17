@@ -162,9 +162,6 @@ export default {
         },
         details:function(i){
             this.$router.push({path:'/mobile/cardetail?isNewApp='+this.isNew,query:{carId:i}})
-            // router.push({ name: 'user', params: { userId: 123 }})
-            // this.$ajax(BASE_URL+'/car/leaseDetails',{params:{'carId':i}})
-            // .then((res)=>{console.log(res.data)})
         },
         whoweare:function(){
             this.$router.push('/mobile/whoweare?isNewApp='+this.isNew)
