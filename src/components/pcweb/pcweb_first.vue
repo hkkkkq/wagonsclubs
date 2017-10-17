@@ -33,10 +33,10 @@
           </div> -->
           <div :key="index" v-for="(item,index) in articleList" @mouseenter="min(index+1)" @mouseleave="mout(index+1)" @click='goar(item.articleId)' class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-              <img :src="item.imageUrl" />
+              <img :src="item.iconImagePath" />
               <transition name="fade">
                 <h4 v-if="mask3" class="mask">
-                  {{item.xxx}}
+                  {{item.subTitle}}
                 </h4>
               </transition>
             </div>
@@ -190,9 +190,9 @@ export default {
 
   created() {
     //获取文章列表
-    this.$ajax(BASE_URL+"/reading/selectReadingList")
+    this.$ajax(BASE_URL+"/reading/readingList")
     .then((res)=>{
-      articleList = res.data.data.slice(0,3)
+      this.articleList = res.data.data.reading.data.slice(0,3)
     })
 
 
