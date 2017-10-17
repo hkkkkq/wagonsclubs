@@ -1,10 +1,10 @@
 <template>
     <div style="font-size:0;background: rgba(0,0,0,0.6);">
-        <div v-if="!wag" class="head">
-            <a @click="goback" class="goback"></a>
-            <img class="nl" src="../../assets/newlogo.png">
-            <a v-if="isNew" @click="share" class="share"></a>
-        </div>
+        <!-- <div v-if="!wag" class="head"> -->
+            <!-- <a @click="goback" class="goback"></a> -->
+            <!-- <img class="nl" src="../../assets/newlogo.png"> -->
+            <!-- <a v-if="isNew" @click="share" class="share"></a> -->
+        <!-- </div> -->
         <div :key="index" v-for="(item,index) in imgs" class="co"><img v-once @click="tod(index)" :src="item"></div>
     </div>
 </template>
@@ -132,12 +132,10 @@ export default {
             }
             if ((this.isNew == 'true') && (/iPhone|mac|iPod|iPad/i.test(navigator.userAgent))) {
                 window.ground.showHeader()
-                // alert(1)
                 setTimeout(function() {
                     goo(n)
                 }, 1300);
             } else {
-                // alert(2)
                 goo(n)
             }
 

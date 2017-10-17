@@ -1,14 +1,18 @@
 <template>
     <div style="font-family: PingFangSC-Medium, sans-serif;background:rgb(15, 25, 35)">
-        <div class="t1">
+        <!-- <div class="t1">
             <p>北京</p>
             <img class="logo" src="../../assets/app/wlogo.png">
             <img @click="wysj" class="kefu" src="../../assets/app/kefu.png">
-        </div>
-        <pull :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
+        </div> -->
+        <pull :topDistance=30 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
             <div slot="top" class="mint-loadmore-top">
-                <img v-if="topStatus == 'loading'" class="down" src="../../assets/app/ryg.gif">
-                <img v-else class="down" src='../../assets/app/ryg.png'>
+                    <transition name="fade2">
+                        <img v-if="topStatus == 'loading'" class="down" src="../../assets/app/ryg.gif">
+                    </transition>
+                    <transition name="fade1">
+                        <img v-if="topStatus == 'drop'" class="down" src='../../assets/app/ryg.png'>
+                    </transition>
             </div>
             <!-- 轮播图 -->
             <div v-if="f5" style="position:relative;height: 3.2rem;">
@@ -247,6 +251,49 @@ export default {
 </script>
 
 <style scoped>
+.fade1-enter-active{
+    transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
+    /* Firefox 4 */
+    -webkit-transition: transform 0.5s;
+    /* Safari 和 Chrome */
+    -o-transition: transform 0.5s;
+    /* Opera */
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
+    /* Firefox 4 */
+    -webkit-transition: transform 0.5s;
+    /* Safari 和 Chrome */
+    -o-transition: transform 0.5s;
+    /* Opera */
+}
+
+.fade1-enter,
+.fade1-leave-to
+/* .fade-leave-active in below version 2.1.8 */
+
+{
+    transform: scale(0.2,0.2);
+    -ms-transform: scale(0.2,0.2); 	/* IE 9 */
+    -moz-transform: scale(0.2,0.2); 	/* Firefox */
+    -webkit-transform: scale(0.2,0.2); /* Safari 和 Chrome */
+    -o-transform: scale(0.2,0.2); 	/* Opera */
+}
+
+.down {
+    z-index: -1;
+    display: block;
+    margin: auto;
+    width: 1.28rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1rem;
+    margin: auto;
+}
 .godown {
     background: #fed945;
     font-size: 0.28rem;

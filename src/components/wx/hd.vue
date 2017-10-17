@@ -97,22 +97,22 @@ export default {
 
 <style scoped>
 .fade1-enter-active{
-    transition: transform 1s;
-    -moz-transition: transform 1s;
+    transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
     /* Firefox 4 */
-    -webkit-transition: transform 1s;
+    -webkit-transition: transform 0.5s;
     /* Safari 和 Chrome */
-    -o-transition: transform 1s;
+    -o-transition: transform 0.5s;
     /* Opera */
 }
 .fade-enter-active,
 .fade-leave-active {
-    transition: transform 1s;
-    -moz-transition: transform 1s;
+    transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
     /* Firefox 4 */
-    -webkit-transition: transform 1s;
+    -webkit-transition: transform 0.5s;
     /* Safari 和 Chrome */
-    -o-transition: transform 1s;
+    -o-transition: transform 0.5s;
     /* Opera */
 }
 
@@ -121,11 +121,11 @@ export default {
 /* .fade-leave-active in below version 2.1.8 */
 
 {
-    transform: scale(0,0);
-    -ms-transform: scale(0,0); 	/* IE 9 */
-    -moz-transform: scale(0,0); 	/* Firefox */
-    -webkit-transform: scale(0,0); /* Safari 和 Chrome */
-    -o-transform: scale(0,0); 	/* Opera */
+    transform: scale(0.2,0.2);
+    -ms-transform: scale(0.2,0.2); 	/* IE 9 */
+    -moz-transform: scale(0.2,0.2); 	/* Firefox */
+    -webkit-transform: scale(0.2,0.2); /* Safari 和 Chrome */
+    -o-transform: scale(0.2,0.2); 	/* Opera */
 }
 
 .down {
