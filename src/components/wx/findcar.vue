@@ -4,10 +4,10 @@
         <pull :topDistance=30 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
             <div slot="top" class="mint-loadmore-top">
                 <transition name="fade2">
-                    <img v-if="topStatus == 'loading'" class="down" src="../../assets/app/ryg.gif">
+                    <img v-if="topStatus == 'loading'" class="down1" src="../../assets/app/ryg.gif">
                 </transition>
                 <transition name="fade1">
-                    <img v-if="topStatus == 'drop'" class="down" src='../../assets/app/ryg.png'>
+                    <img v-if="topStatus == 'drop'" class="down1" src='../../assets/app/ryg.png'>
                 </transition>
             </div>
             <!-- 轮播图 -->
@@ -248,23 +248,23 @@ export default {
 
 <style scoped>
 .fade1-enter-active {
-    transition: transform 0.5s;
-    -moz-transition: transform 0.5s;
+    transition: transform 0.8s;
+    -moz-transition: transform 0.8s;
     /* Firefox 4 */
-    -webkit-transition: transform 0.5s;
+    -webkit-transition: transform 0.8s;
     /* Safari 和 Chrome */
-    -o-transition: transform 0.5s;
+    -o-transition: transform 0.8s;
     /* Opera */
 }
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: transform 0.5s;
-    -moz-transition: transform 0.5s;
+    transition: transform 0.8s;
+    -moz-transition: transform 0.8s;
     /* Firefox 4 */
-    -webkit-transition: transform 0.5s;
+    -webkit-transition: transform 0.8s;
     /* Safari 和 Chrome */
-    -o-transition: transform 0.5s;
+    -o-transition: transform 0.8s;
     /* Opera */
 }
 
@@ -273,18 +273,18 @@ export default {
 /* .fade-leave-active in below version 2.1.8 */
 
 {
-    transform: scale(0.2, 0.2);
-    -ms-transform: scale(0.2, 0.2);
+    transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
     /* IE 9 */
-    -moz-transform: scale(0.2, 0.2);
+    -moz-transform: scale(0, 0);
     /* Firefox */
-    -webkit-transform: scale(0.2, 0.2);
+    -webkit-transform: scale(0, 0);
     /* Safari 和 Chrome */
-    -o-transform: scale(0.2, 0.2);
+    -o-transform: scale(0, 0);
     /* Opera */
 }
 
-.down {
+.down1 {
     z-index: -1;
     display: block;
     margin: auto;
@@ -292,7 +292,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: -1rem;
+    top: -0.8rem;
     margin: auto;
 }
 
