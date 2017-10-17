@@ -102,7 +102,6 @@ export default {
         swiper() { return this.$refs.mySwiper.swiper }
     },
     created() {
-        console.log(location)
         if (this.$route.query.wxAppShare == 'true') {
             this.$store.commit('wxAppShare')
         }
