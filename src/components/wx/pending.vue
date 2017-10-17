@@ -38,7 +38,8 @@
                 </div>
                 <div @click="gosimu" class="sm">
                     购买合作方私募基金可减免押金
-                    <span>></span>
+                    <span><img style=" width: 0.28rem;" src="../../assets/app/applya.png"></span>
+                <!-- <applya.png -->
                 </div>
             </div>
             <div v-else>
@@ -207,14 +208,16 @@
                     </div>
                 </div>
             </div>
-            <div @click="call" class="but">
+            <div v-if="member.subtype !== 'C'" @click="call" class="but">
                 <img src="../../assets/app/pendingphone.png">
                 <span>联系我们，咨询购买</span>
             </div>
-            <p class="clear"></p>
-            <p class="tp">您也可以通过散租的方式享受用车服务</p>
-            <p style="margin-top:0.16rem" class="tp">缴纳少量押金即可驾享顶级超跑，随用随租，还享会员折扣价!</p>
-            <p style="width:100%;height:1.2rem"></p>
+            <div  v-if="member.subtype !== 'C'">
+                <p class="clear"></p>
+                <p class="tp">您也可以通过散租的方式享受用车服务</p>
+                <p style="margin-top:0.16rem" class="tp">缴纳少量押金即可驾享顶级超跑，随用随租，还享会员折扣价!</p>
+                <p style="width:100%;height:1.2rem"></p>
+            </div>
         </div>
     </div>
 </template>

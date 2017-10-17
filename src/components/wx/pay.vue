@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 100%;position: absolute;width: 100%;">
+    <div style="font-family:PingFangSC-Medium, sans-serif;height: 100%;position: absolute;width: 100%;">
         <div style="background:rgb(15, 25, 35);min-height:100%">
             <p style="height:0.2rem"></p>
             <div class="carinfo">
