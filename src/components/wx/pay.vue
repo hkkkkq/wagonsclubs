@@ -219,6 +219,9 @@ export default {
         }
     },
     methods: {
+        checkparam() {
+
+        },
         starttime() {
             this.$router.push({ path: '/wx/datepicker', query: { type: 'starttime' } })
         },
@@ -227,6 +230,10 @@ export default {
         },
         pay0() {
             var vm = this
+            if (this.startob == "") { alert('请选择开始时间'); return false }
+            if (this.endob == "") { alert('请选择结束时间'); return false }
+            if (this.endadd == "") { alert('请选择填写还车地址'); return false }
+            if (this.startadd == "") { alert('请选择填写取车地址'); return false }
             this.$ajax({
                 method: "POST",
                 url: BASE_URL + "/car/deposit",
@@ -251,6 +258,10 @@ export default {
         },
         pay1() {
             var vm = this
+            if (this.startob == "") { alert('请选择开始时间'); return false }
+            if (this.endob == "") { alert('请选择结束时间'); return false }
+            if (this.endadd == "") { alert('请选择填写还车地址'); return false }
+            if (this.startadd == "") { alert('请选择填写取车地址'); return false }
             this.$ajax({
                 method: "POST",
                 url: BASE_URL + "/car/deposit",
@@ -260,11 +271,11 @@ export default {
                     rentEndAt: vm.endob.year + "-" + (vm.endob.month + 1) + "-" + vm.endob.date + " " + parseInt(vm.endob.shi) + ":" + parseInt(vm.endob.fen),
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
-                    totalFee: vm.total*100,
-                    cashFee: vm.cashFee*100,
+                    totalFee: vm.total * 100,
+                    cashFee: vm.cashFee * 100,
                     orderType: 2
                 }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG}//oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
+                headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG }//oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
             }).then((res) => {
                 if (res.data.success) {
                     vm.orderId = res.data.data.orderId
