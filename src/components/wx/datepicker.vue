@@ -3,7 +3,6 @@
         <div style="background:#0f1923;min-height:100%">
             <p style="height:0.2rem"></p>
             <p @click="su" class='but1'>确定</p>
-            <p style="height:0.8rem"></p>
             <div class="con">
                     <img @click="premonth" style="margin-left: 1.5rem;" src="../../assets/app/pickerleft.jpg">
                     <p>
@@ -330,7 +329,7 @@ export default {
     display: block;
     width: 1rem;
     height: 0.6rem;
-    font-size: 0.3rem;
+    font-size: 0.24rem;
     color: #ffffff;
     /* background: #273039; */
     text-align: center;
@@ -338,7 +337,7 @@ export default {
     border-radius: 4px;
     right: 0.2rem;
     position: absolute;
-    top: 1.3rem
+    top: 0.5rem
 }
 
 .isstartclick {

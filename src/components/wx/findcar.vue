@@ -102,7 +102,7 @@ export default {
         swiper() { return this.$refs.mySwiper.swiper }
     },
     created() {
-        // this.swiper.slideNext();        
+        console.log(location)
         if (this.$route.query.wxAppShare == 'true') {
             this.$store.commit('wxAppShare')
         }
@@ -144,7 +144,7 @@ export default {
                         'onMenuShareWeibo'
                     ]
                 });
-                var locationHref = window.location.href;
+                var locationHref = window.location.origin+window.location.pathname+"&wxAppShare=true";
                 wx.ready(function() {
                     wx.onMenuShareTimeline({
                         title: 'WAGONS光速超跑',
@@ -175,7 +175,6 @@ export default {
             })
     },
     mounted() {
-        // var tmp = this
         setTimeout(() => {
             this.swiper.slideNext();
         }, 10)
