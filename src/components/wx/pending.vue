@@ -237,7 +237,6 @@ export default {
         // { headers: { "token": "666eff19e5ca4e1bb2d6285a23f721d9", } }
         this.$ajax.get(BASE_URL + "/member/privilege", )
             .then((res) => {
-                console.log(res)
                 this.member = res.data.data.member
             })
     },

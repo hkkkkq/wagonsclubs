@@ -63,7 +63,6 @@ export default {
     },
     created(){
         window.scroll(0,0)
-        console.log(this.$route.params.id)
     }
 }
 </script>

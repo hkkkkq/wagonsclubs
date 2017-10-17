@@ -71,9 +71,7 @@ export default new Router({
         {
             path: '/',
             beforeEnter: (to, from, next) => {
-                // console.log(navigator.userAgent)
                 if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-                    // window.location.href = 'http://wap.wagonsclub.com/car/index'
                     next({
                         path: '/mobile'
                     })

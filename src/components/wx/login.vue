@@ -65,7 +65,6 @@ export default {
                 },
             })
                 .then(res => {
-                    // console.log(res)
                     if(res.data.success == true){
                         vm.ve = 59;
                         var timer = setInterval(()=>{
@@ -96,7 +95,6 @@ export default {
                     "WAG":this.WAG
                 },
             }).then((res)=>{
-                console.log(res)
                 if(res.data.success == false){
                     alert(res.data.message)
                 }else{

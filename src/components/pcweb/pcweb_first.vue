@@ -193,7 +193,6 @@ require('swiper/dist/css/swiper.css')
           this.$ajax(BASE_URL+'/car/carDetail?carId='+firstid)
           .then((resolve)=>{
             this.currentcar = resolve.data.data;
-            console.log(this.currentcar)
           })
 
           for(let i = 1;i<this.cars.length;i++){
