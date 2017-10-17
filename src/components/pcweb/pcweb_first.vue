@@ -7,41 +7,34 @@
         <p class="conp">最新动态</p>
         <p style="height: 24px;"></p>
         <div style="font-size:0">
-          <!-- <div @mouseenter="min(1)" @mouseleave="mout(1)" @click='goar(7)' class="f1">
-            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-              <img src="../../assets/zl32.jpeg" />
-              <transition name="fade">
-                <h4 v-if="mask1" class="mask">
-                  私人驾驭，精美沙龙
-                </h4>
-              </transition>
-            </div>
-            <h1>WAGONS的互联网沙龙</h1>
-            <div>8月31日，由《首席财务官》杂志和奇点金服共同主办的“人工智能来了，移动互联网时代......</div>
-          </div> -->
-          <!-- <div @mouseenter="min(2)" @mouseleave="mout(2)" @click='goar(8)' style="margin: 0 20px;" class="f1">
-            <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
-              <img src="../../assets/jd2.png" />
-              <transition name="fade">
-                <h4 v-if="mask2" class="mask">
-                  光速超跑，焦点人生
-                </h4>
-              </transition>
-            </div>
-            <h1>WAGONS光速超跑，点亮焦点人生</h1>
-            <div>爱美之心人皆有之，美好的东西总是发光的，好看的钻石、好看的人、好看的跑车，都是.....</div>
-          </div> -->
-          <div :key="index" v-for="(item,index) in articleList" @mouseenter="min(index+1)" @mouseleave="mout(index+1)" @click='goar(item.articleId)' class="f1">
+          <div :key="index" v-for="(item,index) in articleList" @click="goar(item.detailUrl)" @mouseenter="min(index)" @mouseleave="mout(index)" class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
               <img :src="item.iconImagePath" />
-              <transition name="fade">
-                <h4 v-if="mask3" class="mask">
-                  {{item.subTitle}}
-                </h4>
-              </transition>
+              <div v-if="index == 0">
+                <transition name="fade">
+                  <h4 v-if="mask1" class="mask">
+                    {{item.subTitle}}
+                  </h4>
+                </transition>
+              </div>
+              <div v-if="index == 1">
+                <transition name="fade">
+                  <h4 v-if="mask2" class="mask">
+                    {{item.subTitle}}
+                  </h4>
+                </transition>
+              </div>
+              <div v-if="index == 2">
+                <transition name="fade">
+                  <h4 v-if="mask3" class="mask">
+                    {{item.subTitle}}
+                  </h4>
+                </transition>
+              </div>
+
             </div>
             <h1>{{item.title}}</h1>
-            <div>{{item.summary}}</div>
+            <div>{{item.contentAbstract}}</div>
           </div>
         </div>
       </div>
@@ -179,7 +172,7 @@ export default {
       mask1: false,
       mask2: false,
       mask3: false,
-      articleList:''
+      articleList: ''
     }
   },
   computed: {
@@ -190,10 +183,10 @@ export default {
 
   created() {
     //获取文章列表
-    this.$ajax(BASE_URL+"/reading/readingList")
-    .then((res)=>{
-      this.articleList = res.data.data.reading.data.slice(0,3)
-    })
+    this.$ajax(BASE_URL + "/reading/readingList")
+      .then((res) => {
+        this.articleList = res.data.data.reading.data.slice(0, 3)
+      })
 
 
     this.$ajax(BASE_URL + '/car/cars')
@@ -240,17 +233,21 @@ export default {
       this.qr_show = false;
     },
     goar(n) {
-      this.$router.push('/article/' + n)
+      this.$ajax(BASE_URL+n)
+      .then((res)=>{
+        console.log(res)
+      })
+      // this.$router.push('/article/' + n)
     },
     min(n) {
-      if (n == 1) { this.mask1 = true }
-      if (n == 2) { this.mask2 = true }
-      if (n == 3) { this.mask3 = true }
+      if (n == 0) { this.mask1 = true }
+      if (n == 1) { this.mask2 = true }
+      if (n == 2) { this.mask3 = true }
     },
     mout(n) {
-      if (n == 1) { this.mask1 = false }
-      if (n == 2) { this.mask2 = false }
-      if (n == 3) { this.mask3 = false }
+      if (n == 0) { this.mask1 = false }
+      if (n == 1) { this.mask2 = false }
+      if (n == 2) { this.mask3 = false }
     }
   }
 }
@@ -388,6 +385,7 @@ export default {
   vertical-align: top;
   cursor: pointer;
   position: relative;
+  margin: 0 5px;
 }
 
 .f1 img {
@@ -396,6 +394,7 @@ export default {
   display: block;
   margin: auto;
 }
+
 
 
 /* .f1 img:hover{
@@ -617,6 +616,7 @@ export default {
   height: 128px;
   cursor: pointer;
 }
+
 
 
 /* .swip1{
