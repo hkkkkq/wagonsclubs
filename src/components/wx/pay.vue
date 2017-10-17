@@ -260,8 +260,8 @@ export default {
                     rentEndAt: vm.endob.year + "-" + (vm.endob.month + 1) + "-" + vm.endob.date + " " + parseInt(vm.endob.shi) + ":" + parseInt(vm.endob.fen),
                     sendAddr: vm.startadd,
                     returnAddr: vm.endadd,
-                    totalFee: vm.total * 100,
-                    cashFee: 1,
+                    totalFee: vm.total*100,
+                    cashFee: vm.cashFee*100,
                     orderType: 2
                 }),
                 headers: { "Content-Type": "application/x-www-form-urlencoded", "WAG": vm.WAG}//oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
