@@ -22,20 +22,6 @@
                     <img @click="goo(item.canClick,item.url)" :src="item.image">
                 </div>
             </pull>
-
-            <!-- <div class="co">
-                                    <span class="ed">已结束</span>
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div>
-                                <div class="co">
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div>
-                                <div class="co">
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div>
-                                <div class="co">
-                                    <img src="../../assets/car_guide_banner.jpg">
-                                </div> -->
             <img style="width: 100%;display:block;margin-top: 0.24rem;" src="../../assets/app/nomore.png">
         </div>
     </div>
@@ -49,7 +35,6 @@ export default {
         return {
             info: '',
             topStatus: '',
-
         }
     },
     created() {
@@ -77,10 +62,6 @@ export default {
                         alert('一定是后台小哥出现了问题')
                     }
                 })
-            // this.f5 = false
-            // this.$nextTick(function() {
-            //     this.f5 = true
-            // })
             setTimeout(() => {
                 this.$refs.loadmore.onTopLoaded();
             }, 1500)
