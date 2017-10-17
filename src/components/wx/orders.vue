@@ -2,82 +2,34 @@
     <div style="position:absolute;width:100%;height:100%">
         <div style="min-height:100%;background:#0f1923;width:100%">
             <h1 style="width:100%;height:0.2rem"></h1>
-            <div :key="index" v-for="(item,index) in resdata.data.orderList" class="one">
-                <p class="title">
-                    <span class="carname">{{item.carName}}</span>
-                    <span v-if="item.orderType == 0" class="status0">待接单</span>
-                    <span v-if="item.orderType == 1" class="status0">准备中</span>
-                    <span v-if="item.orderType == 2" class="status0">送车中</span>
-                    <span v-if="item.orderType == 3" class="status1">使用中</span>
-                    <span v-if="item.orderType == 4" class="status2">已还车</span>
-                    <img v-if="item.orderType == 5" class="ordered" src="../../assets/app/ordered1.png">
-                    <span v-if="item.orderType == 6" class="status3">已还车</span>
-                </p>
-                <div @click="toOrderDetail(item.orderId)" class="info">
-                    <img :src="item.carImage">
-                    <div class="deta">
-                        <p>下单时间：
-                            <span>{{item.orderTime}}</span>
-                        </p>
-                        <p>{{item.orderDayPrice}}</p>
+            <div v-if="resdata.data.orderList == []">
+                <div :key="index" v-for="(item,index) in resdata.data.orderList" class="one">
+                    <p class="title">
+                        <span class="carname">{{item.carName}}</span>
+                        <span v-if="item.orderType == 0" class="status0">待接单</span>
+                        <span v-if="item.orderType == 1" class="status0">准备中</span>
+                        <span v-if="item.orderType == 2" class="status0">送车中</span>
+                        <span v-if="item.orderType == 3" class="status1">使用中</span>
+                        <span v-if="item.orderType == 4" class="status2">已还车</span>
+                        <img v-if="item.orderType == 5" class="ordered" src="../../assets/app/ordered1.png">
+                        <span v-if="item.orderType == 6" class="status3">已还车</span>
+                    </p>
+                    <div @click="toOrderDetail(item.orderId)" class="info">
+                        <img :src="item.carImage">
+                        <div class="deta">
+                            <p>下单时间：
+                                <span>{{item.orderTime}}</span>
+                            </p>
+                            <p>{{item.orderDayPrice}}</p>
+                        </div>
                     </div>
                 </div>
+                <div class="nomore">
+                    <img src="../../assets/app/nomore.png">
+                </div>
             </div>
-            <!-- <div class="one">
-                                    <p class="title">
-                                        <span class="carname">法拉利兰博基尼</span>
-                                        <span class="status1">使用中</span>
-                                    </p>
-                                    <div class="info">
-                                        <img src="../../assets/app/slc.png">
-                                        <div class="deta">
-                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                                            <p>租用三天：已付 ¥5000.00</p>                        
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="one">
-                                    <p class="title">
-                                        <span class="carname">法拉利兰博基尼</span>
-                                        <span class="status2">使用中</span>
-                                    </p>
-                                    <div class="info">
-                                        <img src="../../assets/app/slc.png">
-                                        <div class="deta">
-                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                                            <p>租用三天：已付 ¥5000.00</p>                        
-                                        </div>
-                                    </div>
-                                </div>
-                              <div class="one">
-                                    <p class="title">
-                                        <span class="carname">法拉利兰博基尼</span>
-                                        <span class="status3">已取消</span>
-                                    </p>
-                                    <div class="info">
-                                        <img src="../../assets/app/slc.png">
-                                        <div class="deta">
-                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                                            <p>租用三天：已付 ¥5000.00</p>                        
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="one">
-                                    <p class="title">
-                                        <span class="carname">法拉利兰博基尼</span>
-                                        <span class="status0">使用中</span>
-                                        <img class="ordered" src="../../assets/app/ordered1.png">
-                                    </p>
-                                    <div class="info">
-                                        <img src="../../assets/app/slc.png">
-                                        <div class="deta">
-                                            <p>下单时间：<span>2017-8-18 16:16</span></p>
-                                            <p>租用三天：已付 ¥5000.00</p>                        
-                                        </div>
-                                    </div>
-                                </div> -->
-            <div class="nomore">
-                <img src="../../assets/app/nomore.png">
+            <div v-else>
+                <img class="noorders" src="../../assets/app/noorders.png">
             </div>
         </div>
     </div>
@@ -106,19 +58,27 @@ export default {
                     vm.$router.push('/wx/login')
                 } else {
                     vm.$ajax(BASE_URL + "/car/orderList")
-                        .then((res) => { this.resdata = res.data })
+                        .then((res) => { this.resdata = res.data;console.log(this.resdata) })
                 }
             })
     },
-    methods:{
-        toOrderDetail(id){
-            this.$router.push('/wx/orderdetail?id='+id)
+    methods: {
+        toOrderDetail(id) {
+            this.$router.push('/wx/orderdetail?id=' + id)
         }
     }
 }
 </script>
 
 <style scoped>
+.noorders {
+    width: 1.9rem;
+    height: 2.36rem;
+    margin: auto;
+    display: block;
+    margin-top: 4rem;
+}
+
 .ordered {
     width: 1rem;
     float: right;
