@@ -57,10 +57,11 @@ export default {
         return {
             swiperOption: {
                 notNextTick: true,
-                //   width:"200px",
-                autoplay: 4000,
+                autoplay: 0,
                 loop: true,
-                autoplayDisableOnInteraction: false,
+                loopAdditionalSlides: 4,
+                loopedSlides: 8,
+                autoplayDisableOnInteraction: true,
                 pagination: '.swiper-pagination',
                 centeredSlides: true,
                 paginationType: 'custom',
@@ -80,11 +81,9 @@ export default {
                 grabCursor: true,
                 setWrapperSize: true,
                 autoHeight: true,
-                slidesPerView: 1.2,
-                paginationClickable: false,
+                slidesPerView: 'auto',
                 observeParents: true,
                 debugger: true,
-                watchSlidesVisibility: true,
                 onTransitionStart(swiper) { },
             },
             topStatus: '',
@@ -99,9 +98,11 @@ export default {
     },
     computed: {
         carlist() { return this.$store.state.applist },
-        wxAppShare() { return this.$store.state.wxAppShare }
+        wxAppShare() { return this.$store.state.wxAppShare },
+        swiper() { return this.$refs.mySwiper.swiper }
     },
     created() {
+        // this.swiper.slideNext();        
         if (this.$route.query.wxAppShare == 'true') {
             this.$store.commit('wxAppShare')
         }
@@ -174,6 +175,13 @@ export default {
             })
     },
     mounted() {
+        // var tmp = this
+        setTimeout(() => {
+            this.swiper.slideNext();
+        }, 10)
+        setInterval(() => {
+            this.swiper.slideNext();
+        }, 4000)
     },
     components: {
         'pull': Loadmore
