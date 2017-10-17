@@ -1,6 +1,5 @@
 <template>
     <div style="font-family: PingFangSC-Medium, sans-serif;background:rgb(15, 25, 35)">
-        <!-- <keep-alive v-if="keep"> -->
         <div class="t1">
             <p>北京</p>
             <img class="logo" src="../../assets/app/wlogo.png">
@@ -28,7 +27,9 @@
                     <img v-lazy="item.appImg" @click="choose(n,item.id)">
                     <p class="name">{{item.carName}}</p>
                     <P class="star">{{item.starLevel}}星级车</P>
-                    <p class="pri">{{item.memberRentPrice}}／天</p>
+                    <p class="pri">{{item.memberRentPrice}} /
+                        <b style="font-size:0.26rem">天</b>
+                    </p>
                 </div>
             </div>
         </pull>
@@ -340,7 +341,7 @@ img[lazy=loaded] {
 
 .car .pri {
     color: #fcd82f;
-    font-size: 0.24rem;
+    font-size: 0.3rem;
     margin-top: -0.25rem;
 }
 
