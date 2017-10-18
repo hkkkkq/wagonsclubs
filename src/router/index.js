@@ -71,15 +71,15 @@ export default new Router({
         //重写pc首页
         {
             path: '/',
-            beforeEnter: (to, from, next) => {
-                if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-                    next({
-                        path: '/mobile'
-                    })
-                } else {
-                    next();
-                }
-            },
+            // beforeEnter: (to, from, next) => {
+            //     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            //         next({
+            //             path: '/mobile'
+            //         })
+            //     } else {
+            //         next();
+            //     }
+            // },
             component: pcweb,
             redirect: '/first',
             children: [{
