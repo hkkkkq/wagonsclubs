@@ -10,27 +10,27 @@
           <div :key="index" v-for="(item,index) in articleList" @click="goar(item.detailUrl)" @mouseenter="min(index)" @mouseleave="mout(index)" class="f1">
             <div style="height: 230px;width: 320px;padding: 0;margin: 0;display:-webkit-flex;display:flex">
               <img :src="item.iconImagePath" />
-              <div v-if="index == 0">
+              <h1 v-if="index == 0">
                 <transition name="fade">
                   <h4 v-if="mask1" class="mask">
                     {{item.subTitle}}
                   </h4>
                 </transition>
-              </div>
-              <div v-if="index == 1">
+              </h1>
+              <h1 v-if="index == 1">
                 <transition name="fade">
                   <h4 v-if="mask2" class="mask">
                     {{item.subTitle}}
                   </h4>
                 </transition>
-              </div>
-              <div v-if="index == 2">
+              </h1>
+              <h1 v-if="index == 2">
                 <transition name="fade">
                   <h4 v-if="mask3" class="mask">
                     {{item.subTitle}}
                   </h4>
                 </transition>
-              </div>
+              </h1>
 
             </div>
             <h1>{{item.title}}</h1>
@@ -234,9 +234,9 @@ export default {
     goar(n) {
       this.$ajax(BASE_URL+n)
       .then((res)=>{
-        console.log(res)
+        this.$store.commit('articleDetails',res.data);
+        this.$router.push('/article')
       })
-      // this.$router.push('/article/' + n)
     },
     min(n) {
       if (n == 0) { this.mask1 = true }

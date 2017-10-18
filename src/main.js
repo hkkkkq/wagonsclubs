@@ -35,6 +35,7 @@ const store = new vuex.Store({
         'rentdays': '',
         'WAG': '',
         'wxAppShare': false,
+        'articleDetails': ''
     },
     mutations: {
         foot_left_click(state) {
@@ -65,6 +66,9 @@ const store = new vuex.Store({
         },
         wxAppShare(state, data) {
             state.wxAppShare = true
+        },
+        articleDetails(state, data) {
+            state.articleDetails = data
         }
     }
 })

@@ -91,7 +91,7 @@ export default new Router({
                     component: pcweb_forth
                 },
                 {
-                    path: 'article/:id',
+                    path: 'article',
                     component: pcweb_article
                 },
             ]
