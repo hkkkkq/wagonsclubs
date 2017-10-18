@@ -199,7 +199,7 @@ export default {
                 }, 200)
             } else {//安卓应用宝下载
                 setTimeout(() => {
-                    location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
+                    location.href = 'http://mobile.baidu.com/item?docid=22459747&source=pc'
                 }, 200)
             }
         },
