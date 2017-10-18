@@ -199,7 +199,7 @@ export default {
                 }, 200)
             } else {//安卓应用宝下载
                 setTimeout(() => {
-                    location.href = 'http://mobile.baidu.com/item?docid=22459747&source=pc'
+                    location.href = 'http://m.anzhi.com/share_2862728.html?azfrom=anzhi&host=details&pkg=com.wagons.app&flag=1&aztype=qr'
                 }, 200)
             }
         },

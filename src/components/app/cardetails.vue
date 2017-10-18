@@ -45,6 +45,7 @@
             <span v-if="car.convertible == 3" class="tips">软顶敞篷</span>
             <span v-if="car.plateNumberBj" class="tips">京牌</span>
             <span v-if="!car.plateNumberBj" class="tips">非京牌</span>
+            <span v-if="car.restrictionDay" class="tips">{{car.restrictionDay}}限行</span>            
         </div>
         <p class="but1"></p>
         <p @click="sub" class="but">
@@ -224,7 +225,7 @@ export default {
                     }, 200)
                 } else {
                     setTimeout(() => {
-                        location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
+                        location.href = 'http://m.anzhi.com/share_2862728.html?azfrom=anzhi&host=details&pkg=com.wagons.app&flag=1&aztype=qr'
                     }, 200)
                 }
             }
