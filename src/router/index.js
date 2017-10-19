@@ -8,7 +8,19 @@ const pcweb_first = resolve => require(['../components/pcweb/pcweb_first.vue'], 
 const pcweb_second = resolve => require(['../components/pcweb/pcweb_second.vue'], resolve);
 const pcweb_third = resolve => require(['../components/pcweb/pcweb_third.vue'], resolve);
 const pcweb_forth = resolve => require(['../components/pcweb/pcweb_forth.vue'], resolve);
+<<<<<<< HEAD
 const pcweb_article = resolve => require(['../components/pcweb/pcweb_article.vue'], resolve);
+=======
+const pcweb_article1 = resolve => require(['../components/pcweb/pcweb_article1.vue'], resolve);
+const pcweb_article2 = resolve => require(['../components/pcweb/pcweb_article2.vue'], resolve);
+const pcweb_article3 = resolve => require(['../components/pcweb/pcweb_article3.vue'], resolve);
+const pcweb_article4 = resolve => require(['../components/pcweb/pcweb_article4.vue'], resolve);
+const pcweb_article5 = resolve => require(['../components/pcweb/pcweb_article5.vue'], resolve);
+const pcweb_article6 = resolve => require(['../components/pcweb/pcweb_article6.vue'], resolve);
+const pcweb_article7 = resolve => require(['../components/pcweb/pcweb_article7.vue'], resolve);
+const pcweb_article8 = resolve => require(['../components/pcweb/pcweb_article8.vue'], resolve);
+const pcweb_download = resolve => require(['../components/pcweb/download.vue'], resolve);
+>>>>>>> ba5e83eafe22d4a4a3846cf2753f3d71d9746c9b
 const notfound = resolve => require(['../components/404.vue'], resolve);
 //for app
 const app = resolve => require(['../components/app/index.vue'], resolve);
@@ -63,15 +75,15 @@ export default new Router({
         //重写pc首页
         {
             path: '/',
-            beforeEnter: (to, from, next) => {
-                if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-                    next({
-                        path: '/mobile'
-                    })
-                } else {
-                    next();
-                }
-            },
+            // beforeEnter: (to, from, next) => {
+            //     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            //         next({
+            //             path: '/mobile'
+            //         })
+            //     } else {
+            //         next();
+            //     }
+            // },
             component: pcweb,
             redirect: '/first',
             children: [{
@@ -94,6 +106,41 @@ export default new Router({
                     path: 'article',
                     component: pcweb_article
                 },
+<<<<<<< HEAD
+=======
+                {
+                    path: 'article/2',
+                    component: pcweb_article2
+                },
+                {
+                    path: 'article/3',
+                    component: pcweb_article3
+                },
+                {
+                    path: 'article/4',
+                    component: pcweb_article4
+                },
+                {
+                    path: 'article/5',
+                    component: pcweb_article5
+                },
+                {
+                    path: 'article/6',
+                    component: pcweb_article6
+                },
+                {
+                    path: 'article/7',
+                    component: pcweb_article7
+                },
+                {
+                    path: 'article/8',
+                    component: pcweb_article8
+                },
+                {
+                    path: 'download',
+                    component: pcweb_download
+                }
+>>>>>>> ba5e83eafe22d4a4a3846cf2753f3d71d9746c9b
             ]
         },
 

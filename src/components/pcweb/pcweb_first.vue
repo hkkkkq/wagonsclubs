@@ -122,17 +122,10 @@
           <span @click="gonext" class="down"></span>
         </div>
       </div>
-      <div v-if="qr_show" class="qr_code">
-        <a @click="closeqr" href="javascript:;" class="cclose"></a>
-        <img src="../../assets/car_gongzhonghao.png" alt="" class="qr" />
-        <p>扫码即刻体验</p>
-      </div>
       <div class="brand">
         <span style="position: relative;left: -461px;background-color:white" class="cons"></span>
         <p style="position: relative;left: -461px;color:white" class="conp">品牌一览</p>
         <p></p>
-        <!-- <p class="brandname1">BRAND</p> -->
-        <!-- <p class="brandname2">品牌</p> -->
         <img src="../../assets/car_logos.png">
       </div>
     </div>
@@ -140,10 +133,8 @@
 </template>
 <script>
 require('swiper/dist/css/swiper.css')
-// import {swiper,swiperSlide }  from "vue-awesome-swiper";
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
-  // components: {swiper,swiperSlide},
   components: {
     swiper,
     swiperSlide
@@ -161,7 +152,6 @@ export default {
         paginationClickable: false,
         observeParents: true,
         debugger: true,
-        // onTransitionStart(swiper){},
       },
       haschoose: [1],
       cars: [],
@@ -315,7 +305,6 @@ export default {
   padding-bottom: 20px;
   line-height: 20px;
   margin: auto;
-  /* letter-spacing: -1px; */
 }
 
 .ddd img {
@@ -393,15 +382,6 @@ export default {
   display: block;
   margin: auto;
 }
-
-
-
-/* .f1 img:hover{
-    width: 300px;
-    height: 220px;
-    display: block;
-    margin: auto;
-} */
 
 .cons {
   display: inline-block;
@@ -616,15 +596,6 @@ export default {
   cursor: pointer;
 }
 
-
-
-/* .swip1{
-    overflow: hidden;
-  }
-  .swip2{
-    float:left;
-  } */
-
 .up {
   background: url("../../assets/car_left_jiantou.png");
   background-repeat: no-repeat;
@@ -685,39 +656,6 @@ export default {
   margin: auto;
   display: block;
   padding-top: 6px;
-}
-
-.qr_code {
-  z-index: 100;
-  position: fixed;
-  right: 0;
-  top: 30%;
-  width: 173px;
-  height: 234px;
-  background-color: #333333;
-}
-
-.qr_code .cclose {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 14px;
-  height: 14px;
-  background: url("../../assets/car_close.png") no-repeat;
-  background-size: 100% 100%;
-}
-
-.qr_code .qr {
-  display: block;
-  margin: 45px auto 13px;
-  width: 128px;
-  height: 128px;
-}
-
-.qr_code p {
-  font-size: 14px;
-  color: #f4f4f4;
-  text-align: center;
 }
 
 .shadow {

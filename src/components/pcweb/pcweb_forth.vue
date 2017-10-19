@@ -1,11 +1,6 @@
 <template>
 <div>
 <div class="s_banner"></div>
-<div v-if="qr_show" class="qr_code">
-        <a @click="closeqr" href="javascript:;" class="cclose"></a>
-        <img src="../../assets/car_gongzhonghao.png" alt="" class="qr"/>
-        <p>扫码即刻体验</p>
-      </div>
   <div class="con">
       <div class="sqhy">
           <transition name="fade">
@@ -61,8 +56,6 @@
           <div @click="submit" class="submit">提交资料</div>
           <p class="into">我们还将对申请用户进行抽奖活动，请务必确保以上资料正确以便邮寄奖品。</p>
       </div>
-
-
       <div class="jihua">
           <div class="jihua1">
               <p class="jihuaname">乐潮计划</p>
@@ -301,35 +294,6 @@ export default {
     margin-left: 80px;
     margin-top: 21px;
 }
- .qr_code{
-    z-index: 100;
-    position: fixed;
-    right:0;
-    top:30%;
-    width:173px;
-    height:234px;
-    background-color: #333333;
-  }
-  .qr_code .cclose{
-    position: absolute;
-    top:15px;
-    right:15px;
-    width:14px;
-    height:14px;
-    background:url("../../assets/car_close.png") no-repeat;
-    background-size:100% 100%;
-  }
-  .qr_code .qr{
-    display:block;
-    margin:45px auto 13px;
-    width:128px;
-    height:128px;
-  }
-  .qr_code p{
-    font-size:14px;
-    color:#f4f4f4;
-    text-align: center;
-  }
 .alert .p4{
     font-size: 18px;
     color: #090405;

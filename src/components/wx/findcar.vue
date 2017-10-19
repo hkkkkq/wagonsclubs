@@ -199,7 +199,7 @@ export default {
                 }, 200)
             } else {//安卓应用宝下载
                 setTimeout(() => {
-                    location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
+                    location.href = 'http://m.anzhi.com/share_2862728.html?azfrom=anzhi&host=details&pkg=com.wagons.app&flag=1&aztype=qr'
                 }, 200)
             }
         },
