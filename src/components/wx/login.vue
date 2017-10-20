@@ -2,10 +2,10 @@
     <div style="font-family: PingFangSC-Light, sans-serif;position:absolute;width:100%;height:100%">
         <div style="width:100%;height:100%">
             <transition name="scale">
-            <img v-if="bg" class="bg" src="../../assets/app/loginbg.png">
+            <img  :style="{height:clientHeight+'px'}" v-if="bg" class="bg" src="../../assets/app/loginbg.png">
             </transition>
             <transition name="fade">
-            <div v-if="bgzz" class="bgzz"></div>
+            <div v-if="bgzz" :style="{height:clientHeight+'px'}" class="bgzz"></div>
             </transition>
             <img class="logo" src="../../assets/app/loginlogo.png">
             <div class="in">
@@ -34,6 +34,7 @@ export default {
             butcl:false,
             bgzz:false,
             bg:false,
+            clientHeight:'',
             ve:"获取验证码"
         }
     },
@@ -41,6 +42,7 @@ export default {
         setTimeout(()=>{
             this.bgzz = true;
             this.bg = true;
+            this.clientHeight = document.documentElement.clientHeight;
         },0)
     },
     computed:{  
@@ -153,7 +155,7 @@ export default {
     font-size: 0.2rem;
     color: #ffffff;
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 2.8rem;
 }
 .but{
     width: 5rem;
@@ -246,7 +248,7 @@ width: 0.3rem;
 
 .bgzz {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     background: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
@@ -256,7 +258,7 @@ width: 0.3rem;
 
 .bg {
     width: 100%;
-    height: 100%;
+    /* height: 12rem; */
     position: absolute;
     z-index: -2;
 }
