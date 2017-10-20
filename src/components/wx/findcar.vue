@@ -114,9 +114,9 @@ export default {
       this.$store.commit("wxAppShare");
     }
     if (this.$route.query.WAG) {
-      // this.$store.commit("setOpenId", this.$route.query.WAG);
+      this.$store.commit("setOpenId", this.$route.query.WAG);
     }
-    this.$store.commit('setOpenId', "oEUUVv_6lXDk2XuAwSIWaqtvXbDI")
+    // this.$store.commit('setOpenId', "oEUUVv_6lXDk2XuAwSIWaqtvXbDI")
     //监听滚动事件
     window.addEventListener("scroll", this.handleScroll);
 

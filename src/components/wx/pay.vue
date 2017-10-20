@@ -457,7 +457,7 @@ export default {
           sendAddr: vm.startadd,
           returnAddr: vm.endadd,
           totalFee: vm.total * 100,
-          cashFee: 1,/*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/
+          cashFee: (vm.carData.memberId == 2)?1:vm.cashFee * 100,/*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/
           orderType: 2
         }),
         headers: {
