@@ -72,7 +72,7 @@ export default {
       }
     },
     goar(n) {
-      this.$ajax(BASE_URL + n).then(res => {
+      this.$ajax(BASE_URL +"/"+ n).then(res => {
         this.$store.commit("articleDetails", res.data);
         this.$router.push("/article");
       });

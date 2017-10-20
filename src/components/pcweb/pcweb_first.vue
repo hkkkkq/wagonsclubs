@@ -222,7 +222,7 @@ export default {
       this.qr_show = false;
     },
     goar(n) {
-      this.$ajax(BASE_URL+n)
+      this.$ajax(BASE_URL+"/"+n)
       .then((res)=>{
         this.$store.commit('articleDetails',res.data);
         this.$router.push('/article')

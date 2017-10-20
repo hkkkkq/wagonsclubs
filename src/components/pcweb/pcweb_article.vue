@@ -33,33 +33,35 @@ export default {
   },
   methods: {
     gonext() {
-        if(this.article.data.reading.nextReading){
-      this.$ajax(BASE_URL + this.article.data.reading.nextReading).then(res => {
-        this.$store.commit("articleDetails", res.data);
-      });
-        }else{
-            return
-        }
-
+      if (this.article.data.reading.nextReading) {
+        this.$ajax(
+          BASE_URL + "/" + this.article.data.reading.nextReading
+        ).then(res => {
+          this.$store.commit("articleDetails", res.data);
+        });
+      } else {
+        return;
+      }
     },
-    goprev(){
-        if(this.article.data.reading.upReading){
-            this.$ajax(BASE_URL+this.article.data.reading.upReading)
-            .then(res=>{
-        this.$store.commit("articleDetails", res.data);
-            })
-        }else{
-            return
-        }
+    goprev() {
+      if (this.article.data.reading.upReading) {
+        this.$ajax(
+          BASE_URL + "/" + this.article.data.reading.upReading
+        ).then(res => {
+          this.$store.commit("articleDetails", res.data);
+        });
+      } else {
+        return;
+      }
     }
   }
 };
 </script>
 
 <style>
-.no{
-color: #acacac!important; 
-cursor: no-drop!important;
+.no {
+  color: #acacac !important;
+  cursor: no-drop !important;
 }
 .arccc img {
   width: 100%;
