@@ -34,7 +34,7 @@
 
             </div>
             <h1>{{item.title}}</h1>
-            <div>{{item.contentAbstract}}</div>
+            <div>{{item.contentAbstract}}......</div>
           </div>
         </div>
       </div>
@@ -341,9 +341,7 @@ export default {
 }
 
 .f1 h1 {
-  width: 320px;
   background: white;
-  /* font-weight: bolder; */
   font-size: 16px;
   padding-left: 0px;
   text-indent: 10px;
@@ -378,7 +376,7 @@ export default {
 
 .f1 img {
   width: 318px;
-  height: 100%;
+  height: 230px;
   display: block;
   margin: auto;
 }

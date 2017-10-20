@@ -153,10 +153,7 @@ export default {
     font-size: 0.2rem;
     color: #ffffff;
     text-align: center;
-    position: absolute;
-    bottom: 0.35rem;
-    left: 0;
-    right: 0;
+    margin-top: 3rem;
 }
 .but{
     width: 5rem;

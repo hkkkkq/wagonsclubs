@@ -62,8 +62,6 @@
             </div>
             <img @click="cl" class="ax" src="../../assets/app/xx.png">
         </div>
-        <!-- <div class="wxempty"></div> -->
-        <!-- <div v-if="wxAppShare" class="download"></div> -->
     </div>
 </template>
 
@@ -220,27 +218,19 @@ export default {
         sub() {
             if (this.wxAppShare == true) {
                 if (/iPhone|iPod/i.test(navigator.userAgent)) {
-                    setTimeout(() => {
+                    // setTimeout(() => {
                         location.href = 'itms-apps://itunes.apple.com/app/id1279198452';
-                    }, 200)
+                    // }, 200)
                 } else {
-                    setTimeout(() => {
+                    // setTimeout(() => {
                         location.href = 'http://m.anzhi.com/share_2862728.html?azfrom=anzhi&host=details&pkg=com.wagons.app&flag=1&aztype=qr'
-                    }, 200)
+                    // }, 200)
                 }
             }
             var vm = this;
             if (this.isapp) {
                 window.Wground.getApiToken(suc, fail)//suc在下面
             } else {
-                // if (this.wxAppShare == true) {
-                //     //去下载
-                //     if (/iPhone|iPod/i.test(navigator.userAgent)) {
-                //         location.href = 'itms-apps://itunes.apple.com/app/id1279198452'
-                //     } else {//安卓应用宝下载
-                //         location.href = 'http://download.zhushou.sogou.com/open/files/year_2017/day_20171009/e514d6dd784055bfc17828d29593c400.apk'
-                //     }
-                // } else {
                 this.$ajax({
                     url: BASE_URL + "/car/isBinding",
                     method: 'GET',
@@ -337,20 +327,6 @@ export default {
 </script>
 
 <style scoped>
-/* .download{
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 1.36rem;
-    background: rgba(0,0,0,0.8);
-}
-.wxempty{
-    display: block;
-    width: 100%;
-    height: 1.36rem;
-} */
-
 .cr {
     position: absolute;
     width: 100%;

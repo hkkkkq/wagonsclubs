@@ -22,7 +22,7 @@
     <router-view></router-view>
     <div v-if="qr_show" class="rightlab">
       <a @click="closeqr" href="javascript:;" class="cclose"></a>
-      <img src="../../assets/car_dingyuehao.png" alt="" class="qr" />
+      <img src="../../assets/dingyuhao1.jpeg" alt="" class="qr" />
       <p>扫码关注我们</p>
       <img style="margin-top: 10px;" src="../../assets/appqr.png" alt="" class="qr" />
       <p>立即下载APP</p>
