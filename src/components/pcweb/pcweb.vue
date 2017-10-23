@@ -20,25 +20,44 @@
       <span class="phone"></span>
     </div>
     <router-view></router-view>
-    <div v-if="qr_show" class="rightlab">
-      <a @click="closeqr" href="javascript:;" class="cclose"></a>
+    <!-- <transition name="fade"> -->
+    <div v-show="aboutus" class="rightlab">
+      <span @click="close(1)" class="clo">—</span>
       <img src="../../assets/dingyuhao1.jpeg" alt="" class="qr" />
-      <p>扫码关注我们</p>
+      <p>关注我们</p>
       <img style="margin-top: 10px;" src="../../assets/appqr.png" alt="" class="qr" />
-      <p>立即下载APP</p>
+      <p>下载APP</p>
       <br>
     </div>
-    <!-- <div class="QQ">
-      <img @click="qqserver" src="../../assets/qqserver.png">
-      <transition name="fade">
-        <div :class="{'QQhide':qqshow}" v-show="qqshow">
-          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2::52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1036335394&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1036335394:52" alt="点击这里给我发消息" title="点击这里给我发消息" /></a>
-          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1036335394&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1036335394:52" alt="点击这里给我发消息" title="点击这里给我发消息" /></a>
-          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1036335394&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1036335394:52" alt="点击这里给我发消息" title="点击这里给我发消息" /></a>
-        </div>
-      </transition>
-    </div> -->
+    <!-- </transition> -->
+    <div v-show="onlineServer" class="kefu">
+      <span @click="close(2)" class="clo">—</span>
+      <h1>WAGONS</h1>
+      <h2>在线客服</h2>
+      <p></p>
+      <div @click="talk(1)" class="hm">
+        <img src='../../assets/ella.png'>
+        <span>Ella</span>
+      </div>
+      <div @click="talk(2)" class="hm">
+        <img src='../../assets/angela.png'>
+        <span>Angela</span>
+      </div>
+      <div @click="talk(3)" class="hm">
+        <img src='../../assets/grace.png'>
+        <span>Grace</span>
+      </div>
+      <p></p>
+      <h2>欢迎咨询！</h2>
+    </div>
+    <div v-show="!aboutus" @click="Expand(1)" class="aboutus">
+      <img src="../../assets/littleqr_03.png">
+      <span>关注我们</span>
+    </div>
+    <div v-show="!onlineServer" @click="Expand(2)" class="onlineServer">
+      <img src="../../assets/QQ_07.png">
+      <span>在线客服</span>
+    </div>
     <div class="footer">
       <p class="no1">合作伙伴：搬运工&nbsp;&nbsp;
         <a href="https://www.huoqiu.cn" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">火球理财</a>&nbsp;&nbsp;
@@ -56,90 +75,226 @@ export default {
       homeactive2: false,
       homeactive3: false,
       homeactive4: false,
-      qr_show: true,
-      qqshow: false
-    }
+      onlineServer: true,
+      aboutus: true
+    };
   },
   mounted() {
-    window.scroll(0, 0)
+    window.scroll(0, 0);
     let i = this.$route.path;
-    if (i == '/first') { this.changecolor1() }
-    if (i == '/second') { this.changecolor2() }
-    if (i == '/third') { this.changecolor3() }
-    if (i == '/forth') { this.changecolor4() }
+    if (i == "/first") {
+      this.changecolor1();
+    }
+    if (i == "/second") {
+      this.changecolor2();
+    }
+    if (i == "/third") {
+      this.changecolor3();
+    }
+    if (i == "/forth") {
+      this.changecolor4();
+    }
   },
   methods: {
-    qqserver(){
-      if(this.qqshow == true){
-        this.qqshow = false
-      }else{
-        this.qqshow = true
+    Expand(n) {
+      if (n == 1) {
+        this.aboutus = true;
+      } else {
+        this.onlineServer = true;
       }
     },
-    closeqr: function() {
-      this.qr_show = false;
+    close(n) {
+      if (n == 1) {
+        this.aboutus = false;
+      } else if (n == 2) {
+        this.onlineServer = false;
+      }
+    },
+    talk(n) {
+      if (n == 1) {
+        //刘旭婷
+        window.open(
+          "http://wpa.qq.com/msgrd?v=3&uin=1036335394&site=qq&menu=yes"
+        );
+      } else if (n == 2) {
+        //马晨
+        window.open(
+          "http://wpa.qq.com/msgrd?v=3&uin=1036335394&site=qq&menu=yes"
+        );
+      } else if (n == 3) {
+        window.open("http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes");
+      }
     },
     changecolor1: function() {
-      this.homeactive1 = true
-      this.homeactive2 = false
-      this.homeactive3 = false
-      this.homeactive4 = false
+      this.homeactive1 = true;
+      this.homeactive2 = false;
+      this.homeactive3 = false;
+      this.homeactive4 = false;
     },
     changecolor2: function() {
-      this.homeactive1 = false
-      this.homeactive2 = true
-      this.homeactive3 = false
-      this.homeactive4 = false
-
+      this.homeactive1 = false;
+      this.homeactive2 = true;
+      this.homeactive3 = false;
+      this.homeactive4 = false;
     },
     changecolor3: function() {
-      this.homeactive1 = false
-      this.homeactive2 = false
-      this.homeactive3 = true
-      this.homeactive4 = false
-
+      this.homeactive1 = false;
+      this.homeactive2 = false;
+      this.homeactive3 = true;
+      this.homeactive4 = false;
     },
     changecolor4: function() {
-      this.homeactive1 = false
-      this.homeactive2 = false
-      this.homeactive3 = false
-      this.homeactive4 = true
+      this.homeactive1 = false;
+      this.homeactive2 = false;
+      this.homeactive3 = false;
+      this.homeactive4 = true;
     },
     ind() {
-      location.href = location.origin
+      location.href = location.origin;
     }
   }
-
-
-}
+};
 </script>
-<style type="text/css" scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 1s ease-in-out
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
-  opacity: 0;
-}
-.QQhide{
-  /* width: 0; */
-}
-.QQ>div {
-  display: inline-block;
-  /* transition: width 0.5s; */
-  width: 90px;
-}
-
-.QQ>img {
-  width: 37px;
-  display: inline-block;
-}
-
-.QQ {
+<style lang='scss' type="text/css" scoped>
+.aboutus {
+  width: 126px;
+  height: 45px;
+  background: #272727;
   position: fixed;
   right: 0;
-  bottom: 76px;
+  display: flex;
+  display: -webkit-flex;
+  bottom: 140px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: #fff;
+  img {
+    width: 18px;
+    margin: auto;
+  }
+  span{
+    width: 65px;
+    margin: auto;
+    font-size: 14px;
+  }
+}
+.onlineServer {
+  width: 126px;
+  height: 45px;
+  display: flex;
+  display: -webkit-flex;
+  background: #fed945;
+  width: 127px;
+  height: 45px;
+  position: fixed;
+  right: 0;
+  bottom: 70px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: #272727;
+  img{
+    width: 20px;
+    height: 24px;
+    margin: auto;
+  }
+  span{
+    width: 65px;
+    margin: auto;
+    font-size: 14px;
+  }
+}
+.kefu {
+  width: 126px;
+  position: fixed;
+  background: #fed945;
+  height: 316px;
+  right: 0;
+  color: #000000;
+  z-index: 100;
+  top: 390px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  .clo {
+    width: 1.1rem;
+    height: 1.1rem;
+    background: #e8c742;
+    font-size: 1px;
+    text-align: center;
+    line-height: 16px;
+    display: block;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    margin-left: 0.8rem;
+    color: #ffffff;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 10px;
+  }
+  h2 {
+    font-size: 14px;
+    text-indent: 13px;
+    margin-top: 8px;
+  }
+  p {
+    border-top: 1px solid #666666;
+    opacity: 0.3;
+    width: 100px;
+    margin: auto;
+    margin-top: 14px;
+  }
+  .hm {
+    display: flex;
+    display: -webkit-flex;
+    width: 100px;
+    height: 45px;
+    background: #272727;
+    margin: 10px;
+    border-radius: 4px;
+    img {
+      margin: auto;
+      width: 32px;
+    }
+    span {
+      color: #fff;
+      margin: auto;
+      width: 50px;
+    }
+  }
 }
 
+.fade-enter-active{
+  animation: myfirst 1s reverse;  
+}
+.fade-leave-active {
+  animation: myfirst 1s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.rightlab .clo {
+  background: #3d3d3d;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  width: 1.1rem;
+  height: 1.1rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-left: 0.8rem;
+  font-size: 1px;
+  line-height: 16px;
+}
 .rightlab p {
   font-size: 14px;
   color: #f4f4f4;
@@ -148,29 +303,21 @@ export default {
 
 .rightlab .qr {
   display: block;
-  margin: 37px auto 13px;
-  width: 128px;
-  height: 128px;
-}
-
-.rightlab .cclose {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 14px;
-  height: 14px;
-  background: url("../../assets/car_close.png") no-repeat;
-  background-size: 100% 100%;
+  margin: 18px auto 13px auto;
+  width: 94px;
+  height: auto;
 }
 
 .rightlab {
-  width: 173px;
+  width: 126px;
   position: fixed;
   right: 0;
-  top: 25%;
+  top: 53px;
   height: auto;
   background-color: #333333;
   z-index: 100;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .oo {
@@ -193,12 +340,13 @@ export default {
 }
 
 .pcweb {
-  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue",
+    Calibri, Helvetica, Arial, sans-serif;
   background-color: #fff;
 }
 
 .active {
-  color: #090405!important;
+  color: #090405 !important;
 }
 
 .header {
@@ -265,7 +413,7 @@ export default {
 
 .phone {
   float: right;
-  background: url('../../assets/car_tel.png') 0 5px no-repeat;
+  background: url("../../assets/car_tel.png") 0 5px no-repeat;
   display: block;
   width: 242px;
   height: 45px;

@@ -16,7 +16,7 @@
                     <div class="lf">
                         <p style="font-size: 0;display: inline-block;width: 6.25rem;">
                             <span @click="starttime" class="date">{{startob == ""?"请选择开始用车时间":(startob.month+1+"-"+startob.date)}}
-                                <b style="margin-right: 0.18rem;">{{sxqj == undefined?"":sxqj}}</b>
+                                <b style="margin-left: 0.3rem;">{{sxqj == undefined?"":sxqj}}</b>
                                 <b>{{startob == ""?"":((parseInt(startob.shi)<10? "0"+parseInt(startob.shi):parseInt(startob.shi))+ ":"+(parseInt(startob.fen)==0? "00":parseInt(startob.fen)))}}</b>
                                 <img src="../../assets/app/der.jpg">
                             </span>
@@ -32,7 +32,7 @@
                         <p style="font-size: 0;display: inline-block;width: 6.25rem;">
                             <span @click="endtime" class="date">{{endob == ""?"请选择结束用车时间":(endob.month+1+"-"+endob.date)}}
                                 <b>{{endob == ""?"":((parseInt(endob.shi)<10? "0"+parseInt(endob.shi):parseInt(endob.shi))+ ":"+(parseInt(endob.fen)==0? "00":parseInt(endob.fen)))}}</b>
-                                <b style="margin-right: 0.18rem;">{{exqj == undefined?"":exqj}}</b>
+                                <b style="margin-left: 0.3rem;">{{exqj == undefined?"":exqj}}</b>
                                 <img src="../../assets/app/der.jpg">
                             </span>
                             <div></div>
@@ -676,6 +676,7 @@ input::-webkit-input-placeholder {
   margin-top: 0.4rem;
   margin-bottom: 0.2rem;
   margin-left: 0.3rem;
+  font-size: 0.24rem;
 }
 
 .lf b {
@@ -699,7 +700,7 @@ input::-webkit-input-placeholder {
 
 .date {
   vertical-align: top;
-  font-size: 0.4rem;
+  font-size: 0.3rem;
   color: #ffffff;
   display: inline-block;
 }
