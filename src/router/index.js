@@ -43,6 +43,10 @@ const wx_orders = resolve => require(['../components/wx/orders.vue'], resolve);
 const wx_orderdetail = resolve => require(['../components/wx/orderdetail.vue'], resolve);
 const wx_login = resolve => require(['../components/wx/login.vue'], resolve);
 const wx_test = resolve => require(['../components/wx/test.vue'], resolve);
+const wx_card = resolve => require(['../components/wx/card.vue'], resolve);
+const wx_cardfirst = resolve => require(['../components/wx/cardfirst.vue'], resolve);
+const wx_cardsecond = resolve => require(['../components/wx/cardsecond.vue'], resolve);
+const wx_cardthird = resolve => require(['../components/wx/cardthird.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -231,6 +235,24 @@ export default new Router({
         {
             path: '/wx/test',
             component: wx_test
+        },
+        {
+            path: '/wx/card',
+            component: wx_card,
+            redirect: '/wx/card/first',
+            children: [{
+                    path: 'first',
+                    component: wx_cardfirst
+                },
+                {
+                    path: 'second',
+                    component: wx_cardsecond
+                },
+                {
+                    path: 'third',
+                    component: wx_cardthird
+                }
+            ]
         },
         // {
         //     path: '/wx/memshow',
