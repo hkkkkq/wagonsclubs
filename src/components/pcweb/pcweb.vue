@@ -172,7 +172,7 @@ export default {
     width: 18px;
     margin: auto;
   }
-  span{
+  span {
     width: 65px;
     margin: auto;
     font-size: 14px;
@@ -192,12 +192,12 @@ export default {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #272727;
-  img{
+  img {
     width: 20px;
     height: 24px;
     margin: auto;
   }
-  span{
+  span {
     width: 65px;
     margin: auto;
     font-size: 14px;
@@ -215,6 +215,7 @@ export default {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   .clo {
+    cursor: pointer;
     width: 1.1rem;
     height: 1.1rem;
     background: #e8c742;
@@ -249,6 +250,7 @@ export default {
     display: flex;
     display: -webkit-flex;
     width: 100px;
+    cursor: pointer;
     height: 45px;
     background: #272727;
     margin: 10px;
@@ -265,8 +267,8 @@ export default {
   }
 }
 
-.fade-enter-active{
-  animation: myfirst 1s reverse;  
+.fade-enter-active {
+  animation: myfirst 1s reverse;
 }
 .fade-leave-active {
   animation: myfirst 1s;
@@ -289,6 +291,7 @@ export default {
   display: block;
   width: 1.1rem;
   height: 1.1rem;
+  cursor: pointer;
   text-align: center;
   margin-top: 0.5rem;
   margin-left: 0.8rem;

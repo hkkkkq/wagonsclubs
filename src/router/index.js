@@ -25,6 +25,7 @@ const app_law = resolve => require(['../components/app/law.vue'], resolve);
 const app_test = resolve => require(['../components/app/test.vue'], resolve);
 const app_v1 = resolve => require(['../components/app/v1.vue'], resolve);
 const app_v2 = resolve => require(['../components/app/v2.vue'], resolve);
+const app_v3 = resolve => require(['../components/app/v3.vue'], resolve);
 //wechat
 const wx_findcar = resolve => require(['../components/wx/findcar.vue'], resolve);
 const wx_hd = resolve => require(['../components/wx/hd.vue'], resolve);
@@ -133,6 +134,7 @@ export default new Router({
                 {
                     path: 'test',
                     component: app_test,
+                    redirect: 'test/v1',
                     children: [{
                             path: "v1",
                             component: app_v1
@@ -140,6 +142,10 @@ export default new Router({
                         {
                             path: "v2",
                             component: app_v2
+                        },
+                        {
+                            path: "v3",
+                            component: app_v3
                         }
                     ]
                 },

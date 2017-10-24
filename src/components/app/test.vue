@@ -2,7 +2,7 @@
 <div>
     <router-link @click.native="click(1)" to="/app/test/v1">to  v1</router-link>
     <router-link @click.native="click(2)" to="/app/test/v2">to  v2</router-link>
-    <transition :name="direction">
+    <transition name="fade">
     <router-view class="child-view"></router-view>
     </transition>
 </div>
@@ -25,19 +25,15 @@ export default {
 </script>
 
 <style scoped>
-.slide-left-enter, .slide-right-leave-active {
-  opacity: 0;
-  -webkit-transform: translate(100%, 0);
-  transform: translate(100%, 0);
-}
-.slide-left-leave-active, .slide-right-enter {
-  opacity: 0;
-  -webkit-transform: translate(-100%, 0);
-  transform: translate(-100%, 0);
-}
 .child-view {
   position: absolute;
-  width:100%;
-  transition: all .8s ;
+} 
+.fade-enter-active, .fade-leave-active {
+  transition: all .3s;
+  opacity: 0.1;
+  background: #666666;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
 }
 </style>
