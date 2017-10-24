@@ -58,7 +58,10 @@ export default {
                     vm.$router.push('/wx/login')
                 } else {
                     vm.$ajax(BASE_URL + "/car/orderList")
-                        .then((res) => { this.resdata = res.data;console.log(this.resdata) })
+                        .then((res) => {
+                             vm.resdata = res.data;
+                             alert(vm.resdata.data.orderList.length)
+                              })
                 }
             })
     },
