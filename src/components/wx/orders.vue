@@ -2,7 +2,7 @@
     <div style="position:absolute;width:100%;height:100%">
         <div style="min-height:100%;background:#0f1923;width:100%">
             <h1 style="width:100%;height:0.2rem"></h1>
-            <div v-if="resdata.data.orderList.length == 0">
+            <div v-if="resdata.data.orderList.length != 0">
                 <div :key="index" v-for="(item,index) in resdata.data.orderList" class="one">
                     <p class="title">
                         <span class="carname">{{item.carName}}</span>
@@ -60,7 +60,6 @@ export default {
                     vm.$ajax(BASE_URL + "/car/orderList")
                         .then((res) => {
                              vm.resdata = res.data;
-                             alert(vm.resdata.data.orderList.length)
                               })
                 }
             })
