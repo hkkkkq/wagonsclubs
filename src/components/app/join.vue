@@ -159,6 +159,15 @@
                 <b>
                     <span class="rad"></span>优质老客户还有多重优惠，有机会免押金用车</b>
             </div>
+            <h1 class="card">如果您有多次用车需求，可以办理充值卡，享受更加优惠的价格及更多VIP待遇</h1>            
+            <div class="carddiv">
+                <div><p style="border-top:0">充值金额</p><p style="border-top:0">赠送礼金</p><p style="border-top:0;border-right:0">折扣力度</p></div>
+                <div><p>10000元</p><p>800元</p><p style="border-right:0">9.2折</p></div>
+                <div><p>30000元</p><p>3600元</p><p style="border-right:0">8.8折</p></div>
+                <div><p>50000元</p><p>7500元</p><p style="border-right:0">8.5折</p></div>
+                <div><p>100000元</p><p>20000元</p><p style="border-right:0">8折</p></div>
+            </div>
+            <h1 class="card">您可以到店咨询办理实体卡，也可以在线充值办理</h1>
             <!-- <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link> -->
             <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
             <p style="height: 0.5rem;"></p>
@@ -191,238 +200,266 @@
 
 <script>
 export default {
-    data() {
-        return {
-            at: false,
-            lechao: false,
-            youxiang: false,
-            zhizun: false,
-            isapp:''
-        }
-    },
-    created() {
-        window.scrollTo(0, 0);
-        if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
-            this.isapp = true
-        } else {
-            this.isapp = false
-        }
-    },
-    methods: {
-        cl() {
-            this.at = false
-        },
-        ch(n) {
-            this.lechao = this.youxiang = this.zhizun = false
-            if (n == 1) { this.lechao = true }
-            if (n == 2) { this.youxiang = true }
-            if (n == 3) { this.zhizun = true }
-            this.at = true;
-        },
-        goapply(){
-            this.$router.push('/app/apply')
-        }
+  data() {
+    return {
+      at: false,
+      lechao: false,
+      youxiang: false,
+      zhizun: false,
+      isapp: ""
+    };
+  },
+  created() {
+    window.scrollTo(0, 0);
+    if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
+      this.isapp = true;
+    } else {
+      this.isapp = false;
     }
-}
+  },
+  methods: {
+    cl() {
+      this.at = false;
+    },
+    ch(n) {
+      this.lechao = this.youxiang = this.zhizun = false;
+      if (n == 1) {
+        this.lechao = true;
+      }
+      if (n == 2) {
+        this.youxiang = true;
+      }
+      if (n == 3) {
+        this.zhizun = true;
+      }
+      this.at = true;
+    },
+    goapply() {
+      this.$router.push("/app/apply");
+    }
+  }
+};
 </script>
 
-<style scoped>
-.but{
-    margin: 0!important;
-        z-index: 1!important;
-    line-height: 1rem!important;
-    position: fixed!important;
-    bottom: 0!important;
-    display: block!important;
-    width: 100%!important;
-    height: 0.98rem!important;
-    color: #333333!important;
-    text-align: center!important;
-    background-color: #fed945!important;
-    font-size: 0.32rem!important;
-    font-family: -webkit-body!important;
-    left: 0;
+<style lang='scss' scoped>
+.carddiv {
+  background: #273039;
+  color: #999999;
+  font-size: 0.22rem;
+  div {
+    display: flex;
+    display: -webkit-flex;
+  }
+  p {
+    margin: auto;
+    display: inline-block;
+    width: 3rem;
+    text-align: center;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    border-top: 1px solid #999999;
+    border-right: 1px solid #999999;
+  }
+}
+.card {
+  font-size: 0.24rem;
+  color: #ffffff;
+  line-height: 0.4rem;
+  margin: 0.2rem 0;
+}
+.but {
+  margin: 0 !important;
+  z-index: 1 !important;
+  line-height: 1rem !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 0.98rem !important;
+  color: #333333 !important;
+  text-align: center !important;
+  background-color: #fed945 !important;
+  font-size: 0.32rem !important;
+  font-family: -webkit-body !important;
+  left: 0;
 }
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity .5s;
-    -moz-transition: opacity .5s;
-    /* Firefox 4 */
-    -webkit-transition: opacity .5s;
-    /* Safari 和 Chrome */
-    -o-transition: opacity .5s;
-    /* Opera */
+  transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  /* Firefox 4 */
+  -webkit-transition: opacity 0.5s;
+  /* Safari 和 Chrome */
+  -o-transition: opacity 0.5s;
+  /* Opera */
 }
 
 .fade-enter,
-.fade-leave-to
-/* .fade-leave-active in below version 2.1.8 */
-
-{
-    opacity: 0
+.fade-leave-to {
+  opacity: 0;
 }
 
 .att {
-    position: absolute;
-    bottom: 3.1rem;
-    left: 0;
-    right: 0;
+  position: absolute;
+  bottom: 3.1rem;
+  left: 0;
+  right: 0;
 }
 
 .ax {
-    z-index: 1;
-    width: 0.68rem;
-    height: 0.68rem;
-    display: block;
-    margin: auto;
-    position: fixed;
-    bottom: 1.18rem;
-    left: 3.2rem;
+  z-index: 1;
+  width: 0.68rem;
+  height: 0.68rem;
+  display: block;
+  margin: auto;
+  position: fixed;
+  bottom: 1.18rem;
+  left: 3.2rem;
 }
 
 .ms {
-    background: #ffffff;
-    font-size: 0.24rem;
-    color: #333333;
-    min-height: 2.28rem;
-    width: 4.52rem;
-    padding: 0.4rem 0.32rem 0.48rem 0.32rem;
-    line-height: 0.4rem;
-    display: block;
-    margin: auto;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+  background: #ffffff;
+  font-size: 0.24rem;
+  color: #333333;
+  min-height: 2.28rem;
+  width: 4.52rem;
+  padding: 0.4rem 0.32rem 0.48rem 0.32rem;
+  line-height: 0.4rem;
+  display: block;
+  margin: auto;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .al .at {
-    width: 5.17rem;
-    margin: auto;
-    display: block;
-    margin-top: 3rem;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+  width: 5.17rem;
+  margin: auto;
+  display: block;
+  margin-top: 3rem;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .yl {
-    font-size: 0.3rem;
-    color: #ffffff;
-    position: absolute;
-    top: 13em;
-    left: 2.5rem;
+  font-size: 0.3rem;
+  color: #ffffff;
+  position: absolute;
+  top: 13em;
+  left: 2.5rem;
 }
 
 .al {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    display: block;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    font-size: 0;
-    background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: block;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  font-size: 0;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .uv {
-    font-size: 0.24rem;
-    color: #ffffff;
-    width: 6.6rem;
-    position: absolute;
-    top: 0.6rem;
-    left: 0.4rem;
-    line-height: 0.4rem;
+  font-size: 0.24rem;
+  color: #ffffff;
+  width: 6.6rem;
+  position: absolute;
+  top: 0.6rem;
+  left: 0.4rem;
+  line-height: 0.4rem;
 }
 
 .rad {
-    display: inline-block;
-    vertical-align: top;
-    width: 5px;
-    height: 5px;
-    background: #999999;
-    border-radius: 10px;
-    margin-top: 0.05rem;
-    margin-right: 0.3rem;
+  display: inline-block;
+  vertical-align: top;
+  width: 5px;
+  height: 5px;
+  background: #999999;
+  border-radius: 10px;
+  margin-top: 0.05rem;
+  margin-right: 0.3rem;
 }
 
-.qq>b {
-    display: block;
-    margin-bottom: 0.2rem;
-    margin-top: 0.2rem;
-    margin-left: 0.2rem;
-    font-size: 0.22rem;
-    color: #999999;
+.qq > b {
+  display: block;
+  margin-bottom: 0.2rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+  font-size: 0.22rem;
+  color: #999999;
 }
 
 .ff span {
-    vertical-align: top;
-    font-size: 0.16rem;
-    color: white;
-    display: inline-block;
-    width: 0.28rem;
-    height: 0.24rem;
-    background: #4b535a;
-    border-radius: 4px;
-    text-align: center;
-    padding-top: 0.04rem;
-    margin-top: 0.04rem;
-    line-height: 0.23rem;
+  vertical-align: top;
+  font-size: 0.16rem;
+  color: white;
+  display: inline-block;
+  width: 0.28rem;
+  height: 0.24rem;
+  background: #4b535a;
+  border-radius: 4px;
+  text-align: center;
+  padding-top: 0.04rem;
+  margin-top: 0.04rem;
+  line-height: 0.23rem;
 }
 
 .ff b {
-    margin-left: 0.13rem;
-    font-size: 0.22rem;
-    display: inline-block;
-    width: 6.07rem;
-    color: #999999;
-    vertical-align: top;
-    line-height: 0.38rem;
+  margin-left: 0.13rem;
+  font-size: 0.22rem;
+  display: inline-block;
+  width: 6.07rem;
+  color: #999999;
+  vertical-align: top;
+  line-height: 0.38rem;
 }
 
 .ff {
-    display: block;
-    font-size: 0;
-    margin-bottom: 0.3rem;
+  display: block;
+  font-size: 0;
+  margin-bottom: 0.3rem;
 }
 
-.qq>h1 {
-    font-size: 0.24rem;
-    margin-top: 0.32rem;
-    margin-bottom: 0.36rem;
-    height: 0.1rem;
+.qq > h1 {
+  font-size: 0.24rem;
+  margin-top: 0.32rem;
+  margin-bottom: 0.36rem;
+  height: 0.1rem;
 }
 
-.qq>p {
-    font-size: 0.26rem;
-    color: white;
-    padding-bottom: 0.36rem;
-    border-bottom: 1px solid #3d454d;
+.qq > p {
+  font-size: 0.26rem;
+  color: white;
+  padding-bottom: 0.36rem;
+  border-bottom: 1px solid #3d454d;
 }
 
 .qq {
-    width: 6.5rem;
-    border-radius: 0.04rem;
-    background: #273039;
-    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
-    margin-bottom: 0.2rem;
+  width: 6.5rem;
+  border-radius: 0.04rem;
+  background: #273039;
+  padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+  margin-bottom: 0.2rem;
 }
 
-.cc>p {
-    color: white;
-    font-size: 0.24rem;
-    border-left: 2px solid #fed945;
-    text-indent: 0.18rem;
-    margin-top: 0.32rem;
-    margin-bottom: 0.16rem;
+.cc > p {
+  color: white;
+  font-size: 0.24rem;
+  border-left: 2px solid #fed945;
+  text-indent: 0.18rem;
+  margin-top: 0.32rem;
+  margin-bottom: 0.16rem;
 }
 
 .banner {
-    width: 100%;
-    height: 2.4rem;
-    display: block;
+  width: 100%;
+  height: 2.4rem;
+  display: block;
 }
 
 .cc {
-    width: 7.1rem;
-    margin: auto;
+  width: 7.1rem;
+  margin: auto;
 }
 </style>

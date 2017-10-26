@@ -40,7 +40,11 @@ require('../app/rem.js')(window, document)
 export default {
     data() {
         return {
-            resdata: ''
+            resdata: {
+                data:{
+                    orderList:[]
+                }
+            }
         }
     },
     created() {
