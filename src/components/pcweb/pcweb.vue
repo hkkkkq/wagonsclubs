@@ -22,7 +22,7 @@
     <router-view></router-view>
     <!-- <transition name="fade"> -->
     <div v-show="aboutus" class="rightlab">
-      <span @click="close(1)" class="clo">—</span>
+      <span @click="close(1)" class="clo">--</span>
       <img src="../../assets/dingyuhao1.jpeg" alt="" class="qr" />
       <p>关注我们</p>
       <img style="margin-top: 10px;" src="../../assets/appqr.png" alt="" class="qr" />
@@ -31,7 +31,7 @@
     </div>
     <!-- </transition> -->
     <div v-show="onlineServer" class="kefu">
-      <span @click="close(2)" class="clo">—</span>
+      <span @click="close(2)" class="clo">--</span>
       <h1>WAGONS</h1>
       <h2>在线客服</h2>
       <p></p>
@@ -171,10 +171,13 @@ export default {
   img {
     width: 18px;
     margin: auto;
+    margin-left: 16px;
+    margin-right: 0;
   }
   span {
     width: 65px;
     margin: auto;
+    margin-left: 14px;
     font-size: 14px;
   }
 }
@@ -196,11 +199,14 @@ export default {
     width: 20px;
     height: 24px;
     margin: auto;
+    margin-left: 16px;
+    margin-right: 0;
   }
   span {
     width: 65px;
     margin: auto;
     font-size: 14px;
+    margin-left: 14px;
   }
 }
 .kefu {
@@ -216,17 +222,18 @@ export default {
   border-bottom-left-radius: 4px;
   .clo {
     cursor: pointer;
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 14px;
+    height: 14px;
     background: #e8c742;
     font-size: 1px;
-    text-align: center;
-    line-height: 16px;
+    line-height: 14px;
     display: block;
     border-radius: 4px;
     margin-top: 0.5rem;
     margin-left: 0.8rem;
     color: #ffffff;
+    letter-spacing: -2px;
+        text-indent: 4px;
   }
   h1 {
     font-size: 22px;
@@ -253,7 +260,7 @@ export default {
     cursor: pointer;
     height: 45px;
     background: #272727;
-    margin: 10px;
+    margin: 13px;
     border-radius: 4px;
     img {
       margin: auto;
@@ -289,14 +296,15 @@ export default {
   border-radius: 4px;
   color: #fff;
   display: block;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 14px;
+  height: 14px;
   cursor: pointer;
-  text-align: center;
   margin-top: 0.5rem;
   margin-left: 0.8rem;
   font-size: 1px;
-  line-height: 16px;
+  line-height: 14px;
+  letter-spacing: -2px;
+      text-indent: 4px;
 }
 .rightlab p {
   font-size: 14px;
@@ -306,7 +314,7 @@ export default {
 
 .rightlab .qr {
   display: block;
-  margin: 18px auto 13px auto;
+  margin: 18px;
   width: 94px;
   height: auto;
 }
