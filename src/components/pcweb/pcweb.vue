@@ -23,7 +23,7 @@
     <!-- <transition name="fade"> -->
     <div v-show="aboutus" class="rightlab">
       <span @click="close(1)" class="clo">--</span>
-      <img src="../../assets/dingyuhao1.jpeg" alt="" class="qr" />
+      <img src="../../assets/dingyuehao1.png" alt="" class="qr" />
       <p>关注我们</p>
       <img style="margin-top: 10px;" src="../../assets/appqr.png" alt="" class="qr" />
       <p>下载APP</p>
