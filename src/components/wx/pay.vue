@@ -71,6 +71,32 @@
                     </div>
                   </div>
                 </div>
+                <div v-else>
+                   <div class='rr'>
+                        <span class="">本次用车天数</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                    <div class='rr noborder'>
+                        <span class="">本次用车天数</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                    <div class='rr noborder'>
+                        <span class="">本次用车天数</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                    <div class='rr noborder'>
+                        <span class="">本次用车天数</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                    <div class='rr noborder'>
+                        <span class="">本次用车天数</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                    <div class='rr noborder'>
+                        <span class="">本次用车天数</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                </div>
                 <div>
                   
                 </div>
@@ -81,7 +107,7 @@
             <!-- 非计划会员 -->
             <div v-if='orderType == 2' class='com'>
                 <span style="background:#3d454d" class="rad"></span>
-                <span>费用明细</span>
+                <span style="color:#ffffff;margin-bottom:0.3rem;font-size: 0.26rem;">费用明细</span>
                 <p class='clear'></p>
                 <div class='bdd'>
                     <span>用车天数</span>
@@ -103,8 +129,8 @@
                     <span>生日折扣</span>
                     <span class='c'>单日{{carData.birthday}}折</span>
                 </div>
-                <p style="margin-top: 0.38rem;" class='clear'></p>
-                <div style="height:1rem" class='bdd'>
+                <p style="margin-top: 0.3rem;" class='clear'></p>
+                <div style="height:0.8rem" class='bdd'>
                     <span>费用合计</span>
                     <span style="color:#f4d144!important" class='c'>¥{{total}}</span>
                 </div>
@@ -165,7 +191,6 @@ export default {
       orderId: "",
       addr1: "自取",
       addr2: "自取",
-      rad: true
     };
   },
   created() {
@@ -181,6 +206,9 @@ export default {
     });
   },
   computed: {
+    rad(){
+      return this.$store.state.rad
+    },
     WAG() {
       return this.$store.state.WAG;
     },
@@ -363,9 +391,9 @@ export default {
   methods: {
     switchrad() {
       if (this.rad == true) {
-        this.rad = false;
+        this.$store.commit('rad',false)
       } else {
-        this.rad = true;
+        this.$store.commit('rad',true)
       }
     },
     closecheck() {
@@ -481,106 +509,40 @@ export default {
         alert("请选择填写取车地址");
         return false;
       }
-      this.$ajax({
-        method: "POST",
-        url: BASE_URL + "/car/deposit",
-        data: qs.stringify({
-          carId: vm.carId,
-          rentStartAt:
-            vm.startob.year +
-            "-" +
-            (vm.startob.month + 1) +
-            "-" +
-            vm.startob.date +
-            " " +
-            parseInt(vm.startob.shi) +
-            ":" +
-            parseInt(vm.startob.fen),
-          rentEndAt:
-            vm.endob.year +
-            "-" +
-            (vm.endob.month + 1) +
-            "-" +
-            vm.endob.date +
-            " " +
-            parseInt(vm.endob.shi) +
-            ":" +
-            parseInt(vm.endob.fen),
-          sendAddr: vm.startadd,
-          returnAddr: vm.endadd,
-          totalFee: vm.total * 100,
-          cashFee:
-            vm.carData.memberId == 2
-              ? 1
-              : vm.cashFee *
-                100 /*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/,
-          orderType: 2
-        }),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          WAG: vm.WAG
-        } //oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
-      }).then(res => {
-        if (res.data.success) {
-          vm.orderId = res.data.data.orderId;
-          function onBridgeReady() {
-            WeixinJSBridge.invoke(
-              "getBrandWCPayRequest",
-              {
-                appId: res.data.data.appId, //公众号名称，由商户传入
-                timeStamp: res.data.data.timeStamp, //时间戳，自1970年以来的秒数
-                nonceStr: res.data.data.nonceStr, //随机串
-                package: res.data.data.package,
-                signType: res.data.data.signType, //微信签名方式：
-                paySign: res.data.data.paySign //微信签名
-              },
-              function(res) {
-                if (res.err_msg == "get_brand_wcpay_request:ok") {
-                  var check = function() {
-                    vm
-                      .$ajax(
-                        BASE_URL +
-                          "/car/order/check?orderId=" +
-                          vm.orderId +
-                          "&orderType=2"
-                      )
-                      .then(res1 => {
-                        if (res1.data.data.orderStatus == 0) {
-                          setTimeout(() => {
-                            check();
-                          }, 500);
-                        } else if (res1.data.data.orderStatus == 1) {
-                          vm.$router.push("/wx/paysuccess");
-                        } else if (res1.data.data.orderStatus == 2) {
-                          alert("支付查询失败");
-                        }
-                      });
-                  };
-                  check();
-                } else {
-                  alert("支付失败了");
-                } // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-              }
-            );
-          }
-          if (typeof WeixinJSBridge == "undefined") {
-            if (document.addEventListener) {
-              document.addEventListener(
-                "WeixinJSBridgeReady",
-                onBridgeReady,
-                false
-              );
-            } else if (document.attachEvent) {
-              document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-              document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
-            }
-          } else {
-            onBridgeReady();
-          }
-        } else {
-          alert("失败");
-        }
+      var paydata = qs.stringify({
+        carId: vm.carId,
+        rentStartAt:
+          vm.startob.year +
+          "-" +
+          (vm.startob.month + 1) +
+          "-" +
+          vm.startob.date +
+          " " +
+          parseInt(vm.startob.shi) +
+          ":" +
+          parseInt(vm.startob.fen),
+        rentEndAt:
+          vm.endob.year +
+          "-" +
+          (vm.endob.month + 1) +
+          "-" +
+          vm.endob.date +
+          " " +
+          parseInt(vm.endob.shi) +
+          ":" +
+          parseInt(vm.endob.fen),
+        sendAddr: vm.startadd,
+        returnAddr: vm.endadd,
+        totalFee: vm.total * 100,
+        cashFee:
+          vm.carData.memberId == 2
+            ? 1
+            : vm.cashFee *
+              100 /*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/,
+        orderType: 2
       });
+      vm.$store.commit("paydata", paydata);
+      vm.$router.push("/wx/payorder?my="+vm.cashFee);
     }
   }
 };
@@ -755,7 +717,9 @@ $yellow: #fed945;
   width: 100%;
   bottom: 0;
 }
-
+.noborder{
+  border-top: 0!important;
+}
 .com .rr {
   display: inline-flex;
   display: -webkit-inline-flex;

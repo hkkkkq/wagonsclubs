@@ -1,14 +1,15 @@
 <template>
 <div class="wrap">
-    <p class="num">¥20000.00</p>
+    <p class="num">¥{{cashFee}}</p>
     <p class="cox">线上支付定金</p>
     <div class="paytype">
         <img src="../../assets/app/refillcard.png">
         <span>充值卡支付</span>
+        <span style="color:#999999">(余额50000.00)</span>
         <span class="go">去支付</span>
         <img class="arrow" src="../../assets/app/wxright.png">
     </div>
-    <div class="paytype">
+    <div @click="wxpay" class="paytype">
         <img src="../../assets/app/wxpay_03.png">
         <span>微信支付</span>
         <span class="go">去支付</span>
@@ -36,7 +37,95 @@
 
 <script>
 require("../app/rem.js")(window, document);
-export default {};
+export default {
+  data() {
+    return {
+        cashFee:''
+    };
+  },
+  computed: {
+    paydata() {
+      return this.$store.state.paydata;
+    }
+  },
+  created(){
+      this.cashFee = this.$route.query.my;
+  },
+  methods: {
+    wxpay() {
+      var vm = this;
+      this.$ajax({
+        method: "POST",
+        url: BASE_URL + "/car/deposit",
+        data: vm.paydata,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          WAG: vm.WAG
+        } //oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
+      }).then(res => {
+        if (res.data.success) {
+          vm.orderId = res.data.data.orderId;
+          function onBridgeReady() {
+            WeixinJSBridge.invoke(
+              "getBrandWCPayRequest",
+              {
+                appId: res.data.data.appId, //公众号名称，由商户传入
+                timeStamp: res.data.data.timeStamp, //时间戳，自1970年以来的秒数
+                nonceStr: res.data.data.nonceStr, //随机串
+                package: res.data.data.package,
+                signType: res.data.data.signType, //微信签名方式：
+                paySign: res.data.data.paySign //微信签名
+              },
+              function(res) {
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                  var check = function() {
+                    vm
+                      .$ajax(
+                        BASE_URL +
+                          "/car/order/check?orderId=" +
+                          vm.orderId +
+                          "&orderType=2"
+                      )
+                      .then(res1 => {
+                        if (res1.data.data.orderStatus == 0) {
+                          setTimeout(() => {
+                            check();
+                          }, 500);
+                        } else if (res1.data.data.orderStatus == 1) {
+                          vm.$router.push("/wx/paysuccess");
+                        } else if (res1.data.data.orderStatus == 2) {
+                          alert("支付查询失败");
+                        }
+                      });
+                  };
+                  check();
+                } else {
+                  alert("支付失败了");
+                } // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+              }
+            );
+          }
+          if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+              document.addEventListener(
+                "WeixinJSBridgeReady",
+                onBridgeReady,
+                false
+              );
+            } else if (document.attachEvent) {
+              document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+              document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+            }
+          } else {
+            onBridgeReady();
+          }
+        } else {
+          alert("失败");
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style lang='scss' scoped>
@@ -94,9 +183,11 @@ $fontfamily: PingFangSC-Light, sans-serif;
     font-size: 0.26rem;
     margin: auto;
     margin-left: 0;
+    margin-right: 0;
   }
   .go {
     margin-right: 0;
+    margin-left: auto;
   }
 }
 .line {
@@ -116,7 +207,7 @@ $fontfamily: PingFangSC-Light, sans-serif;
 }
 .alipay {
   padding: 0.3rem 0 0.3rem 0.3rem;
-  width: 6.5rem;
+  width: 6.8rem;
   margin: auto;
   background: $divbg;
   @extend .border;
@@ -130,7 +221,7 @@ $fontfamily: PingFangSC-Light, sans-serif;
     display: inline-block;
     font-size: 0.26rem;
     vertical-align: top;
-    width: 5.7rem;
+    width: 6rem;
     padding-left: 0.25rem;
     line-height: 0.6rem;
     p {
