@@ -24,6 +24,9 @@ export default {
 </script>
 
 <style>
+.kefu{
+  display: none!important;
+}
 body{
     font-size: 0!important;
     background: #ffffff!important;
