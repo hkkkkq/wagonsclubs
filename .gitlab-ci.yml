@@ -2,7 +2,6 @@
 # see https://docs.gitlab.com/ce/ci/yaml/README.html for all available options
 
 # you can delete this line if you're not using Docker
-image: busybox:latest
 
 before_script:
    - cd /home/eng/deploy/wagons_front_end/projects/wagons-front
