@@ -131,7 +131,8 @@ export default {
 }
 
 .status0 {
-    background: #ff4f5b;
+    /* 代接单 */
+    background: #7d8388;
     color: rgba(0, 0, 0, 0.4);
     display: inline-block;
     width: 0.88rem;
@@ -146,6 +147,7 @@ export default {
 }
 
 .status1 {
+    /* 使用中 */
     background: #4ac87a;
     color: rgba(0, 0, 0, 0.4);
     display: inline-block;

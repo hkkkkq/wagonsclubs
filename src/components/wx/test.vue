@@ -18,19 +18,19 @@
       <!-- <a href="http://www.test.wagonsclub.com/wx/orders?WAG=test1">订单查询</a> -->
       <a href="http://localhost:8080/wx/orders?WAG=oML6ov8Kksw5opZ6Cy6Fbu_Bxh7A">订单查询</a>
       <br>
+      <a href="http://localhost:8080/wx/card?WAG=oML6ov8Kksw5opZ6Cy6Fbu_Bxh7A">充值卡</a>
+      <br>
       <!-- <a href="http://www.test.wagonsclub.com/app/warning">用车须知</a> -->
       <a href="http://localhost:8080/app/warning">用车须知</a>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
-a{
-    line-height: 30px;
+a {
+  line-height: 30px;
 }
 </style>

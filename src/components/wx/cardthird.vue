@@ -4,7 +4,7 @@
     <p>充值成功</p>
     <div class="tips">
         <p>尊敬的用户：</p>
-        <p>您的WAGONS光速超跑充值卡已成功充值20000元，马上开启您的超跑自驾之旅吧！</p>
+        <p>您的WAGONS光速超跑充值卡已成功充值{{money+presented}}元，马上开启您的超跑自驾之旅吧！</p>
     </div>
 </div>  
 </template>
@@ -12,9 +12,36 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      money:0,
+      presented:0,
+      discount:0
+    };
   },
-  created() {}
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
+    }
+  },
+  created() {
+    if (this.$route.query.ind == 1) {
+      this.presented = 800;
+      this.money = 10000;
+      this.discount = 9.2;
+    } else if (this.$route.query.ind == 2) {
+      this.presented = 3600;
+      this.money = 30000;
+      this.discount = 8.8;
+    } else if (this.$route.query.ind == 3) {
+      this.presented = 7500;
+      this.money = 50000;
+      this.discount = 8.5;
+    } else if (this.$route.query.ind == 4) {
+      this.presented = 20000;
+      this.money = 100000;
+      this.discount = 8;
+    }
+  }
 };
 </script>
 

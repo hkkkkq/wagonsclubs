@@ -40,16 +40,20 @@ require("../app/rem.js")(window, document);
 export default {
   data() {
     return {
-        cashFee:''
+      cashFee: "",
+      orderId: ""
     };
   },
   computed: {
     paydata() {
       return this.$store.state.paydata;
-    }
+    },
+    WAG() {
+      return this.$store.state.WAG;
+    },
   },
-  created(){
-      this.cashFee = this.$route.query.my;
+  created() {
+    this.cashFee = this.$route.query.my;
   },
   methods: {
     wxpay() {

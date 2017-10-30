@@ -28,7 +28,7 @@
                         </p>
                         <p class="cp">
                             <span class="num">4</span>
-                            <span class="des">每邀请1位好友成功加入会员，可享1天免费用车</span>
+                            <span class="des">每邀请1位好友成功购买套餐，可享1天免费用车</span>
                         </p>
                         <p class="cp">
                             <span class="num">5</span>
@@ -74,7 +74,7 @@
                             </p>
                             <p class="cp">
                                 <span class="num">5</span>
-                                <span class="des">每邀请1位好友，可额外累计1天使用权</span>
+                                <span class="des">每邀请1位好友成功购买套餐，可额外累计1天使用权</span>
                             </p>
                             <p class="cp">
                                 <span class="num">6</span>
@@ -122,7 +122,7 @@
                             </p>
                             <p class="cp">
                                 <span class="num">5</span>
-                                <span class="des">每邀请1位好友，可额外累计1天使用权</span>
+                                <span class="des">每邀请1位好友成功购买套餐，可额外累计1天使用权</span>
                             </p>
                             <p class="cp">
                                 <span class="num">6</span>
@@ -178,7 +178,7 @@
                             </p>
                             <p class="cp">
                                 <span class="num">5</span>
-                                <span class="des">每邀请1位好友，可额外累计1天使用权</span>
+                                <span class="des">每邀请1位好友成功购买套餐，可额外累计1天使用权</span>
                             </p>
                             <p class="cp">
                                 <span class="num">6</span>

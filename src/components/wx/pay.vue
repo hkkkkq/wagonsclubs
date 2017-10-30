@@ -136,11 +136,11 @@
                 </div>
             </div>
             <!-- 计划 -->
-            <div @click='beforpay0' v-if='orderType == 0' class='submit'>
+            <div @click='beforpay0' v-if='(orderType == 0)&&(rad == true)' class='submit'>
                 提交订单
             </div>
             <!-- 会员 -->
-            <div @click='pay1' v-if='orderType == 2'>
+            <div @click='pay1' v-if='(orderType == 2)||((orderType == 0)&&(rad == false))'>
                 <div class='sl'>需预付定金
                     <span style="color:#fed945">{{cashFee}}元</span>
                 </div>
@@ -162,7 +162,7 @@
                   <h1>用车结束日期：{{endob.year}}年{{endob.month+1}}月{{endob.date}}日 {{((parseInt(endob.shi)<10? "0"+parseInt(endob.shi):parseInt(endob.shi))+ ":"+(parseInt(endob.fen)==0? "00":parseInt(endob.fen)))}}</h1>
                 </div>
                 <div class="line">
-                  <span class="yellow">共计：5天</span>
+                  <span class="yellow">共计：{{tokendays}}天</span>
                   <b>从{{carData.planName}}可用天数中扣减</b>
                 </div>
                 <div class="line">
@@ -534,11 +534,7 @@ export default {
         sendAddr: vm.startadd,
         returnAddr: vm.endadd,
         totalFee: vm.total * 100,
-        cashFee:
-          vm.carData.memberId == 2
-            ? 1
-            : vm.cashFee *
-              100 /*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/,
+        cashFee:1/*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/,
         orderType: 2
       });
       vm.$store.commit("paydata", paydata);

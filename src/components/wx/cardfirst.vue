@@ -4,7 +4,7 @@
   <div class="balance">
     <img src="../../assets/app/refillcard.png">
     <span>充值卡余额</span>
-    <span style="margin-right:0">54888.00</span>
+    <span style="margin-right:0">{{cash}}</span>
   </div>
   <div class="showcard">
     <div @click="choose(1)" class="card1">
@@ -65,15 +65,36 @@
 export default {
   data() {
     return {
-      ind: 1
+      ind: 1,
+      cash: 0
     };
+  },
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
+    }
+  },
+  created() {
+    var vm = this;
+    this.$ajax({
+      url: BASE_URL + "car/rechargeCard",
+      header: {
+        WAG: vm.WAG
+      }
+    }).then(res => {
+      if (res.data.success == true) {
+        this.cash = res.data.data.rechargeCardMoney;
+      } else {
+        alert("出现了什么问题");
+      }
+    });
   },
   methods: {
     choose(n) {
       this.ind = n;
     },
-    topay(){
-      this.$router.push({path:"/wx/card/second",query:{ind:this.ind}})
+    topay() {
+      this.$router.push({ path: "/wx/card/second", query: { ind: this.ind } });
     }
   }
 };
@@ -129,6 +150,7 @@ $divbgcolor: #273039;
   width: 100%;
   height: 2rem;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   display: block;
   margin: 0.36rem 0;
   font-size: 0;
