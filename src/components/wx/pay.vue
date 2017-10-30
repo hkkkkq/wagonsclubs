@@ -101,9 +101,9 @@
                   
                 </div>
             </div>
-            <div v-if="(!(tokendays<carData.canMemberUse))&&(orderType == 0)" class='warn'>
+            <!-- <div v-if="(!(tokendays<carData.canMemberUse))&&(orderType == 0)" class='warn'>
                 可用天数不足，请重新选择用车天数
-            </div>
+            </div> -->
             <!-- 非计划会员 -->
             <div v-if='orderType == 2' class='com'>
                 <span style="background:#3d454d" class="rad"></span>
