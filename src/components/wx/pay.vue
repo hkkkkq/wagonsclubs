@@ -31,8 +31,8 @@
                     <div class="lf">
                         <p style="font-size: 0;display: inline-block;width: 6.25rem;">
                             <span @click="endtime" class="date">{{endob == ""?"请选择结束用车时间":(endob.month+1+"-"+endob.date)}}
-                                <b>{{endob == ""?"":((parseInt(endob.shi)<10? "0"+parseInt(endob.shi):parseInt(endob.shi))+ ":"+(parseInt(endob.fen)==0? "00":parseInt(endob.fen)))}}</b>
                                 <b style="margin-left: 0.3rem;">{{exqj == undefined?"":exqj}}</b>
+                                <b>{{endob == ""?"":((parseInt(endob.shi)<10? "0"+parseInt(endob.shi):parseInt(endob.shi))+ ":"+(parseInt(endob.fen)==0? "00":parseInt(endob.fen)))}}</b>
                                 <img src="../../assets/app/der.jpg">
                             </span>
                             <div></div>
