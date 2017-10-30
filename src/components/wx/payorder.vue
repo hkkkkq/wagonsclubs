@@ -2,10 +2,10 @@
 <div class="wrap">
     <p class="num">¥{{cashFee}}</p>
     <p class="cox">线上支付定金</p>
-    <div class="paytype">
+    <div @click="cardpay" class="paytype">
         <img src="../../assets/app/refillcard.png">
         <span>充值卡支付</span>
-        <span style="color:#999999">(余额50000.00)</span>
+        <span style="color:#999999">(余额{{Balance}})</span>
         <span class="go">去支付</span>
         <img class="arrow" src="../../assets/app/wxright.png">
     </div>
@@ -37,11 +37,13 @@
 
 <script>
 require("../app/rem.js")(window, document);
+import qs from "qs";
 export default {
   data() {
     return {
       cashFee: "",
-      orderId: ""
+      orderId: "",
+      Balance:"",
     };
   },
   computed: {
@@ -50,10 +52,23 @@ export default {
     },
     WAG() {
       return this.$store.state.WAG;
-    },
+    }
   },
   created() {
+    var vm = this;
     this.cashFee = this.$route.query.my;
+    this.$ajax({
+      url: BASE_URL + "car/rechargeCard",
+      header: {
+        WAG: vm.WAG
+      }
+    }).then(res => {
+      if (res.data.success == true) {
+        this.Balance = res.data.data.rechargeCardMoney;
+      } else {
+        alert("出现了什么问题");
+      }
+    });
   },
   methods: {
     wxpay() {
@@ -61,7 +76,7 @@ export default {
       this.$ajax({
         method: "POST",
         url: BASE_URL + "/car/deposit",
-        data: vm.paydata,
+        data: vm.paydata.paydata2,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           WAG: vm.WAG
@@ -127,6 +142,26 @@ export default {
           alert("失败");
         }
       });
+    },
+    cardpay() {
+      var vm = this;
+      vm
+        .$ajax({
+          method: "POST",
+          url: BASE_URL + "/car/deposit",
+          data: vm.paydata.paydata3,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            WAG: vm.WAG
+          } //oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
+        })
+        .then(res => {
+          if (res.data.success == true) {
+            vm.$router.push("/wx/paysuccess");
+          } else {
+            alert("下订单失败");
+          }
+        });
     }
   }
 };

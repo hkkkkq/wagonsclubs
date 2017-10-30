@@ -77,24 +77,24 @@
                         <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
                     </div>
                     <div class='rr noborder'>
-                        <span class="">本次用车天数</span>
-                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                        <span class="">会员价</span>
+                        <b style="color:#fed945">{{carData.memberRentPrice}}元/天</b>
+                    </div>
+                    <div v-if='(tokendays >= 7)&&(tokendays<30)' class='rr noborder'>
+                        <span class="">周租折扣</span>
+                        <b style="color:#fed945">{{carData.week}}折</b>
+                    </div>
+                    <div v-if='tokendays>=30' class='rr noborder'>
+                        <span class="">月租折扣</span>
+                        <b style="color:#fed945">{{carData.month}}折</b>
+                    </div>
+                    <div v-if='isbirthday' class='rr noborder'>
+                        <span class="">生日折扣</span>
+                        <b style="color:#fed945">单日{{carData.birthday}}折</b>
                     </div>
                     <div class='rr noborder'>
-                        <span class="">本次用车天数</span>
-                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
-                    </div>
-                    <div class='rr noborder'>
-                        <span class="">本次用车天数</span>
-                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
-                    </div>
-                    <div class='rr noborder'>
-                        <span class="">本次用车天数</span>
-                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
-                    </div>
-                    <div class='rr noborder'>
-                        <span class="">本次用车天数</span>
-                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                        <span class="">费用合计</span>
+                        <b style="color:#fed945">¥{{total}}</b>
                     </div>
                 </div>
                 <div>
@@ -110,7 +110,7 @@
                 <span style="color:#ffffff;margin-bottom:0.3rem;font-size: 0.26rem;">费用明细</span>
                 <p class='clear'></p>
                 <div class='bdd'>
-                    <span>用车天数</span>
+                    <span>本次用车天数</span>
                     <span class='c'>{{tokendays}}天</span>
                 </div>
                 <div class='bdd'>
@@ -509,7 +509,35 @@ export default {
         alert("请选择填写取车地址");
         return false;
       }
-      var paydata = qs.stringify({
+      var paydata3 = qs.stringify({
+        carId: vm.carId,
+        rentStartAt:
+          vm.startob.year +
+          "-" +
+          (vm.startob.month + 1) +
+          "-" +
+          vm.startob.date +
+          " " +
+          parseInt(vm.startob.shi) +
+          ":" +
+          parseInt(vm.startob.fen),
+        rentEndAt:
+          vm.endob.year +
+          "-" +
+          (vm.endob.month + 1) +
+          "-" +
+          vm.endob.date +
+          " " +
+          parseInt(vm.endob.shi) +
+          ":" +
+          parseInt(vm.endob.fen),
+        sendAddr: vm.startadd,
+        returnAddr: vm.endadd,
+        totalFee: vm.total * 100,
+        cashFee:(vm.carData.memberId == 2)?1:vm.cashFee * 100,
+        orderType: 3
+      });
+      var paydata2 = qs.stringify({
         carId: vm.carId,
         rentStartAt:
           vm.startob.year +
@@ -537,7 +565,7 @@ export default {
         cashFee:1/*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/,
         orderType: 2
       });
-      vm.$store.commit("paydata", paydata);
+      vm.$store.commit("paydata", {paydata2,paydata3});
       vm.$router.push("/wx/payorder?my="+vm.cashFee);
     }
   }
