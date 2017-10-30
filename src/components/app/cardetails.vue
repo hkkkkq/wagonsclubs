@@ -45,7 +45,7 @@
             <span v-if="car.convertible == 3" class="tips">软顶敞篷</span>
             <span v-if="car.plateNumberBj" class="tips">京牌</span>
             <span v-if="!car.plateNumberBj" class="tips">非京牌</span>
-            <span v-if="car.restrictionDay" class="tips">{{car.restrictionDay}}限行</span>            
+            <span v-if="car.restrictionDay" class="tips">{{car.restrictionDay}}</span>            
         </div>
         <p class="but1"></p>
         <p @click="sub" class="but">
