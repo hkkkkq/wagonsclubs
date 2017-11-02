@@ -114,13 +114,40 @@ export default {
     pdSelectBox
   },
   watch: {
+    //监听日期
+    choose() {
+      if (this.choose == this.sdate) {
+        var curDate = new Date();
+        var prevHuor;
+        curDate.getMinutes() > 30
+          ? (prevHuor = curDate.getHours() + 3)
+          : (prevHuor = curDate.getHours() + 2);
+        this.listData = this.listData.slice(prevHuor - 8);
+      } else {
+        this.listData = [
+          "08时",
+          "09时",
+          "10时",
+          "11时",
+          "12时",
+          "13时",
+          "14时",
+          "15时",
+          "16时",
+          "17时",
+          "18时",
+          "19时",
+          "20时"
+        ];
+      }
+    },
     //监听小时的变化20时时没有30分
-    shi(){
-        if(this.shi == '20时'){
-            this.listData2 = ["00分"]
-        }else{
-            this.listData2 = ["00分", "30分"]
-        }
+    shi() {
+      if (this.shi == "20时") {
+        this.listData2 = ["00分"];
+      } else {
+        this.listData2 = ["00分", "30分"];
+      }
     },
     //监听月份的改变 0-11
     curMonth: function(data) {
@@ -139,17 +166,26 @@ export default {
   created() {
     this.type = this.$route.query.type;
     var curDate = new Date(); //当前日期
-    var prevHuor;
     this.curYear = curDate.getFullYear(); //当前年份
     this.curMonth = curDate.getMonth(); //当前月份
     this.sdate = curDate.getDate();
     // 提前两小时
-    curDate.getMinutes()>30?prevHuor=curDate.getHours()+3:prevHuor=curDate.getHours()+2
-    this.listData = this.listData.slice(prevHuor-8)
+    // curDate.getMinutes()>30?prevHuor=curDate.getHours()+3:prevHuor=curDate.getHours()+2
+    // this.listData = this.listData.slice(prevHuor-8)
     //获取当月1号是周几
     this.xqj = new Date(this.curYear, this.curMonth, 1).getDay();
   },
   methods: {
+    oversix(date) {
+      var d = new Date()
+      if((this.sdate == date)&&(this.curMonth == d.getMonth())){
+        if(d.getHours()>=6){
+          return true;
+        }
+      }else{
+        return false;
+      }
+    },
     isstartdate(date) {
       if (this.type == "starttime") {
         return false;
@@ -258,6 +294,9 @@ export default {
       return tmp.getDate();
     },
     clickspan(n, n2) {
+      if (this.oversix(this.dateform[n][n2])) {
+        return;
+      }
       if (this.isstartdate(this.dateform[n][n2])) {
         return;
       }

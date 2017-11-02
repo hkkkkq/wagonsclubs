@@ -191,7 +191,7 @@ export default {
       orderId: "",
       addr1: "自取",
       addr2: "自取",
-      birthdayUsed:0
+      birthdayUsed: 0
     };
   },
   created() {
@@ -207,8 +207,8 @@ export default {
     });
   },
   computed: {
-    rad(){
-      return this.$store.state.rad
+    rad() {
+      return this.$store.state.rad;
     },
     WAG() {
       return this.$store.state.WAG;
@@ -394,9 +394,9 @@ export default {
   methods: {
     switchrad() {
       if (this.rad == true) {
-        this.$store.commit('rad',false)
+        this.$store.commit("rad", false);
       } else {
-        this.$store.commit('rad',true)
+        this.$store.commit("rad", true);
       }
     },
     closecheck() {
@@ -537,10 +537,11 @@ export default {
         sendAddr: vm.startadd,
         returnAddr: vm.endadd,
         totalFee: vm.total * 100,
-        cashFee:(vm.carData.memberId == 2)?1:vm.cashFee * 100,
+        cashFee: vm.carData.memberId == 2 ? 1 : vm.cashFee * 100,
         orderType: 3,
-        birthdayUsed:vm.birthdayUsed
+        birthdayUsed: vm.birthdayUsed
       });
+      //付钱的
       var paydata2 = qs.stringify({
         carId: vm.carId,
         rentStartAt:
@@ -566,12 +567,21 @@ export default {
         sendAddr: vm.startadd,
         returnAddr: vm.endadd,
         totalFee: vm.total * 100,
-        cashFee:(vm.carData.memberId == 2)?1:vm.cashFee * 100,
+        cashFee: vm.carData.memberId == 2 ? 1 : vm.cashFee * 100,
         orderType: 2,
-        birthdayUsed:vm.birthdayUsed
+        birthdayUsed: vm.birthdayUsed
       });
-      vm.$store.commit("paydata", {paydata2,paydata3});
-      vm.$router.push("/wx/payorder?my="+vm.cashFee);
+      this.$ajax({
+        method: "POST",
+        url: BASE_URL + "/car/deposit",
+        data: paydata2,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          WAG: vm.WAG
+        } //oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
+      }).then(res=>{
+        this.$router.push('/wx/payorder?my='+vm.cashFee+'&orderId='+res.data.data.orderId)
+      })
     }
   }
 };
@@ -746,8 +756,8 @@ $yellow: #fed945;
   width: 100%;
   bottom: 0;
 }
-.noborder{
-  border-top: 0!important;
+.noborder {
+  border-top: 0 !important;
 }
 .com .rr {
   display: inline-flex;

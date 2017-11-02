@@ -44,12 +44,10 @@ export default {
       cashFee: "",
       orderId: "",
       Balance:"",
+      orderId3:''
     };
   },
   computed: {
-    paydata() {
-      return this.$store.state.paydata;
-    },
     WAG() {
       return this.$store.state.WAG;
     }
@@ -57,6 +55,7 @@ export default {
   created() {
     var vm = this;
     this.cashFee = this.$route.query.my;
+    this.orderId3 = this.$route.query.orderId;
     this.$ajax({
       url: BASE_URL + "car/rechargeCard",
       header: {
@@ -75,8 +74,11 @@ export default {
       var vm = this;
       this.$ajax({
         method: "POST",
-        url: BASE_URL + "/car/deposit",
-        data: vm.paydata.paydata2,
+        url: BASE_URL + "/car/payBill",
+        data: qs.stringify({
+          orderId:vm.orderId3,
+          orderType:2
+        }),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           WAG: vm.WAG
@@ -148,8 +150,11 @@ export default {
       vm
         .$ajax({
           method: "POST",
-          url: BASE_URL + "/car/deposit",
-          data: vm.paydata.paydata3,
+          url: BASE_URL + "/car/payBill",
+          data: qs.stringify({
+            orderId:vm.orderId3,
+            orderType:3
+          }),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             WAG: vm.WAG

@@ -36,7 +36,6 @@ const store = new vuex.Store({
         'WAG': '',
         'wxAppShare': false,
         'articleDetails': '',
-        'paydata': '',
         'rad': true
     },
     mutations: {
@@ -71,9 +70,6 @@ const store = new vuex.Store({
         },
         articleDetails(state, data) {
             state.articleDetails = data
-        },
-        paydata(state, data) {
-            state.paydata = data
         },
         rad(state, data) {
             state.rad = data

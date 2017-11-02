@@ -12,7 +12,8 @@
                         <span v-if="item.orderType == 3" class="status1">使用中</span>
                         <span v-if="item.orderType == 4" class="status2">已还车</span>
                         <img v-if="item.orderType == 5" class="ordered" src="../../assets/app/ordered1.png">
-                        <span v-if="item.orderType == 6" class="status3">已还车</span>
+                        <span v-if="item.orderType == 6" class="status3">已取消</span>
+                        <span v-if="item.orderType == 8" style="color:#952f36;background:#ff4f5b" class="status3">已超时</span>
                     </p>
                     <div @click="toOrderDetail(item.orderId)" class="info">
                         <img :src="item.carImage">
@@ -36,184 +37,185 @@
 </template>
 
 <script>
-require('../app/rem.js')(window, document)
+require("../app/rem.js")(window, document);
 export default {
-    data() {
-        return {
-            resdata: {
-                data:{
-                    orderList:[]
-                }
-            }
+  data() {
+    return {
+      resdata: {
+        data: {
+          orderList: []
         }
-    },
-    created() {
-        var vm = this
-        //获取openid
-        this.$store.commit('setOpenId', this.$route.query.WAG)
-        //isbinding
-        this.$ajax({
-            url: BASE_URL + "/car/isBinding",
-            method: 'GET',
-            headers: { 'WAG': this.$route.query.WAG }
-        })
-            .then((res) => {
-                if (res.data.success == false) {
-                    vm.$router.push('/wx/login')
-                } else {
-                    vm.$ajax(BASE_URL + "/car/orderList")
-                        .then((res) => {
-                             vm.resdata = res.data;
-                              })
-                }
-            })
-    },
-    methods: {
-        toOrderDetail(id) {
-            this.$router.push('/wx/orderdetail?id=' + id)
-        }
+      }
+    };
+  },
+  created() {
+    var vm = this;
+    //获取openid
+    // if (this.$route.query.WAG) {
+    //   this.$store.commit("setOpenId", this.$route.query.WAG);
+    // }
+    this.$store.commit("setOpenId", "oEUUVv_6lXDk2XuAwSIWaqtvXbDI");
+    //isbinding
+    this.$ajax({
+      url: BASE_URL + "/car/isBinding",
+      method: "GET",
+      headers: { WAG: this.$route.query.WAG }
+    }).then(res => {
+      if (res.data.success == false) {
+        vm.$router.push("/wx/login");
+      } else {
+        vm.$ajax(BASE_URL + "/car/orderList").then(res => {
+          vm.resdata = res.data;
+        });
+      }
+    });
+  },
+  methods: {
+    toOrderDetail(id) {
+      this.$router.push("/wx/orderdetail?id=" + id);
     }
-}
+  }
+};
 </script>
 
 <style scoped>
 .noorders {
-    width: 1.9rem;
-    height: 2.36rem;
-    margin: auto;
-    display: block;
-    margin-top: 4rem;
+  width: 1.9rem;
+  height: 2.36rem;
+  margin: auto;
+  display: block;
+  margin-top: 4rem;
 }
 
 .ordered {
-    width: 1rem;
-    float: right;
-    margin-right: 0.3rem;
+  width: 1rem;
+  float: right;
+  margin-right: 0.3rem;
 }
 
 .nomore img {
-    width: 100%;
-    margin-top: 0.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 .nomore {
-    width: 100%;
-    font-size: 0;
+  width: 100%;
+  font-size: 0;
 }
 
 .deta p {
-    font-size: 0.24rem;
-    color: #999999;
-    line-height: 0.4rem;
+  font-size: 0.24rem;
+  color: #999999;
+  line-height: 0.4rem;
 }
 
 .deta {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 0.3rem;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 0.3rem;
 }
 
 .info img {
-    width: 2.6rem;
-    height: 100%;
-    display: inline-block;
-    margin-right: 0.32rem;
-    border-top-left-radius: 0.04rem;
-    border-bottom-left-radius: 0.04rem;
+  width: 2.6rem;
+  height: 100%;
+  display: inline-block;
+  margin-right: 0.32rem;
+  border-top-left-radius: 0.04rem;
+  border-bottom-left-radius: 0.04rem;
 }
 
 .info {
-    display: block;
-    width: 100%;
-    height: 1.3rem;
-    background: #1b252e;
-    font-size: 0;
+  display: block;
+  width: 100%;
+  height: 1.3rem;
+  background: #1b252e;
+  font-size: 0;
 }
 
 .status0 {
-    /* 代接单 */
-    background: #7d8388;
-    color: rgba(0, 0, 0, 0.4);
-    display: inline-block;
-    width: 0.88rem;
-    height: 0.28rem;
-    font-size: 0.2rem;
-    text-align: center;
-    line-height: 0.28rem;
-    float: right;
-    margin-right: 0.3rem;
-    border-radius: 0.04rem;
-    margin-top: 0.35rem;
+  /* 代接单 */
+  background: #7d8388;
+  color: rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  width: 0.88rem;
+  height: 0.28rem;
+  font-size: 0.2rem;
+  text-align: center;
+  line-height: 0.28rem;
+  float: right;
+  margin-right: 0.3rem;
+  border-radius: 0.04rem;
+  margin-top: 0.35rem;
 }
 
 .status1 {
-    /* 使用中 */
-    background: #4ac87a;
-    color: rgba(0, 0, 0, 0.4);
-    display: inline-block;
-    width: 0.88rem;
-    height: 0.28rem;
-    font-size: 0.2rem;
-    text-align: center;
-    line-height: 0.28rem;
-    float: right;
-    margin-right: 0.3rem;
-    border-radius: 0.04rem;
-    margin-top: 0.35rem;
+  /* 使用中 */
+  background: #4ac87a;
+  color: rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  width: 0.88rem;
+  height: 0.28rem;
+  font-size: 0.2rem;
+  text-align: center;
+  line-height: 0.28rem;
+  float: right;
+  margin-right: 0.3rem;
+  border-radius: 0.04rem;
+  margin-top: 0.35rem;
 }
 
 .status2 {
-    background: #fed945;
-    color: rgba(0, 0, 0, 0.4);
-    display: inline-block;
-    width: 0.88rem;
-    height: 0.28rem;
-    font-size: 0.2rem;
-    text-align: center;
-    line-height: 0.28rem;
-    float: right;
-    margin-right: 0.3rem;
-    border-radius: 0.04rem;
-    margin-top: 0.35rem;
+  background: #fed945;
+  color: rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  width: 0.88rem;
+  height: 0.28rem;
+  font-size: 0.2rem;
+  text-align: center;
+  line-height: 0.28rem;
+  float: right;
+  margin-right: 0.3rem;
+  border-radius: 0.04rem;
+  margin-top: 0.35rem;
 }
 
 .status3 {
-    /* background: #fed945; */
-    color: #666666;
-    display: inline-block;
-    width: 0.88rem;
-    height: 0.28rem;
-    font-size: 0.2rem;
-    text-align: center;
-    line-height: 0.28rem;
-    float: right;
-    margin-right: 0.3rem;
-    border-radius: 0.04rem;
-    margin-top: 0.35rem;
+  /* background: #fed945; */
+  color: #666666;
+  display: inline-block;
+  width: 0.88rem;
+  height: 0.28rem;
+  font-size: 0.2rem;
+  text-align: center;
+  line-height: 0.28rem;
+  float: right;
+  margin-right: 0.3rem;
+  border-radius: 0.04rem;
+  margin-top: 0.35rem;
 }
 
 .carname {
-    font-size: 0.26rem;
-    color: #ffffff;
-    margin-left: 0.3rem;
-    vertical-align: top;
-    position: relative;
-    top: 0.35rem;
+  font-size: 0.26rem;
+  color: #ffffff;
+  margin-left: 0.3rem;
+  vertical-align: top;
+  position: relative;
+  top: 0.35rem;
 }
 
 .one {
-    width: 7.1rem;
-    display: block;
-    margin: auto;
-    height: auto;
-    margin-top: 0.2rem;
+  width: 7.1rem;
+  display: block;
+  margin: auto;
+  height: auto;
+  margin-top: 0.2rem;
 }
 
 .title {
-    width: 100%;
-    background: #273039;
-    border-top-left-radius: 0.04rem;
-    border-top-right-radius: 0.04rem;
-    height: 1rem;
+  width: 100%;
+  background: #273039;
+  border-top-left-radius: 0.04rem;
+  border-top-right-radius: 0.04rem;
+  height: 1rem;
 }
 </style>

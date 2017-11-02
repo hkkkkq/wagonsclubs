@@ -1,11 +1,11 @@
 <template>
 <div class="wrap">
-    <div :class="{'card1':(ind == 1) || (ind == 2),'card2':(ind == 4) || (ind == 3)}">
+    <div :class="{'card1':cardsList[ind-1].cardType == 0,'card2':cardsList[ind-1].cardType == 1}">
         <p>充值金额</p>
-        <h1>¥{{money}}</h1>
+        <h1>¥{{cardsList[ind-1].account}}</h1>
         <div>
-            <span>赠送{{presented}}元</span>
-            <span style="float:right">{{discount}}折</span>
+            <span>赠送{{cardsList[ind-1].giving}}元</span>
+            <span style="float:right">{{cardsList[ind-1].discount}}折</span>
         </div>
     </div>
     <div class="line"></div>
@@ -26,10 +26,8 @@ export default {
   data() {
     return {
       ind: "",
-      presented: "",
-      money: "",
-      discount: "",
-      orderId:''
+      orderId: "",
+      cardsList:''
     };
   },
   computed: {
@@ -38,6 +36,15 @@ export default {
     }
   },
   created() {
+    var vm = this;
+    this.$ajax({
+      url: BASE_URL + "/car/cardModel",
+      header: {
+        WAG: vm.WAG
+      }
+    }).then(res => {
+      this.cardsList = res.data.data.cardsList;
+    });
     this.ind = this.$route.query.ind;
     if (this.$route.query.ind == 1) {
       this.presented = 800;
@@ -64,8 +71,7 @@ export default {
         method: "POST",
         url: BASE_URL + "/car/rechargeOrder",
         data: qs.stringify({
-          cashFee: 1,
-          cardFee: vm.money * 100 + vm.presented * 100,
+          cardId: this.ind,
           orderType: 2,
           attach: "rechargeCard"
         }),

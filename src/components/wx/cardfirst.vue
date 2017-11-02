@@ -7,36 +7,12 @@
     <span style="margin-right:0">{{cash}}</span>
   </div>
   <div class="showcard">
-    <div @click="choose(1)" class="card1">
-      <img v-show="ind == 1" src="../../assets/app/cardr.png">
-      <h1>¥<b>10000</b></h1>
+    <div v-for="(item,index) in cardsList" :key="index"  @click="choose(item.cardId)" :class="{'card1':item.cardType == 0,'card2':item.cardType == 1}">
+      <img v-show="ind == index+1" src="../../assets/app/cardr.png">
+      <h1>¥<b>{{item.account}}</b></h1>
       <div>
-        <span style="float:left">赠送800元</span>
-        <span style="float:right">9.2折</span>
-      </div>
-    </div>
-    <div @click="choose(2)" class="card1">
-      <img v-show="ind == 2" src="../../assets/app/cardr.png">
-      <h1>¥<b>30000</b></h1>
-      <div>
-        <span style="float:left">赠送3600元</span>
-        <span style="float:right">8.8折</span>
-      </div>
-    </div>
-    <div @click="choose(3)" class="card2">
-      <img v-show="ind == 3" src="../../assets/app/cardr.png">
-      <h1>¥<b>50000</b></h1>
-      <div>
-        <span style="float:left">赠送7500元</span>
-        <span style="float:right">8.5折</span>
-      </div>
-    </div>
-    <div @click="choose(4)" class="card2">
-      <img v-show="ind == 4" src="../../assets/app/cardr.png">
-      <h1>¥<b>100000</b></h1>
-      <div>
-        <span style="float:left">赠送20000元</span>
-        <span style="float:right">8折</span>
+        <span style="float:left">赠送{{item.giving}}元</span>
+        <span style="float:right">{{item.discount}}折</span>
       </div>
     </div>
   </div>
@@ -45,17 +21,9 @@
   <div class="line"></div>
   <div style="height:24px"></div>
   <p class="title">充值说明</p>  
-  <div class="introduce">
+  <div v-for="(item,index) in tips" :key="index" class="introduce">
     <span></span>
-    <b>充值只可以选择以上固定档位金额</b>
-  </div>
-  <div class="introduce">
-    <span></span>
-    <b>充值赠送礼金可用于租车消费，不可充当租车押金</b>
-  </div>
-  <div class="introduce">
-    <span></span>
-    <b>充值金额及赠送礼金永久有效</b>
+    <b>{{item}}</b>
   </div>
   <img class="bottomlogo" src="../../assets/app/blogo.png">
 </div>
@@ -65,8 +33,10 @@
 export default {
   data() {
     return {
-      ind: 1,
-      cash: 0
+      ind: '',
+      cash: 0,
+      cardsList:'',
+      tips:''
     };
   },
   computed: {
@@ -76,6 +46,17 @@ export default {
   },
   created() {
     var vm = this;
+    this.$ajax({
+      url: BASE_URL + "/car/cardModel",
+      header: {
+        WAG: vm.WAG
+      }
+    }).then(res => {
+      console.log(res);
+      this.cardsList = res.data.data.cardsList,
+      this.tips = res.data.data.instructions
+      this.ind = res.data.data.cardId;
+    });
     this.$ajax({
       url: BASE_URL + "car/rechargeCard",
       header: {

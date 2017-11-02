@@ -35,7 +35,7 @@
                             <span v-if="info.member.carRentOrder.status == 3" class="d1s">使用中</span>
                             <span v-if="info.member.carRentOrder.status == 4" class="d1s">已还车</span>
                             <img v-if="info.member.carRentOrder.status  == 5" class="ordered" src="../../assets/app/ordered1.png">
-                            <span v-if="info.member.carRentOrder.status == 6" class="d1s">已还车</span>
+                            <span v-if="info.member.carRentOrder.status == 6" class="d1s">已取消</span>
                             <span class="d1n">{{info.member.carRentOrder.carName}}</span>
                         </p>
                         <p class="d2">
