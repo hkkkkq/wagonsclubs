@@ -191,6 +191,7 @@ export default {
       orderId: "",
       addr1: "自取",
       addr2: "自取",
+      birthdayUsed:0
     };
   },
   created() {
@@ -215,7 +216,7 @@ export default {
 
     cashFee() {
       let tmp = Math.floor(this.total * 0.2);
-      return tmp > 2000 ? 2000 : tmp;
+      return tmp > 5000 ? 5000 : tmp;
     },
     startob() {
       return this.$store.state.starttime;
@@ -330,8 +331,10 @@ export default {
       //跨年租车，生日在年后
       let t2 = b2 <= e && b2 >= s;
       if (t1 || t2) {
+        this.birthdayUsed = 1;
         return true;
       } else {
+        this.birthdayUsed = 0;
         return false;
       }
     },
@@ -535,7 +538,8 @@ export default {
         returnAddr: vm.endadd,
         totalFee: vm.total * 100,
         cashFee:(vm.carData.memberId == 2)?1:vm.cashFee * 100,
-        orderType: 3
+        orderType: 3,
+        birthdayUsed:vm.birthdayUsed
       });
       var paydata2 = qs.stringify({
         carId: vm.carId,
@@ -562,8 +566,9 @@ export default {
         sendAddr: vm.startadd,
         returnAddr: vm.endadd,
         totalFee: vm.total * 100,
-        cashFee:1/*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/,
-        orderType: 2
+        cashFee:(vm.carData.memberId == 2)?1:vm.cashFee * 100,
+        orderType: 2,
+        birthdayUsed:vm.birthdayUsed
       });
       vm.$store.commit("paydata", {paydata2,paydata3});
       vm.$router.push("/wx/payorder?my="+vm.cashFee);

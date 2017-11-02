@@ -26,7 +26,32 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  created() {
+    var arr = [1, 2, 3, 45, 6, 7, 55, 78, 4, 14];
+    console.log(arr.reduce((a,b)=>{return a>b?a:b}))
+    function findMax(arr) {
+      var tmp = [],
+        n = 0,//下标
+        m;//值
+      for (let i = 0; i < arr.length; i++) {
+        if ((m == undefined)) {
+          m = arr[0];
+        } else {
+          if (m < arr[i]) {
+            n = i;
+            m = arr[i]
+          }
+        }
+      }
+      return [n-1,m]
+    }
+    console.log(findMax(arr));
+  }
+};
 </script>
 
 <style scoped>
