@@ -33,10 +33,10 @@
 export default {
   data() {
     return {
-      ind: '',
+      ind: "",
       cash: 0,
-      cardsList:'',
-      tips:''
+      cardsList: "",
+      tips: ""
     };
   },
   computed: {
@@ -52,8 +52,8 @@ export default {
         WAG: vm.WAG
       }
     }).then(res => {
-      this.cardsList = res.data.data.cardsList,
-      this.tips = res.data.data.instructions
+      (this.cardsList = res.data.data.cardsList),
+        (this.tips = res.data.data.instructions);
       this.ind = res.data.data.cardId;
     });
     this.$ajax({
@@ -217,6 +217,7 @@ $divbgcolor: #273039;
     margin: auto;
     display: inline-block;
     width: 7rem;
+    margin-left: 0.2rem;
   }
 }
 .bottomlogo {

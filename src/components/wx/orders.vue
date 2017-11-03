@@ -51,10 +51,10 @@ export default {
   created() {
     var vm = this;
     //获取openid
-    if (this.$route.query.WAG) {
-      this.$store.commit("setOpenId", this.$route.query.WAG);
-    }
-    // this.$store.commit("setOpenId", "oEUUVv_6lXDk2XuAwSIWaqtvXbDI");
+    // if (this.$route.query.WAG) {
+    //   this.$store.commit("setOpenId", this.$route.query.WAG);
+    // }
+    this.$store.commit("setOpenId", "oEUUVv_6lXDk2XuAwSIWaqtvXbDI");
     //isbinding
     this.$ajax({
       url: BASE_URL + "/car/isBinding",

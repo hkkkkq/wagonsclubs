@@ -17,7 +17,7 @@ export default {
     }
   },
   created() {
-    // this.$store.commit("setOpenId", "oEUUVv_6lXDk2XuAwSIWaqtvXbDI");
+    // this.$store.commit("setOpenId", "oEUUVv1Fko_nef3hzP9KY_P7nDHM");
     if (this.$route.query.WAG) {
       this.$store.commit("setOpenId", this.$route.query.WAG);
     }

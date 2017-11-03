@@ -1,5 +1,5 @@
 <template>
-    <div style="font-family: PingFangSC-Medium, sans-serif;background:rgb(15, 25, 35)">
+    <div style="font-family: PingFangSC-Medium, sans-serif;min-height:100%; background:rgb(15, 25, 35)">
         <h1 style="width:100%;height:1px"></h1>
         <pull :topDistance=30 :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
             <div slot="top" class="mint-loadmore-top">
@@ -116,7 +116,7 @@ export default {
     if (this.$route.query.WAG) {
       this.$store.commit("setOpenId", this.$route.query.WAG);
     }
-    // this.$store.commit('setOpenId', "oEUUVv_6lXDk2XuAwSIWaqtvXbDI")
+    // this.$store.commit('setOpenId', "oEUUVv1Fko_nef3hzP9KY_P7nDHM")
     //监听滚动事件
     window.addEventListener("scroll", this.handleScroll);
 
@@ -415,9 +415,16 @@ img[lazy="loading"] {
 
 img[lazy="loaded"] {
   /* //your code */
-  animation: fade 0.5s;
+  animation: fadee 0.5s;
 }
-
+@keyframes fadee {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 .down {
   z-index: -1;
   display: block;

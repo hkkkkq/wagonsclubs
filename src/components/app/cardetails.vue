@@ -355,9 +355,16 @@ img[lazy=loading] {
 img[lazy=loaded] {
     /* //your code */
     z-index: 1;
-    animation: fade 0.5s;
+    animation: fadee 0.5s;
 }
-
+@keyframes fadee {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 .nodis b {
     z-index: 1;
     font-size: 0.26rem;

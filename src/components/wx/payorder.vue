@@ -2,11 +2,12 @@
 <div class="wrap">
     <p class="num">¥{{cashFee}}</p>
     <p class="cox">线上支付定金</p>
-    <div @click="cardpay" class="paytype">
+    <div @click="cardpay" :class="{'paytype':true,'nocash':Number(this.Balance) < Number(this.cashFee) }">
         <img src="../../assets/app/refillcard.png">
         <span>充值卡支付</span>
         <span style="color:#999999">(余额{{Balance}})</span>
-        <span class="go">去支付</span>
+        <span v-if="Number(this.Balance) < Number(this.cashFee)" class="go">去充值</span>
+        <span v-else class="go">去支付</span>
         <img class="arrow" src="../../assets/app/wxright.png">
     </div>
     <div @click="wxpay" class="paytype">
@@ -24,7 +25,7 @@
         <div>
             <p>支付宝转账</p>
             <h1></h1>
-            <p class="co">支付宝账户：</p>
+            <p class="co">支付宝账户：bd@wagonsclub.com</p>
             <p class="co">首款公司：铭博顺通（北京）科技发展有限公司</p>
         </div>
     </div>
@@ -43,8 +44,8 @@ export default {
     return {
       cashFee: "",
       orderId: "",
-      Balance:"",
-      orderId3:''
+      Balance: "",
+      orderId3: ""
     };
   },
   computed: {
@@ -76,8 +77,8 @@ export default {
         method: "POST",
         url: BASE_URL + "/car/payBill",
         data: qs.stringify({
-          orderId:vm.orderId3,
-          orderType:2
+          orderId: vm.orderId3,
+          orderType: 2
         }),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -104,7 +105,7 @@ export default {
                       .$ajax(
                         BASE_URL +
                           "/car/order/check?orderId=" +
-                          vm.orderId +
+                          vm.orderId3 +
                           "&orderType=2"
                       )
                       .then(res1 => {
@@ -147,13 +148,17 @@ export default {
     },
     cardpay() {
       var vm = this;
+      if(Number(this.Balance) < Number(this.cashFee)){
+        this.$router.push('/wx/card');
+        return;
+      }
       vm
         .$ajax({
           method: "POST",
           url: BASE_URL + "/car/payBill",
           data: qs.stringify({
-            orderId:vm.orderId3,
-            orderType:3
+            orderId: vm.orderId3,
+            orderType: 3
           }),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -177,6 +182,11 @@ $bgcolor: #0f1923;
 $yellow: #f4d144;
 $divbg: #273039;
 $fontfamily: PingFangSC-Light, sans-serif;
+$nocashcolor: #1b252e;
+.nocash {
+  background: $nocashcolor !important;
+  color: #999999 !important;
+}
 .border {
   border-radius: 0.04rem;
 }

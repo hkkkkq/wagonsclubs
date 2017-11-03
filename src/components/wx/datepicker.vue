@@ -1,5 +1,5 @@
 <template>
-    <div style="font-family:PingFangSC-Medium, sans-serif;position:absolute;height:100%;width:100%">
+    <div class="cube" style="font-family:PingFangSC-Medium, sans-serif;position:absolute;height:100%;width:100%">
         <div style="background:#0f1923;min-height:100%">
             <p style="height:0.2rem"></p>
             <p @click="su" class='but1'>确定</p>
@@ -37,10 +37,10 @@
                     </span>
                     <pd-select-box style="width: 7.1rem;margin: auto;position: relative;left: -0.3rem;">
                         <transition name='slid'>
-                            <pd-select-item style="height:4.5rem" v-if="show[n]" :listData="listData" v-model="shi"></pd-select-item>
+                            <pd-select-item style="width:50%;height:4.5rem" v-if="show[n]" :listData="listData" v-model="shi"></pd-select-item>
                         </transition>
                         <transition name='slid'>
-                            <pd-select-item style="height:4.5rem" v-if="show[n]" :listData="listData2" v-model="fen"></pd-select-item>
+                            <pd-select-item style="width:49.9%;height:4.5rem" v-if="show[n]" :listData="listData2" v-model="fen"></pd-select-item>
                         </transition>
                     </pd-select-box>
                 </div>
@@ -116,9 +116,9 @@ export default {
   watch: {
     //监听日期
     choose() {
-      if (this.choose == this.sdate) {
         var curDate = new Date();
         var prevHuor;
+      if ((this.choose == this.sdate)&&(this.curMonth ==curDate.getMonth() )) {
         curDate.getMinutes() > 30
           ? (prevHuor = curDate.getHours() + 3)
           : (prevHuor = curDate.getHours() + 2);
@@ -386,6 +386,13 @@ export default {
 </script>
 
 <style scoped>
+.cube {
+   -webkit-transform: translate3d(0, 0, 0);
+   -moz-transform: translate3d(0, 0, 0);
+   -ms-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+  /* Other transform properties here */
+}
 .two {
   width: 100%;
   font-size: 0.24rem;
