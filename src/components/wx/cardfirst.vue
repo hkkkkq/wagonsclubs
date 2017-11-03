@@ -52,7 +52,6 @@ export default {
         WAG: vm.WAG
       }
     }).then(res => {
-      console.log(res);
       this.cardsList = res.data.data.cardsList,
       this.tips = res.data.data.instructions
       this.ind = res.data.data.cardId;

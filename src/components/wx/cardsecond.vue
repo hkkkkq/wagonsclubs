@@ -27,7 +27,7 @@ export default {
     return {
       ind: "",
       orderId: "",
-      cardsList:''
+      cardsList: [{orderType:''},{orderType:''},{orderType:''},{orderType:''}]
     };
   },
   computed: {
@@ -46,23 +46,6 @@ export default {
       this.cardsList = res.data.data.cardsList;
     });
     this.ind = this.$route.query.ind;
-    if (this.$route.query.ind == 1) {
-      this.presented = 800;
-      this.money = 10000;
-      this.discount = 9.2;
-    } else if (this.$route.query.ind == 2) {
-      this.presented = 3600;
-      this.money = 30000;
-      this.discount = 8.8;
-    } else if (this.$route.query.ind == 3) {
-      this.presented = 7500;
-      this.money = 50000;
-      this.discount = 8.5;
-    } else if (this.$route.query.ind == 4) {
-      this.presented = 20000;
-      this.money = 100000;
-      this.discount = 8;
-    }
   },
   methods: {
     wxpay() {

@@ -179,7 +179,7 @@ export default {
     oversix(date) {
       var d = new Date()
       if((this.sdate == date)&&(this.curMonth == d.getMonth())){
-        if(d.getHours()>=6){
+        if(d.getHours()>=18){
           return true;
         }
       }else{

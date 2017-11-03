@@ -512,35 +512,6 @@ export default {
         alert("请选择填写取车地址");
         return false;
       }
-      var paydata3 = qs.stringify({
-        carId: vm.carId,
-        rentStartAt:
-          vm.startob.year +
-          "-" +
-          (vm.startob.month + 1) +
-          "-" +
-          vm.startob.date +
-          " " +
-          parseInt(vm.startob.shi) +
-          ":" +
-          parseInt(vm.startob.fen),
-        rentEndAt:
-          vm.endob.year +
-          "-" +
-          (vm.endob.month + 1) +
-          "-" +
-          vm.endob.date +
-          " " +
-          parseInt(vm.endob.shi) +
-          ":" +
-          parseInt(vm.endob.fen),
-        sendAddr: vm.startadd,
-        returnAddr: vm.endadd,
-        totalFee: vm.total * 100,
-        cashFee: vm.carData.memberId == 2 ? 1 : vm.cashFee * 100,
-        orderType: 3,
-        birthdayUsed: vm.birthdayUsed
-      });
       //付钱的
       var paydata2 = qs.stringify({
         carId: vm.carId,
