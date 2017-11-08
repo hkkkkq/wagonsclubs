@@ -62,19 +62,19 @@
                         <b class="b"></b>
                         <span v-if="illegalInfo.checkType == 0">违章记录核验中</span>
                         <span v-if="illegalInfo.checkType == 1">违章记录核验完成</span>
-                        <i>已付{{illegalInfo.depositMoney}}</i>
+                        <i>已付押金¥{{illegalInfo.depositMoney}}</i>
                     </p>
-                    <h1>核验完成时间：{{illegalInfo.checkTime}}前</h1>
+                    <h1>{{illegalInfo.checkTime}}</h1>
                     <div class="wz">
                         <h1>违章记录如下</h1>
                         <img :src="illegalInfo.illegalImage">
                         <h2>罚款金额合计：
-                            <span style="float:right">¥{{parseInt()}}</span>
+                            <span style="float:right">¥{{illegalInfo.illegalMoney}}</span>
                         </h2>
                     </div>
                     <p style="margin-top:0.4rem" class="ti2">
                         <b class="b"></b>
-                        <span>剩余押金¥1500已打款完成</span>
+                        <span>剩余押金¥{{parseInt(illegalInfo.depositMoney)-parseInt(illegalInfo.illegalMoney)>0?(parseInt(illegalInfo.depositMoney) - parseInt(illegalInfo.illegalMoney)):"0"}}已打款完成</span>
                     </p>
                 </div>
                 <h1 style="width:100%;height:1px"></h1>
