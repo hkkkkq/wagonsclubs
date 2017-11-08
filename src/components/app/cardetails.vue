@@ -279,7 +279,10 @@ export default {
               .then(res => {
                 if (res.data.success == true) {
                   //请求成功
-                  if (res.data.data.JumpInfo.memberUsable == false) {
+                  if (
+                    res.data.data.JumpInfo.memberUsable == false &&
+                    res.data.data.JumpInfo.review == true
+                  ) {
                     vm.memberfalseshow = true;
                     return;
                   }
@@ -347,7 +350,10 @@ export default {
           })
           .then(res => {
             if (res.data.success == true) {
-              if (res.data.data.JumpInfo.memberUsable == false) {
+              if (
+                res.data.data.JumpInfo.memberUsable == false &&
+                res.data.data.JumpInfo.review == true
+              ) {
                 vm.memberfalseshow = true;
                 return;
               }

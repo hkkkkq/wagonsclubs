@@ -54,8 +54,8 @@
                 </div>
                 <div style="width: 100%;height: 1px;"></div>
             </div>
-            <!-- v-if="illegalInfo"  违章 -->
-            <!-- <div  class="co">
+            <!--   违章 -->
+            <div v-if="illegalInfo" class="co">
                 <h1 style="width:100%;height:1px"></h1>
                 <div class="co1">
                     <p class="ti2">
@@ -78,7 +78,7 @@
                     </p>
                 </div>
                 <h1 style="width:100%;height:1px"></h1>
-            </div> -->
+            </div>
             <h1 style="width:100%;height:50px"></h1>
         </div>
     </div>

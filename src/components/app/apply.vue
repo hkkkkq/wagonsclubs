@@ -205,7 +205,7 @@ export default {
     bottom: 0;
     width: 100%;
     background: #fff;
-    height: 5.5rem;
+    max-height: 5.5rem;
     overflow-y: auto;
 }
 

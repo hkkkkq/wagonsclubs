@@ -47,7 +47,7 @@
                 <div>
                     <span style="background:#3d454d" class="rad"></span>
                     <div style="margin-left:0" class='rr'>
-                        <span style="color:#ffffff;margin-bottom:0.32rem">使用优享计划天数</span>
+                        <span style="color:#ffffff;margin-bottom:0.32rem">使用{{carData.planName}}天数</span>
                         <div @click="switchrad" :class="{'switchdown':!rad}" class="switch"><div :class="{'leftrad':!rad}" class="rad"></div></div>
                     </div>
                 </div>

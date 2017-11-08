@@ -1,7 +1,8 @@
 <template>
 <div class="wrap">
     <p class="num">¥{{cashFee}}</p>
-    <p class="cox">线上支付定金</p>
+    <p v-if="cashFee == 5000" class="cox">线上支付定金</p>
+    <p v-else class="cox">线上支付租金</p>
     <div @click="cardpay" :class="{'paytype':true,'nocash':Number(this.Balance) < Number(this.cashFee) }">
         <img src="../../assets/app/refillcard.png">
         <span>充值卡支付</span>
