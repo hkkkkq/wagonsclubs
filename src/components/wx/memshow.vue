@@ -20,7 +20,7 @@
                 <p class="plandate">{{info.member.memberTime}}有效</p>
             </div>
             <!-- 订单 -->
-            <div v-if='info.member.carRentOrder'>
+            <div @click="toOrder(info.member.carRentOrder.id)" v-if='info.member.carRentOrder'>
                 <p class="ti">
                     <span class="ty">当前订单</span>
                 </p>
@@ -123,6 +123,18 @@
                     <img @click="close" class='xx' src="../../assets/app/xx.png">
                 </div>
             </transition>
+            <transition name="fade">
+              <div class="al" v-if="memberfalseshow">
+                  <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
+                      <img class="at" src="../../assets/app/memberfalse.png">
+                      <div class="ms">
+                          很抱歉，您的会员状态存在问题，暂时无法用车，请与工作人员联系，我们回协助你解决问题
+                          <div @click="cl(1)"><img class="ftel" src="../../assets/app/pendingphone.png">联系客服</div>
+                      </div>
+                  </div>
+                  <img @click="cl" class="ax" src="../../assets/app/xx.png">
+              </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -137,7 +149,8 @@ export default {
       lechao: false,
       youxiang: false,
       zhizun: false,
-      info: ""
+      info: "",
+      memberfalseshow: false
     };
   },
   computed: {
@@ -152,6 +165,9 @@ export default {
         WAG: this.WAG
       }
     }).then(res => {
+      if ((res.data.data.memberUsable == false)&&(res.data.member.memberType == 1)&&(res.data.member.memberType == 2)&&(res.data.member.memberType == 3)&&(res.data.member.memberType == 5)) {
+        this.memberfalseshow = true;
+      }
       this.info = res.data.data;
       if (this.info.member.memberType == 1) {
         this.lechao = true;
@@ -176,17 +192,45 @@ export default {
       location.href = "tel:4008625700";
     },
     ch(n) {
-      // this.lechao = this.youxiang = this.zhizun = false
-      // if (n == 1) { this.lechao = true }
-      // if (n == 2) { this.youxiang = true }
-      // if (n == 3) { this.zhizun = true }
       this.at = true;
+    },
+    cl(n) {
+      if (n == 1) {
+        this.memberfalseshow = false;
+        location.href = "tel:4008625700";
+      } else {
+        this.memberfalseshow = false;
+        this.at = false;
+      }
+    },
+    toOrder(id) {
+      this.$router.push("/wx/orderdetail?id=" + id);
     }
   }
 };
 </script>
 
 <style scoped>
+.ax {
+  width: 0.68rem;
+  height: 0.68rem;
+  z-index: 1;
+  margin-top: 2.24rem;
+  position: absolute;
+  bottom: 1.2rem;
+  left: 0;
+  margin: auto;
+  display: block;
+  right: 0;
+}
+.ftel {
+  position: relative;
+  margin: auto;
+  width: 0.3rem;
+  height: 0.3rem;
+  margin-right: 0.3rem;
+  top: 0.06rem;
+}
 .ms {
   background: #ffffff;
   font-size: 0.24rem;
@@ -200,7 +244,19 @@ export default {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-
+.ms div {
+  background: #fed945;
+  height: 0.72rem;
+  color: #333333;
+  position: absolute;
+  bottom: 0.32rem;
+  width: 4.52rem;
+  border-radius: 4px;
+  font-size: 0.26rem;
+  text-align: center;
+  z-index: 1;
+  line-height: 0.7rem;
+}
 .al .at {
   width: 5.17rem;
   margin: auto;
