@@ -141,7 +141,7 @@
             </div>
             <!-- 会员 -->
             <div @click='pay1' v-if='(orderType == 2)||((orderType == 0)&&(rad == false))'>
-                <div class='sl'>需预付定金
+                <div class='sl'>{{lessThan5000?"需预付租金":"需预付定金"}}
                     <span style="color:#fed945">{{cashFee}}元</span>
                 </div>
                 <div class='sr'>提交订单</div>
@@ -191,7 +191,8 @@ export default {
       orderId: "",
       addr1: "自取",
       addr2: "自取",
-      birthdayUsed: 0
+      birthdayUsed: 0,
+      lessThan5000:false
     };
   },
   created() {
@@ -215,8 +216,14 @@ export default {
     },
 
     cashFee() {
-      let tmp = Math.floor(this.total * 0.2);
-      return tmp > 5000 ? 5000 : tmp;
+      if (this.total <= 5000) {
+        this.lessThan5000 = true
+        return this.total;
+      } else {
+        this.lessThan5000 = false
+        let tmp = Math.floor(this.total * 0.2);
+        return tmp > 5000 ? 5000 : tmp;
+      }
     },
     startob() {
       return this.$store.state.starttime;
@@ -550,9 +557,11 @@ export default {
           "Content-Type": "application/x-www-form-urlencoded",
           WAG: vm.WAG
         } //oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
-      }).then(res=>{
-        this.$router.push('/wx/payorder?my='+vm.cashFee+'&orderId='+res.data.data.orderId)
-      })
+      }).then(res => {
+        this.$router.push(
+          "/wx/payorder?my=" + vm.cashFee + "&orderId=" + res.data.data.orderId
+        );
+      });
     }
   }
 };
