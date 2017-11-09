@@ -168,6 +168,7 @@ export default {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #fff;
+  z-index: 1;
   img {
     width: 18px;
     margin: auto;
@@ -195,6 +196,7 @@ export default {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #272727;
+  z-index: 1;
   img {
     width: 20px;
     height: 24px;
@@ -213,11 +215,11 @@ export default {
   width: 126px;
   position: fixed;
   background: #fed945;
-  height: 316px;
+  height: 310px;
   right: 0;
   color: #000000;
   z-index: 100;
-  top: 390px;
+  bottom: 10px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   .clo {
@@ -260,7 +262,7 @@ export default {
     cursor: pointer;
     height: 45px;
     background: #272727;
-    margin: 13px;
+    margin: 10px;
     border-radius: 4px;
     img {
       margin: auto;
@@ -314,7 +316,7 @@ export default {
 
 .rightlab .qr {
   display: block;
-  margin: 18px;
+  margin: 11px 18px;
   width: 94px;
   height: auto;
 }
@@ -323,7 +325,7 @@ export default {
   width: 126px;
   position: fixed;
   right: 0;
-  top: 53px;
+  bottom: 326px;
   height: auto;
   background-color: #333333;
   z-index: 100;
