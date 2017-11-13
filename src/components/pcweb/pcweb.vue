@@ -54,18 +54,21 @@
     <div v-show="qrind == 1" style="bottom:120px" class="wxqr">
       <img src="../../assets/app/liuxueting.jpeg">
       <div></div>
+      <p>扫一扫加我微信</p>
     </div>
     </transition>
     <transition name="fadeed">
     <div v-show="qrind == 2" style="bottom:60px" class="wxqr">
       <img src="../../assets/app/machen.jpeg">
       <div></div>
+      <p>扫一扫加我微信</p>      
     </div>  
     </transition>    
     <transition name="fadeed">
       <div v-show="qrind == 3" style="bottom:10px" class="wxqr">
       <img src="../../assets/app/xuxin.png">
       <div></div>
+      <p>扫一扫加我微信</p>      
     </div>
       </transition>    
     <div></div>
@@ -190,6 +193,7 @@ export default {
   height: 150px;
   display: flex;
   display: -webkit-flex;
+  flex-direction: column;
   background: #fed945;
   border-radius: 4px;
   img {
@@ -205,6 +209,12 @@ export default {
     border-right: 20px solid transparent;
     border-bottom: 20px solid transparent;
     top: 50px;
+  }
+  p{
+    color: #272727;
+    text-align: center;
+    font-size: 16px;
+    margin: auto;
   }
 }
 .aboutus {
