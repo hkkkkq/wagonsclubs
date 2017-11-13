@@ -51,6 +51,7 @@ export default {
       return [n-1,m]
     }
     console.log(findMax(arr));
+    console.log(process.env)
   }
 };
 </script>
