@@ -60,7 +60,7 @@ export default {
     this.orderId3 = this.$route.query.orderId;
     this.$ajax({
       url: BASE_URL + "car/rechargeCard",
-      header: {
+      headers: {
         WAG: vm.WAG
       }
     }).then(res => {

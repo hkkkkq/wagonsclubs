@@ -48,7 +48,7 @@ export default {
     var vm = this;
     this.$ajax({
       url: BASE_URL + "/car/cardModel",
-      header: {
+      headers: {
         WAG: vm.WAG
       }
     }).then(res => {
@@ -58,7 +58,7 @@ export default {
     });
     this.$ajax({
       url: BASE_URL + "car/rechargeCard",
-      header: {
+      headers: {
         WAG: vm.WAG
       }
     }).then(res => {
