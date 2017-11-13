@@ -82,19 +82,6 @@ export default {
                     vm.telephone = res.data.data.wxCell
                 })
         }
-
-        // if (this.isapp == true) {
-        // } else {
-        // alert('微信中')
-        // this.$ajax({
-        //     url: BASE_URL + "/member/applicationCell",
-        //     method: 'GET',
-        //     headers: { "token": "782379c61ed4485c86466af872a73c25" }
-        // })
-        //     .then(res => {
-        //         vm.telephone == res.data.data.cell
-        //     })
-        // }
         function suc(token) {
             // alert(token)
             vm.$ajax({
