@@ -57,7 +57,7 @@ export default {
       this.ind = res.data.data.cardId;
     });
     this.$ajax({
-      url: BASE_URL + "car/rechargeCard",
+      url: BASE_URL + "/car/rechargeCard",
       headers: {
         WAG: vm.WAG
       }

@@ -59,7 +59,7 @@ export default {
     this.cashFee = this.$route.query.my;
     this.orderId3 = this.$route.query.orderId;
     this.$ajax({
-      url: BASE_URL + "car/rechargeCard",
+      url: BASE_URL + "/car/rechargeCard",
       headers: {
         WAG: vm.WAG
       }
