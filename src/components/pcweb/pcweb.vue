@@ -35,21 +35,41 @@
       <h1>WAGONS</h1>
       <h2>在线客服</h2>
       <p></p>
-      <div @click="talk(1)" class="hm">
+      <div @mouseenter="showQr(1)" @mouseleave="hideQr(1)" class="hm">
         <img src='../../assets/ella.png'>
         <span>Ella</span>
       </div>
-      <div @click="talk(2)" class="hm">
+      <div @mouseenter="showQr(2)" @mouseleave="hideQr(2)" class="hm">
         <img src='../../assets/angela.png'>
         <span>Angela</span>
       </div>
-      <div @click="talk(3)" class="hm">
+      <div @mouseenter="showQr(3)" @mouseleave="hideQr(3)" class="hm">
         <img src='../../assets/grace.png'>
         <span>Grace</span>
       </div>
       <p></p>
       <h2>欢迎咨询！</h2>
     </div>
+    <transition name="fadeed">
+    <div v-show="qrind == 1" style="bottom:120px" class="wxqr">
+      <img src="../../assets/app/liuxueting.jpeg">
+      <div></div>
+    </div>
+    </transition>
+    <transition name="fadeed">
+    <div v-show="qrind == 2" style="bottom:60px" class="wxqr">
+      <img src="../../assets/app/machen.jpeg">
+      <div></div>
+    </div>  
+    </transition>    
+    <transition name="fadeed">
+      <div v-show="qrind == 3" style="bottom:10px" class="wxqr">
+      <img src="../../assets/app/xuxin.png">
+      <div></div>
+    </div>
+      </transition>    
+    <div></div>
+    <div></div>
     <div v-show="!aboutus" @click="Expand(1)" class="aboutus">
       <img src="../../assets/littleqr_03.png">
       <span>关注我们</span>
@@ -76,7 +96,8 @@ export default {
       homeactive3: false,
       homeactive4: false,
       onlineServer: true,
-      aboutus: true
+      aboutus: true,
+      qrind: ""
     };
   },
   mounted() {
@@ -110,20 +131,19 @@ export default {
         this.onlineServer = false;
       }
     },
-    talk(n) {
+    showQr(n) {
       if (n == 1) {
-        //刘旭婷
-        window.open(
-          "http://wpa.qq.com/msgrd?v=3&uin=1036335394&site=qq&menu=yes"
-        );
-      } else if (n == 2) {
-        //马晨
-        window.open(
-          "http://wpa.qq.com/msgrd?v=3&uin=1036335394&site=qq&menu=yes"
-        );
-      } else if (n == 3) {
-        window.open("http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes");
+        this.qrind = 1;
       }
+      if (n == 2) {
+        this.qrind = 2;
+      }
+      if (n == 3) {
+        this.qrind = 3;
+      }
+    },
+    hideQr(n) {
+      this.qrind = "";
     },
     changecolor1: function() {
       this.homeactive1 = true;
@@ -156,6 +176,37 @@ export default {
 };
 </script>
 <style lang='scss' type="text/css" scoped>
+.fadeed-enter-active, .fadeed-leave-active {
+  transition: opacity .5s
+}
+.fadeed-enter, .fadeed-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
+.wxqr {
+  position: fixed;
+  right: 138px;
+  width: 150px;
+  z-index: 100;
+  height: 150px;
+  display: flex;
+  display: -webkit-flex;
+  background: #fed945;
+  border-radius: 4px;
+  img {
+    width: 70%;
+    height: 70%;
+    margin: auto;
+  }
+  div {
+    position: absolute;
+    right: -30px;
+    border-top: 20px solid transparent;
+    border-left: 20px solid #fed945;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    top: 50px;
+  }
+}
 .aboutus {
   width: 126px;
   height: 45px;
@@ -168,6 +219,7 @@ export default {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #fff;
+  z-index: 1;
   img {
     width: 18px;
     margin: auto;
@@ -195,6 +247,7 @@ export default {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #272727;
+  z-index: 1;
   img {
     width: 20px;
     height: 24px;
@@ -213,11 +266,11 @@ export default {
   width: 126px;
   position: fixed;
   background: #fed945;
-  height: 316px;
+  height: 310px;
   right: 0;
   color: #000000;
   z-index: 100;
-  top: 390px;
+  bottom: 10px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   .clo {
@@ -233,7 +286,7 @@ export default {
     margin-left: 0.8rem;
     color: #ffffff;
     letter-spacing: -2px;
-        text-indent: 4px;
+    text-indent: 4px;
   }
   h1 {
     font-size: 22px;
@@ -260,7 +313,7 @@ export default {
     cursor: pointer;
     height: 45px;
     background: #272727;
-    margin: 13px;
+    margin: 10px;
     border-radius: 4px;
     img {
       margin: auto;
@@ -304,7 +357,7 @@ export default {
   font-size: 1px;
   line-height: 14px;
   letter-spacing: -2px;
-      text-indent: 4px;
+  text-indent: 4px;
 }
 .rightlab p {
   font-size: 14px;
@@ -314,7 +367,7 @@ export default {
 
 .rightlab .qr {
   display: block;
-  margin: 18px;
+  margin: 11px 18px;
   width: 94px;
   height: auto;
 }
@@ -323,7 +376,7 @@ export default {
   width: 126px;
   position: fixed;
   right: 0;
-  top: 53px;
+  bottom: 326px;
   height: auto;
   background-color: #333333;
   z-index: 100;
