@@ -192,7 +192,7 @@ export default {
       addr1: "自取",
       addr2: "自取",
       birthdayUsed: 0,
-      lessThan5000:false
+      lessThan5000: false
     };
   },
   created() {
@@ -217,10 +217,10 @@ export default {
 
     cashFee() {
       if (this.total <= 5000) {
-        this.lessThan5000 = true
+        this.lessThan5000 = true;
         return this.total;
       } else {
-        this.lessThan5000 = false
+        this.lessThan5000 = false;
         let tmp = Math.floor(this.total * 0.2);
         return tmp > 5000 ? 5000 : tmp;
       }
@@ -301,13 +301,17 @@ export default {
       if (s == "Invalid Date" || e == "Invalid Date") {
         return 0;
       } else {
-        return (
-          Math.floor((e - s) / (60 * 60 * 24 * 1000)) +
-          (((e - s) % (60 * 60 * 24 * 1000)) / (60 * 60 * 1000) >
-          this.carData.extraHours
-            ? 1
-            : 0)
-        );
+        if (((e - s) % (60 * 60 * 24 * 1000)) / (60 * 60 * 1000) == 0) {
+          return Math.floor((e - s) / (60 * 60 * 24 * 1000));
+        } else {
+          return (
+            Math.floor((e - s) / (60 * 60 * 24 * 1000)) +
+            (((e - s) % (60 * 60 * 24 * 1000)) / (60 * 60 * 1000) >
+            this.carData.extraHours
+              ? 1
+              : 0.5)
+          );
+        }
       }
     },
     isbirthday() {
