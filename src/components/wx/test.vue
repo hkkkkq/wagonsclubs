@@ -36,7 +36,7 @@
       <br>
       <a :href="'http://www.test.wagonsclub.com/app/warning'">用车须知</a>
     </div>
-    <input v-model="WAG" style="border:1px solid;width:80%" type="text" placeholder="输入oppenid，不写则是默认值">
+    <input v-model="W" style="border:1px solid;width:80%" type="text" placeholder="输入oppenid，不写则是默认值">
   </div>
 </template>
 
@@ -50,6 +50,12 @@ export default {
   },
   created() {
     this.env = process.env.NODE_ENV;
+     var x = (a,b)=>(c)=>{
+      console.log(a)
+      console.log(b)
+      console.log(c)
+    }
+    x(1)(2,3);
   }
 };
 </script>
