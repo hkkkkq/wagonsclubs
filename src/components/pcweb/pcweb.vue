@@ -52,23 +52,23 @@
     </div>
     <transition name="fadeed">
     <div v-show="qrind == 1" style="bottom:120px" class="wxqr">
-      <img src="../../assets/app/liuxueting.jpeg">
+      <img src="../../assets/app/liuxueting.png">
       <div></div>
-      <p>扫一扫加我微信</p>
+      <p>扫码加我微信</p>
     </div>
     </transition>
     <transition name="fadeed">
     <div v-show="qrind == 2" style="bottom:60px" class="wxqr">
-      <img src="../../assets/app/machen.jpeg">
+      <img src="../../assets/app/machen.png">
       <div></div>
-      <p>扫一扫加我微信</p>      
+      <p>扫码加我微信</p>      
     </div>  
     </transition>    
     <transition name="fadeed">
       <div v-show="qrind == 3" style="bottom:10px" class="wxqr">
       <img src="../../assets/app/xuxin.png">
       <div></div>
-      <p>扫一扫加我微信</p>      
+      <p>扫码加我微信</p>      
     </div>
       </transition>    
     <div></div>
@@ -179,42 +179,46 @@ export default {
 };
 </script>
 <style lang='scss' type="text/css" scoped>
-.fadeed-enter-active, .fadeed-leave-active {
-  transition: opacity .5s
+.fadeed-enter-active,
+.fadeed-leave-active {
+  transition: opacity 0.5s;
 }
-.fadeed-enter, .fadeed-leave-to /* .fade-leave-active in below version 2.1.8 */ {
-  opacity: 0
+.fadeed-enter,
+.fadeed-leave-to {
+  opacity: 0;
 }
 .wxqr {
   position: fixed;
   right: 138px;
-  width: 150px;
+  width: 126px;
   z-index: 100;
-  height: 150px;
+  height: 158px;
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
-  background: #fed945;
+  background: #272727;
   border-radius: 4px;
   img {
-    width: 70%;
-    height: 70%;
+    width: 102px;
     margin: auto;
+    margin-top: 13px;
   }
   div {
     position: absolute;
     right: -30px;
     border-top: 20px solid transparent;
-    border-left: 20px solid #fed945;
+    border-left: 20px solid #272727;
     border-right: 20px solid transparent;
     border-bottom: 20px solid transparent;
     top: 50px;
   }
-  p{
-    color: #272727;
+  p {
+    color: #ffffff;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     margin: auto;
+    letter-spacing: 4px;
+    margin-bottom: 14px;
   }
 }
 .aboutus {
