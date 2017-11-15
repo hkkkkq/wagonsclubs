@@ -69,12 +69,12 @@ export default {
             WeixinJSBridge.invoke(
               "getBrandWCPayRequest",
               {
-                appId: res.data.data.appId, //公众号名称，由商户传入
-                timeStamp: res.data.data.timeStamp, //时间戳，自1970年以来的秒数
-                nonceStr: res.data.data.nonceStr, //随机串
-                package: res.data.data.package,
-                signType: res.data.data.signType, //微信签名方式：
-                paySign: res.data.data.paySign //微信签名
+                appId:res.data.data.appId, //公众号名称，由商户传入
+                timeStamp:res.data.data.timeStamp, //时间戳，自1970年以来的秒数
+                nonceStr:res.data.data.nonceStr, //随机串
+                package:res.data.data.package,
+                signType:res.data.data.signType, //微信签名方式：
+                paySign:res.data.data.paySign //微信签名
               },
               function(res) {
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
