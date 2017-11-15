@@ -82,19 +82,6 @@ export default {
                     vm.telephone = res.data.data.wxCell
                 })
         }
-
-        // if (this.isapp == true) {
-        // } else {
-        // alert('微信中')
-        // this.$ajax({
-        //     url: BASE_URL + "/member/applicationCell",
-        //     method: 'GET',
-        //     headers: { "token": "782379c61ed4485c86466af872a73c25" }
-        // })
-        //     .then(res => {
-        //         vm.telephone == res.data.data.cell
-        //     })
-        // }
         function suc(token) {
             // alert(token)
             vm.$ajax({
@@ -205,7 +192,7 @@ export default {
     bottom: 0;
     width: 100%;
     background: #fff;
-    height: 5.5rem;
+    max-height: 5.5rem;
     overflow-y: auto;
 }
 
@@ -266,13 +253,14 @@ input::-webkit-input-placeholder {
     background-repeat: no-repeat;
     background-position: 4.15rem 0.02rem;
     text-indent: 3.2rem;
-    margin-right: 0.3rem;
+    margin-right: 0.2rem;
 }
 
 .in p {
     height: 1rem;
     width: 6.8rem;
     display: flex;
+    display: -webkit-flex;
     margin-left: 0.3rem;
     border-bottom: 1px solid #3d454d;
 }
@@ -286,7 +274,6 @@ input::-webkit-input-placeholder {
     height: 0.6rem;
     vertical-align: middle;
     color: #ffffff;
-    float: right;
     margin: auto;
     outline: none;
     font-weight: 300;
@@ -294,12 +281,8 @@ input::-webkit-input-placeholder {
 }
 
 .in span {
-    vertical-align: middle;
     color: #ffffff;
     font-size: 0.26rem;
-    display: inline-block;
-    width: 1.2rem;
-    height: 0.3rem;
     margin: auto;
     margin-left: 0.1rem;
 }

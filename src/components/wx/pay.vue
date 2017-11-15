@@ -1,6 +1,6 @@
 <template>
     <div style="font-family:PingFangSC-Medium, sans-serif;height: 100%;position: absolute;width: 100%;">
-        <div style="background:rgb(15, 25, 35);min-height:100%">
+        <div style="background:rgb(15, 25, 35);min-height:100%;overflow:hidden">
             <p style="height:0.2rem"></p>
             <div class="carinfo">
                 <img :src="carData.carImage">
@@ -46,36 +46,71 @@
             <div v-if='orderType == 0' class="com">
                 <div>
                     <span style="background:#3d454d" class="rad"></span>
-                    <div style="border:0" class='rr'>
+                    <div style="margin-left:0" class='rr'>
+                        <span style="color:#ffffff;margin-bottom:0.32rem">使用{{carData.planName}}天数</span>
+                        <div @click="switchrad" :class="{'switchdown':!rad}" class="switch"><div :class="{'leftrad':!rad}" class="rad"></div></div>
+                    </div>
+                </div>
+                <div v-if="rad">
+                  <div>
+                    <div class='rr'>
                         <span>本次用车天数</span>
-                        <span style="right:0.3rem;position:relative;;float:right;color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="border:0" class='rr'>
+                        <span>{{carData.planName}}可用天数</span>
+                        <b>{{carData.canMemberUse}}天</b>
+                    </div>
+                  </div>
+                  <div v-if="tokendays<=carData.canMemberUse">
+                    <div style="border:0" class='rr'>
+                        <span>扣减后剩余天数</span>
+                        <b>{{carData.canMemberUse - tokendays}}天</b>
+                    </div>
+                  </div>
+                </div>
+                <div v-else>
+                   <div class='rr'>
+                        <span class="">本次用车天数</span>
+                        <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
+                    </div>
+                    <div class='rr noborder'>
+                        <span class="">会员价</span>
+                        <b style="color:#fed945">{{carData.memberRentPrice}}元/天</b>
+                    </div>
+                    <div v-if='(tokendays >= 7)&&(tokendays<30)' class='rr noborder'>
+                        <span class="">周租折扣</span>
+                        <b style="color:#fed945">{{carData.week}}折</b>
+                    </div>
+                    <div v-if='tokendays>=30' class='rr noborder'>
+                        <span class="">月租折扣</span>
+                        <b style="color:#fed945">{{carData.month}}折</b>
+                    </div>
+                    <div v-if='isbirthday' class='rr noborder'>
+                        <span class="">生日折扣</span>
+                        <b style="color:#fed945">单日{{carData.birthday}}折</b>
+                    </div>
+                    <div class='rr noborder'>
+                        <span class="">费用合计</span>
+                        <b style="color:#fed945">¥{{total}}</b>
                     </div>
                 </div>
                 <div>
-                    <span style="background:#3d454d" class="rad"></span>
-                    <div class='rr'>
-                        <span>{{carData.planName}}可用天数</span>
-                        <span style="right:0.3rem;position:relative;float:right">{{carData.canMemberUse}}天</span>
-                    </div>
-                </div>
-                <div v-if="tokendays<=carData.canMemberUse">
-                    <span style="background:#3d454d;" class="rad"></span>
-                    <div class='rr'>
-                        <span>扣减后剩余天数</span>
-                        <span style="right:0.3rem;position:relative;float:right">{{carData.canMemberUse - tokendays}}天</span>
-                    </div>
+                  
                 </div>
             </div>
-            <div v-if="(!(tokendays<carData.canMemberUse))&&(orderType == 0)" class='warn'>
+            <!-- <div v-if="(!(tokendays<carData.canMemberUse))&&(orderType == 0)" class='warn'>
                 可用天数不足，请重新选择用车天数
-            </div>
+            </div> -->
             <!-- 非计划会员 -->
             <div v-if='orderType == 2' class='com'>
                 <span style="background:#3d454d" class="rad"></span>
-                <span>费用明细</span>
+                <span style="color:#ffffff;margin-bottom:0.3rem;font-size: 0.26rem;">费用明细</span>
                 <p class='clear'></p>
                 <div class='bdd'>
-                    <span>用车天数</span>
+                    <span>本次用车天数</span>
                     <span class='c'>{{tokendays}}天</span>
                 </div>
                 <div class='bdd'>
@@ -94,22 +129,47 @@
                     <span>生日折扣</span>
                     <span class='c'>单日{{carData.birthday}}折</span>
                 </div>
-                <p style="margin-top: 0.38rem;" class='clear'></p>
-                <div style="height:1rem" class='bdd'>
+                <p style="margin-top: 0.3rem;" class='clear'></p>
+                <div style="height:0.8rem" class='bdd'>
                     <span>费用合计</span>
                     <span style="color:#f4d144!important" class='c'>¥{{total}}</span>
                 </div>
             </div>
             <!-- 计划 -->
-            <div @click='pay0' v-if='orderType == 0' class='submit'>
+            <div @click='beforpay0' v-if='(orderType == 0)&&(rad == true)' class='submit'>
                 提交订单
             </div>
             <!-- 会员 -->
-            <div @click='pay1' v-if='orderType == 2'>
-                <div class='sl'>需预付定金
+            <div @click='pay1' v-if='(orderType == 2)||((orderType == 0)&&(rad == false))'>
+                <div class='sl'>{{lessThan5000?"需预付租金":"需预付定金"}}
                     <span style="color:#fed945">{{cashFee}}元</span>
                 </div>
                 <div class='sr'>提交订单</div>
+            </div>
+            <!-- 计划订单确认弹窗 -->
+            <div :class="{'orderH':checkorder}" class="checkorder">
+              <div :class="{'orderD':checkorder}">
+                <div class="line">
+                  <span>订单确认</span>
+                  <img @click="closecheck" src="../../assets/car_close.png">
+                </div>
+                <div class="line">
+                  <span>{{carData.carName}}</span>
+                  <b class="carstar">{{carData.carLevel}}</b>
+                </div>
+                <div style="flex-direction:column;height:1.6rem" class="line">
+                  <h1>用车开始日期：{{startob.year}}年{{startob.month+1}}月{{startob.date}}日 {{((parseInt(startob.shi)<10? "0"+parseInt(startob.shi):parseInt(startob.shi))+ ":"+(parseInt(startob.fen)==0? "00":parseInt(startob.fen)))}}</h1>
+                  <h1>用车结束日期：{{endob.year}}年{{endob.month+1}}月{{endob.date}}日 {{((parseInt(endob.shi)<10? "0"+parseInt(endob.shi):parseInt(endob.shi))+ ":"+(parseInt(endob.fen)==0? "00":parseInt(endob.fen)))}}</h1>
+                </div>
+                <div class="line">
+                  <span class="yellow">共计：{{tokendays}}天</span>
+                  <b>从{{carData.planName}}可用天数中扣减</b>
+                </div>
+                <div class="line">
+                  <div style="background:rgba(0,0,0,0);"><b @click="closecheck">返回修改</b></div>
+                  <div><b @click="pay0" style="color:#29333d">确认下单</b></div>
+                </div>
+              </div>
             </div>
         </div>
     </div>
@@ -123,13 +183,16 @@ export default {
     return {
       storeAdds: "",
       orderType: "",
+      checkorder: false,
       carId: "",
       carData: "",
       startadd: "",
       endadd: "",
       orderId: "",
       addr1: "自取",
-      addr2: "自取"
+      addr2: "自取",
+      birthdayUsed: 0,
+      lessThan5000: false
     };
   },
   created() {
@@ -145,13 +208,22 @@ export default {
     });
   },
   computed: {
+    rad() {
+      return this.$store.state.rad;
+    },
     WAG() {
       return this.$store.state.WAG;
     },
 
     cashFee() {
-      let tmp = Math.floor(this.total * 0.2);
-      return tmp > 2000 ? 2000 : tmp;
+      if (this.total <= 5000) {
+        this.lessThan5000 = true;
+        return this.total;
+      } else {
+        this.lessThan5000 = false;
+        let tmp = Math.floor(this.total * 0.2);
+        return tmp > 5000 ? 5000 : tmp;
+      }
     },
     startob() {
       return this.$store.state.starttime;
@@ -229,13 +301,17 @@ export default {
       if (s == "Invalid Date" || e == "Invalid Date") {
         return 0;
       } else {
-        return (
-          Math.floor((e - s) / (60 * 60 * 24 * 1000)) +
-          (((e - s) % (60 * 60 * 24 * 1000)) / (60 * 60 * 1000) >
-          this.carData.extraHours
-            ? 1
-            : 0)
-        );
+        if (((e - s) % (60 * 60 * 24 * 1000)) / (60 * 60 * 1000) == 0) {
+          return Math.floor((e - s) / (60 * 60 * 24 * 1000));
+        } else {
+          return (
+            Math.floor((e - s) / (60 * 60 * 24 * 1000)) +
+            (((e - s) % (60 * 60 * 24 * 1000)) / (60 * 60 * 1000) >
+            this.carData.extraHours
+              ? 1
+              : 0.5)
+          );
+        }
       }
     },
     isbirthday() {
@@ -266,8 +342,10 @@ export default {
       //跨年租车，生日在年后
       let t2 = b2 <= e && b2 >= s;
       if (t1 || t2) {
+        this.birthdayUsed = 1;
         return true;
       } else {
+        this.birthdayUsed = 0;
         return false;
       }
     },
@@ -325,6 +403,16 @@ export default {
     }
   },
   methods: {
+    switchrad() {
+      if (this.rad == true) {
+        this.$store.commit("rad", false);
+      } else {
+        this.$store.commit("rad", true);
+      }
+    },
+    closecheck() {
+      this.checkorder = false;
+    },
     changeAddr(n) {
       if (n == 1) {
         if (this.addr1 == "自取") {
@@ -353,8 +441,7 @@ export default {
     endtime() {
       this.$router.push({ path: "/wx/datepicker", query: { type: "endtime" } });
     },
-    pay0() {
-      var vm = this;
+    beforpay0() {
       if (this.startob == "") {
         alert("请选择开始时间");
         return false;
@@ -371,6 +458,14 @@ export default {
         alert("请选择填写取车地址");
         return false;
       }
+      if (this.tokendays > this.carData.canMemberUse) {
+        alert("可用天数不足，请重新选择");
+        return false;
+      }
+      this.checkorder = true;
+    },
+    pay0() {
+      var vm = this;
       this.$ajax({
         method: "POST",
         url: BASE_URL + "/car/deposit",
@@ -404,7 +499,6 @@ export default {
         headers: { "Content-Type": "application/x-www-form-urlencoded" }
       }).then(res => {
         if (res.data.success) {
-          // vm.orderId = res.data.data.orderId
           vm.$router.push("/wx/paysuccess");
         } else {
           alert("下单失败");
@@ -429,108 +523,134 @@ export default {
         alert("请选择填写取车地址");
         return false;
       }
+      //付钱的
+      var paydata2 = qs.stringify({
+        carId: vm.carId,
+        rentStartAt:
+          vm.startob.year +
+          "-" +
+          (vm.startob.month + 1) +
+          "-" +
+          vm.startob.date +
+          " " +
+          parseInt(vm.startob.shi) +
+          ":" +
+          parseInt(vm.startob.fen),
+        rentEndAt:
+          vm.endob.year +
+          "-" +
+          (vm.endob.month + 1) +
+          "-" +
+          vm.endob.date +
+          " " +
+          parseInt(vm.endob.shi) +
+          ":" +
+          parseInt(vm.endob.fen),
+        sendAddr: vm.startadd,
+        returnAddr: vm.endadd,
+        totalFee: vm.total * 100,
+        cashFee: vm.carData.memberId == 2 ? 1 : vm.cashFee * 100,
+        orderType: 2,
+        birthdayUsed: vm.birthdayUsed
+      });
       this.$ajax({
         method: "POST",
         url: BASE_URL + "/car/deposit",
-        data: qs.stringify({
-          carId: vm.carId,
-          rentStartAt:
-            vm.startob.year +
-            "-" +
-            (vm.startob.month + 1) +
-            "-" +
-            vm.startob.date +
-            " " +
-            parseInt(vm.startob.shi) +
-            ":" +
-            parseInt(vm.startob.fen),
-          rentEndAt:
-            vm.endob.year +
-            "-" +
-            (vm.endob.month + 1) +
-            "-" +
-            vm.endob.date +
-            " " +
-            parseInt(vm.endob.shi) +
-            ":" +
-            parseInt(vm.endob.fen),
-          sendAddr: vm.startadd,
-          returnAddr: vm.endadd,
-          totalFee: vm.total * 100,
-          cashFee: (vm.carData.memberId == 2)?1:vm.cashFee * 100,/*(vm.carData.memberId == 2)?1:vm.cashFee * 100*/
-          orderType: 2
-        }),
+        data: paydata2,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           WAG: vm.WAG
         } //oEUUVv_6lXDk2XuAwSIWaqtvXbDI  vm.WAG
       }).then(res => {
-        if (res.data.success) {
-          vm.orderId = res.data.data.orderId;
-          function onBridgeReady() {
-            WeixinJSBridge.invoke(
-              "getBrandWCPayRequest",
-              {
-                appId: res.data.data.appId, //公众号名称，由商户传入
-                timeStamp: res.data.data.timeStamp, //时间戳，自1970年以来的秒数
-                nonceStr: res.data.data.nonceStr, //随机串
-                package: res.data.data.package,
-                signType: res.data.data.signType, //微信签名方式：
-                paySign: res.data.data.paySign //微信签名
-              },
-              function(res) {
-                if (res.err_msg == "get_brand_wcpay_request:ok") {
-                  var check = function() {
-                    vm
-                      .$ajax(
-                        BASE_URL +
-                          "/car/order/check?orderId=" +
-                          vm.orderId +
-                          "&orderType=2"
-                      )
-                      .then(res1 => {
-                        if (res1.data.data.orderStatus == 0) {
-                          setTimeout(() => {
-                            check();
-                          }, 500);
-                        } else if (res1.data.data.orderStatus == 1) {
-                          vm.$router.push("/wx/paysuccess");
-                        } else if (res1.data.data.orderStatus == 2) {
-                          alert("支付查询失败");
-                        }
-                      });
-                  };
-                  check();
-                } else {
-                  alert("支付失败了");
-                } // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-              }
-            );
-          }
-          if (typeof WeixinJSBridge == "undefined") {
-            if (document.addEventListener) {
-              document.addEventListener(
-                "WeixinJSBridgeReady",
-                onBridgeReady,
-                false
-              );
-            } else if (document.attachEvent) {
-              document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-              document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
-            }
-          } else {
-            onBridgeReady();
-          }
-        } else {
-          alert("失败");
-        }
+        this.$router.push(
+          "/wx/payorder?my=" + vm.cashFee + "&orderId=" + res.data.data.orderId
+        );
       });
     }
   }
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+$ordercheckbg: #29333d;
+$yellow: #fed945;
+.checkorder {
+  position: fixed;
+  color: #ffffff;
+  bottom: -5.7rem;
+  background: rgba(0, 0, 0, 1);
+  left: 0;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  font-size: 0.26rem !important;
+  width: 100%;
+  height: 0%;
+  left: 0;
+  > div {
+    position: absolute;
+    width: 100%;
+    height: 5.7rem;
+    background: $ordercheckbg;
+    z-index: 1;
+    bottom: 0;
+    .line {
+      display: flex;
+      padding: 0 0.2rem;
+      display: -webkit-flex;
+      width: 7.1rem;
+      height: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      > .yellow {
+        color: $yellow !important;
+      }
+      span {
+        margin: auto;
+        margin-left: 0;
+      }
+      img {
+        margin: auto;
+        width: 0.3rem;
+        margin-right: 0;
+        height: 0.3rem;
+      }
+      b {
+        margin: auto;
+        margin-right: 0;
+      }
+      h1 {
+        display: block;
+        width: 100%;
+        margin: auto;
+        color: #999999;
+      }
+      div {
+        width: 3.4rem;
+        height: 0.7rem;
+        border: 1px solid $yellow;
+        margin: auto;
+        border-radius: 0.04rem;
+        display: flex;
+        display: -webkit-flex;
+        background: $yellow;
+        b {
+          margin: auto;
+          color: $yellow;
+        }
+        > div {
+          font-size: 0;
+        }
+      }
+    }
+  }
+}
+.orderH {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100% !important;
+  bottom: 0;
+}
+.orderD {
+  height: 5.7rem !important;
+}
 .byself {
   background: #3d454d;
   color: #ffffff;
@@ -620,20 +740,50 @@ export default {
   width: 100%;
   bottom: 0;
 }
-
+.noborder {
+  border-top: 0 !important;
+}
 .com .rr {
-  display: inline-block;
+  display: inline-flex;
+  display: -webkit-inline-flex;
   width: 6.25rem;
   border-top: 1px solid #39424a;
+  margin-left: 0.5rem;
+  .switch {
+    width: 0.9rem;
+    height: 0.54rem;
+    background: #4ac87a;
+    border-radius: 1rem;
+    position: relative;
+    left: 2.9rem;
+    top: 0.15rem;
+    border: 1px solid #999999;
+    .rad {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: #ffffff;
+      border-radius: 10000px;
+      position: absolute;
+      right: 0;
+      transition: all 0.2s;
+      -webkit-transition: all 0.2s;
+    }
+    .leftrad {
+      right: 0.4rem !important;
+    }
+  }
+  .switchdown {
+    background: #273039 !important;
+  }
 }
 
 .com span {
-  font-size: 0.26rem;
-  color: #ffffff;
+  font-size: 0.24rem;
+  color: #999999;
   vertical-align: top;
   display: inline-block;
-  margin-top: 0.38rem;
-  margin-bottom: 0.38rem;
+  margin-right: 0.3rem;
+  margin-top: 0.3rem;
 }
 
 .com {
@@ -642,8 +792,17 @@ export default {
   margin: auto;
   background: #273039;
   border-radius: 4px;
+  font-size: 0;
   margin-top: 0.2rem;
   padding-left: 0.3rem;
+  padding-bottom: 0.32rem;
+  b {
+    font-size: 0.26rem;
+    margin: auto;
+    margin-right: 0.3rem;
+    color: #999999;
+    margin-top: 0.3rem;
+  }
 }
 
 :-moz-placeholder {

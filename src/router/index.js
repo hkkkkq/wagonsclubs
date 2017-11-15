@@ -44,6 +44,11 @@ const wx_orders = resolve => require(['../components/wx/orders.vue'], resolve);
 const wx_orderdetail = resolve => require(['../components/wx/orderdetail.vue'], resolve);
 const wx_login = resolve => require(['../components/wx/login.vue'], resolve);
 const wx_test = resolve => require(['../components/wx/test.vue'], resolve);
+const wx_card = resolve => require(['../components/wx/card.vue'], resolve);
+const wx_cardfirst = resolve => require(['../components/wx/cardfirst.vue'], resolve);
+const wx_cardsecond = resolve => require(['../components/wx/cardsecond.vue'], resolve);
+const wx_cardthird = resolve => require(['../components/wx/cardthird.vue'], resolve);
+const wx_payorder = resolve => require(['../components/wx/payorder.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -65,15 +70,15 @@ export default new Router({
         //重写pc首页
         {
             path: '/',
-            // beforeEnter: (to, from, next) => {
-            //     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-            //         next({
-            //             path: '/mobile'
-            //         })
-            //     } else {
-            //         next();
-            //     }
-            // },
+            beforeEnter: (to, from, next) => {
+                if ((/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) && (to.path != '/download')) {
+                    next({
+                        path: '/wx/findcar?wxAppShare=true'
+                    })
+                } else {
+                    next();
+                }
+            },
             component: pcweb,
             redirect: '/first',
             children: [{
@@ -236,6 +241,28 @@ export default new Router({
         {
             path: '/wx/test',
             component: wx_test
+        },
+        {
+            path: '/wx/payorder',
+            component: wx_payorder
+        },
+        {
+            path: '/wx/card',
+            component: wx_card,
+            redirect: '/wx/card/first',
+            children: [{
+                    path: 'first',
+                    component: wx_cardfirst
+                },
+                {
+                    path: 'second',
+                    component: wx_cardsecond
+                },
+                {
+                    path: 'third',
+                    component: wx_cardthird
+                }
+            ]
         },
         // {
         //     path: '/wx/memshow',

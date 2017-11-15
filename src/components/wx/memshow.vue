@@ -20,7 +20,7 @@
                 <p class="plandate">{{info.member.memberTime}}有效</p>
             </div>
             <!-- 订单 -->
-            <div v-if='info.member.carRentOrder'>
+            <div @click="toOrder(info.member.carRentOrder.id)" v-if='info.member.carRentOrder'>
                 <p class="ti">
                     <span class="ty">当前订单</span>
                 </p>
@@ -29,19 +29,17 @@
                     <!-- <img src="../../assets/app/slc.png"> -->
                     <div>
                         <p class="d1">
-                            <span v-if="info.member.carRentOrder.status == 0" class="d2s">待接单</span>
-                            <span v-if="info.member.carRentOrder.status == 1" class="d2s">准备中</span>
-                            <span v-if="info.member.carRentOrder.status == 2" class="d2s">送车中</span>
-                            <span v-if="info.member.carRentOrder.status == 3" class="d1s">使用中</span>
+                            <span style="background:#7d8388;color:#ffffff" v-if="info.member.carRentOrder.status == 1" class="d2s">准备中</span>
+                            <span style="background:#7d8388;color:#ffffff" v-if="info.member.carRentOrder.status == 2" class="d2s">送车中</span>
+                            <span style="color:#196a38" v-if="info.member.carRentOrder.status == 3" class="d1s">租用中</span>
                             <span v-if="info.member.carRentOrder.status == 4" class="d1s">已还车</span>
                             <img v-if="info.member.carRentOrder.status  == 5" class="ordered" src="../../assets/app/ordered1.png">
-                            <span v-if="info.member.carRentOrder.status == 6" class="d1s">已还车</span>
+                            <span v-if="info.member.carRentOrder.status == 6" class="d1s">已取消</span>
                             <span class="d1n">{{info.member.carRentOrder.carName}}</span>
                         </p>
                         <p class="d2">
-                            <span v-if="info.member.carRentOrder.status == 0" style="color:#ff4f5b" class="hour">{{info.member.carRentOrder.orderTime}}</span>
-                            <span v-if="info.member.carRentOrder.status == 1" style="color:#ff4f5b" class="hour">{{info.member.carRentOrder.orderTime}}</span>
-                            <span v-if="info.member.carRentOrder.status == 2" style="color:#ff4f5b" class="hour">{{info.member.carRentOrder.orderTime}}</span>
+                            <span v-if="info.member.carRentOrder.status == 1" style="color:#999999" class="hour">{{info.member.carRentOrder.orderTime}}</span>
+                            <span v-if="info.member.carRentOrder.status == 2" style="color:#999999" class="hour">{{info.member.carRentOrder.orderTime}}</span>
                             <span v-if="info.member.carRentOrder.status == 3" class="hour">{{info.member.carRentOrder.orderTime}}</span>
                         </p>
                     </div>
@@ -125,428 +123,496 @@
                     <img @click="close" class='xx' src="../../assets/app/xx.png">
                 </div>
             </transition>
+            <transition name="fade">
+              <div class="al" v-if="memberfalseshow">
+                  <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
+                      <img class="at" src="../../assets/app/memberfalse.png">
+                      <div class="ms">
+                          很抱歉，您的会员状态存在问题，暂时无法用车，请与工作人员联系，我们回协助你解决问题
+                          <div @click="cl(1)"><img class="ftel" src="../../assets/app/pendingphone.png">联系客服</div>
+                      </div>
+                  </div>
+                  <img @click="cl" class="ax" src="../../assets/app/xx.png">
+              </div>
+            </transition>
         </div>
     </div>
 </template>
 
 <script>
-require('../app/rem.js')(window, document)
+require("../app/rem.js")(window, document);
 export default {
-    data() {
-        return {
-            istcsj: false,
-            at: false,
-            lechao: false,
-            youxiang: false,
-            zhizun: false,
-            info: ''
-        }
-    },
-    created() {
-        this.$ajax(BASE_URL + '/member/privilege')
-            .then((res) => {
-                this.info = res.data.data
-                if (this.info.member.memberType == 1) { this.lechao = true }
-                if (this.info.member.memberType == 2) { this.youxiang = true }
-                if (this.info.member.memberType == 3) { this.zhizun = true }
-            })
-    },
-    methods: {
-        tcsj() {
-            this.istcsj = true
-        },
-        close() {
-            this.istcsj = false;
-            this.at = false;
-        },
-        wysj() {
-            location.href = "tel:4008625700"
-        },
-        ch(n) {
-            // this.lechao = this.youxiang = this.zhizun = false
-            // if (n == 1) { this.lechao = true }
-            // if (n == 2) { this.youxiang = true }
-            // if (n == 3) { this.zhizun = true }
-            this.at = true;
-        },
+  data() {
+    return {
+      istcsj: false,
+      at: false,
+      lechao: false,
+      youxiang: false,
+      zhizun: false,
+      info: "",
+      memberfalseshow: false
+    };
+  },
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
     }
-}
+  },
+  created() {
+    this.$ajax({
+      url: BASE_URL + "/member/privilege",
+      headers: {
+        WAG: this.WAG
+      }
+    }).then(res => {
+      if ((res.data.data.memberUsable == false)&&(res.data.member.memberType == 1)&&(res.data.member.memberType == 2)&&(res.data.member.memberType == 3)&&(res.data.member.memberType == 5)) {
+        this.memberfalseshow = true;
+      }
+      this.info = res.data.data;
+      if (this.info.member.memberType == 1) {
+        this.lechao = true;
+      }
+      if (this.info.member.memberType == 2) {
+        this.youxiang = true;
+      }
+      if (this.info.member.memberType == 3) {
+        this.zhizun = true;
+      }
+    });
+  },
+  methods: {
+    tcsj() {
+      this.istcsj = true;
+    },
+    close() {
+      this.istcsj = false;
+      this.at = false;
+    },
+    wysj() {
+      location.href = "tel:4008625700";
+    },
+    ch(n) {
+      this.at = true;
+    },
+    cl(n) {
+      if (n == 1) {
+        this.memberfalseshow = false;
+        location.href = "tel:4008625700";
+      } else {
+        this.memberfalseshow = false;
+        this.at = false;
+      }
+    },
+    toOrder(id) {
+      this.$router.push("/wx/orderdetail?id=" + id);
+    }
+  }
+};
 </script>
 
 <style scoped>
-.ms {
-    background: #ffffff;
-    font-size: 0.24rem;
-    color: #333333;
-    min-height: 2.28rem;
-    width: 4.52rem;
-    padding: 0.4rem 0.32rem 0.48rem 0.32rem;
-    line-height: 0.4rem;
-    display: block;
-    margin: auto;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+.ax {
+  width: 0.68rem;
+  height: 0.68rem;
+  z-index: 1;
+  margin-top: 2.24rem;
+  position: absolute;
+  bottom: 1.2rem;
+  left: 0;
+  margin: auto;
+  display: block;
+  right: 0;
 }
-
+.ftel {
+  position: relative;
+  margin: auto;
+  width: 0.3rem;
+  height: 0.3rem;
+  margin-right: 0.3rem;
+  top: 0.06rem;
+}
+.ms {
+  background: #ffffff;
+  font-size: 0.24rem;
+  color: #333333;
+  min-height: 2.28rem;
+  width: 4.52rem;
+  padding: 0.4rem 0.32rem 0.48rem 0.32rem;
+  line-height: 0.4rem;
+  display: block;
+  margin: auto;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.ms div {
+  background: #fed945;
+  height: 0.72rem;
+  color: #333333;
+  position: absolute;
+  bottom: 0.32rem;
+  width: 4.52rem;
+  border-radius: 4px;
+  font-size: 0.26rem;
+  text-align: center;
+  z-index: 1;
+  line-height: 0.7rem;
+}
 .al .at {
-    width: 5.17rem;
-    margin: auto;
-    display: block;
-    margin-top: 3rem;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+  width: 5.17rem;
+  margin: auto;
+  display: block;
+  margin-top: 3rem;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .yl {
-    font-size: 0.3rem;
-    color: #ffffff;
-    position: absolute;
-    top: 13em;
-    left: 2.5rem;
+  font-size: 0.3rem;
+  color: #ffffff;
+  position: absolute;
+  top: 13em;
+  left: 2.5rem;
 }
 
 .al {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    display: block;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    font-size: 0;
-    background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: block;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  font-size: 0;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity .5s;
-    -moz-transition: opacity .5s;
-    /* Firefox 4 */
-    -webkit-transition: opacity .5s;
-    /* Safari 和 Chrome */
-    -o-transition: opacity .5s;
-    /* Opera */
+  transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  /* Firefox 4 */
+  -webkit-transition: opacity 0.5s;
+  /* Safari 和 Chrome */
+  -o-transition: opacity 0.5s;
+  /* Opera */
 }
 
 .fade-enter,
-.fade-leave-to
-/* .fade-leave-active in below version 2.1.8 */
-
-{
-    opacity: 0
+.fade-leave-to {
+  opacity: 0;
 }
 
 .xx {
-    z-index: 1!important;
-    width: 0.68rem!important;
-    height: 0.68rem!important;
-    display: block!important;
-    margin: auto!important;
-    position: fixed!important;
-    bottom: 1.18rem!important;
-    left: 0!important;
-    right: 0!important;
+  z-index: 1 !important;
+  width: 0.68rem !important;
+  height: 0.68rem !important;
+  display: block !important;
+  margin: auto !important;
+  position: fixed !important;
+  bottom: 1.18rem !important;
+  left: 0 !important;
+  right: 0 !important;
 }
 
 .atc .sj {
-    background: #fed945;
-    width: 4.54rem;
-    height: 0.7rem;
-    text-align: center;
-    line-height: 0.7rem;
-    font-size: 0.26rem;
-    color: #333333;
-    border-radius: 0.04rem;
-    margin-top: 0.6rem;
+  background: #fed945;
+  width: 4.54rem;
+  height: 0.7rem;
+  text-align: center;
+  line-height: 0.7rem;
+  font-size: 0.26rem;
+  color: #333333;
+  border-radius: 0.04rem;
+  margin-top: 0.6rem;
 }
 
 .atc p {
-    color: #333333;
-    font-size: 0.24rem;
-    line-height: 0.4rem;
+  color: #333333;
+  font-size: 0.24rem;
+  line-height: 0.4rem;
 }
 
 .atc {
-    width: 4.51rem;
-    height: 2.78rem;
-    background: #ffffff;
-    left: 0;
-    right: 0;
-    margin: auto;
-    display: block;
-    bottom: 4.1rem;
-    position: absolute;
-    padding: 0.48rem 0.33rem 0 0.33rem;
-    border-bottom-left-radius: 0.04rem;
-    border-bottom-right-radius: 0.04rem;
+  width: 4.51rem;
+  height: 2.78rem;
+  background: #ffffff;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+  bottom: 4.1rem;
+  position: absolute;
+  padding: 0.48rem 0.33rem 0 0.33rem;
+  border-bottom-left-radius: 0.04rem;
+  border-bottom-right-radius: 0.04rem;
 }
 
 .alert img {
-    position: absolute;
-    width: 5.17rem;
-    height: 2rem;
-    left: 0;
-    right: 0;
-    margin: auto;
-    display: block;
-    bottom: 7.28rem;
-    border-top-left-radius: 0.04rem;
-    border-top-right-radius: 0.04rem;
+  position: absolute;
+  width: 5.17rem;
+  height: 2rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+  bottom: 7.28rem;
+  border-top-left-radius: 0.04rem;
+  border-top-right-radius: 0.04rem;
 }
 
 .alert {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    top: 0;
-    left: 0;
-    font-size: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  font-size: 0;
 }
 
 .ff b {
-    margin-left: 0.13rem;
-    font-size: 0.22rem;
-    display: inline-block;
-    width: 6.07rem;
-    color: #999999;
-    vertical-align: top;
-    line-height: 0.38rem;
+  margin-left: 0.13rem;
+  font-size: 0.22rem;
+  display: inline-block;
+  width: 6.07rem;
+  color: #999999;
+  vertical-align: top;
+  line-height: 0.38rem;
 }
 
 .ff span {
-    vertical-align: top;
-    font-size: 0.16rem;
-    color: white;
-    display: inline-block;
-    width: 0.3rem;
-    height: 0.26rem;
-    background: #4b535a;
-    border-radius: 4px;
-    text-align: center;
-    padding-top: 0.04rem;
-    margin-top: 0.04rem;
+  vertical-align: top;
+  font-size: 0.16rem;
+  color: white;
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.26rem;
+  background: #4b535a;
+  border-radius: 4px;
+  text-align: center;
+  padding-top: 0.04rem;
+  margin-top: 0.04rem;
 }
 
 .ff {
-    display: block;
-    font-size: 0;
-    margin-bottom: 0.3rem;
+  display: block;
+  font-size: 0;
+  margin-bottom: 0.3rem;
 }
 
-.qq>h1 {
-    font-size: 0.24rem;
-    margin-top: 0.32rem;
-    margin-bottom: 0.36rem;
-    height: 0.1rem;
+.qq > h1 {
+  font-size: 0.24rem;
+  margin-top: 0.32rem;
+  margin-bottom: 0.36rem;
+  height: 0.1rem;
 }
 
-.qq>p {
-    font-size: 0.26rem;
-    color: white;
-    padding-bottom: 0.36rem;
-    border-bottom: 1px solid #3d454d;
+.qq > p {
+  font-size: 0.26rem;
+  color: white;
+  padding-bottom: 0.36rem;
+  border-bottom: 1px solid #3d454d;
 }
 
 .qq {
-    width: 6.5rem;
-    margin: auto;
-    margin-top: 0.2rem;
-    border-radius: 0.04rem;
-    background: #273039;
-    padding: 1px 0.3rem 0.3rem 0.3rem;
-    /* margin-bottom: 0.2rem; */
+  width: 6.5rem;
+  margin: auto;
+  margin-top: 0.2rem;
+  border-radius: 0.04rem;
+  background: #273039;
+  padding: 1px 0.3rem 0.3rem 0.3rem;
+  /* margin-bottom: 0.2rem; */
 }
 
 .ob {
-    color: #000000;
-    width: 1.48rem!important;
-    height: 0.5rem!important;
-    background: #fed945;
-    text-align: center;
-    display: inline-block;
-    line-height: 0.5rem;
-    font-size: 0.26rem;
-    border-radius: 0.04rem;
-    float: right;
-    margin-left: 0.2rem;
+  color: #000000;
+  width: 1.48rem !important;
+  height: 0.5rem !important;
+  background: #fed945;
+  text-align: center;
+  display: inline-block;
+  line-height: 0.5rem;
+  font-size: 0.26rem;
+  border-radius: 0.04rem;
+  float: right;
+  margin-left: 0.2rem;
 }
 
 .but {
-    margin: auto!important;
-    background: #fed945!important;
-    color: #000000!important;
-    width: 4.84rem!important;
-    border-radius: 0.04rem!important;
-    line-height: 0.7rem!important;
-    font-size: 0.26rem!important;
-    height: 0.7rem!important;
-    text-align: center!important;
-    display: block!important;
+  margin: auto !important;
+  background: #fed945 !important;
+  color: #000000 !important;
+  width: 4.84rem !important;
+  border-radius: 0.04rem !important;
+  line-height: 0.7rem !important;
+  font-size: 0.26rem !important;
+  height: 0.7rem !important;
+  text-align: center !important;
+  display: block !important;
 }
 
 .p1 {
-    padding: 0.38rem 0;
-    border-bottom: 1px solid #3d454d;
+  padding: 0.38rem 0;
+  border-bottom: 1px solid #3d454d;
 }
 
 .span3 {
-    color: #999999!important;
-    float: right;
-    padding-right: 0.18rem;
-    border-right: 1px solid #3d454d
+  color: #999999 !important;
+  float: right;
+  padding-right: 0.18rem;
+  border-right: 1px solid #3d454d;
 }
 
 .span2 {
-    color: #fed945!important;
-    float: right;
-    padding-left: 0.18rem;
+  color: #fed945 !important;
+  float: right;
+  padding-left: 0.18rem;
 }
 
 .span1 {
-    font-size: 0.26rem;
-    color: #ffffff;
-    vertical-align: top;
-    position: relative;
-    top: 0.1rem;
+  font-size: 0.26rem;
+  color: #ffffff;
+  vertical-align: top;
+  position: relative;
+  top: 0.1rem;
 }
 
 .icon {
-    width: 0.34rem;
-    display: inline-block;
-    margin-right: 0.2rem;
+  width: 0.34rem;
+  display: inline-block;
+  margin-right: 0.2rem;
 }
 
 .car1 {
-    height: auto!important;
-    width: 6.5rem!important;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+  height: auto !important;
+  width: 6.5rem !important;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
 .tc {
-    color: #009cff;
-    float: right;
-    font-size: 0.24rem;
+  color: #009cff;
+  float: right;
+  font-size: 0.24rem;
 }
 
 .hour {
-    color: #4ac87a;
+  color: #4ac87a;
 }
 
 .d2 {
-    margin-top: 0.28rem;
-    font-size: 0.3rem;
-    color: #999999;
-    letter-spacing: 1px;
+  margin-top: 0.28rem;
+  font-size: 0.3rem;
+  color: #999999;
+  letter-spacing: 1px;
 }
 
 .d1n {
-    color: #ffffff;
-    font-size: 0.24rem;
-    margin-left: 0.3rem;
+  color: #ffffff;
+  font-size: 0.24rem;
+  margin-left: 0.3rem;
 }
 
 .d1 {
-    margin-top: 0.3rem;
+  margin-top: 0.3rem;
 }
 
 .d1s {
-    font-size: 0.2rem;
-    background: #4ac87a;
-    color: #ffffff;
+  font-size: 0.2rem;
+  background: #4ac87a;
+  color: #ffffff;
 }
 
 .d2s {
-    font-size: 0.2rem;
-    background: #ff4f5b;
-    color: #333333;
+  font-size: 0.2rem;
+  background: #ff4f5b;
+  color: #333333;
 }
 
-.car>div {
-    display: inline-block;
-    margin-left: 0.3rem;
-    height: 100%;
-    width: 4rem;
-    vertical-align: top;
+.car > div {
+  display: inline-block;
+  margin-left: 0.3rem;
+  height: 100%;
+  width: 4rem;
+  vertical-align: top;
 }
 
-.car>img {
-    width: 2.6rem;
-    height: 100%;
-    border-top-left-radius: 0.04rem;
-    display: inline-block;
-    border-bottom-left-radius: 0.04rem;
+.car > img {
+  width: 2.6rem;
+  height: 100%;
+  border-top-left-radius: 0.04rem;
+  display: inline-block;
+  border-bottom-left-radius: 0.04rem;
 }
 
 .car {
-    width: 7.1rem;
-    height: 1.4rem;
-    background: #273039;
-    border-radius: 0.04rem;
-    margin: auto;
-    font-size: 0;
+  width: 7.1rem;
+  height: 1.4rem;
+  background: #273039;
+  border-radius: 0.04rem;
+  margin: auto;
+  font-size: 0;
 }
 
 .ty {
-    font-size: 0.24rem;
-    color: #ffffff;
+  font-size: 0.24rem;
+  color: #ffffff;
 }
 
 .ti {
-    font-size: 0;
-    width: 6.68rem;
-    border-left: 0.04rem solid #fed945;
-    margin: auto;
-    padding-left: 0.12rem;
-    padding-right: 0.3rem;
-    margin-top: 0.3rem;
-    margin-bottom: 0.12rem;
+  font-size: 0;
+  width: 6.68rem;
+  border-left: 0.04rem solid #fed945;
+  margin: auto;
+  padding-left: 0.12rem;
+  padding-right: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.12rem;
 }
 
 .plandate {
-    color: #ffffff;
-    font-size: 0.24rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: 2.9rem;
-    text-align: center;
+  color: #ffffff;
+  font-size: 0.24rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 2.9rem;
+  text-align: center;
 }
 
 .planname {
-    font-weight: bolder;
-    font-size: 0.3rem;
-    color: #ffffff;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    text-align: center;
-    top: 2.4rem;
+  font-weight: bolder;
+  font-size: 0.3rem;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 2.4rem;
 }
 
 .hg {
-    position: absolute;
-    width: 1.4rem;
-    height: 1.4rem;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: 0.8rem;
+  position: absolute;
+  width: 1.4rem;
+  height: 1.4rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0.8rem;
 }
 
 .banimg {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .ban {
-    font-size: 0;
-    display: block;
-    width: 100%;
-    height: auto;
-    position: relative;
+  font-size: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
 }
 </style>

@@ -22,7 +22,7 @@
             </div>
             <div class="ff">
                 <span>4</span>
-                <b>每邀请1位好友，可额外累计1天使用权</b>
+                <b>每邀请1位好友成功购买套餐，可额外累计1天使用权</b>
             </div>
             <div class="ff">
                 <span>5</span>
@@ -59,7 +59,7 @@
             </div>
             <div class="ff">
                 <span>4</span>
-                <b>每邀请1位好友，可额外累计1天使用权</b>
+                <b>每邀请1位好友成功购买套餐，可额外累计1天使用权</b>
             </div>
             <div class="ff">
                 <span>5</span>
@@ -96,7 +96,7 @@
             </div>
             <div class="ff">
                 <span>4</span>
-                <b>每邀请1位好友，可额外累计1天使用权</b>
+                <b>每邀请1位好友成功购买套餐，可额外累计1天使用权</b>
             </div>
             <div class="ff">
                 <span>5</span>
