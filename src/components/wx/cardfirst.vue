@@ -65,7 +65,6 @@ export default {
       if (res.data.success == true) {
         this.cash = res.data.data.rechargeCardMoney;
       } else {
-        alert("出现了什么问题");
       }
     });
   },
