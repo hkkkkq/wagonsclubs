@@ -45,7 +45,7 @@
       </div>
       <div @mouseenter="showQr(3)" @mouseleave="hideQr(3)" class="hm">
         <img src='../../assets/grace.png'>
-        <span>Grace</span>
+        <span>Scarlett</span>
       </div>
       <p></p>
       <h2>欢迎咨询！</h2>
