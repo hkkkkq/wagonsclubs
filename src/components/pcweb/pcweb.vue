@@ -337,6 +337,7 @@ export default {
       color: #fff;
       margin: auto;
       width: 50px;
+      font-size: 14px;
     }
   }
 }
