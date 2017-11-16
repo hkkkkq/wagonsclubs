@@ -854,7 +854,7 @@ input::-webkit-input-placeholder {
   margin-left: 0.3rem;
   vertical-align: top;
   position: relative;
-  top: 0.15rem;
+  top: 0.09rem;
 }
 
 .date {
@@ -862,6 +862,8 @@ input::-webkit-input-placeholder {
   font-size: 0.3rem;
   color: #ffffff;
   display: inline-block;
+  position: relative;
+  top: 0.1rem;
 }
 
 .lf {

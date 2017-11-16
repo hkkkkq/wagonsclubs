@@ -21,7 +21,7 @@
             </div>
             <!-- 车辆list -->
             <p class="ti">车型探索</p>
-            <div v-if='f6'>
+            <div style="min-height:350px" v-if='f6'>
                 <div :key="n" v-for="(item,n) in carlist" class="car">
                     <img v-if="item.isNew" class='inew' src="../../assets/app/inew.png">
                     <img v-lazy="item.appImg" @click="choose(n,item.id)">
