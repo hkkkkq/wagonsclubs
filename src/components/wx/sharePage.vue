@@ -110,7 +110,11 @@ export default {
           joinNum: this.number
         })
       }).then((res) => {
-			console.log(res)
+			if (res.data.success == true) {
+				alert(res.data.message)
+			}else {
+				alert('报名出错,请检查您的输入是否有问题')
+			}
 		})
     }
   }
