@@ -26,8 +26,8 @@
 				<p>报名参加</p>
 			</div>
 			<div class="qr">
-				<img v-if="qr1 === 1" src="../../assets/app/sqr1.png">
-				<img v-if="qr2 === 1" src="../../assets/app/sqr2.png">
+				<img v-if="qr1 == 1" src="../../assets/dingyuehao1.png">
+				<img v-if="qr2 == 1" src="../../assets/app/sqr2.png">
 			</div>
 		</div>
 	</div>
@@ -49,8 +49,8 @@ export default {
       numberR: 1,
       addressR: 1,
       cellR: 1,
-      qr1: 1,
-      qr2: 1,
+      qr1: 0,
+      qr2: 0,
       deadline: "",
       bgpic: "/static/img/BG.jpg",
       titlepic: "/static/img/shareTitle.png"
@@ -76,7 +76,7 @@ export default {
       this.cellR = res.data.data.activity.cellRequired;
       this.addressR = res.data.data.activity.addressRequired;
       this.numberR = res.data.data.activity.numRequired;
-      this.qr1 = res.data.data.activity.qePic1;
+      this.qr1 = res.data.data.activity.qrPic1;
       this.qr2 = res.data.data.activity.qrPic2;
       this.deadline = res.data.data.activity.postscript;
     });
