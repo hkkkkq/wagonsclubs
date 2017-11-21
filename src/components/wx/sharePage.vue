@@ -26,7 +26,7 @@
 				<p>报名参加</p>
 			</div>
 			<div class="qr">
-				<img v-if="qr1 == 1" src="../../assets/dingyuehao1.png">
+				<img :src="qr1src">
 				<img v-if="qr2 == 1" src="../../assets/app/sqr2.png">
 			</div>
 		</div>
@@ -49,11 +49,12 @@ export default {
       numberR: 1,
       addressR: 1,
       cellR: 1,
-      qr1: 0,
+      qr1: 1,
       qr2: 0,
       deadline: "",
       bgpic: "/static/img/BG.jpg",
-      titlepic: "/static/img/shareTitle.png"
+      titlepic: "/static/img/shareTitle.png",
+      qr1src: 'http://www.wagonsclub.com/static/img/appqr.png'
     };
   },
   created() {
@@ -66,10 +67,17 @@ export default {
         alert("此活动已结束");
       }
       if (res.data.data.activity.backgroundPic != "") {
-        this.bgpic = res.data.data.activity.backgroundPic;
+        // this.bgpic = res.data.data.activity.backgroundPic;
       }
       if (res.data.data.activity.titlePic != "") {
-        this.titlepic = res.data.data.activity.titlePic;
+        // this.titlepic = res.data.data.activity.titlePic;
+      }
+      if (res.data.data.activity.qr1Default == 1) {
+        this.qr1src = res.data.data.default1
+      }else{
+        this.qr1src = res.data.data.qr1
+      }
+      if (res.data.data.qr2show == 1) {
       }
       document.title = res.data.data.activity.name;
       this.nameR = res.data.data.activity.nameRequired;

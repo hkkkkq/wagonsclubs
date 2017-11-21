@@ -1,5 +1,8 @@
 <template>
   <div>
+    <input @change="baseimg()" accept="image/*" ref="file" type="file">
+    <img :src='src' style="height:100px;width:100px">
+    <button @click="ss">上传</button>
     <div v-if="env == 'development'" >
       <br>
       <a :href="'http://localhost:8080/wx/findcar?WAG='+W">找车</a>
@@ -41,21 +44,67 @@
 </template>
 
 <script>
+import qs from "qs";
 export default {
   data() {
     return {
-      env:'',
-      W:'oEUUVv1Fko_nef3hzP9KY_P7nDHM'
+      env: "",
+      W: "oEUUVv1Fko_nef3hzP9KY_P7nDHM",
+      src: ""
     };
   },
   created() {
+    console.log(FileReader);
     this.env = process.env.NODE_ENV;
-     var x = (a,b)=>(c)=>{
-      console.log(a)
-      console.log(b)
-      console.log(c)
+    var x = (a, b) => c => {
+      console.log(a);
+      console.log(b);
+      console.log(c);
+    };
+    x(1)(2, 3);
+  },
+  methods: {
+    ss() {
+      console.log(this.$refs.file.files)
+      var params = new FormData();
+      params.append('name','xiang')
+      params.append('file',this.$refs.file.files[0])
+      console.log(params.get('name'))
+      console.log(params.get('file'))
+      // params.append('img',this.$refs.file.files[0])
+      // console.log(params.get('file'))
+      this.$ajax({
+        url: BASE_URL + "",
+        method: "post",
+        data: params,
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // }
+      });
+    },
+    baseimg() {
+      var vm = this;
+      alert("文件大小:" + this.$refs.file.files[0].size / 1024 + "KB");
+      var file = this.$refs.file.files[0];
+      var reader = new FileReader();
+      reader.onloadstart = function(e) {
+        console.log("开始读取....");
+      };
+      reader.onprogress = function(e) {
+        console.log("正在读取中....");
+      };
+      reader.onabort = function(e) {
+        console.log("中断读取....");
+      };
+      reader.onerror = function(e) {
+        console.log("读取异常....");
+      };
+      reader.onload = function(e) {
+        vm.src = e.target.result;
+        console.log("成功读取....");
+      };
+      reader.readAsDataURL(file);
     }
-    x(1)(2,3);
   }
 };
 </script>
