@@ -49,6 +49,7 @@ const wx_cardfirst = resolve => require(['../components/wx/cardfirst.vue'], reso
 const wx_cardsecond = resolve => require(['../components/wx/cardsecond.vue'], resolve);
 const wx_cardthird = resolve => require(['../components/wx/cardthird.vue'], resolve);
 const wx_payorder = resolve => require(['../components/wx/payorder.vue'], resolve);
+const wx_sharePage = resolve => require(['../components/wx/sharePage.vue'], resolve);
 //mobile
 const mobile = resolve => require(['../components/mobile/index.vue'], resolve);
 const join = resolve => require(['../components/mobile/join.vue'], resolve);
@@ -245,6 +246,10 @@ export default new Router({
         {
             path: '/wx/payorder',
             component: wx_payorder
+        },
+        {
+            path: '/wx/sharePage',
+            component: wx_sharePage
         },
         {
             path: '/wx/card',
