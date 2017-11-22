@@ -26,8 +26,8 @@
 				<p>报名参加</p>
 			</div>
 			<div class="qr">
-				<img :src="qr1src">
-				<img v-if="qr2 == 1" src="../../assets/app/sqr2.png">
+				<img v-if='qr1src != ""' :src="qr1src">
+				<img v-if='qr2src != ""' :src="qr2src">
 			</div>
 		</div>
 	</div>
@@ -49,12 +49,11 @@ export default {
       numberR: 1,
       addressR: 1,
       cellR: 1,
-      qr1: 1,
-      qr2: 0,
       deadline: "",
-      bgpic: "/static/img/BG.jpg",
-      titlepic: "/static/img/shareTitle.png",
-      qr1src: 'http://www.wagonsclub.com/static/img/appqr.png'
+      bgpic: "",
+      titlepic: "",
+      qr1src: '',
+      qr2src: ''
     };
   },
   created() {
@@ -66,17 +65,18 @@ export default {
       if (res.data.data.activity.status == 0) {
         alert("此活动已结束");
       }
-      if (res.data.data.activity.backgroundPic != "") {
-        // this.bgpic = res.data.data.activity.backgroundPic;
-      }
-      if (res.data.data.activity.titlePic != "") {
-        // this.titlepic = res.data.data.activity.titlePic;
-      }
-      if (res.data.data.activity.qr1Default == 1) {
-        this.qr1src = res.data.data.default1
-      }else{
-        this.qr1src = res.data.data.qr1
-      }
+      // if (res.data.data.activity.backgroundPic != "") {
+        this.bgpic = res.data.data.activity.backgroundPic;
+      // }
+      // if (res.data.data.activity.titlePic != "") {
+        this.titlepic = res.data.data.activity.titlePic;
+      // }
+      // if (res.data.data.activity.qr1Default == 1) {
+        // this.qr1src = res.data.data.default1
+      // }else{
+        this.qr1src = res.data.data.activity.qr1
+        this.qr2src = res.data.data.activity.qr2
+      // }
       if (res.data.data.qr2show == 1) {
       }
       document.title = res.data.data.activity.name;
@@ -84,8 +84,6 @@ export default {
       this.cellR = res.data.data.activity.cellRequired;
       this.addressR = res.data.data.activity.addressRequired;
       this.numberR = res.data.data.activity.numRequired;
-      this.qr1 = res.data.data.activity.qrPic1;
-      this.qr2 = res.data.data.activity.qrPic2;
       this.deadline = res.data.data.activity.postscript;
     });
   },
