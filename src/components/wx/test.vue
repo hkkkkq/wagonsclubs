@@ -3,6 +3,11 @@
     <input @change="baseimg()" accept="image/*" ref="file" type="file">
     <img :src='src' style="height:100px;width:100px">
     <button @click="ss">上传</button>
+    <!-- <form name="form" action="/dd" method="post" enctype="multipart/form-data" target="uploadFrame">
+      姓名<input name="name" type="text">
+      照片<input name="img" type="file">
+      <button type="submit">提交</button>
+    </form> -->
     <div v-if="env == 'development'" >
       <br>
       <a :href="'http://localhost:8080/wx/findcar?WAG='+W">找车</a>
@@ -67,14 +72,14 @@ export default {
     ss() {
       console.log(this.$refs.file.files)
       var params = new FormData();
-      params.append('name','xiang')
-      params.append('file',this.$refs.file.files[0])
+      params.append('name','chen')
+      params.append('upfile',this.$refs.file.files[0])
       console.log(params.get('name'))
-      console.log(params.get('file'))
+      // console.log(params.get('file'))
       // params.append('img',this.$refs.file.files[0])
       // console.log(params.get('file'))
       this.$ajax({
-        url: BASE_URL + "",
+        url: BASE_URL + "/uploadFiles",
         method: "post",
         data: params,
         // headers: {
