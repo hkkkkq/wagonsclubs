@@ -1,6 +1,7 @@
 <template>
   <div>
-    <input @change="baseimg()" accept="image/*" ref="file" type="file">
+    <input @change="baseimg()" accept="image/*" ref="file1" type="file">
+    <input @change="baseimg()" accept="image/*" ref="file2" type="file">
     <img :src='src' style="height:100px;width:100px">
     <button @click="ss">上传</button>
     <!-- <form name="form" action="/dd" method="post" enctype="multipart/form-data" target="uploadFrame">
@@ -70,10 +71,12 @@ export default {
   },
   methods: {
     ss() {
-      console.log(this.$refs.file.files)
+      console.log(this.$refs.file1.files[0])
+      console.log(this.$refs.file2.files[0])
       var params = new FormData();
       params.append('name','chen')
-      params.append('upfile',this.$refs.file.files[0])
+      params.append('upfile',this.$refs.file1.files[0])
+      params.append('upfile',this.$refs.file2.files[0])
       console.log(params.get('name'))
       // console.log(params.get('file'))
       // params.append('img',this.$refs.file.files[0])
@@ -88,9 +91,11 @@ export default {
       });
     },
     baseimg() {
+      console.log(this.$refs.file1.files[0])
+      console.log(this.$refs.file2.files[0])
       var vm = this;
       alert("文件大小:" + this.$refs.file.files[0].size / 1024 + "KB");
-      var file = this.$refs.file.files[0];
+      var file = this.$refs.file1.files[0];
       var reader = new FileReader();
       reader.onloadstart = function(e) {
         console.log("开始读取....");
