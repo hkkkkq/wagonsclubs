@@ -47,7 +47,7 @@ export default {
       this.t = 0
       this.int = setInterval(()=>{
         this.top = 0.5 * this.a * this.t * this.t - 1
-      this.t += 0.02
+      this.t += 0.01
     },16.6)
     }
   },
