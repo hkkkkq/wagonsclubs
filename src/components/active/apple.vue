@@ -1,6 +1,6 @@
 <template>
 <div>
-    <span :style="{top:top+'rem',left:left + 'rem'}" class="apple">🍎</span>
+    <img src="../../assets/active/apple.jpeg" :style="{top:top+'rem',left:left + 'rem'}" class="apple"></i>
 </div>
 </template>
 
@@ -18,14 +18,21 @@ export default {
     }
   },
   watch: {
+    currx: function(){
+      console.log(this.currx)
+    },
     top:function(){
-      if(this.top > 10){
+      if(this.top > 9.6){
         //苹果宽度 0.25rem
-        if (this.currx + 0.9 > this.left && this.currx + 0.9 < this.left + 0.55 ){
-          console.log('+1')
+        if (this.currx < this.left && this.currx + 1.8 > this.left + 0.5 ){
+          this.$emit('increment')
+          clearInterval(this.int)
+          this.down()
+          return;
+        }else{
+          clearInterval(this.int)
+          this.down()  
         }
-        clearInterval(this.int)
-        this.down()
       }
     },
     // currx () {
@@ -35,15 +42,13 @@ export default {
   methods: {
     down () {
       this.a = Math.random() * 3 + 1
-      // this.a = 1
       this.left = Math.random()*6.5
-      // this.left = 1.05
       this.top = -1
       this.t = 0
       this.int = setInterval(()=>{
         this.top = 0.5 * this.a * this.t * this.t - 1
       this.t += 0.01
-    },10)
+    },16.6)
     }
   },
   mounted () {
@@ -55,6 +60,6 @@ export default {
 <style lang='scss' scoped>
 .apple{
   position: absolute;
-  font-size: 1rem;
+  width: 0.5rem;
 }
 </style>

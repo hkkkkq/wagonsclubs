@@ -1,11 +1,11 @@
 <template>
 <div class="wrap">
   <p>{{score}}</p>
-  <apple :currx='leftx' ref="apple1" v-if="apple1"></apple>
-  <apple :currx='leftx' ref="apple2" v-if="apple2"></apple>
-  <apple :currx='leftx' ref="apple3" v-if="apple3"></apple>
-  <apple :currx='leftx' ref="apple4" v-if="apple4"></apple>
-  <apple :currx='leftx' ref="apple5" v-if="apple5"></apple>
+  <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple1" v-if="apple1"></apple>
+  <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple2" v-if="apple2"></apple>
+  <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple3" v-if="apple3"></apple>
+  <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple4" v-if="apple4"></apple>
+  <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple5" v-if="apple5"></apple>
   <img :style="{left: leftx+'rem'}" class="man" src="../../assets/active/aa.gif">
   <button @touchstart="move($event,'L')" @touchend="moveend('L')" style="left:10px">⬅️</button>
   <button @touchstart="move($event,'R')" @touchend="moveend('R')" style="right:10px">➡️</button>
@@ -53,12 +53,20 @@ export default {
       event.preventDefault();
       if (type === "L") {
         this.leftloop = setInterval(() => {
-          this.leftx += -0.08;
-        }, 1);
+          if (this.leftx < 0) {
+            return
+          } else {
+            this.leftx += -0.06;
+          }
+        }, 16.6);
       } else {
         this.rightloop = setInterval(() => {
-          this.leftx += 0.08;
-        }, 1);
+          if (this.leftx > 6) {
+            return
+          }else{
+            this.leftx += 0.06;
+          }
+        }, 16.6);
       }
     },
     moveend(type) {
@@ -67,6 +75,9 @@ export default {
       } else {
         clearInterval(this.rightloop);
       }
+    },
+    incrementTotal () {
+      this.score += 1
     }
   }
 };
