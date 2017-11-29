@@ -212,7 +212,7 @@ export default {
   created() {
     window.scrollTo(0, 0);
     if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
-      this.isapp = true;
+      this.isapp = true
     } else {
       this.isapp = false;
     }
