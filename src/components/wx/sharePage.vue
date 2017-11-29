@@ -62,21 +62,13 @@ export default {
     this.$ajax(
       BASE_URL + "/activity/H5?id=" + this.$route.query.id
     ).then(res => {
-      if (res.data.data.activity.status == 0) {
+      if (res.data.code == -1) {
         alert("此活动已结束");
       }
-      // if (res.data.data.activity.backgroundPic != "") {
         this.bgpic = res.data.data.activity.backgroundPic;
-      // }
-      // if (res.data.data.activity.titlePic != "") {
         this.titlepic = res.data.data.activity.titlePic;
-      // }
-      // if (res.data.data.activity.qr1Default == 1) {
-        // this.qr1src = res.data.data.default1
-      // }else{
         this.qr1src = res.data.data.activity.qr1
         this.qr2src = res.data.data.activity.qr2
-      // }
       if (res.data.data.qr2show == 1) {
       }
       document.title = res.data.data.activity.name;
@@ -89,19 +81,19 @@ export default {
   },
   methods: {
     sub() {
-      if (!(this.nameR == 1 && this.name != "")) {
+      if ((this.nameR === 1) && (this.name == "")) {
         alert("请输入您的姓名");
         return;
       }
-      if (!(this.cellR == 1 && this.cell != "")) {
+      if ((this.cellR === '1') && (this.cell == "")) {
         alert("请输入您的手机号");
         return;
       }
-      if (!(this.addressR == 1 && this.address != "")) {
+      if ((this.addressR === 1) && (this.address == "")) {
         alert("请输入您的现居地址");
         return;
       }
-      if (!(this.numberR == 1 && this.number != "")) {
+      if ((this.numberR === 1) && (this.number == "")) {
         alert("请输入您的参加人数");
         return;
       }
