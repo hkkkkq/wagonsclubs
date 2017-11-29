@@ -35,6 +35,7 @@ export default {
                     if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
                         window.Wground.close();
                     } else {
+                        alert('绑定成功，之后会有工作人员与您取得联系，请耐心等待')
                         this.$router.push('/wx/findcar')
                     }
                 } else {

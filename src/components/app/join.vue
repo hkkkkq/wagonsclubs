@@ -170,7 +170,7 @@
             <h1 class="card">您可以到店咨询办理实体卡，也可以在线充值办理</h1>
             <!-- <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link> -->
             <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
-            <p style="border: 0;height: 0.5rem;"></p>
+            <p v-if="!isapp" style="border: 0;height: 0.5rem;"></p>
             <p v-if="!isapp" @click="goapply" class="but">
                 <span>立即申请</span>
             </p>
@@ -215,6 +215,9 @@ export default {
       this.isapp = true;
     } else {
       this.isapp = false;
+    }
+    if (this.$route.query.wechat == 'true') {
+        this.isapp == true
     }
   },
   methods: {
