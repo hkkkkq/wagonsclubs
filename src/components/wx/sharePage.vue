@@ -26,8 +26,8 @@
 				<p>报名参加</p>
 			</div>
 			<div class="qr">
-				<img v-if="qr1 == 1" src="../../assets/dingyuehao1.png">
-				<img v-if="qr2 == 1" src="../../assets/app/sqr2.png">
+				<img v-if='qr1src != ""' :src="qr1src">
+				<img v-if='qr2src != ""' :src="qr2src">
 			</div>
 		</div>
 	</div>
@@ -49,11 +49,11 @@ export default {
       numberR: 1,
       addressR: 1,
       cellR: 1,
-      qr1: 0,
-      qr2: 0,
       deadline: "",
-      bgpic: "/static/img/BG.jpg",
-      titlepic: "/static/img/shareTitle.png"
+      bgpic: "",
+      titlepic: "",
+      qr1src: '',
+      qr2src: ''
     };
   },
   created() {
@@ -62,40 +62,38 @@ export default {
     this.$ajax(
       BASE_URL + "/activity/H5?id=" + this.$route.query.id
     ).then(res => {
-      if (res.data.data.activity.status == 0) {
+      if (res.data.code == -1) {
         alert("此活动已结束");
       }
-      if (res.data.data.activity.backgroundPic != "") {
         this.bgpic = res.data.data.activity.backgroundPic;
-      }
-      if (res.data.data.activity.titlePic != "") {
         this.titlepic = res.data.data.activity.titlePic;
+        this.qr1src = res.data.data.activity.qr1
+        this.qr2src = res.data.data.activity.qr2
+      if (res.data.data.qr2show == 1) {
       }
       document.title = res.data.data.activity.name;
       this.nameR = res.data.data.activity.nameRequired;
       this.cellR = res.data.data.activity.cellRequired;
       this.addressR = res.data.data.activity.addressRequired;
       this.numberR = res.data.data.activity.numRequired;
-      this.qr1 = res.data.data.activity.qrPic1;
-      this.qr2 = res.data.data.activity.qrPic2;
       this.deadline = res.data.data.activity.postscript;
     });
   },
   methods: {
     sub() {
-      if (!(this.nameR == 1 && this.name != "")) {
+      if ((this.nameR === 1) && (this.name == "")) {
         alert("请输入您的姓名");
         return;
       }
-      if (!(this.cellR == 1 && this.cell != "")) {
+      if ((this.cellR === '1') && (this.cell == "")) {
         alert("请输入您的手机号");
         return;
       }
-      if (!(this.addressR == 1 && this.address != "")) {
+      if ((this.addressR === 1) && (this.address == "")) {
         alert("请输入您的现居地址");
         return;
       }
-      if (!(this.numberR == 1 && this.number != "")) {
+      if ((this.numberR === 1) && (this.number == "")) {
         alert("请输入您的参加人数");
         return;
       }
