@@ -217,7 +217,7 @@ export default {
       this.isapp = false;
     }
     if (this.$route.query.wechat == 'true') {
-        this.isapp == true
+        this.isapp = true
     }
   },
   methods: {
