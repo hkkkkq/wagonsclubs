@@ -175,7 +175,7 @@
                 <span>立即申请</span>
             </p>
             <p v-if="iswx" style="border: 0;height: 0.5rem;"></p>
-            <p v-if="iswx" @click="goapply" class="but">
+            <p v-if="iswx" @click="gotel" class="but">
                 <span><img style="width:14px;margin: 0px 10px;" src="../../assets/app/pendingphone.png">联系我们，咨询购买</span>
             </p>
         </div>
@@ -245,6 +245,9 @@ export default {
     },
     goapply() {
       this.$router.push("/app/apply");
+    },
+    gotel () {
+        location.href = 'tel:4008625700'
     }
   }
 };
