@@ -174,6 +174,10 @@
             <p v-if="!isapp" @click="goapply" class="but">
                 <span>立即申请</span>
             </p>
+            <p v-if="iswx" style="border: 0;height: 0.5rem;"></p>
+            <p v-if="iswx" @click="goapply" class="but">
+                <span><img style="width: 14px;margin: 0px 10px;" src="../../assets/app/pendingphone.png">联系我们，咨询购买</span>
+            </p>
         </div>
         <transition name="fade">
             <div v-show="at" class="al">
@@ -206,7 +210,8 @@ export default {
       lechao: false,
       youxiang: false,
       zhizun: false,
-      isapp: ""
+      isapp: "",
+      iswx: false
     };
   },
   created() {
@@ -218,6 +223,7 @@ export default {
     }
     if (this.$route.query.wechat == 'true') {
         this.isapp = true
+        this.iswx = true
     }
   },
   methods: {
