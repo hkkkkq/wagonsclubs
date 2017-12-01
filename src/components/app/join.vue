@@ -176,7 +176,7 @@
             </p>
             <p v-if="iswx" style="border: 0;height: 0.5rem;"></p>
             <p v-if="iswx" @click="goapply" class="but">
-                <span><img style="width: 14px;margin: 0px 10px;" src="../../assets/app/pendingphone.png">联系我们，咨询购买</span>
+                <span><img style="width:14px;margin: 0px 10px;" src="../../assets/app/pendingphone.png">联系我们，咨询购买</span>
             </p>
         </div>
         <transition name="fade">
