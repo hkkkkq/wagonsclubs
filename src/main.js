@@ -23,6 +23,7 @@ Vue.use(VueLazyload, {
 
 // axios.defaults.headers.common['token'] = 'a31f4dd41f48444b81b1d36486920419';
 Vue.prototype.$ajax = axios; //将axios写入vue的原型方法
+Vue.prototype.$ajax.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 Vue.use(vuex)
 const store = new vuex.Store({
     state: {

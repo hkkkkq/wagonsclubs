@@ -170,9 +170,13 @@
             <h1 class="card">您可以到店咨询办理实体卡，也可以在线充值办理</h1>
             <!-- <router-link to="/app/memindex" style="text-decoration-line: none;font-size:0.22rem;color:#009cff;float:right;height:0.7rem;margin-right: 0.4rem;">查看更多会员说明</router-link> -->
             <img style="width: 5.22rem;height: 0.59rem;display: block;margin: auto;padding-bottom:0.78rem;margin-top: 0.74rem;" src="../../assets/app/blogo.png">
-            <p style="border: 0;height: 0.5rem;"></p>
+            <p v-if="!isapp" style="border: 0;height: 0.5rem;"></p>
             <p v-if="!isapp" @click="goapply" class="but">
                 <span>立即申请</span>
+            </p>
+            <p v-if="iswx" style="border: 0;height: 0.5rem;"></p>
+            <p v-if="iswx" @click="gotel" class="but">
+                <span><img style="width:14px;margin: 0px 10px;" src="../../assets/app/pendingphone.png">联系我们，咨询购买</span>
             </p>
         </div>
         <transition name="fade">
@@ -206,15 +210,20 @@ export default {
       lechao: false,
       youxiang: false,
       zhizun: false,
-      isapp: ""
+      isapp: "",
+      iswx: false
     };
   },
   created() {
     window.scrollTo(0, 0);
     if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
-      this.isapp = true;
+      this.isapp = true
     } else {
       this.isapp = false;
+    }
+    if (this.$route.query.wechat == 'true') {
+        this.isapp = true
+        this.iswx = true
     }
   },
   methods: {
@@ -236,6 +245,9 @@ export default {
     },
     goapply() {
       this.$router.push("/app/apply");
+    },
+    gotel () {
+        location.href = 'tel:4008625700'
     }
   }
 };
