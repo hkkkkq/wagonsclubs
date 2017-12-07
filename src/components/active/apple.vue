@@ -31,7 +31,7 @@ export default {
     currx: function(){
     },
     top:function(){
-      if(this.top > 8){
+      if(this.top >8){
         //苹果宽度 0.25rem
         if (this.currx < this.left && this.currx + 1.8 > this.left + 0.5 ){
           this.$emit('increment',this.random)
