@@ -1,6 +1,6 @@
 <template>
 <div>
-    <img src="../../assets/active/apple.jpeg" :style="{top:top+'rem',left:left + 'rem'}" class="apple"></i>
+    <img :src="gift[random]" :style="{top:top+'rem',left:left + 'rem'}" class="apple"></i>
 </div>
 </template>
 
@@ -9,46 +9,52 @@ export default {
   props: ['currx'],
   data () {
     return{
+      gift:[
+        '/static/img/tnt.png',
+        '/static/img/apple.jpeg',
+        '/static/img/360.png',
+        '/static/img/ali.png',
+        '/static/img/baidu.png',
+        '/static/img/jd.png'],
       top:-0.5,
       a:0,
+      random:[],
       left:0,
       t: 0,
       int:'',
       //人物 width 0.9rem
     }
   },
+  created () {
+  },
   watch: {
     currx: function(){
-      console.log(this.currx)
     },
     top:function(){
-      if(this.top > 9.6){
+      if(this.top > 8){
         //苹果宽度 0.25rem
         if (this.currx < this.left && this.currx + 1.8 > this.left + 0.5 ){
-          this.$emit('increment')
-          clearInterval(this.int)
-          this.down()
-          return;
-        }else{
-          clearInterval(this.int)
-          this.down()  
+          this.$emit('increment',this.random)
         }
+        cancelAnimationFrame(this.int)
+        this.down()
       }
     },
-    // currx () {
-      // console.log(this.currx)
-    // }
   },
   methods: {
     down () {
-      this.a = Math.random() * 3 + 1
+      this.random = Math.floor(Math.random() * 6)
+      var vm = this
+      this.a = Math.random() * 5 + 3
       this.left = Math.random()*6.5
       this.top = -1
       this.t = 0
-      this.int = setInterval(()=>{
-        this.top = 0.5 * this.a * this.t * this.t - 1
-      this.t += 0.01
-    },16.6)
+      function drop(params) {
+        vm.top = 0.5 * vm.a * vm.t * vm.t - 1
+        vm.t += 0.01
+        vm.int = requestAnimationFrame(drop)
+      }
+      drop()
     }
   },
   mounted () {
@@ -60,6 +66,6 @@ export default {
 <style lang='scss' scoped>
 .apple{
   position: absolute;
-  width: 0.5rem;
+  width: 0.8rem;
 }
 </style>

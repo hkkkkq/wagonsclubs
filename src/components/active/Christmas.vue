@@ -1,8 +1,11 @@
 <template>
 <div>
-<transition name="fade">
-	<router-view class="child-view"></router-view>
-</transition>
+  <img @click="cmp3" v-show="mp3" class="mp3" src="../../assets/active/mp3.png">
+  <img @click="cmp3" v-show="!mp3" class="mp3" src="../../assets/active/mp3done.png">
+  <audio ref="mylife" autoplay src="/static/img/It's My Life - Bon Jovi.mp3"></audio>
+  <transition name="fade">
+	  <router-view class="child-view"></router-view>
+  </transition>
 <!-- <br>
 <br>
 <br>
@@ -17,11 +20,49 @@
 <script>
 require("../app/rem.js")(window, document);
 export default {
-
+  data () {
+    return{
+      mp3: true,
+      count:0
+    }
+  },
+  mounted () {
+    var arr = [
+      'http://localhost:8080/static/img/load2.png',
+      'http://localhost:8080/static/img/load1.png',
+      'http://localhost:8080/static/img/load3.png',
+      'http://localhost:8080/static/img/load4.png',
+      ]
+    arr.forEach(item => {
+      let img = new Image()
+      img.onload = ()=>{
+        this.count++
+      }
+      img.src=item
+    })
+  },
+  methods: {
+    cmp3 () {
+      if(this.mp3){
+        this.$refs.mylife.pause()
+        this.mp3 = false
+      }else{
+        this.$refs.mylife.play()
+        this.mp3 = true
+      }
+    }
+  }
 }
 </script>
 
 <style lang='scss' scoped>
+.mp3{
+  position: absolute;
+  top: 0.7rem;
+  right: 0.38rem;
+  width: 0.7rem;
+  z-index: 10;
+}
 .child-view {
   position: absolute;
 } 
