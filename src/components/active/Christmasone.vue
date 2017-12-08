@@ -1,9 +1,9 @@
 <template>
 <div class="one">
-  <img :class="{'an1':count === 6}" class="load1" src="../../assets/active/load1.png">
-  <img :class="{'an1':count === 6}" class="load2" src="../../assets/active/load2.png">
-  <img :class="{'an1':count === 6}" class="load3" src="../../assets/active/load3.png">
-  <img :class="{'an1':count === 6}" class="load4" src="../../assets/active/load4.png">
+  <img :class="{'an1':count === 6}" class="load1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png">
+  <img :class="{'an1':count === 6}" class="load2" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png">
+  <img :class="{'an1':count === 6}" class="load3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load3.png">
+  <img :class="{'an1':count === 6}" class="load4" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load4.png">
   <div @click="go" class="but">去营救</div>
 </div>
 </template>

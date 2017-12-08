@@ -26,7 +26,10 @@ import apple from "./apple.vue";
 export default {
   data() {
     return {
-      man: ['/static/img/man.png','/static/img/manget.png','/static/img/mandead.png'],
+      man: [
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/man.png',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/manget.png',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mandead.png'],
       manindex:0,
       leftdown:false,
       rightdown:false,
@@ -67,6 +70,7 @@ export default {
   methods: {
     share () {
       alert('分享')
+      this.$router.push('/Christmas/three')
     },
     move(event, type) {
       event.preventDefault();
@@ -222,7 +226,7 @@ export default {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background: url('../../assets/active/bg2.png');
+  background: url('http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/bg2.png');
   background-size: 100% 100%;
   button {
     border: 0;

@@ -1,8 +1,9 @@
 <template>
 <div class="three">
+  <div @click="start" class="but">去营救</div>
   <div class="rad">
-    <img class="arrow" src="/static/img/arrow.png">
-    <img class="pan" src="/static/img/rad.png">
+    <img class="arrow" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/arrow.png">
+    <img :class="{'an':zhuan}" class="pan" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/rad.png">
   </div>
   <div class="bordcast">
     <p>
@@ -16,11 +17,43 @@
 <script>
 require("../app/rem.js")(window, document);
 export default {
-
+  data () {
+    return{
+      zhuan: false
+    }
+  },
+  methods: {
+    start () {
+      this.zhuan = true
+      setTimeout(() => {
+        alert('恭喜你获得了法拉利一辆')
+        this.zhuan = false
+      }, 2000);
+    }
+  }
 }
 </script>
 
 <style lang='scss' scoped>
+  .but{
+    animation: load5 1s ease-in-out infinite;
+    -webkit-animation: load5 1s ease-in-out infinite;
+    width: 50%;
+    height: 1rem;
+    opacity: 0;
+    background: orange;
+    color: #222;
+    font-size: 24px;
+    text-align: center;
+    margin: auto;
+    border-radius: 100px;
+    position: absolute;
+    z-index: 100;
+    line-height: 42px;
+    left: 0;
+    right: 0;
+    bottom: 2rem;
+  }
 .bordcast{
   display: flex;
   position: absolute;
@@ -61,7 +94,7 @@ export default {
 .three{
   width: 100%;
   height: 100%;
-  background: url('/static/img/presentbj.png');
+  background: url('http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/presentbj.png');
   background-size: 100% 100%;
 }
 .rad{
@@ -74,9 +107,11 @@ export default {
   display: -webkit-flex;
   margin: auto;
   bottom: 16%;
-  .pan{
+  .an{
     animation: myfirst 0.5s linear 3;
     -webkit-animation: myfirst 0.5s linear 3;
+  }
+  .pan{
     position: absolute;
     top: 0;
     left: 0;

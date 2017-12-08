@@ -2,18 +2,12 @@
 <div>
   <img @click="cmp3" v-show="mp3" class="mp3" src="../../assets/active/mp3.png">
   <img @click="cmp3" v-show="!mp3" class="mp3" src="../../assets/active/mp3done.png">
-  <audio ref="mylife" autoplay src="/static/img/It's My Life - Bon Jovi.mp3"></audio>
+  <!-- <audio ref="mylife" autoplay src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/mp3/It%27s%20My%20Life%20-%20Bon%20Jovi.mp3"></audio> -->
+  <audio ref="mylife" autoplay src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/mp3/GAI.mp3"></audio>
+  <p v-show='loading == true'>加载中</p>
   <transition name="fade">
-	  <router-view class="child-view"></router-view>
+	  <router-view class="child-view">sss</router-view>
   </transition>
-<!-- <br>
-<br>
-<br>
-<br>
-<br>
-	<router-link to="/Christmas/one">1</router-link>
-	<router-link to="/Christmas/two">2</router-link>
-	<router-link to="/Christmas/three">3</router-link> -->
 </div>
 </template>
 
@@ -23,15 +17,23 @@ export default {
   data () {
     return{
       mp3: true,
-      count:0
+      count:0,
+      loading:true
     }
   },
   mounted () {
     var arr = [
-      'http://localhost:8080/static/img/load2.png',
-      'http://localhost:8080/static/img/load1.png',
-      'http://localhost:8080/static/img/load3.png',
-      'http://localhost:8080/static/img/load4.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load3.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load4.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/bg2.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/man.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/manget.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mandead.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/presentbj.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/rad.png',
+      'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/arrow.png',
       ]
     arr.forEach(item => {
       let img = new Image()
@@ -40,6 +42,14 @@ export default {
       }
       img.src=item
     })
+  },
+  watch: {
+    count(val){
+      if(val == 11) {
+        this.loading = false
+        this.$router.push('/Christmas/one')
+      } 
+    }
   },
   methods: {
     cmp3 () {

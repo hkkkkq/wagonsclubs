@@ -5,7 +5,6 @@ import Christmasthree from "../components/active/Christmasthree.vue";
 var activeRouter = {
 	path: '/Christmas',
 	component: Christmas,
-	redirect: '/Christmas/one',
 	children:[
 		{
 			path: 'one',
