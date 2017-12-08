@@ -35,10 +35,6 @@
         </p>
         <p class="df">
             <span></span>
-            <b>选择送车/取车服务时，按地理位置收取费用，五环内100元/次，五环外200元/次。</b>
-        </p>
-        <p class="df">
-            <span></span>
             <b>用车期间的油料费、过桥路费、停车费等一切费用由用户自行承担。</b>
         </p>
         <p class="df">
@@ -68,66 +64,68 @@
 </template>
 
 <script>
-export default {};
+export default {
+
+}
 </script>
 
 <style scoped>
 .cl {
-  display: block;
-  height: 1.5rem;
+    display: block;
+    height: 1.5rem;
 }
 
 .df b {
-  display: inline-block;
-  width: 6.4rem;
+    display: inline-block;
+    width: 6.4rem;
 }
 
 .bo {
-  border-bottom: 1px solid #273039;
-  width: 7.1rem;
-  margin: auto;
-  margin-top: 0.3rem;
+    border-bottom: 1px solid #273039;
+    width: 7.1rem;
+    margin: auto;
+    margin-top: 0.3rem;
 }
 
 .gr {
-  color: #999999;
-  font-size: 0.22rem;
-  margin-top: 0.3rem;
-  padding-left: 0.85rem;
+    color: #999999;
+    font-size: 0.22rem;
+    margin-top: 0.3rem;
+    padding-left: 0.85rem;
 }
 
 .df {
-  font-size: 0.24rem;
-  color: #ffffff;
-  width: 7.1rem;
-  display: block;
-  margin: auto;
-  line-height: 0.5rem;
-  position: relative;
+    font-size: 0.24rem;
+    color: #ffffff;
+    width: 7.1rem;
+    display: block;
+    margin: auto;
+    line-height: 0.5rem;
+    position: relative;
 }
 
 .df span {
-  background: #4b535a;
-  width: 5px;
-  height: 5px;
-  border-radius: 10px;
-  display: inline-block;
-  margin-left: 0.18rem;
-  margin-right: 0.3rem;
-  position: relative;
-  vertical-align: top;
-  top: 0.2rem;
+    background: #4b535a;
+    width: 5px;
+    height: 5px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 0.18rem;
+    margin-right: 0.3rem;
+    position: relative;
+    vertical-align: top;
+    top: 0.2rem;
 }
 
 .ti {
-  color: #ffffff;
-  font-size: 0.24rem;
-  border-left: 2px solid #fed945;
-  text-indent: 0.16rem;
-  display: block;
-  width: 7.1rem;
-  margin: auto;
-  margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
+    color: #ffffff;
+    font-size: 0.24rem;
+    border-left: 2px solid #fed945;
+    text-indent: 0.16rem;
+    display: block;
+    width: 7.1rem;
+    margin: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 </style>

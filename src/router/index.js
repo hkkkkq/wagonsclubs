@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import activeRouter from './active.js';
 const VueAwesomeSwiper = require('vue-awesome-swiper');
 // import test from '../components/test/test.vue' //直接加载方式，组件写在公共js里，如果这种方式过多会是的文件提过大，首次加载变慢
 // import page from '../components/test/page.vue'
@@ -63,11 +64,11 @@ const activelist = resolve => require(['../components/mobile/activelist.vue'], r
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router);
-
 export default new Router({
     mode: 'history',
     routes: [
-
+        //活动
+        activeRouter,
         //重写pc首页
         {
             path: '/',

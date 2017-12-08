@@ -35,7 +35,7 @@
       <br>
       会员中心
       <br>
-      <a :href='"http://www.test.wagonsclub.com/app/ab"'>关于我们</a>
+      <a :href='"http://www.test.wagonsclub.com/app/ab"'>关于我们1</a>
       <br>
       <a :href="'http://www.test.wagonsclub.com/wx/wxmember?WAG='+W">会员权益</a>
       <br>
