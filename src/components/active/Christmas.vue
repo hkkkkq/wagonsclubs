@@ -48,54 +48,6 @@ export default {
         document.getElementById('audio').play() 
         this.$refs.mylife.play()
     }, false);
-    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
-    .then((res) => {
-      wx.config({
-        debug: false,
-        appId: res.data.data.sign.appId,
-        timestamp: res.data.data.sign.timestamp,
-        nonceStr: res.data.data.sign.nonceStr,
-        signature: res.data.data.sign.signature,
-        jsApiList: [
-          'onMenuShareTimeline',
-          'onMenuShareAppMessage',
-          'onMenuShareQQ',
-          'onMenuShareWeibo'
-        ]
-      });
-      var locationHref = window.location.href;
-      wx.ready(function() {
-        wx.onMenuShareTimeline({
-          title: 'WAGONS光速超跑圣诞节活动',
-          link: locationHref,
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
-          success: function(){
-            alert('分享成功')
-          },
-          cancel: function(){
-            alert('取消分享')
-          }
-        });
-        wx.onMenuShareAppMessage({
-          title: 'WAGONS光速超跑圣诞节活动',
-          desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-          link: locationHref,
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-        });
-        wx.onMenuShareQQ({
-          title: 'WAGONS光速超跑圣诞节活动',
-          desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-          link: locationHref,
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-        });
-        wx.onMenuShareWeibo({
-          title: 'WAGONS光速超跑圣诞节活动',
-          desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-          link: locationHref,
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-        });
-      });
-    }).catch((res) => { alert(res) })
   },
   watch: {
     count(val){
