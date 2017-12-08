@@ -3,7 +3,7 @@
   <img @click="cmp3" v-show="mp3" class="mp3" src="../../assets/active/mp3.png">
   <img @click="cmp3" v-show="!mp3" class="mp3" src="../../assets/active/mp3done.png">
   <!-- <audio ref="mylife" autoplay src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/mp3/It%27s%20My%20Life%20-%20Bon%20Jovi.mp3"></audio> -->
-  <audio ref="mylife" autoplay src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/mp3/GAI.mp3"></audio>
+  <audio id='audio' ref="mylife" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/mp3/GAI.mp3"></audio>
   <p v-show='loading == true'>加载中</p>
   <transition name="fade">
 	  <router-view class="child-view">sss</router-view>
@@ -42,10 +42,17 @@ export default {
       }
       img.src=item
     })
+    document.getElementById('audio').play()
+    this.$refs.mylife.play()
+    document.addEventListener("WeixinJSBridgeReady", function () { 
+        document.getElementById('audio').play() 
+        this.$refs.mylife.play()
+    }, false);
   },
   watch: {
     count(val){
       if(val == 11) {
+        alert('资源加载完成')
         this.loading = false
         this.$router.push('/Christmas/one')
       } 
