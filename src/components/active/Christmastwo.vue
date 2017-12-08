@@ -44,13 +44,24 @@ export default {
       score: 0,
       live:100,
       gameover:false,
-      reserveman:true
+      reserveman:true,
+      starttime:0,
+      endtime:0,
+      gametime:0
     };
   },
   watch:{
     // this.$refs.apple1
+    gameover (val) {
+      if(val == true) {
+        this.endtime = new Date()
+        this.gametime = this.endtime - this.starttime
+        alert('游戏时间'+(this.gametime/1000)+'秒')
+      }
+    }
   },
   mounted () {
+    this.starttime = new Date();
     setTimeout(() => {
       this.apple2 = true
     }, 2000);
@@ -169,7 +180,6 @@ export default {
     width: 40%;
     height: 1rem;
     position: absolute;
-    background: pink;
     left: 0;
     right: 0;
     margin: auto;

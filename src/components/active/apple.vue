@@ -33,7 +33,7 @@ export default {
     top:function(){
       if(this.top >8){
         //苹果宽度 0.25rem
-        if (this.currx < this.left && this.currx + 1.8 > this.left + 0.5 ){
+        if (this.currx < this.left && this.currx + 2.5 > this.left + 0.8 ){
           this.$emit('increment',this.random)
         }
         cancelAnimationFrame(this.int)
