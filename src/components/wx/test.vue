@@ -73,7 +73,7 @@ export default {
     ss() {
       console.log(this.$refs.file1.files[0])
       console.log(this.$refs.file2.files[0])
-      var params = new FormData();
+      var params = new FormData()
       params.append('name','chen')
       params.append('upfile',this.$refs.file1.files[0])
       params.append('upfile',this.$refs.file2.files[0])
