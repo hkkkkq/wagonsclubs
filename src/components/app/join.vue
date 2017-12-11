@@ -2,6 +2,7 @@
     <div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923">
         <img class="banner" src="../../assets/app/joinbanner.png">
         <p class="uv">开始用车之前，您需要通过申请方式加入WAGONS，成功后即可自由选择购买优惠套餐，或采用单次散租的方式开始您的超跑自驾之旅。</p>
+        <p @click='gotel' class="uv1">婚庆静展，高端接驾，广告合作等商务用车需求请点此与工作人员联系</p>
         <div class="cc">
             <p>套餐</p>
             <div class="qq">
@@ -381,6 +382,15 @@ export default {
   left: 0.4rem;
   line-height: 0.4rem;
 }
+.uv1 {
+  font-size: 0.24rem;
+  color: #009cff;
+  width: 6.6rem;
+  position: absolute;
+  top: 2rem;
+  left: 0.4rem;
+  line-height: 0.4rem;
+}
 
 .rad {
   display: inline-block;
@@ -466,7 +476,7 @@ export default {
 
 .banner {
   width: 100%;
-  height: 2.4rem;
+  height: 3.4rem;
   display: block;
 }
 

@@ -1,6 +1,16 @@
 <template>
     <div style="font-family:PingFangSC-Medium, sans-serif;height: 100%;position: absolute;width: 100%;">
         <div style="background:rgb(15, 25, 35);min-height:100%;overflow:hidden">
+            <transition name="fade">
+            <div v-if="longrent" class="longrent-alert">
+              <img class="head" src="../../assets/app/longrent.png">
+              <div>
+                如果您需要长租车辆，请与工作人员联系获取长租价格，线下办理相关手续。
+                <div @click="gotel"><img src="../../assets/app/pendingphone.png">联系客服</div>
+              </div>
+              <img @click="showlongrent" class="close" src="../../assets/app/xx.png">
+            </div>
+            </transition>
             <p style="height:0.2rem"></p>
             <div class="carinfo">
                 <img :src="carData.carImage">
@@ -20,6 +30,7 @@
                                 <b>{{startob == ""?"":((parseInt(startob.shi)<10? "0"+parseInt(startob.shi):parseInt(startob.shi))+ ":"+(parseInt(startob.fen)==0? "00":parseInt(startob.fen)))}}</b>
                                 <img src="../../assets/app/der.jpg">
                             </span>
+                            <span @click="showlongrent" class="longrent">我要长租</span>
                             <div></div>
                             <div @click="changeAddr(1)" class="byself">{{addr1}}</div>
                             <input v-model="startadd" class="in" type="text" placeholder="请填写取车地址">
@@ -192,7 +203,8 @@ export default {
       addr1: "自取",
       addr2: "自取",
       birthdayUsed: 0,
-      lessThan5000: false
+      lessThan5000: false,
+      longrent:false
     };
   },
   created() {
@@ -403,6 +415,12 @@ export default {
     }
   },
   methods: {
+    gotel () {
+      location.href = 'tel:4008625700'
+    },
+    showlongrent () {
+      this.longrent == true?this.longrent = false:this.longrent = true
+    },
     switchrad() {
       if (this.rad == true) {
         this.$store.commit("rad", false);
@@ -642,6 +660,72 @@ $yellow: #fed945;
       }
     }
   }
+}
+.longrent-alert{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  display: -webkit-flex;
+  background: rgba(0, 0, 0, 0.8);
+  .head{
+    width: 5.17rem;
+    height: 2rem;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin: auto;
+    margin-bottom: 0;
+  }
+  .close{
+    width: 0.67rem;
+    height: 0.67rem;
+    margin: auto;
+    margin-top: 0;
+  }
+  >div{
+    font-size: 0.24rem;
+    color: #333333;
+    margin: auto;
+    margin-top: 0;
+    width: 4.54rem;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    line-height: 0.4rem;
+    height: auto;
+    background: #fff;
+    padding: 0.32rem;
+    >div{
+      img{
+        width: 0.26rem;
+        height: 0.26rem;
+        display: inline-block;
+        position:relative;
+        top: 0.05rem;
+        left:-0.1rem;
+      }
+      font-size: 0.26rem;
+      line-height: 0.8rem;
+      width: 4.54rem;
+      height: 0.72rem;
+      border-radius: 4px;
+      text-align: center;
+      margin: auto;
+      margin-top: 1rem;
+      background: $yellow;
+    }
+  }
+}
+.longrent{
+  font-size: 0.2rem;
+  color: $yellow;
+  border: 1px solid $yellow;
+  border-radius: 1000px;
+  padding: 4px 12px;
+  float: right;
+  margin-right: 0.3rem;
 }
 .orderH {
   background: rgba(0, 0, 0, 0.5);
@@ -955,5 +1039,11 @@ input::-webkit-input-placeholder {
   background: #273039;
   border-radius: 4px;
   font-size: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
 }
 </style>

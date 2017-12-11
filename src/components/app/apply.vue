@@ -1,5 +1,5 @@
 <template>
-    <div style="font-family: PingFangSC-Light, sans-serif;height:100%;background:#0f1923;">
+    <div style="font-family: PingFangSC-Light, sans-serif;min-height:100%;background:#0f1923;">
         <!-- 清浮动 -->
         <p style="width: 100%;height: 1px;"></p>
         <div v-show="iserr" class="alert_err">{{errmsg}}</div>
@@ -27,7 +27,41 @@
                 <b :class="{'tian':istian3}">{{c3}}</b>
             </p>
         </div>
+        <div class="idcard">
+            <p>请提供以下图片资料，以确保您可以在WAGONS享受自驾服务。</p>
+            <span>身份证照片</span>
+            <div>
+                <div style="margin-left:0">
+                    <input accept="image/*" @change="baseimg(1)" ref='file1' type="file">
+                    <img class="preshow" :src="src1">
+                    <img src="../../assets/app/++.png">
+                    <p>身份证照片(正面)</p>               
+                </div>
+                <div style="margin-right:0">
+                    <input accept="image/*" @change="baseimg(2)" ref='file2' type="file">
+                    <img class="preshow" :src="src2">
+                    <img src="../../assets/app/++.png">
+                    <p>身份证照片(反面)</p>               
+                </div>
+            </div>
+            <span>驾驶证照片</span>
+            <div>
+                <div style="margin-left:0">
+                    <input accept="image/*" @change="baseimg(3)" ref='file3' type="file">
+                    <img class="preshow" :src="src3">
+                    <img src="../../assets/app/++.png">     
+                    <p>驾驶证照片(正页)</p>               
+                </div>
+                <div style="margin-right:0">
+                    <input accept="image/*" @change="baseimg(4)" ref='file4' type="file">
+                    <img class="preshow" :src="src4">
+                    <img src="../../assets/app/++.png">                    
+                    <p>驾驶证照片(副页)</p>          
+                </div>
+            </div>
+        </div>
         <p @click="sub" class="but">提交申请</p>
+        <h1 style="height:1.75rem"></h1>
         <div @click="clo" v-show="l1" class="mask">
             <div class="nu">
                 <p @click='cl(item,index)' :key="index" v-for="(item,index) in currlist">{{item}}</p>
@@ -43,6 +77,10 @@ import qs from 'qs';
 export default {
     data() {
         return {
+            src1:'',
+            src2:'',
+            src3:'',
+            src4:'',
             isapp: '',
             errmsg: "",
             name: '',
@@ -98,6 +136,47 @@ export default {
         }
     },
     methods: {
+        baseimg (type) {
+            var vm = this
+            var reader = new FileReader();
+            reader.onloadstart = function(e) {
+                console.log("开始读取....");
+            };
+            reader.onprogress = function(e) {
+                console.log("正在读取中....");
+            };
+            reader.onabort = function(e) {
+                console.log("中断读取....");
+            };
+            reader.onerror = function(e) {
+                console.log("读取异常....");
+            };
+            if (type == 1) {
+                reader.onload = function(e) {
+                    vm.src1 = e.target.result;
+                    console.log("成功读取....");
+                };
+                reader.readAsDataURL(this.$refs.file1.files[0]);
+            } else if (type == 2) {
+                reader.onload = function(e) {
+                    vm.src2 = e.target.result;
+                    console.log("成功读取....");
+                };
+                reader.readAsDataURL(this.$refs.file2.files[0]);
+            } else if (type == 3) {
+                reader.onload = function(e) {
+                    vm.src3 = e.target.result;
+                    console.log("成功读取....");
+                };
+                reader.readAsDataURL(this.$refs.file3.files[0]);
+            } else if (type == 4) {
+                reader.onload = function(e) {
+                    vm.src4 = e.target.result;
+                    console.log("成功读取....");
+                };
+                reader.readAsDataURL(this.$refs.file4.files[0]);
+            }
+        },
         sel(n) {
             this.l1 = true
             if (n == 1) { this.currlist = this.hunyinlist; this.wh = 1 }
@@ -118,30 +197,33 @@ export default {
             setTimeout(() => { this.iserr = false }, 1500)
         },
         sub() {
+            var vm = this
             if (this.name == '') { this.err('请填写姓名'); return false }
             if (this.idCard == '') { this.err('请填写身份证号'); return false }
             if (this.telephone == '') { this.err('请填写手机号'); return false }
             if (this.c1 === '请选择  >') { this.err('请选择婚姻状况'); return false }
             if (this.c2 == '请选择  >') { this.err('请选择职业'); return false }
             if (this.c3 == '请选择  >') { this.err('请选择职务'); return false }
+            var params = new FormData();
+            params.append('name',vm.name)
+            params.append('telephone',vm.telephone)
+            params.append('idCard',vm.idCard)
+            params.append('career',vm.c2)
+            params.append('duty',vm.c3)
+            params.append('type',3)
+            params.append('maritalStatus',this.maritalStatus)
+            console.log(this.$refs.file1.files[0])
+            params.append('idCardImage',this.$refs.file1.files[0])
+            params.append('idCardImage',this.$refs.file2.files[0])
+            params.append('drivingLicenseImage',this.$refs.file3.files[0])
+            params.append('drivingLicenseImage',this.$refs.file4.files[0])
             this.$ajax({
                 method: 'POST',
                 url: BASE_URL + '/regist',
-                data: qs.stringify({
-                    maritalStatus: this.maritalStatus,
-                    name: this.name,
-                    telephone: this.telephone,
-                    idCard: this.idCard,
-                    career: this.c2,
-                    duty: this.c3,
-                    type: '3'
-                }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                data: params,
             }).then((res) => {
                 if (res.data.success == true) {
                     this.$router.push('/app/applysuc?id=' + res.data.data.id)
-                    // this.title = '提交成功'
-                    // this.id = res.data.data.id;
                 } else {
                     this.err(res.data.message)
                 }
@@ -151,7 +233,77 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+.idcard{
+    width: 7.1rem;
+    padding: 0.42rem 0;
+    margin: auto;
+    font-size: 0;
+    border-top: 1px solid #3d454d;
+    >p{
+        font-size: 0.24rem;
+        color: #999999;
+    }
+    >span{
+        font-size: 0.24rem;
+        color: #fff;
+        margin-top: 0.32rem;
+        display: block;
+    }
+    >div{
+        margin-top: 0.18rem;
+        width: 100%;
+        display: flex;
+        display: -webkit-flex;
+        >div{
+            background: #273039;
+            width: 3.46rem;
+            height: 2.3rem;
+            margin: auto;
+            font-size: 2rem;
+            color: #fff;
+            position: relative;
+            border-radius: 4px;
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            input{
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+                opacity: 0;
+                border: 0;
+            }
+            .preshow{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+                z-index: 1;
+            }
+            .preshow[src=""]{
+                opacity: 0;
+            }
+            img{
+                width: 0.52rem;
+                margin: auto;
+                height: 0.52rem;
+            }
+            p{
+                font-size: 0.2rem;
+                color: #fff;
+                margin: auto;
+                margin-top: 0;
+            }
+        }
+    }
+}
 .alert_err {
     position: fixed;
     top: 5rem;
