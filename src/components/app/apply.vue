@@ -300,6 +300,7 @@ export default {
                 color: #fff;
                 margin: auto;
                 margin-top: 0;
+                text-align: center;
             }
         }
     }
