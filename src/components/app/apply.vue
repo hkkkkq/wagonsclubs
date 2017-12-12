@@ -83,6 +83,7 @@ import qs from 'qs';
 export default {
     data() {
         return {
+            sublock:false,
             ipx:false,
             src1:'',
             src2:'',
@@ -208,6 +209,9 @@ export default {
             setTimeout(() => { this.iserr = false }, 1500)
         },
         sub() {
+            if(this.sublock == true){
+                return ;
+            }
             var vm = this
             if (this.name == '') { this.err('请填写姓名'); return false }
             if (this.idCard == '') { this.err('请填写身份证号'); return false }
@@ -239,6 +243,8 @@ export default {
                     this.err(res.data.message)
                 }
             })
+            this.sublock = true;
+            this.err('申请已发送，请耐心等待');
         }
     }
 }
@@ -321,6 +327,7 @@ export default {
     top: 5rem;
     width: 6.8rem;
     height: 1.2rem;
+    z-index: 99999;
     border-radius: 0.2rem;
     background-color: rgba(0, 0, 0, 0.6);
     color: white;

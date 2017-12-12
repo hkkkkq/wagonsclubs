@@ -55,9 +55,9 @@ import qs from "qs";
 export default {
   data() {
     return {
-      ip:'',
+      ip:'192.168.10.118:8080',
       env: "",
-      W: "oEUUVv1Fko_nef3hzP9KY_P7nDHM",
+      W: "oEUUVvzs3UIbfgkUO56S0H3O-sNI",
       src: ""
     };
   },
