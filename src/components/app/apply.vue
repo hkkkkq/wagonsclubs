@@ -65,8 +65,14 @@
         <div @click="clo" v-show="l1" class="mask">
             <div class="nu">
                 <p @click='cl(item,index)' :key="index" v-for="(item,index) in currlist">{{item}}</p>
+                <div v-if="ipx">
+                <p style="border:0;height:1.54rem"></p>
+                <p @click="clo" style="height:1.54rem;line-height:0.9rem;font-size: 0.24rem;color: rgb(215, 215, 215);position: fixed;bottom: 0;left: 0;right: 0;;">取消</p>
+                </div>
+                <div v-else>
                 <p style="border:0"></p>
                 <p @click="clo" style="height:0.9rem;line-height:0.9rem;font-size: 0.24rem;color: rgb(215, 215, 215);position: fixed;bottom: 0;left: 0;right: 0;;">取消</p>
+                </div>
             </div>
         </div>
     </div>
@@ -77,6 +83,7 @@ import qs from 'qs';
 export default {
     data() {
         return {
+            ipx:false,
             src1:'',
             src2:'',
             src3:'',
@@ -119,6 +126,10 @@ export default {
                 .then(res => {
                     vm.telephone = res.data.data.wxCell
                 })
+        }
+        var ua = navigator.userAgent.toLowerCase()
+        if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
+            this.ipx = true
         }
         function suc(token) {
             // alert(token)

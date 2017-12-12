@@ -159,7 +159,7 @@
             </div>
             <!-- 计划订单确认弹窗 -->
             <div :class="{'orderH':checkorder}" class="checkorder">
-              <div :class="{'orderD':checkorder}">
+              <div :class="{'orderDx':checkorder&&ipx}">
                 <div class="line">
                   <span>订单确认</span>
                   <img @click="closecheck" src="../../assets/car_close.png">
@@ -192,6 +192,7 @@ import qs from "qs";
 export default {
   data() {
     return {
+      ipx:false,
       storeAdds: "",
       orderType: "",
       checkorder: false,
@@ -218,6 +219,9 @@ export default {
       this.endadd = res.data.data.storeAdds;
       this.$store.commit("rentdays", res.data.data.takenDates);
     });
+    if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
+      this.ipx = true
+      }
   },
   computed: {
     rad() {
@@ -733,7 +737,10 @@ $yellow: #fed945;
   bottom: 0;
 }
 .orderD {
-  height: 5.7rem !important;
+  height: 5.7rem!important;
+}
+.orderDx {
+  height: 6.7rem!important;
 }
 .byself {
   background: #3d454d;

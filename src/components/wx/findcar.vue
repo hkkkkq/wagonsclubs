@@ -88,6 +88,7 @@ export default {
         debugger: true,
         onTransitionStart(swiper) {}
       },
+      city:'',
       topStatus: "",
       f5: true,
       f6: true,
@@ -110,6 +111,11 @@ export default {
     }
   },
   created() {
+    if(this.$route.query.city == 'GuangZhou'){
+      this.city = '广州'
+    }else{
+      this.city = ''
+    }
     if (this.$route.query.wxAppShare == "true") {
       this.$store.commit("wxAppShare");
     }
@@ -130,8 +136,7 @@ export default {
       }
     });
     this.$ajax(
-      BASE_URL + "/appCar/carsListPaginate?pageIndex=" + this.currpage
-    ).then(res => {
+      BASE_URL + "/appCar/carsListPaginate?city="+this.city+"&pageIndex=" + this.currpage).then(res => {
       this.list = res.data.data.carsList.data;
       this.$store.commit("saveAppList", this.list);
       this.hasNext = res.data.data.carsList.hasNext;
@@ -259,7 +264,7 @@ export default {
         if (this.hasNext) {
           this.$ajax(
             BASE_URL +
-              "/appCar/carsListPaginate?pageIndex=" +
+              "/appCar/carsListPaginate?city="+this.city+"&pageIndex=" +
               Number(this.currpage + 1)
           ).then(res => {
             for (let i = 0; i < res.data.data.carsList.data.length; i++) {
