@@ -135,6 +135,7 @@ export default {
                   headers: { WAG: vm.WAG }
                   })
                 .then(res=>{
+                  alert('请求了接口')
                     vm.$router.push('/wx/Christmas/three')
                 })
             }else{
