@@ -129,6 +129,7 @@ export default {
             //游戏成功分享游戏次数-1
             if(vm.gamewin == true){
                 //请求游戏次数
+                alert('赢了')
                 vm.$ajax({
                   url:BASE_URL+'sss',
                   method:'get',
