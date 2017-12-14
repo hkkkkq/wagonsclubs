@@ -1,8 +1,7 @@
 <template>
 <div>
-  <img @click="cmp3" v-show="mp3" class="mp3" src="../../assets/active/mp3.png">
-  <img @click="cmp3" v-show="!mp3" class="mp3" src="../../assets/active/mp3done.png">
-  <!-- <audio ref="mylife" autoplay src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/mp3/It%27s%20My%20Life%20-%20Bon%20Jovi.mp3"></audio> -->
+  <img @click="cmp3" v-show="mp3" class="mp3" src="/static/christmas/mp3.png">
+  <img @click="cmp3" v-show="!mp3" class="mp3" src="/static/christmas/mp3done.png">
   <audio id='audio' ref="mylife" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/mp3/GAI.mp3"></audio>
   <p v-show='loading == true'>加载中</p>
   <transition name="fade">
@@ -21,7 +20,15 @@ export default {
       loading:true
     }
   },
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
+    }
+  },
   mounted () {
+    if (this.$route.query.WAG) {
+      this.$store.commit("setOpenId", this.$route.query.WAG);
+    }
     var arr = [
       'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png',
       'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png',
@@ -48,13 +55,29 @@ export default {
         document.getElementById('audio').play() 
         this.$refs.mylife.play()
     }, false);
+    //请求游戏次数
+    this.$ajax({
+      url:BASE_URL+'/christmas/timesRestriction',
+      method:'get',
+      headers: { WAG: this.WAG }
+      })
+    .then(res=>{
+      console.log(res.data)
+      if(res.data.success == false){
+        this.$router.push('/wx/Christmas/four')
+      }else if(res.data.success == true){
+        this.$router.push('/wx/Christmas/one')
+      }else{
+        alert('后台bug1')
+      }
+    })
   },
   watch: {
     count(val){
       if(val == 11) {
-        alert('资源加载完成')
+        // alert('资源加载完成')
         this.loading = false
-        this.$router.push('/Christmas/one')
+        // this.$router.push('/Christmas/one')
       } 
     }
   },
@@ -75,10 +98,10 @@ export default {
 <style lang='scss' scoped>
 .mp3{
   position: absolute;
-  top: 0.7rem;
+  top: 0.3rem;
   right: 0.38rem;
   width: 0.7rem;
-  z-index: 10;
+  z-index: 10000;
 }
 .child-view {
   position: absolute;

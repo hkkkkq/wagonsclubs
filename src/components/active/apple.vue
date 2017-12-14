@@ -10,12 +10,17 @@ export default {
   data () {
     return{
       gift:[
-        '/static/img/tnt.png',
-        '/static/img/apple.jpeg',
-        '/static/img/360.png',
-        '/static/img/ali.png',
-        '/static/img/baidu.png',
-        '/static/img/jd.png'],
+        '/static/christmas/tnt.png',
+        '/static/christmas/1.png',
+        '/static/christmas/2.png',
+        '/static/christmas/3.png',
+        '/static/christmas/4.png',
+        '/static/christmas/5.png',
+        '/static/christmas/6.png',
+        '/static/christmas/7.png',
+        '/static/christmas/8.png',
+        '/static/christmas/10.png',
+        '/static/christmas/9.png',],
       top:-0.5,
       a:0,
       random:[],
@@ -43,7 +48,7 @@ export default {
   },
   methods: {
     down () {
-      this.random = Math.floor(Math.random() * 6)
+      this.random = Math.floor(Math.random() * 11)
       var vm = this
       this.a = Math.random() * 5 + 3
       this.left = Math.random()*6.5

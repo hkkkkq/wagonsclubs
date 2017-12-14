@@ -1,10 +1,11 @@
 <template>
 <div class="wrap">
   <!-- <p>{{score}}</p> -->
-  <img class="faker" src="../../assets/active/faker.png">
+  <img class="faker" src="/static/christmas/faker.png">
   <div class="hp">
     <div :style="{'width':live + '%'}" class="red">HP</div>
   </div>
+  <p class="countdown">00:{{countdown | formtime}}</p>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple1" v-if="apple1"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple2" v-if="apple2"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple3" v-if="apple3"></apple>
@@ -13,10 +14,10 @@
   <img :style="{left: leftx+'rem'}" :class="{'reserveman':reserveman}" class="man" :src="man[manindex]">
   <button :class="{'leftdown':leftdown}" class="left" @touchstart="move($event,'L')" @touchend="moveend('L')"></button>
   <button :class="{'rightdown':rightdown}" class="right" @touchstart="move($event,'R')" @touchend="moveend('R')"></button>
-  <div v-show='gameover' class="zz">
+  <div v-show='gamewin||gamelose' class="zz">
     <div @click="share" class="but"></div>
-    <img v-show='!gameover' class="false" src="/static/img/falsecall.png">
-    <img v-show='gameover' class="false" src="/static/img/successcall.png">
+    <img v-show='gamelose' class="true" src="/static/img/falsecall.png">
+    <img v-show='gamewin' class="false" src="/static/img/successcall.png">
   </div>
 </div>
 </template>
@@ -32,6 +33,7 @@ export default {
         'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mandead.png'],
       manindex:0,
       leftdown:false,
+      countdown:15,
       rightdown:false,
       leftx: 0,
       leftloop: "",
@@ -43,7 +45,8 @@ export default {
       apple5: false,
       score: 0,
       live:100,
-      gameover:false,
+      gamewin:false,
+      gamelose:false,
       reserveman:true,
       starttime:0,
       endtime:0,
@@ -52,7 +55,12 @@ export default {
   },
   watch:{
     // this.$refs.apple1
-    gameover (val) {
+    countdown (value) {
+      if((this.countdown == 0)&&(this.gamewin == false)){
+        this.gamelose = true
+      }
+    },
+    gamewin (val) {
       if(val == true) {
         this.endtime = new Date()
         this.gametime = this.endtime - this.starttime
@@ -60,7 +68,27 @@ export default {
       }
     }
   },
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
+    }
+  },
+  filters: {  
+    formtime: function (value) {  
+      if(value >= 10 ){
+        return value
+      }else{
+        return '0'+value
+      }
+    }  
+  },
   mounted () {
+    var count = setInterval(() => {
+      if(this.countdown == 1){
+        clearInterval(count)
+      }
+      --this.countdown
+    }, 1000);
     this.starttime = new Date();
     setTimeout(() => {
       this.apple2 = true
@@ -76,8 +104,9 @@ export default {
     }, 8000);
     this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
     .then((res) => {
+      var vm = this
       wx.config({
-        debug: false,
+        debug: true,
         appId: res.data.data.sign.appId,
         timestamp: res.data.data.sign.timestamp,
         nonceStr: res.data.data.sign.nonceStr,
@@ -96,10 +125,23 @@ export default {
           link: locationHref,
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
-            alert('分享成功')
+            //游戏成功分享游戏次数-1
+            if(vm.gamewin == true){
+                //请求游戏次数
+                vm.$ajax({
+                  url:BASE_URL+'sss',
+                  method:'get',
+                  headers: { WAG: vm.WAG }
+                  })
+                .then(res=>{
+                    vm.$router.push('/wx/Christmas/three')
+                })
+            }else{
+              alert("游戏失败分享成功啥也不干"+vm.WAG)
+            }
           },
           cancel: function(){
-            alert('取消分享')
+            alert("直接取消分享啥也不干"+vm.WAG)
           }
         });
         wx.onMenuShareAppMessage({
@@ -128,8 +170,17 @@ export default {
   },
   methods: {
     share () {
+      var vm = this
       alert('分享')
-      this.$router.push('/Christmas/three')
+      //请求游戏次数
+                // vm.$ajax({
+                //   url:BASE_URL+'/christmas/shareCondition',
+                //   method:'get',
+                //   headers: { WAG: vm.WAG }
+                //   })
+                // .then(res=>{
+                //   vm.$router.push('/wx/Christmas/three')
+                // })
     },
     move(event, type) {
       event.preventDefault();
@@ -182,13 +233,17 @@ export default {
         setTimeout(() => {
           this.manindex = 0
         }, 500);
-        if(random == 1){
+        if(random == 3){
           //苹果
           this.live -= 10
           if (this.live <= 0){
             //成功
             this.live = 0
-            this.gameover = true
+            if(this.gamelose == true){
+              return
+            }else{
+              this.gamewin = true
+            }
           }else{
             return
           }
@@ -198,7 +253,11 @@ export default {
           if(this.live <= 0){
             //成功
             this.live = 0
-            this.gameover = true
+            if(this.gamelose == true){
+              return
+            }else{
+              this.gamewin = true
+            }
           }else{
             return
           }
@@ -210,6 +269,21 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@font-face { 
+  font-family: "Quartz Regular"; 
+  src: url('/static/christmas/Quartz Regular.ttf'); 
+} 
+.countdown{
+  font-size: 28px;
+  color: red;
+  text-align: center;
+  position: relative;
+  top: -0.7rem;
+  font-family: Quartz Regular;
+  font-weight: bolder;
+  letter-spacing: 3px;
+  vertical-align: center;
+}
 .zz{
   position: fixed;
   top:0;
@@ -222,10 +296,14 @@ export default {
   height: 100%;
   .false{
     margin: auto;
-    width: 66%
+    width: 5.8rem
+  }
+  .true{
+    margin: auto;
+    width: 6.4rem
   }
   .but{
-    width: 40%;
+    width: 50%;
     height: 1rem;
     position: absolute;
     left: 0;
@@ -240,8 +318,8 @@ export default {
     display: inline-block;
     border: 2px solid #fff;
     position: relative;
-    top: -0.5rem;
-    left: -0.25rem;
+    top: -0.8rem;
+    left: -0.3rem;
     border-radius: 4px;
     background: #000;
     .red{

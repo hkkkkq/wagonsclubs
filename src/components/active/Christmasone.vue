@@ -1,10 +1,10 @@
 <template>
 <div class="one">
-  <img :class="{'an1':count === 6}" class="load1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png">
-  <img :class="{'an1':count === 6}" class="load2" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png">
-  <img :class="{'an1':count === 6}" class="load3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load3.png">
-  <img :class="{'an1':count === 6}" class="load4" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load4.png">
-  <div @click="go" class="but">去营救</div>
+  <img :class="{'an1':count === 6}" class="load1" src="/static/christmas/load1.png">
+  <img :class="{'an1':count === 6}" class="load2" src="/static/christmas/load2.png">
+  <img :class="{'an1':count === 6}" class="load3" src="/static/christmas/load3.png">
+  <img :class="{'an1':count === 6}" class="load4" src="/static/christmas/load4.png">
+  <div @click="go" class="but"></div>
 </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     go () {
-      this.$router.push('/Christmas/two')
+      this.$router.push('/wx/Christmas/two')
     }
   }
 }
@@ -49,11 +49,9 @@ export default {
   .but{
     animation: load5 1s ease-in-out 6.5s infinite;
     -webkit-animation: load5 1s ease-in-out 6.5s infinite;
-    width: 50%;
-    height: 1rem;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    background: orange;
-    color: #222;
     font-size: 24px;
     text-align: center;
     margin: auto;
@@ -63,7 +61,6 @@ export default {
     line-height: 42px;
     left: 0;
     right: 0;
-    bottom: 2rem;
   }
   width: 100%;
   height: 100%;
@@ -82,22 +79,22 @@ to {left: 0.2rem}
 @keyframes load2
 {
 from {top: -5.3rem}
-to {top: 0rem}
+to {top: 0.26rem}
 }
 @-webkit-keyframes load2 
 {
 from {top: -5.3rem}
-to {top: 0rem}
+to {top: 0.26rem}
 }
 @keyframes load3
 {
 from {top: 13.5rem}
-to {top: 5.15rem}
+to {top: 5.4rem}
 }
 @-webkit-keyframes load3 
 {
 from {top: 13.5rem}
-to {top: 5.15rem}
+to {top: 5.4rem}
 }
 @keyframes load4
 {
@@ -120,7 +117,8 @@ to {right: 0.3rem}
   left: -3.5rem;
   position: absolute;
   height:5.3rem;
-  width: 3.36rem;
+  top: 0.26rem;
+  width: 3.3rem;
 }
 .load2{
   animation: load2 1s ease-in 2s;
@@ -130,7 +128,7 @@ to {right: 0.3rem}
   top:-5.3rem;
   position: absolute;
   height:5.3rem;
-  width: 4.76rem;
+  width: 4.78rem;
 }
 .load3{
   animation: load3 1s ease-in 3.5s;
@@ -139,18 +137,18 @@ to {right: 0.3rem}
   top: 13.15rem;
   left: 0.1rem;
   position: absolute;
-  height:6.9rem; 
-  width: 5rem;
+  height:6.42rem; 
+  width: 4.84rem;
 }
 .load4{
   animation: load4 1s ease-in 5s;
   -webkit-animation: load4 1s ease-in 5s;
   animation-fill-mode: forwards;
   // bottom: 0.3rem;
-  top: 5.4rem;
+  top: 5.72rem;
   right: -3.6rem;  
   position: absolute;
-  height:6.65rem; 
-  width: 3.46rem;
+  height:6.08rem; 
+  width: 3.49rem;
 }
 </style>
