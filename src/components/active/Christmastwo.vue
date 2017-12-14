@@ -125,6 +125,7 @@ export default {
           link: locationHref,
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
+            var vm = this
             //游戏成功分享游戏次数-1
             if(vm.gamewin == true){
                 //请求游戏次数
