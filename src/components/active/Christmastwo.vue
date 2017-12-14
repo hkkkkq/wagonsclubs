@@ -33,7 +33,7 @@ export default {
         'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mandead.png'],
       manindex:0,
       leftdown:false,
-      countdown:15,
+      countdown:30,
       rightdown:false,
       leftx: 0,
       leftloop: "",
