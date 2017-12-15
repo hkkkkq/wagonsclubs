@@ -102,7 +102,7 @@ export default {
     setTimeout(() => {
       this.apple5 = true
     }, 8000);
-    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))+'&tt='+new Date().toString()
+    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href)+'&tt='+new Date().toString())
     .then((res) => {
       var vm = this
       wx.config({
