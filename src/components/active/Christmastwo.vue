@@ -205,6 +205,7 @@ export default {
   methods: {
     share () {
       var vm = this
+      alert('请点击右上角分享至朋友圈')
       // alert('分享')
       //请求游戏次数
                 // vm.$ajax({
@@ -309,7 +310,7 @@ export default {
 } 
 .countdown{
   font-size: 28px;
-  color: red;
+  color: #ee494c;
   text-align: center;
   position: relative;
   top: -1rem;
@@ -350,9 +351,9 @@ export default {
     width: 4.66rem;
     height: 0.45rem;
     display: inline-block;
-    border: 2px solid #fff;
+    border: 2px solid #ecb1b1;
     position: relative;
-    top: -1.2rem;
+    top: -1rem;
     left: 2rem;
     border-radius: 4px;
     background: #000;
@@ -365,7 +366,7 @@ export default {
       text-indent: 0.2rem;
       color: #fff;
       line-height: 0.5rem;
-      background: red;
+      background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f04c4e), to(#d3282d));
     }
 }
 .left{
