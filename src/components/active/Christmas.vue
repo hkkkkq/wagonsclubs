@@ -115,7 +115,7 @@ export default {
   watch: {
     count(val) {
       if (val == 9) {
-        this.$router.push("/wx/Christmas/one");
+        this.$router.push("/wx/christmas/one");
         // if(this.canplay == false){
         //   this.$router.push('/wx/Christmas/four')
         // }else{

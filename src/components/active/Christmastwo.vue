@@ -52,6 +52,7 @@ export default {
       apple5: false,
       score: 0,
       live: 100,
+      urllink:'',
       gamewin: false,
       gamelose: false,
       reserveman: true,
@@ -90,15 +91,15 @@ export default {
     }
   },
   mounted() {
+    var vm = this
     document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
       // 通过下面这个API显示右上角按钮
       WeixinJSBridge.call("showOptionMenu");
     });
-    var urllink;
     if (/iPhone/i.test(navigator.userAgent)) {
-      urllink = "http://www.wagonsclub.com/wx/christmas?WAG=" + this.WAG;
+      this.urllink = "http://www.wagonsclub.com/wx/christmas?WAG=" + this.WAG;
     } else {
-      urllink = location.href;
+      this.urllink = location.href;
     }
     var count = setInterval(() => {
       if (this.countdown == 1) {
@@ -124,10 +125,9 @@ export default {
         "/car/weixinShare?ts=" +
         new Date().getTime() +
         "&url=" +
-        escape(urllink)
+        escape(vm.urllink)
     )
       .then(res => {
-        var vm = this;
         this.wxsign = res.data.data
       })
       .catch(res => {

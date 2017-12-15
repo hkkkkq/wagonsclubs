@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     go () {
-      this.$router.push('/wx/Christmas/two')
+      this.$router.push('/wx/christmas/two')
     }
   }
 }
