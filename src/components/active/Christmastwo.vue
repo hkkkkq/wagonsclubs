@@ -125,14 +125,15 @@ export default {
         nonceStr:res.data.data.sign.nonceStr,
         signature:res.data.data.sign.signature,
         jsApiList:[
-          'onMenuShareTimeline',
-          'onMenuShareAppMessage',
-          'onMenuShareQQ',
-          'onMenuShareWeibo'
+          'onMenuShareTimeline'
         ]
       });
-      alert('wx.config填写完成')      
+      alert('wx.config填写完成')    
       var locationHref = window.location.href;
+      wx.error(function(val) {
+        alert(val.errMsg)
+        alert('初始化错误')
+      })
       wx.ready(function() {
         wx.onMenuShareTimeline({
           title: 'WAGONS光速超跑圣诞节活动',
