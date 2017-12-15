@@ -157,9 +157,9 @@ export default {
       wx.config({
         debug: true,
         appId: vm.wxsign.sign.appId,
-        timestamp: vm.wxsign.sign.appId.timestamp,
-        nonceStr: vm.wxsign.sign.appId.nonceStr,
-        signature: vm.wxsign.sign.appId.signature,
+        timestamp: vm.wxsign.sign.timestamp,
+        nonceStr: vm.wxsign.sign.nonceStr,
+        signature: vm.wxsign.sign.signature,
         jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
       });
       wx.error(function(val) {
