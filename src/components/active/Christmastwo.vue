@@ -83,6 +83,9 @@ export default {
     }  
   },
   mounted () {
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {        // 通过下面这个API显示右上角按钮     
+      WeixinJSBridge.call('showOptionMenu'); 
+    });
     var urllink 
     if(/iPhone/i.test(navigator.userAgent)){
       urllink = 'http://www.wagonsclub.com/wx/christmas?WAG='+this.WAG
@@ -108,7 +111,7 @@ export default {
     setTimeout(() => {
       this.apple5 = true
     }, 8000);
-    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(urllink))
+    this.$ajax(BASE_URL + '/car/weixinShare?ts='+new Date().getTime()+'&url=' + escape(urllink))
     // this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
     .then((res) => {
       var vm = this
