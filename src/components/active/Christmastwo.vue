@@ -130,7 +130,7 @@ export default {
       wx.ready(function() {
         wx.onMenuShareTimeline({
           title: 'WAGONS光速超跑圣诞节活动',
-          link: locationHref,
+          link: 'http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting',
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
             //游戏成功分享游戏次数-1
@@ -165,7 +165,7 @@ export default {
         wx.onMenuShareAppMessage({
           title: 'WAGONS光速超跑圣诞节活动',
           desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-          link: locationHref,
+          link: 'http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting',
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
             var vm = this
