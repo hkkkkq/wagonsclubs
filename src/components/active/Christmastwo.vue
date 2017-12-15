@@ -301,7 +301,7 @@ export default {
   color: red;
   text-align: center;
   position: relative;
-  top: -0.7rem;
+  top: -1rem;
   font-family: Quartz Regular;
   font-weight: bolder;
   letter-spacing: 3px;
@@ -336,13 +336,13 @@ export default {
   }
 }
 .hp{
-  width: 4.66rem;
+    width: 4.66rem;
     height: 0.45rem;
     display: inline-block;
     border: 2px solid #fff;
     position: relative;
-    top: -0.8rem;
-    left: -0.3rem;
+    top: -1.2rem;
+    left: 2rem;
     border-radius: 4px;
     background: #000;
     .red{
