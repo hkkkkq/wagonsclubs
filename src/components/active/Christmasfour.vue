@@ -8,7 +8,7 @@
     <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bg.jpg">
   </div>
   <div>
-    <a href="https://p.tujia.com/qrcode/cpjlbhb?go=h5" class="tujia"></a>
+    <div @click="tojia" class="tujia"></div>
     <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-tujia.jpg">
   </div>
   <div>
@@ -70,7 +70,7 @@ export default {
       this.qr == true?this.qr = false:this.qr = true
     },
     tojia () {
-      window.location.href = 'https://p.tujia.com/qrcode/cpjlbhb?go=h5'
+      window.location.href = 'https://p.tujia.com/qrcode/cpjlbhb?go=h5&ts='+new Date().getTime();
     },
     submit() {
       if (this.name == "" || this.tel == "") {
