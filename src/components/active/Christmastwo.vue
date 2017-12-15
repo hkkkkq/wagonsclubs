@@ -107,11 +107,11 @@ export default {
       var vm = this
       wx.config({
         debug: true,
-        appId: res.data.data.sign.appId,
-        timestamp: res.data.data.sign.timestamp,
-        nonceStr: res.data.data.sign.nonceStr,
-        signature: res.data.data.sign.signature,
-        jsApiList: [
+        appId:res.data.data.sign.appId,
+        timestamp:res.data.data.sign.timestamp,
+        nonceStr:res.data.data.sign.nonceStr,
+        signature:res.data.data.sign.signature,
+        jsApiList:[
           'onMenuShareTimeline',
           'onMenuShareAppMessage',
           'onMenuShareQQ',
