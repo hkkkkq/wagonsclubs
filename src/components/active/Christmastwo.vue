@@ -167,11 +167,6 @@ export default {
             vm.wxshare = 'complete'
             alert(errMsg)
             alert('complete')
-          },
-          trigger:function(){
-            vm.wxshare = 'trigger'
-            alert(errMsg)
-            alert('111')
           }
         });
         wx.onMenuShareAppMessage({
