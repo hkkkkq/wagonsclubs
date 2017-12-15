@@ -83,6 +83,12 @@ export default {
     }  
   },
   mounted () {
+    var ios 
+    if(/iPhone/i.test(navigator.userAgent)){
+      ios = true
+    }else{
+      ios = false
+    }
     var count = setInterval(() => {
       if(this.countdown == 1){
         clearInterval(count)
@@ -102,7 +108,8 @@ export default {
     setTimeout(() => {
       this.apple5 = true
     }, 8000);
-    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape('http://www.wagonsclub.com/wx/christmas'))
+    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(ios?'http://www.wagonsclub.com/wx/Christmas?WAG='+vm.WAG:location.href))
+    // this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
     .then((res) => {
       var vm = this
       wx.config({
