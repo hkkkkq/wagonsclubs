@@ -167,7 +167,7 @@ export default {
         alert("初始化错误");
       });
       if(vm.gamewin){
-        alert("请点击右上角分享至朋友圈哦!2秒后跳自动转至抽奖页面");
+        alert("请点击右上角分享至朋友圈哦!5秒后跳自动转至抽奖页面");
         wx.ready(function () {
           wx.onMenuShareTimeline({
             title: "我用了"+vm.gametime+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
@@ -183,9 +183,9 @@ export default {
         })
         setTimeout(() => {
           this.$router.push('/wx/christmas/three')
-        }, 2000);
+        }, 5000);
       }else{
-        alert("请点击右上角分享至朋友圈哦!2秒后自动重新开始");
+        alert("请点击右上角分享至朋友圈哦!5秒后自动重新开始");
         wx.ready(function () {
           wx.onMenuShareTimeline({
             title: "我被大魔王干翻，扶我起来，还能再战！",
@@ -199,9 +199,9 @@ export default {
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
           });
         })
-        // setTimeout(() => {
-        //   this.$router.push('/wx/christmas/two')
-        // }, 2000);
+        setTimeout(() => {
+          this.$router.push('/wx/christmas/two')
+        }, 5000);
       }
       // if (vm.gamewin) {
       //   //请求游戏次数
