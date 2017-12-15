@@ -4,7 +4,7 @@
     <img class="img1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-1.jpg">
   </div>
   <div>
-    <img class="award" :src='src[id]'>
+    <img class="award" :src='src[Number(id)+1]'>
     <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bg.jpg">
   </div>
   <div>
@@ -37,6 +37,7 @@
 import qs from 'qs';
 require("../app/rem.js")(window, document);
 export default {
+  name:'four',
   data() {
     return {
       name: "",

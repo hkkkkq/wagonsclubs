@@ -8,7 +8,9 @@
   <p class="loadingtext">请稍候，游戏资源正在加载中</p>
   </div>
   <transition name="fade">
-	  <router-view class="child-view"></router-view>
+    <keep-alive include="four">
+	    <router-view class="child-view"></router-view>
+    </keep-alive>
   </transition>
 </div>
 </template>
@@ -115,7 +117,11 @@ export default {
   watch: {
     count(val) {
       if (val == 9) {
-        this.$router.push("/wx/christmas/one");
+        if (/four/.test(this.$route.path)){
+          this.$router.push(this.$route.fullPath)
+        }else{
+          this.$router.push("/wx/christmas/one");
+        }
         // if(this.canplay == false){
         //   this.$router.push('/wx/Christmas/four')
         // }else{

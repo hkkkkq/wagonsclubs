@@ -3,6 +3,7 @@ const Christmasone = resolve => require(['../components/active/Christmasone.vue'
 const Christmastwo = resolve => require(['../components/active/Christmastwo.vue'], resolve);
 const Christmasthree = resolve => require(['../components/active/Christmasthree.vue'], resolve);
 const Christmasfour = resolve => require(['../components/active/Christmasfour.vue'], resolve);
+const Christmastmp = resolve => require(['../components/active/tmp.vue'], resolve);
 var activeRouter = {
 	path: '/wx/christmas',
 	component: Christmas,
@@ -22,6 +23,10 @@ var activeRouter = {
 		{
 			path: 'four',
 			component: Christmasfour
+		},
+		{
+			path: 'tmp',
+			component: Christmastmp
 		}
 	]
 }
