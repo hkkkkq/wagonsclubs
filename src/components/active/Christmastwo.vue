@@ -5,7 +5,7 @@
   <div class="hp">
     <div :style="{'width':live + '%'}" class="red">HP</div>
   </div>
-  <p class="countdown">00:{{countdown | formtime}}</p>
+  <p class="countdown">{{wxshare}}00:{{countdown | formtime}}</p>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple1" v-if="apple1"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple2" v-if="apple2"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple3" v-if="apple3"></apple>
@@ -37,6 +37,7 @@ export default {
       rightdown:false,
       leftx: 0,
       leftloop: "",
+      wxshare:'xx',
       rightloop: "",
       apple1: true,
       apple2: false,
@@ -136,6 +137,7 @@ export default {
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
             //游戏成功分享游戏次数-1
+            vm.wxshare = 'success'
             if(vm.gamewin){
                 //请求游戏次数
                 vm.$ajax({
@@ -151,14 +153,25 @@ export default {
             }
           },
           cancel: function(){
+            vm.wxshare = 'cancel'
+            alert(errMsg)
             alert('请点击右上角分享')
             // alert("直接取消分享啥也不干"+vm.WAG)
           },
           fail:function(){
+            vm.wxshare = 'fail'
+            alert(errMsg)
             alert('分享失败')
           },
           complete:function(){
+            vm.wxshare = 'complete'
+            alert(errMsg)
             alert('complete')
+          },
+          trigger:function(){
+            vm.wxshare = 'trigger'
+            alert(errMsg)
+            alert('111')
           }
         });
         wx.onMenuShareAppMessage({
