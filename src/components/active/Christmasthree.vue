@@ -68,6 +68,7 @@ export default {
     },
     view() {
       this.$router.push("/wx/Christmas/four?presentid="+this.presentid);
+      this.$store.commit('setChristmas',true)
     }
   }
 };

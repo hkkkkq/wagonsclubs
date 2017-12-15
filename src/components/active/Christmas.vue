@@ -8,9 +8,9 @@
   <p class="loadingtext">请稍候，游戏资源正在加载中</p>
   </div>
   <transition name="fade">
-    <keep-alive include="four">
+    <!-- <keep-alive include="four"> -->
 	    <router-view class="child-view"></router-view>
-    </keep-alive>
+    <!-- </keep-alive> -->
   </transition>
 </div>
 </template>

@@ -37,7 +37,8 @@ const store = new vuex.Store({
         'WAG': '',
         'wxAppShare': false,
         'articleDetails': '',
-        'rad': true
+        'rad': true,
+        'christmas': false,
     },
     mutations: {
         foot_left_click(state) {
@@ -74,6 +75,9 @@ const store = new vuex.Store({
         },
         rad(state, data) {
             state.rad = data
+        },
+        setChristmas(state, data) {
+            state.christmas = data
         }
     }
 })

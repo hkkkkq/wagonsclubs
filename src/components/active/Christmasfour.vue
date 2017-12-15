@@ -4,11 +4,11 @@
     <img class="img1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-1.jpg">
   </div>
   <div>
-    <img class="award" :src='src[Number(id)+1]'>
+    <img class="award" :src='src[Number(id)-1]'>
     <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bg.jpg">
   </div>
   <div>
-    <div @click="tojia" class="tujia"></div>
+    <a href="https://p.tujia.com/qrcode/cpjlbhb?go=h5" class="tujia"></a>
     <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-tujia.jpg">
   </div>
   <div>
@@ -21,7 +21,7 @@
     </div>
   </transition>
   <transition name="fade">
-    <div v-show="zz" class="zz">
+    <div v-show="show" class="zz">
       <div>
         <input v-model='name' placeholder="请输入姓名" class="zzname" type="text">
         <input v-model="cell" placeholder="请输入手机号" class="zztel" type="text">
@@ -42,7 +42,7 @@ export default {
     return {
       name: "",
       cell: "",
-      zz:true,
+      zz:'',
       qr:false,
       id:0,
       src:[
@@ -56,8 +56,14 @@ export default {
       ]
     };
   },
+  computed:{
+    show() {
+      return this.$store.state.christmas;
+    }
+  },
   created () {
     this.id = this.$route.query.presentid
+    this.zz = this.$route.query.alert
   },
   methods: {
     showqr(){
@@ -79,7 +85,7 @@ export default {
             cell:this.cell
           })
           }).then(res => {
-            this.zz = false;
+            this.$store.commit('setChristmas',false)
             alert(res.data.message)
         });
       }
