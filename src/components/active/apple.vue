@@ -36,7 +36,14 @@ export default {
     currx: function(){
     },
     top:function(){
-      if(this.top >8){
+      var xtop;
+      var ua = navigator.userAgent.toLowerCase()
+      if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
+        xtop = 10
+      }else{
+        xtop = 8
+      }
+      if(this.top >xtop){
         //苹果宽度 0.25rem
         if (this.currx < this.left && this.currx + 2.5 > this.left + 0.8 ){
           this.$emit('increment',this.random)

@@ -47,8 +47,8 @@ export default {
 }
 .one{
   .but{
-    animation: load5 1s ease-in-out 6.5s infinite;
-    -webkit-animation: load5 1s ease-in-out 6.5s infinite;
+    animation: load5 1s ease-in-out 2.5s infinite;
+    -webkit-animation: load5 1s ease-in-out 2.5s infinite;
     width: 50%;
     height: 1rem;
     opacity: 0;
@@ -61,7 +61,7 @@ export default {
     z-index: 9999999;
     line-height: 42px;
     left: 0;
-    bottom: 2rem;
+    top: 9rem;
     right: 0;
   }
   width: 100%;
@@ -90,12 +90,12 @@ to {top: 0.26rem}
 }
 @keyframes load3
 {
-from {top: 13.5rem}
+from {top: 15.5rem}
 to {top: 5.4rem}
 }
 @-webkit-keyframes load3 
 {
-from {top: 13.5rem}
+from {top: 15.5rem}
 to {top: 5.4rem}
 }
 @keyframes load4
@@ -112,8 +112,8 @@ to {right: 0.3rem}
 
 }
 .load1{
-  animation: load1 1s ease-in 0.5s;
-  -webkit-animation: load1 1s ease-in 0.5s;
+  animation: load1 0.5s ease-in 0.5s;
+  -webkit-animation: load1 0.5s ease-in 0.5s;
   animation-fill-mode: forwards;
   // left: 0.2rem;
   left: -3.5rem;
@@ -123,8 +123,8 @@ to {right: 0.3rem}
   width: 3.3rem;
 }
 .load2{
-  animation: load2 1s ease-in 2s;
-  -webkit-animation: load2 1s ease-in 2s;
+  animation: load2 0.5s ease-in 1s;
+  -webkit-animation: load2 0.5s ease-in 1s;
   animation-fill-mode: forwards;
   right: 0.3rem;
   top:-5.3rem;
@@ -133,18 +133,18 @@ to {right: 0.3rem}
   width: 4.78rem;
 }
 .load3{
-  animation: load3 1s ease-in 3.5s;
-  -webkit-animation: load3 1s ease-in 3.5s;
+  animation: load3 0.5s ease-in 1.5s;
+  -webkit-animation: load3 0.5s ease-in 1.5s;
   animation-fill-mode: forwards;
-  top: 13.15rem;
+  top: 15.15rem;
   left: 0.1rem;
   position: absolute;
   height:6.42rem; 
   width: 4.84rem;
 }
 .load4{
-  animation: load4 1s ease-in 5s;
-  -webkit-animation: load4 1s ease-in 5s;
+  animation: load4 0.5s ease-in 2s;
+  -webkit-animation: load4 0.5s ease-in 2s;
   animation-fill-mode: forwards;
   // bottom: 0.3rem;
   top: 5.72rem;

@@ -1,6 +1,6 @@
 <template>
 <div class="three">
-  <div class="rad">
+  <div :style="{'bottom':ipxbottom + 'rem'}" class="rad">
     <img @click="start" v-if="!click" class="button" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/button.png">
     <img v-else class="button" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/buttonclick.png">
     <img class="arrow" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/arrow.png">
@@ -13,9 +13,11 @@
     </p>
   </div>
   <div v-show="present" class="zz">
-    <div @click="view" class="butz"></div>
-    <span class="text">{{presentname}}</span>
-    <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/present.png">
+    <div class='wrapz'>
+      <div @click="view" class="butz"></div>
+      <span class="text">{{presentname}}</span>
+      <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/present.png">
+    </div>
   </div>
 </div>
 </template>
@@ -25,6 +27,7 @@ require("../app/rem.js")(window, document);
 export default {
   data() {
     return {
+      ipxbottom:false,
       zhuan: false,
       click: false,
       present: false,
@@ -35,6 +38,11 @@ export default {
     };
   },
   mounted() {
+    if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
+      this.ipx = 3
+    }else{
+      this.ipx = 2
+    }
     setInterval(() => {
       this.random = Math.floor(Math.random() * 5);
     }, 2000);
@@ -111,27 +119,30 @@ export default {
     height: 10.8rem;
     margin-top: 0.2rem;
   }
-  .butz {
-    position: absolute;
-    width: 50%;
+  .wrapz{
     margin: auto;
-    left: 0;
-    right: 0;
-    height: 1rem;
-    z-index: 1;
-    top: 0;
-    bottom: -6.5rem;
-  }
-  .text {
-    position: absolute;
-    color: #f4e19b;
-    font-size: 0.32rem;
-    text-align: center;
-    left: 0;
-    right: 0;
-    bottom: 4rem;
-    margin: auto;
-    width: 4rem;
+    position: relative;
+      .butz {
+        position: absolute;
+        width: 50%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        height: 2rem;
+        z-index: 1;
+        bottom: 0.8rem;
+      }
+      .text {
+        position: absolute;
+        color: #f4e19b;
+        font-size: 0.32rem;
+        text-align: center;
+        left: 0;
+        right: 0;
+        bottom: 3.5rem;
+        margin: auto;
+        width: 4rem;
+      }
   }
 }
 .but {

@@ -32,6 +32,7 @@ export default {
     }
   },
   mounted() {
+    alert(screen.height)
     if (this.$route.query.WAG) {
       this.$store.commit("setOpenId", this.$route.query.WAG);
     }
