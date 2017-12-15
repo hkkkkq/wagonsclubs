@@ -155,8 +155,10 @@ export default {
             // alert("直接取消分享啥也不干"+vm.WAG)
           },
           fail:function(){
+            alert('分享失败')
           },
           complete:function(){
+            alert('complete')
           }
         });
         wx.onMenuShareAppMessage({
