@@ -39,7 +39,7 @@ export default {
       ],
       manindex: 0,
       leftdown: false,
-      countdown: 300,
+      countdown: 30,
       rightdown: false,
       leftx: 0,
       leftloop: "",
@@ -129,90 +129,6 @@ export default {
       .then(res => {
         var vm = this;
         this.wxsign = res.data.data
-        // wx.config({
-        //   debug: true,
-        //   appId: res.data.data.sign.appId,
-        //   timestamp: res.data.data.sign.timestamp,
-        //   nonceStr: res.data.data.sign.nonceStr,
-        //   signature: res.data.data.sign.signature,
-        //   jsApiList: ["onMenuShareTimeline"]
-        // });
-        // var locationHref = window.location.href;
-        // wx.error(function(val) {
-        //   alert(val.errMsg);
-        //   alert("初始化错误");
-        // });
-        // wx.ready(function() {
-        //   wx.onMenuShareTimeline({
-        //     title: "WAGONS光速超跑圣诞节活动",
-        //     link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-        //     imgUrl:
-        //       "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg",
-        //     success: function() {
-        //       //游戏成功分享游戏次数-1
-        //     },
-        //     cancel: function() {
-        //       vm.wxshare = "cancel";
-        //       alert(errMsg);
-        //       alert("请点击右上角分享");
-        //       // alert("直接取消分享啥也不干"+vm.WAG)
-        //     },
-        //     fail: function() {
-        //       vm.wxshare = "fail";
-        //       alert(errMsg);
-        //       alert("分享失败");
-        //     },
-        //     complete: function() {
-        //       vm.wxshare = "complete";
-        //       alert(errMsg);
-        //       alert("complete");
-        //     }
-        //   });
-          // wx.onMenuShareAppMessage({
-          //   title: "WAGONS光速超跑圣诞节活动",
-          //   desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
-          //   link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-          //   imgUrl:
-          //     "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg",
-          //   success: function() {
-          //     var vm = this;
-          //     //游戏成功分享游戏次数-1
-          //     if (vm.gamewin == true) {
-          //       //请求游戏次数
-          //       // alert('赢了')
-          //       vm
-          //         .$ajax({
-          //           url: BASE_URL + "/christmas/shareCondition",
-          //           method: "get",
-          //           headers: { WAG: vm.WAG }
-          //         })
-          //         .then(res => {
-          //           // alert('请求了接口')
-          //           vm.$router.push("/wx/Christmas/three");
-          //         });
-          //     } else {
-          //       // alert("游戏失败分享成功啥也不干"+vm.WAG)
-          //     }
-          //   },
-          //   cancel: function() {
-          //     // alert("直接取消分享啥也不干"+vm.WAG)
-          //   }
-          // });
-          // wx.onMenuShareQQ({
-          //   title: "WAGONS光速超跑圣诞节活动",
-          //   desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
-          //   link: locationHref,
-          //   imgUrl:
-          //     "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
-          // });
-          // wx.onMenuShareWeibo({
-          //   title: "WAGONS光速超跑圣诞节活动",
-          //   desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
-          //   link: locationHref,
-          //   imgUrl:
-          //     "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
-          // });
-        // });
       })
       .catch(res => {
         alert(res);
@@ -254,13 +170,13 @@ export default {
         alert("请点击右上角分享至朋友圈哦!2秒后跳自动转至抽奖页面");
         wx.ready(function () {
           wx.onMenuShareTimeline({
-            title: "我用了"+vm.countdown+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            title: "我用了"+vm.gametime+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
           });
           wx.onMenuShareAppMessage({
             title: "WAGONS光速超跑圣诞节活动",
-            desc: "我用了"+vm.countdown+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            desc: "我用了"+vm.gametime+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
           });
@@ -283,9 +199,9 @@ export default {
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
           });
         })
-        setTimeout(() => {
-          this.$router.push('/wx/christmas/two')
-        }, 2000);
+        // setTimeout(() => {
+        //   this.$router.push('/wx/christmas/two')
+        // }, 2000);
       }
       // if (vm.gamewin) {
       //   //请求游戏次数
