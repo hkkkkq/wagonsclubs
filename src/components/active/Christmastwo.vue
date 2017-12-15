@@ -83,11 +83,11 @@ export default {
     }  
   },
   mounted () {
-    var ios 
+    var urllink 
     if(/iPhone/i.test(navigator.userAgent)){
-      ios = true
+      urllink = 'http://www.wagonsclub.com/wx/christmas?WAG='+this.WAG
     }else{
-      ios = false
+      urllink = location.href
     }
     alert('苹果手机'+ios)
     var count = setInterval(() => {
@@ -109,7 +109,7 @@ export default {
     setTimeout(() => {
       this.apple5 = true
     }, 8000);
-    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(ios?'http://www.wagonsclub.com/wx/christmas?WAG='+vm.WAG:location.href))
+    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(urllink))
     // this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
     .then((res) => {
       var vm = this
