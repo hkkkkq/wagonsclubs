@@ -4,8 +4,8 @@
   <div class="card">
     <img class="cardbg" src="/static/christmas/four-bg.png">
   </div>
-  <div class="zz">
-    <div v-show="zz">
+  <div v-show="zz" class="zz">
+    <div>
       <input v-model='name' placeholder="请输入姓名" class="zzname" type="text">
       <input v-model="cell" placeholder="请输入手机号" class="zztel" type="text">
       <img @click="submit" class="zzsub" src="/static/christmas/four-sub.png">

@@ -83,6 +83,7 @@ export default {
     }  
   },
   mounted () {
+    alert('测试能否刷新')
     var count = setInterval(() => {
       if(this.countdown == 1){
         clearInterval(count)
