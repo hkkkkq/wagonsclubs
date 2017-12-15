@@ -89,6 +89,7 @@ export default {
     }else{
       ios = false
     }
+    alert('苹果手机'+ios)
     var count = setInterval(() => {
       if(this.countdown == 1){
         clearInterval(count)
@@ -108,7 +109,7 @@ export default {
     setTimeout(() => {
       this.apple5 = true
     }, 8000);
-    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(ios?'http://www.wagonsclub.com/wx/Christmas?WAG='+vm.WAG:location.href))
+    this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(ios?'http://www.wagonsclub.com/wx/christmas?WAG='+vm.WAG:location.href))
     // this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
     .then((res) => {
       var vm = this
