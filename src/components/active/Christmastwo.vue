@@ -136,7 +136,7 @@ export default {
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
             //游戏成功分享游戏次数-1
-            if(vm.gamewin == true){
+            if(vm.gamewin){
                 //请求游戏次数
                 vm.$ajax({
                   url:BASE_URL+'/christmas/shareCondition',
@@ -144,8 +144,8 @@ export default {
                   headers: { WAG: vm.WAG }
                   })
                 .then(res=>{
-                    vm.$router.push('/wx/Christmas/three')
                 })
+                vm.$router.push('/wx/Christmas/three')
             }else{
               vm.$router.push('/wx/Christmas/one')
             }
