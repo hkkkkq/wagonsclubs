@@ -115,6 +115,7 @@ export default {
     this.$ajax(BASE_URL + '/car/weixinShare?ts='+new Date().getTime()+'&url=' + escape(urllink))
     // this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
     .then((res) => {
+      alert('weixinShare接口请求完成')
       var vm = this
       wx.config({
         debug: true,
@@ -129,6 +130,7 @@ export default {
           'onMenuShareWeibo'
         ]
       });
+      alert('wx.config填写完成')      
       var locationHref = window.location.href;
       wx.ready(function() {
         wx.onMenuShareTimeline({
