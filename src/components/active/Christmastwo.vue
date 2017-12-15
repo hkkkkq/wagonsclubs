@@ -66,13 +66,39 @@ export default {
     countdown(value) {
       if (this.countdown == 0 && this.gamewin == false) {
         this.gamelose = true;
+        wx.ready(function () {
+          wx.onMenuShareTimeline({
+            title: "我被大魔王干翻，扶我起来，还能再战！",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+          wx.onMenuShareAppMessage({
+            title: "WAGONS光速超跑圣诞节活动",
+            desc: "我被大魔王干翻，扶我起来，还能再战!",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+        })
       }
     },
     gamewin(val) {
       if (val == true) {
+        var vm = this
         this.endtime = new Date();
         this.gametime = this.endtime - this.starttime;
-        // alert('游戏时间'+(this.gametime/1000)+'秒')
+        wx.ready(function () {
+          wx.onMenuShareTimeline({
+            title: "我用了"+(vm.gametime/1000)+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
+          });
+          wx.onMenuShareAppMessage({
+            title: "WAGONS光速超跑圣诞节活动",
+            desc: "我用了"+(vm.gametime/1000)+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
+          });
+        })
       }
     }
   },
@@ -129,6 +155,18 @@ export default {
     )
       .then(res => {
         this.wxsign = res.data.data
+        wx.config({
+          debug: true,
+          appId: vm.wxsign.sign.appId,
+          timestamp: vm.wxsign.sign.timestamp,
+          nonceStr: vm.wxsign.sign.nonceStr,
+          signature: vm.wxsign.sign.signature,
+          jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
+        });
+        wx.error(function(val) {
+          alert(val.errMsg);
+          alert("初始化错误");
+        });
       })
       .catch(res => {
         alert(res);
@@ -161,51 +199,13 @@ export default {
     },
     share() {
       var vm = this;
-      wx.config({
-        debug: true,
-        appId: vm.wxsign.sign.appId,
-        timestamp: vm.wxsign.sign.timestamp,
-        nonceStr: vm.wxsign.sign.nonceStr,
-        signature: vm.wxsign.sign.signature,
-        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
-      });
-      wx.error(function(val) {
-        alert(val.errMsg);
-        alert("初始化错误");
-      });
       if(vm.gamewin){
         alert("请点击右上角分享至朋友圈哦!5秒后跳自动转至抽奖页面");
-        wx.ready(function () {
-          wx.onMenuShareTimeline({
-            title: "我用了"+(vm.gametime/1000)+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
-            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
-          });
-          wx.onMenuShareAppMessage({
-            title: "WAGONS光速超跑圣诞节活动",
-            desc: "我用了"+(vm.gametime/1000)+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
-            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
-          });
-        })
         setTimeout(() => {
           this.$router.push('/wx/christmas/three')
         }, 5000);
       }else{
         alert("请点击右上角分享至朋友圈哦!5秒后自动重新开始");
-        wx.ready(function () {
-          wx.onMenuShareTimeline({
-            title: "我被大魔王干翻，扶我起来，还能再战！",
-            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
-          });
-          wx.onMenuShareAppMessage({
-            title: "WAGONS光速超跑圣诞节活动",
-            desc: "我被大魔王干翻，扶我起来，还能再战!",
-            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
-          });
-        })
         setTimeout(() => {
           this.$router.push('/wx/christmas/tmp')
         }, 5000);
