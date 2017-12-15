@@ -1,7 +1,7 @@
 <template>
 <div class="wrap">
   <!-- <p>{{score}}</p> -->
-  <img class="faker" src="/static/christmas/faker.png">
+  <img class="faker" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/faker.png">
   <div class="hp">
     <div :style="{'width':live + '%'}" class="red">HP</div>
   </div>
@@ -64,7 +64,7 @@ export default {
       if(val == true) {
         this.endtime = new Date()
         this.gametime = this.endtime - this.starttime
-        alert('游戏时间'+(this.gametime/1000)+'秒')
+        // alert('游戏时间'+(this.gametime/1000)+'秒')
       }
     }
   },
@@ -83,7 +83,6 @@ export default {
     }  
   },
   mounted () {
-    alert('测试能否刷新')
     var count = setInterval(() => {
       if(this.countdown == 1){
         clearInterval(count)
@@ -129,22 +128,21 @@ export default {
             //游戏成功分享游戏次数-1
             if(vm.gamewin == true){
                 //请求游戏次数
-                alert('赢了')
                 vm.$ajax({
                   url:BASE_URL+'/christmas/shareCondition',
                   method:'get',
                   headers: { WAG: vm.WAG }
                   })
                 .then(res=>{
-                  alert('请求了接口')
+                  // alert('请求了接口')
                     vm.$router.push('/wx/Christmas/three')
                 })
             }else{
-              alert("游戏失败分享成功啥也不干"+vm.WAG)
+              // alert("游戏失败分享成功啥也不干"+vm.WAG)
             }
           },
           cancel: function(){
-            alert("直接取消分享啥也不干"+vm.WAG)
+            // alert("直接取消分享啥也不干"+vm.WAG)
           }
         });
         wx.onMenuShareAppMessage({
@@ -157,22 +155,22 @@ export default {
             //游戏成功分享游戏次数-1
             if(vm.gamewin == true){
                 //请求游戏次数
-                alert('赢了')
+                // alert('赢了')
                 vm.$ajax({
                   url:BASE_URL+'/christmas/shareCondition',
                   method:'get',
                   headers: { WAG: vm.WAG }
                   })
                 .then(res=>{
-                  alert('请求了接口')
+                  // alert('请求了接口')
                     vm.$router.push('/wx/Christmas/three')
                 })
             }else{
-              alert("游戏失败分享成功啥也不干"+vm.WAG)
+              // alert("游戏失败分享成功啥也不干"+vm.WAG)
             }
           },
           cancel: function(){
-            alert("直接取消分享啥也不干"+vm.WAG)
+            // alert("直接取消分享啥也不干"+vm.WAG)
           }
         });
         wx.onMenuShareQQ({
@@ -196,7 +194,7 @@ export default {
   methods: {
     share () {
       var vm = this
-      alert('分享')
+      // alert('分享')
       //请求游戏次数
                 // vm.$ajax({
                 //   url:BASE_URL+'/christmas/shareCondition',

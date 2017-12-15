@@ -1,17 +1,35 @@
 <template>
 <div class="four">
-  <img class="img1" src="/static/christmas/four-1.png">
-  <div class="card">
-    <img class="cardbg" src="/static/christmas/four-bg.png">
+  <div>
+    <img class="img1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-1.jpg">
   </div>
-  <div v-show="zz" class="zz">
-    <div>
-      <input v-model='name' placeholder="请输入姓名" class="zzname" type="text">
-      <input v-model="cell" placeholder="请输入手机号" class="zztel" type="text">
-      <img @click="submit" class="zzsub" src="/static/christmas/four-sub.png">
-      <img class="zzbg" src="/static/christmas/four-alert.png">
+  <div>
+    <img class="award" :src='src[id]'>
+    <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bg.jpg">
+  </div>
+  <div>
+    <div @click="tojia" class="tujia"></div>
+    <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-tujia.jpg">
+  </div>
+  <div>
+    <img @click="showqr" class="qr" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-qr.jpg">
+    <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bottom.jpg">
+  </div>
+  <transition name="fade">
+    <div @click="showqr" v-show="qr" class="zz">
+      <img class="zzqr" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-qr.jpg">
     </div>
-  </div>
+  </transition>
+  <transition name="fade">
+    <div v-show="zz" class="zz">
+      <div>
+        <input v-model='name' placeholder="请输入姓名" class="zzname" type="text">
+        <input v-model="cell" placeholder="请输入手机号" class="zztel" type="text">
+        <img @click="submit" class="zzsub" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-sub.png">
+        <img class="zzbg" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-alert.png">
+      </div>
+    </div>
+  </transition>
 </div>
 </template>
 
@@ -23,10 +41,30 @@ export default {
     return {
       name: "",
       cell: "",
-      zz:true
+      zz:true,
+      qr:false,
+      id:0,
+      src:[
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award1.jpg',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award2.jpg',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award3.jpg',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award4.jpg',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award5.jpg',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award6.jpg',
+        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award7.jpg',
+      ]
     };
   },
+  created () {
+    this.id = this.$route.query.presentid
+  },
   methods: {
+    showqr(){
+      this.qr == true?this.qr = false:this.qr = true
+    },
+    tojia () {
+      window.location.href = 'https://p.tujia.com/qrcode/cpjlbhb?go=h5'
+    },
     submit() {
       if (this.name == "" || this.tel == "") {
         alert("请输入完整信息");
@@ -53,20 +91,37 @@ export default {
   font-size: 0;
   position: absolute;
   min-height: 100%;
+  background: #000;
   width: 100%;
-  .img1 {
+  >div{
+    position: relative;
     width: 100%;
-  }
-  .card {
-    background: #000;
-    display: flex;
-    display: -webkit-flex;
-    height: 3.6rem;
-    .cardbg {
-      width: 6.39rem;
-      height: 3.21rem;
+    .qr{
+      position: absolute;
+      top: 1.5rem;
+      right: 0.85rem;
+      width: 2rem;
+    }
+    .tujia{
+      @extend .award;
+    }
+    .award{
+      width: 6.24rem;
+      height: 3.11rem;
+      border-radius: 10px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
       margin: auto;
     }
+    img{
+      width: 100%;
+    }
+  }
+  .img1 {
+    width: 100%;
   }
   .zz {
     background: rgba(0, 0, 0, 0.8);
@@ -77,6 +132,11 @@ export default {
     height: 100%;
     left: 0;
     top: 0;
+    .zzqr{
+      width: 7.5rem;
+      height: 7.5rem;
+      margin: auto;
+    }
     > div {
       margin: auto;
       width: 6.2rem;

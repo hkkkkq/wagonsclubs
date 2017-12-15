@@ -1,10 +1,10 @@
 <template>
 <div class="three">
   <div class="rad">
-    <img @click="start" v-if="!click" class="button" src="/static/christmas/button.png">
-    <img v-else class="button" src="/static/christmas/buttonclick.png">
-    <img class="arrow" src="/static/christmas/arrow.png">
-    <img :class="{'an':zhuan}" class="pan" src="/static/christmas/rad.png">
+    <img @click="start" v-if="!click" class="button" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/button.png">
+    <img v-else class="button" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/buttonclick.png">
+    <img class="arrow" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/arrow.png">
+    <img :class="{'an':zhuan}" class="pan" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/rad.png">
   </div>
   <div class="bordcast">
     <p>
@@ -15,7 +15,7 @@
   <div v-show="present" class="zz">
     <div @click="view" class="butz"></div>
     <span class="text">{{presentname}}</span>
-    <img src="/static/christmas/present.png">
+    <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/present.png">
   </div>
 </div>
 </template>
