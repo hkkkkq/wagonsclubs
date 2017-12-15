@@ -106,7 +106,7 @@ export default {
     .then((res) => {
       var vm = this
       wx.config({
-        debug: true,
+        debug: false,
         appId: res.data.data.sign.appId,
         timestamp: res.data.data.sign.timestamp,
         nonceStr: res.data.data.sign.nonceStr,
