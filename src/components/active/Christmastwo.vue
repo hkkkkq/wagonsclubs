@@ -152,7 +152,14 @@ export default {
             }
           },
           cancel: function(){
+            alert('取消了分享')
             // alert("直接取消分享啥也不干"+vm.WAG)
+          },
+          fail:function(){
+            alert('fail')
+          },
+          complete:function(){
+            alert('complete')
           }
         });
         wx.onMenuShareAppMessage({
