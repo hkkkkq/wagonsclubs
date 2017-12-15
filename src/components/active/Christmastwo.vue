@@ -139,18 +139,25 @@ export default {
   },
   methods: {
     addscore(n){
+      alert(1)
       var node = document.createElement('span')
+      alert(2)
       node.className = 'adds'
-      node.style = ''
+      alert(3)
       var text = document.createTextNode('+'+n)
+      alert(4)
       node.appendChild(text)
       // var node=document.createTextNode();
       // node.innerHTML = '+'+n
       // console.log(node)
+      alert(5)
       document.getElementsByClassName('man')[0].appendChild(node)
+      alert(6)
       setTimeout(() => {
+      alert(7)
         document.getElementsByClassName('man')[0].removeChild(node)
       }, 500);
+      alert(8)
     },
     share() {
       var vm = this;
