@@ -126,13 +126,12 @@ export default {
           link: locationHref,
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
-            var vm = this
             //游戏成功分享游戏次数-1
             if(vm.gamewin == true){
                 //请求游戏次数
                 alert('赢了')
                 vm.$ajax({
-                  url:BASE_URL+'sss',
+                  url:BASE_URL+'/christmas/shareCondition',
                   method:'get',
                   headers: { WAG: vm.WAG }
                   })
@@ -152,7 +151,29 @@ export default {
           title: 'WAGONS光速超跑圣诞节活动',
           desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
           link: locationHref,
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
+          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
+          success: function(){
+            var vm = this
+            //游戏成功分享游戏次数-1
+            if(vm.gamewin == true){
+                //请求游戏次数
+                alert('赢了')
+                vm.$ajax({
+                  url:BASE_URL+'/christmas/shareCondition',
+                  method:'get',
+                  headers: { WAG: vm.WAG }
+                  })
+                .then(res=>{
+                  alert('请求了接口')
+                    vm.$router.push('/wx/Christmas/three')
+                })
+            }else{
+              alert("游戏失败分享成功啥也不干"+vm.WAG)
+            }
+          },
+          cancel: function(){
+            alert("直接取消分享啥也不干"+vm.WAG)
+          }
         });
         wx.onMenuShareQQ({
           title: 'WAGONS光速超跑圣诞节活动',
