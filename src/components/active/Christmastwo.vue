@@ -144,7 +144,7 @@ export default {
                     vm.$router.push('/wx/Christmas/three')
                 })
             }else{
-              alert("请点击右上角分享")
+              vm.$router.push('/wx/Christmas/one')
             }
           },
           cancel: function(){
