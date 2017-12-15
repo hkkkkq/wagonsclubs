@@ -116,6 +116,7 @@ export default {
     // this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
     .then((res) => {
       alert('weixinShare接口请求完成')
+      alert('appid:'+res.data.data.sign.appId+'timestamo:'+res.data.data.sign.timestamp+'signature:'+res.data.data.sign.signature)
       var vm = this
       wx.config({
         debug: true,
