@@ -1,10 +1,10 @@
 <template>
 <div class="one">
+  <div @click="go" class="but">去营救</div>
   <img :class="{'an1':count === 6}" class="load1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png">
   <img :class="{'an1':count === 6}" class="load2" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png">
   <img :class="{'an1':count === 6}" class="load3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load3.png">
   <img :class="{'an1':count === 6}" class="load4" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load4.png">
-  <div @click="go" class="but"></div>
 </div>
 </template>
 
@@ -49,17 +49,19 @@ export default {
   .but{
     animation: load5 1s ease-in-out 6.5s infinite;
     -webkit-animation: load5 1s ease-in-out 6.5s infinite;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 1rem;
     opacity: 0;
+    background: orange;
     font-size: 24px;
     text-align: center;
     margin: auto;
     border-radius: 100px;
     position: absolute;
-    z-index: 100;
+    z-index: 9999999;
     line-height: 42px;
     left: 0;
+    bottom: 2rem;
     right: 0;
   }
   width: 100%;

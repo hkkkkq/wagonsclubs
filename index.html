@@ -162,6 +162,36 @@
             width: 0;
             font-size: 0;
         }
+        .adds{
+            animation: adds1 0.5s ease-in 1;
+            -webkit-animation: adds1 0.5s ease-in 1;
+            position: absolute;
+            opacity: 0;
+            top: -1rem;
+            font-family: Quartz Regular;
+            color: #ee494c;left: 1rem;
+            font-size: 0.5rem;
+        }
+        @keyframes adds1 {
+        0% {
+            top: -0.5rem;
+            opacity: 1;
+            }
+        100% {
+            top: -1.5rem;
+            opacity: 0;
+            }
+        }
+        @-webkit-keyframes adds1 {
+        0% {
+            top: -0.5rem;
+            opacity: 1;
+        }
+        100% {
+            top: -1rem;
+            opacity: 0;
+        }
+        }
     </style>
     <script>
         //声明_czc对象:

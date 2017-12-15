@@ -5,19 +5,24 @@
   <div class="hp">
     <div :style="{'width':live + '%'}" class="red">HP</div>
   </div>
-  <p class="countdown">{{wxshare}}00:{{countdown | formtime}}</p>
+  <p class="countdown">00:{{countdown | formtime}}</p>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple1" v-if="apple1"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple2" v-if="apple2"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple3" v-if="apple3"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple4" v-if="apple4"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple5" v-if="apple5"></apple>
-  <img :style="{left: leftx+'rem'}" :class="{'reserveman':reserveman}" class="man" :src="man[manindex]">
+  <div :style="{left: leftx+'rem'}" class="man">
+      <!-- <span>+5</span> -->
+    <img :class="{'reserveman':reserveman}" :src="man[manindex]">
+  </div>
   <button :class="{'leftdown':leftdown}" class="left" @touchstart="move($event,'L')" @touchend="moveend('L')"></button>
   <button :class="{'rightdown':rightdown}" class="right" @touchstart="move($event,'R')" @touchend="moveend('R')"></button>
   <div v-show='gamewin||gamelose' class="zz">
+    <div class="wrapd">
     <div @click="share" class="but"></div>
     <img v-show='gamelose' class="true" src="/static/img/falsecall.png">
     <img v-show='gamewin' class="false" src="/static/img/successcall.png">
+    </div>
   </div>
 </div>
 </template>
@@ -28,16 +33,17 @@ export default {
   data() {
     return {
       man: [
-        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/man.png',
-        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/manget.png',
-        'http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mandead.png'],
-      manindex:0,
-      leftdown:false,
-      countdown:30,
-      rightdown:false,
+        "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/man.png",
+        "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/manget.png",
+        "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mandead.png"
+      ],
+      manindex: 0,
+      leftdown: false,
+      countdown: 300,
+      rightdown: false,
       leftx: 0,
       leftloop: "",
-      wxshare:'xx',
+      wxsign:{},
       rightloop: "",
       apple1: true,
       apple2: false,
@@ -45,26 +51,26 @@ export default {
       apple4: false,
       apple5: false,
       score: 0,
-      live:100,
-      gamewin:false,
-      gamelose:false,
-      reserveman:true,
-      starttime:0,
-      endtime:0,
-      gametime:0
+      live: 100,
+      gamewin: false,
+      gamelose: false,
+      reserveman: true,
+      starttime: 0,
+      endtime: 0,
+      gametime: 0
     };
   },
-  watch:{
+  watch: {
     // this.$refs.apple1
-    countdown (value) {
-      if((this.countdown == 0)&&(this.gamewin == false)){
-        this.gamelose = true
+    countdown(value) {
+      if (this.countdown == 0 && this.gamewin == false) {
+        this.gamelose = true;
       }
     },
-    gamewin (val) {
-      if(val == true) {
-        this.endtime = new Date()
-        this.gametime = this.endtime - this.starttime
+    gamewin(val) {
+      if (val == true) {
+        this.endtime = new Date();
+        this.gametime = this.endtime - this.starttime;
         // alert('游戏时间'+(this.gametime/1000)+'秒')
       }
     }
@@ -74,244 +80,317 @@ export default {
       return this.$store.state.WAG;
     }
   },
-  filters: {  
-    formtime: function (value) {  
-      if(value >= 10 ){
-        return value
-      }else{
-        return '0'+value
+  filters: {
+    formtime: function(value) {
+      if (value >= 10) {
+        return value;
+      } else {
+        return "0" + value;
       }
-    }  
+    }
   },
-  mounted () {
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {        // 通过下面这个API显示右上角按钮     
-      WeixinJSBridge.call('showOptionMenu'); 
+  mounted() {
+    document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
+      // 通过下面这个API显示右上角按钮
+      WeixinJSBridge.call("showOptionMenu");
     });
-    var urllink 
-    if(/iPhone/i.test(navigator.userAgent)){
-      urllink = 'http://www.wagonsclub.com/wx/christmas?WAG='+this.WAG
-    }else{
-      urllink = location.href
+    var urllink;
+    if (/iPhone/i.test(navigator.userAgent)) {
+      urllink = "http://www.wagonsclub.com/wx/christmas?WAG=" + this.WAG;
+    } else {
+      urllink = location.href;
     }
     var count = setInterval(() => {
-      if(this.countdown == 1){
-        clearInterval(count)
+      if (this.countdown == 1) {
+        clearInterval(count);
       }
-      --this.countdown
+      --this.countdown;
     }, 1000);
     this.starttime = new Date();
     setTimeout(() => {
-      this.apple2 = true
+      this.apple2 = true;
     }, 2000);
     setTimeout(() => {
-      this.apple3 = true
+      this.apple3 = true;
     }, 4000);
     setTimeout(() => {
-      this.apple4 = true
+      this.apple4 = true;
     }, 6000);
     setTimeout(() => {
-      this.apple5 = true
+      this.apple5 = true;
     }, 8000);
-    this.$ajax(BASE_URL + '/car/weixinShare?ts='+new Date().getTime()+'&url=' + escape(urllink))
-    // this.$ajax(BASE_URL + '/car/weixinShare?url=' + escape(location.href))
-    .then((res) => {
-      alert('weixinShare接口请求完成')
-      alert('appid:'+res.data.data.sign.appId+'timestamo:'+res.data.data.sign.timestamp+'signature:'+res.data.data.sign.signature)
-      var vm = this
-      wx.config({
-        debug: true,
-        appId:res.data.data.sign.appId,
-        timestamp:res.data.data.sign.timestamp,
-        nonceStr:res.data.data.sign.nonceStr,
-        signature:res.data.data.sign.signature,
-        jsApiList:[
-          'onMenuShareTimeline'
-        ]
-      });
-      alert('wx.config填写完成')    
-      var locationHref = window.location.href;
-      wx.error(function(val) {
-        alert(val.errMsg);
-        alert('初始化错误')
+    this.$ajax(
+      BASE_URL +
+        "/car/weixinShare?ts=" +
+        new Date().getTime() +
+        "&url=" +
+        escape(urllink)
+    )
+      .then(res => {
+        var vm = this;
+        this.wxsign = res.data.data
+        // wx.config({
+        //   debug: true,
+        //   appId: res.data.data.sign.appId,
+        //   timestamp: res.data.data.sign.timestamp,
+        //   nonceStr: res.data.data.sign.nonceStr,
+        //   signature: res.data.data.sign.signature,
+        //   jsApiList: ["onMenuShareTimeline"]
+        // });
+        // var locationHref = window.location.href;
+        // wx.error(function(val) {
+        //   alert(val.errMsg);
+        //   alert("初始化错误");
+        // });
+        // wx.ready(function() {
+        //   wx.onMenuShareTimeline({
+        //     title: "WAGONS光速超跑圣诞节活动",
+        //     link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+        //     imgUrl:
+        //       "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg",
+        //     success: function() {
+        //       //游戏成功分享游戏次数-1
+        //     },
+        //     cancel: function() {
+        //       vm.wxshare = "cancel";
+        //       alert(errMsg);
+        //       alert("请点击右上角分享");
+        //       // alert("直接取消分享啥也不干"+vm.WAG)
+        //     },
+        //     fail: function() {
+        //       vm.wxshare = "fail";
+        //       alert(errMsg);
+        //       alert("分享失败");
+        //     },
+        //     complete: function() {
+        //       vm.wxshare = "complete";
+        //       alert(errMsg);
+        //       alert("complete");
+        //     }
+        //   });
+          // wx.onMenuShareAppMessage({
+          //   title: "WAGONS光速超跑圣诞节活动",
+          //   desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
+          //   link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+          //   imgUrl:
+          //     "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg",
+          //   success: function() {
+          //     var vm = this;
+          //     //游戏成功分享游戏次数-1
+          //     if (vm.gamewin == true) {
+          //       //请求游戏次数
+          //       // alert('赢了')
+          //       vm
+          //         .$ajax({
+          //           url: BASE_URL + "/christmas/shareCondition",
+          //           method: "get",
+          //           headers: { WAG: vm.WAG }
+          //         })
+          //         .then(res => {
+          //           // alert('请求了接口')
+          //           vm.$router.push("/wx/Christmas/three");
+          //         });
+          //     } else {
+          //       // alert("游戏失败分享成功啥也不干"+vm.WAG)
+          //     }
+          //   },
+          //   cancel: function() {
+          //     // alert("直接取消分享啥也不干"+vm.WAG)
+          //   }
+          // });
+          // wx.onMenuShareQQ({
+          //   title: "WAGONS光速超跑圣诞节活动",
+          //   desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
+          //   link: locationHref,
+          //   imgUrl:
+          //     "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
+          // });
+          // wx.onMenuShareWeibo({
+          //   title: "WAGONS光速超跑圣诞节活动",
+          //   desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
+          //   link: locationHref,
+          //   imgUrl:
+          //     "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
+          // });
+        // });
       })
-      wx.ready(function() {
-        wx.onMenuShareTimeline({
-          title: 'WAGONS光速超跑圣诞节活动',
-          link: 'http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting',
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
-          success: function(){
-            //游戏成功分享游戏次数-1
-            vm.wxshare = 'success'
-            if(vm.gamewin){
-                //请求游戏次数
-                vm.$ajax({
-                  url:BASE_URL+'/christmas/shareCondition',
-                  method:'get',
-                  headers: { WAG: vm.WAG }
-                  })
-                .then(res=>{
-                })
-                vm.$router.push('/wx/Christmas/three')
-            }else{
-              vm.$router.push('/wx/Christmas/one')
-            }
-          },
-          cancel: function(){
-            vm.wxshare = 'cancel'
-            alert(errMsg)
-            alert('请点击右上角分享')
-            // alert("直接取消分享啥也不干"+vm.WAG)
-          },
-          fail:function(){
-            vm.wxshare = 'fail'
-            alert(errMsg)
-            alert('分享失败')
-          },
-          complete:function(){
-            vm.wxshare = 'complete'
-            alert(errMsg)
-            alert('complete')
-          }
-        });
-        wx.onMenuShareAppMessage({
-          title: 'WAGONS光速超跑圣诞节活动',
-          desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-          link: 'http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting',
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
-          success: function(){
-            var vm = this
-            //游戏成功分享游戏次数-1
-            if(vm.gamewin == true){
-                //请求游戏次数
-                // alert('赢了')
-                vm.$ajax({
-                  url:BASE_URL+'/christmas/shareCondition',
-                  method:'get',
-                  headers: { WAG: vm.WAG }
-                  })
-                .then(res=>{
-                  // alert('请求了接口')
-                    vm.$router.push('/wx/Christmas/three')
-                })
-            }else{
-              // alert("游戏失败分享成功啥也不干"+vm.WAG)
-            }
-          },
-          cancel: function(){
-            // alert("直接取消分享啥也不干"+vm.WAG)
-          }
-        });
-        wx.onMenuShareQQ({
-          title: 'WAGONS光速超跑圣诞节活动',
-          desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-          link: locationHref,
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-        });
-        wx.onMenuShareWeibo({
-          title: 'WAGONS光速超跑圣诞节活动',
-          desc: 'WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务',
-          link: locationHref,
-          imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg'
-        });
+      .catch(res => {
+        alert(res);
       });
-    }).catch((res) => { alert(res) })
   },
-  components:{
+  components: {
     apple: apple
   },
   methods: {
-    share () {
-      var vm = this
-      alert('请点击右上角分享至朋友圈')
+    addscore(n){
+      var node = document.createElement('span')
+      node.className = 'adds'
+      node.style = ''
+      var text = document.createTextNode('+'+n)
+      node.appendChild(text)
+      // var node=document.createTextNode();
+      // node.innerHTML = '+'+n
+      // console.log(node)
+      document.getElementsByClassName('man')[0].appendChild(node)
+      setTimeout(() => {
+        document.getElementsByClassName('man')[0].removeChild(node)
+      }, 500);
+    },
+    share() {
+      var vm = this;
+      wx.config({
+        debug: true,
+        appId: vm.wxsign.sign.appId,
+        timestamp: vm.wxsign.sign.appId.timestamp,
+        nonceStr: vm.wxsign.sign.appId.nonceStr,
+        signature: vm.wxsign.sign.appId.signature,
+        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
+      });
+      wx.error(function(val) {
+        alert(val.errMsg);
+        alert("初始化错误");
+      });
+      if(vm.gamewin){
+        alert("请点击右上角分享至朋友圈哦!2秒后跳自动转至抽奖页面");
+        wx.ready(function () {
+          wx.onMenuShareTimeline({
+            title: "我用了"+vm.countdown+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
+          });
+          wx.onMenuShareAppMessage({
+            title: "WAGONS光速超跑圣诞节活动",
+            desc: "我用了"+vm.countdown+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
+          });
+        })
+        setTimeout(() => {
+          this.$router.push('/wx/christmas/three')
+        }, 2000);
+      }else{
+        alert("请点击右上角分享至朋友圈哦!2秒后自动重新开始");
+        wx.ready(function () {
+          wx.onMenuShareTimeline({
+            title: "我被大魔王干翻，扶我起来，还能再战！",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+          wx.onMenuShareAppMessage({
+            title: "WAGONS光速超跑圣诞节活动",
+            desc: "我用了"+vm.countdown+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+        })
+        setTimeout(() => {
+          this.$router.push('/wx/christmas/two')
+        }, 2000);
+      }
+      // if (vm.gamewin) {
+      //   //请求游戏次数
+      //   vm.$router.push("/wx/Christmas/three");
+      //   vm.$ajax({
+      //       url: BASE_URL + "/christmas/shareCondition",
+      //       method: "get",
+      //       headers: { WAG: vm.WAG }
+      //     })
+      //     .then(res => {});
+      // } else {
+      //   vm.$router.push("/wx/Christmas/two");
+      // }
+
       // alert('分享')
       //请求游戏次数
-                // vm.$ajax({
-                //   url:BASE_URL+'/christmas/shareCondition',
-                //   method:'get',
-                //   headers: { WAG: vm.WAG }
-                //   })
-                // .then(res=>{
-                //   vm.$router.push('/wx/Christmas/three')
-                // })
+      // vm.$ajax({
+      //   url:BASE_URL+'/christmas/shareCondition',
+      //   method:'get',
+      //   headers: { WAG: vm.WAG }
+      //   })
+      // .then(res=>{
+      //   vm.$router.push('/wx/Christmas/three')
+      // })
     },
     move(event, type) {
       event.preventDefault();
-      var vm = this
+      var vm = this;
       if (type === "L") {
-        this.reserveman = false
-        this.leftdown = true
+        this.reserveman = false;
+        this.leftdown = true;
         function gol(params) {
-          if(vm.leftx < 0){
-            return
-          }else{
-            vm.leftx += -0.06
+          if (vm.leftx < 0) {
+            return;
+          } else {
+            vm.leftx += -0.06;
           }
-          vm.leftloop = requestAnimationFrame(gol)          
+          vm.leftloop = requestAnimationFrame(gol);
         }
-        gol()
+        gol();
       } else {
-        this.reserveman = true
-        this.rightdown = true
+        this.reserveman = true;
+        this.rightdown = true;
         function gor(params) {
-          if(vm.leftx > 5){
-            return
-          }else{
+          if (vm.leftx > 5) {
+            return;
+          } else {
             vm.leftx += 0.06;
           }
-          vm.rightloop = requestAnimationFrame(gor)
+          vm.rightloop = requestAnimationFrame(gor);
         }
-        gor()
+        gor();
       }
     },
     moveend(type) {
       if (type === "L") {
-        this.leftdown = false
-        window.cancelAnimationFrame(this.leftloop)
+        this.leftdown = false;
+        window.cancelAnimationFrame(this.leftloop);
       } else {
-        this.rightdown = false
-        window.cancelAnimationFrame(this.rightloop)
+        this.rightdown = false;
+        window.cancelAnimationFrame(this.rightloop);
       }
     },
-    incrementTotal (random) {
+    incrementTotal(random) {
       if (random == 0) {
         //炸弹
-        this.manindex = 2
+        this.manindex = 2;
         setTimeout(() => {
-          this.manindex = 0
+          this.manindex = 0;
         }, 500);
-        return
-      }else{
-        this.manindex = 1
+        return;
+      } else {
+        this.manindex = 1;
         setTimeout(() => {
-          this.manindex = 0
+          this.manindex = 0;
         }, 500);
-        if(random == 3){
+        if (random == 3) {
           //苹果
-          this.live -= 10
-          if (this.live <= 0){
+          this.live -= 10;
+          this.addscore(10)
+          if (this.live <= 0) {
             //成功
-            this.live = 0
-            if(this.gamelose == true){
-              return
-            }else{
-              this.gamewin = true
+            this.live = 0;
+            if (this.gamelose == true) {
+              return;
+            } else {
+              this.gamewin = true;
             }
-          }else{
-            return
+          } else {
+            return;
           }
-        }else{
+        } else {
           //商家
-          this.live -= 5
-          if(this.live <= 0){
+          this.live -= 5;
+          this.addscore(5)
+          if (this.live <= 0) {
             //成功
-            this.live = 0
-            if(this.gamelose == true){
-              return
-            }else{
-              this.gamewin = true
+            this.live = 0;
+            if (this.gamelose == true) {
+              return;
+            } else {
+              this.gamewin = true;
             }
-          }else{
-            return
+          } else {
+            return;
           }
         }
       }
@@ -321,11 +400,21 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@font-face { 
-  font-family: "Quartz Regular"; 
-  src: url('/static/christmas/Quartz Regular.ttf'); 
-} 
-.countdown{
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s;
+  opacity: 0;
+  background: #fff;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+@font-face {
+  font-family: "Quartz Regular";
+  src: url("/static/christmas/Quartz Regular.ttf");
+}
+.countdown {
   font-size: 28px;
   color: #ee494c;
   text-align: center;
@@ -336,71 +425,82 @@ export default {
   letter-spacing: 3px;
   vertical-align: center;
 }
-.zz{
+.zz {
   position: fixed;
-  top:0;
-  background: rgba(0,0,0,0.8);
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
   width: 100%;
   font-size: 0;
   display: flex;
   z-index: 11;
   display: -webkit-flex;
   height: 100%;
-  .false{
+  .wrapd {
     margin: auto;
-    width: 5.8rem
+    height: auto;
+    position: relative;
   }
-  .true{
+  .false {
     margin: auto;
-    width: 6.4rem
+    width: 5.8rem;
   }
-  .but{
-    width: 50%;
-    height: 1rem;
+  .true {
+    margin: auto;
+    width: 6.4rem;
+  }
+  .but {
+    width: 66%;
+    height: 2.5rem;
     position: absolute;
     left: 0;
     right: 0;
     margin: auto;
-    top: 8.5rem;
+    bottom: 0.5rem;
   }
 }
-.hp{
-    width: 4.66rem;
-    height: 0.45rem;
-    display: inline-block;
-    border: 2px solid #ecb1b1;
-    position: relative;
-    top: -1rem;
-    left: 2rem;
-    border-radius: 4px;
-    background: #000;
-    .red{
-      transition: all 0.2s ease-in;
-      -webkit-transition: all 0.2s ease-in;
-      width: 80%;
-      height: 100%;
-      font-size: 0.3rem;
-      text-indent: 0.2rem;
-      color: #fff;
-      line-height: 0.5rem;
-      background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f04c4e), to(#d3282d));
-    }
+.hp {
+  width: 4.66rem;
+  height: 0.45rem;
+  display: inline-block;
+  border: 2px solid #ecb1b1;
+  position: relative;
+  top: -1rem;
+  left: 2rem;
+  border-radius: 4px;
+  background: #000;
+  .red {
+    transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    width: 80%;
+    height: 100%;
+    font-size: 0.3rem;
+    text-indent: 0.2rem;
+    color: #fff;
+    line-height: 0.5rem;
+    background: -webkit-gradient(
+      linear,
+      0 0,
+      0 bottom,
+      from(#f04c4e),
+      to(#d3282d)
+    );
+  }
 }
-.left{
-  left:0.5rem;
-  background: url('../../assets/active/left.png');
+.left {
+  left: 0.5rem;
+  background: url("../../assets/active/left.png");
 }
-.leftdown{
-  background: url('../../assets/active/leftdown.png')!important;
+.leftdown {
+  background: url("../../assets/active/leftdown.png") !important;
 }
-.right{
-  right:0.5rem;
-  background: url('../../assets/active/right.png');
+.right {
+  right: 0.5rem;
+  background: url("../../assets/active/right.png");
 }
-.rightdown{
-  background: url('../../assets/active/rightdown.png')!important;
+.rightdown {
+  background: url("../../assets/active/rightdown.png") !important;
 }
-.faker{
+.faker {
   width: 1.96rem;
   height: 1.83rem;
   z-index: 10;
@@ -414,14 +514,14 @@ export default {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background: url('http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/bg2.png');
+  background: url("http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/bg2.png");
   background-size: 100% 100%;
   button {
     border: 0;
-    background-size: 100%!important;
+    background-size: 100% !important;
     width: 2.6rem;
     height: 1.26rem;
-    background-repeat: no-repeat!important;
+    background-repeat: no-repeat !important;
     position: absolute;
     font-size: 1rem;
     bottom: 10px;
@@ -429,16 +529,20 @@ export default {
     -khtml-user-select: none;
     user-select: none;
   }
-  span{
-    font-size:0.5rem
+  span {
+    font-size: 0.5rem;
   }
-  .reserveman{
+  .reserveman {
     transform: rotateY(180deg);
   }
   .man {
     width: 2.56rem;
     position: absolute;
     bottom: 2.5rem;
+    img{
+      width: 100%;
+    }
+
     // margin: auto;
   }
 }
