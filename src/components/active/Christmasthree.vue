@@ -34,18 +34,31 @@ export default {
       random: 0,
       presentid: 0,
       presentname: "恭喜您获得了是撒空间里发了空军飞机卡",
-      huojiang: ["赵xx获得法拉利", "钱xx获得法拉利", "孙xx获得法拉利", "李xx获得法拉利", "周xx获得法拉利"]
+      huojiang: [
+        "赵**获得光速超跑2000元使用券",
+        "王**获得光速超跑2000元使用券",
+        "赵**获得火球理财6.6%加息券",
+        "陈**获得取满满5元电影票抵用券", 
+        "朱*获得BOTAICA植物园八折券", 
+        "廖**获得BOTAICA植物园八折券", 
+        "青***获得一键秀十元抵用券", 
+        "李**获得光速超跑2000元使用券",
+        "李*获得光速超跑500元使用券",
+        "候*获得取满满5元电影票抵用券",
+        "孙**获得BOTAICA植物园八折券",
+        ]
     };
   },
   mounted() {
+    var ua = navigator.userAgent.toLowerCase()
     if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
       this.ipx = 3
     }else{
       this.ipx = 2
     }
     setInterval(() => {
-      this.random = Math.floor(Math.random() * 5);
-    }, 2000);
+      this.random = Math.floor(Math.random() * 11);
+    }, 4000);
   },
   methods: {
     start() {
@@ -93,14 +106,15 @@ export default {
 }
 @-webkit-keyframes lun {
   0% {
-    transform: translateY(-0.5rem);
+    transform: translateY(0.5rem);
   }
   100% {
-    transform: translateY(0.5rem);
+    transform: translateY(-0.5rem);
   }
 }
 .lunbo {
-  animation: lun 2s linear infinite;
+  animation: lun 4s linear infinite;
+  -webkit-animation: lun 4s linear infinite;
   display: inline-block;
 }
 .zz {
@@ -183,6 +197,7 @@ export default {
     margin: auto;
     padding: 0 5%;
     line-height: 24px;
+    width: 6rem;
   }
   img {
     display: inline-block;

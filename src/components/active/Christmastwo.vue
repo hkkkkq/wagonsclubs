@@ -156,7 +156,7 @@ export default {
       .then(res => {
         this.wxsign = res.data.data
         wx.config({
-          debug: true,
+          debug: false,
           appId: vm.wxsign.sign.appId,
           timestamp: vm.wxsign.sign.timestamp,
           nonceStr: vm.wxsign.sign.nonceStr,

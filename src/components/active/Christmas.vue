@@ -32,7 +32,6 @@ export default {
     }
   },
   mounted() {
-    alert(screen.height)
     if (this.$route.query.WAG) {
       this.$store.commit("setOpenId", this.$route.query.WAG);
     }
@@ -89,10 +88,14 @@ export default {
     });
     document.getElementById("audio").play();
     this.$refs.mylife.play();
+    this.$refs.mylife.loop = true;
+    document.getElementById("audio").loop = true
     document.addEventListener(
       "WeixinJSBridgeReady",
       function() {
+        document.getElementById("audio").loop = true
         document.getElementById("audio").play();
+        this.$refs.mylife.loop = true;
         this.$refs.mylife.play();
       },
       false
