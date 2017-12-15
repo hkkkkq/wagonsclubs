@@ -89,7 +89,6 @@ export default {
     }else{
       urllink = location.href
     }
-    alert(urllink)
     var count = setInterval(() => {
       if(this.countdown == 1){
         clearInterval(count)
@@ -114,7 +113,7 @@ export default {
     .then((res) => {
       var vm = this
       wx.config({
-        debug: true,
+        debug: false,
         appId:res.data.data.sign.appId,
         timestamp:res.data.data.sign.timestamp,
         nonceStr:res.data.data.sign.nonceStr,
@@ -127,14 +126,6 @@ export default {
         ]
       });
       var locationHref = window.location.href;
-      wx.checkJsApi({
-        jsApiList: ['onMenuShareTimeline'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-        success: function(res) {
-          alert(res)
-          // 以键值对的形式返回，可用的api值true，不可用为false
-          // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
-          }
-      });
       wx.ready(function() {
         wx.onMenuShareTimeline({
           title: 'WAGONS光速超跑圣诞节活动',
@@ -142,9 +133,7 @@ export default {
           imgUrl: 'http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg',
           success: function(){
             //游戏成功分享游戏次数-1
-            alert('分享成功了')
             if(vm.gamewin == true){
-              alert('分享成功并且游戏成功'+vm.WAG)
                 //请求游戏次数
                 vm.$ajax({
                   url:BASE_URL+'/christmas/shareCondition',
@@ -152,22 +141,19 @@ export default {
                   headers: { WAG: vm.WAG }
                   })
                 .then(res=>{
-                  alert('请求了接口')
                     vm.$router.push('/wx/Christmas/three')
                 })
             }else{
-              alert("游戏失败分享成功啥也不干"+vm.WAG)
+              alert("请点击右上角分享")
             }
           },
           cancel: function(){
-            alert('取消了分享')
+            alert('请点击右上角分享')
             // alert("直接取消分享啥也不干"+vm.WAG)
           },
           fail:function(){
-            alert('fail')
           },
           complete:function(){
-            alert('complete')
           }
         });
         wx.onMenuShareAppMessage({
