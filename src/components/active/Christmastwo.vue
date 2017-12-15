@@ -89,7 +89,7 @@ export default {
     }else{
       urllink = location.href
     }
-    alert('苹果手机'+ios)
+    alert(urllink)
     var count = setInterval(() => {
       if(this.countdown == 1){
         clearInterval(count)
