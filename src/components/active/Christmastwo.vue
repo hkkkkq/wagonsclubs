@@ -11,6 +11,8 @@
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple3" v-if="apple3"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple4" v-if="apple4"></apple>
   <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple5" v-if="apple5"></apple>
+  <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple6" v-if="apple6"></apple>
+  <apple v-on:increment="incrementTotal" :currx='leftx' ref="apple7" v-if="apple7"></apple>
   <div :style="{left: leftx+'rem'}" class="man">
       <!-- <span>+5</span> -->
     <img :class="{'reserveman':reserveman}" :src="man[manindex]">
@@ -50,6 +52,8 @@ export default {
       apple3: false,
       apple4: false,
       apple5: false,
+      apple6: false,
+      apple7: false,
       score: 0,
       live: 100,
       urllink:'',
@@ -146,6 +150,12 @@ export default {
     setTimeout(() => {
       this.apple5 = true;
     }, 8000);
+    setTimeout(() => {
+      this.apple6 = true;
+    }, 9000);
+    setTimeout(() => {
+      this.apple7 = true;
+    }, 10000);
     this.$ajax(
       BASE_URL +
         "/car/weixinShare?ts=" +
@@ -244,7 +254,7 @@ export default {
           if (vm.leftx < 0) {
             return;
           } else {
-            vm.leftx += -0.06;
+            vm.leftx += -0.1;
           }
           vm.leftloop = requestAnimationFrame(gol);
         }
@@ -256,7 +266,7 @@ export default {
           if (vm.leftx > 5) {
             return;
           } else {
-            vm.leftx += 0.06;
+            vm.leftx += 0.1;
           }
           vm.rightloop = requestAnimationFrame(gor);
         }

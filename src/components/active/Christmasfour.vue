@@ -86,7 +86,11 @@ export default {
           })
           }).then(res => {
             this.$store.commit('setChristmas',false)
-            alert(res.data.message)
+            if(res.data.success){
+              alert('恭喜您领取成功，请扫描下方二维码联系工作人员')
+            }else{
+              alert('您今天已领取过奖品，如有疑问请扫描下方二维码联系工作人员')
+            }
         });
       }
     }

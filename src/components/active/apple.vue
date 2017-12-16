@@ -57,7 +57,7 @@ export default {
     down () {
       this.random = Math.floor(Math.random() * 11)
       var vm = this
-      this.a = Math.random() * 5 + 3
+      this.a = Math.random() * 7 + 3
       this.left = Math.random()*6.5
       this.top = -1
       this.t = 0
