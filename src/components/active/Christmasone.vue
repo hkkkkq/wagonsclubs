@@ -1,6 +1,6 @@
 <template>
 <div class="one">
-  <div @click="go" class="but">去营救</div>
+  <div @click="go" class="but"><img src="/static/christmas/gosave.png"></div>
   <img :class="{'an1':count === 6}" class="load1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png">
   <img :class="{'an1':count === 6}" class="load2" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png">
   <img :class="{'an1':count === 6}" class="load3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load3.png">
@@ -52,7 +52,6 @@ export default {
     width: 50%;
     height: 1rem;
     opacity: 0;
-    background: orange;
     font-size: 24px;
     text-align: center;
     margin: auto;
@@ -63,6 +62,9 @@ export default {
     left: 0;
     top: 9rem;
     right: 0;
+    img{
+      width: 100%;
+    }
   }
   width: 100%;
   height: 100%;
