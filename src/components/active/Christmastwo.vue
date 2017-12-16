@@ -22,6 +22,7 @@
   <div v-show='gamewin||gamelose' class="zz">
     <div class="wrapd">
     <div @click="share" class="but"></div>
+    <span v-show='gamelose' style="background: rgb(66, 90, 142);position: absolute;display: block;width: 3rem;height: 0.7rem;bottom: 0.4rem;left: 0;right: 0;margin: auto;"></span>
     <img v-show='gamelose' class="true" src="/static/img/falsecall.png">
     <img v-show='gamewin' class="false" src="/static/img/successcall.png">
     </div>

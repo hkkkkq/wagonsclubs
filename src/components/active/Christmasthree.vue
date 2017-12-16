@@ -52,13 +52,13 @@ export default {
   mounted() {
     var ua = navigator.userAgent.toLowerCase()
     if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
-      this.ipx = 3
+      this.ipxbottom = 3
     }else{
-      this.ipx = 2
+      this.ipxbottom = 2
     }
     setInterval(() => {
       this.random = Math.floor(Math.random() * 11);
-    }, 4000);
+    }, 2000);
   },
   methods: {
     start() {
@@ -113,8 +113,8 @@ export default {
   }
 }
 .lunbo {
-  animation: lun 4s linear infinite;
-  -webkit-animation: lun 4s linear infinite;
+  animation: lun 2s linear infinite;
+  -webkit-animation: lun 2s linear infinite;
   display: inline-block;
 }
 .zz {
@@ -242,7 +242,6 @@ export default {
   display: flex;
   display: -webkit-flex;
   margin: auto;
-  bottom: 16%;
   .an {
     animation: myfirst 0.5s linear infinite;
     -webkit-animation: myfirst 0.5s linear infinite;
