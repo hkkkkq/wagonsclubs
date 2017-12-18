@@ -12,7 +12,8 @@
 export default {
   data () {
     return{
-      count: 0,
+      count: 0,      
+      urllink:'',
     }
   },
   watch: {
@@ -22,7 +23,65 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
+    if (/iPhone/i.test(navigator.userAgent)) {
+      this.urllink = "http://www.wagonsclub.com/wx/christmas?WAG=" + this.WAG;
+    } else {
+      this.urllink = location.href;
+    }
+    // document.getElementById("audio").play();
+    // this.$refs.mylife.play();
+    // this.$refs.mylife.loop = true;
+    // document.getElementById("audio").loop = true
+    document.addEventListener(
+      "WeixinJSBridgeReady",
+      function() {
+        document.getElementById("audio").loop = true
+        document.getElementById("audio").play();
+        this.$refs.mylife.loop = true;
+        this.$refs.mylife.play();
+      },
+      false
+    );
+    var vm =this
+    this.$ajax(
+      BASE_URL +
+        "/car/weixinShare?ts=" +
+        new Date().getTime() +
+        "&url=" +
+        escape(vm.urllink)
+    )
+      .then(res => {
+        this.wxsign = res.data.data
+        wx.config({
+          debug: true,
+          appId: vm.wxsign.sign.appId,
+          timestamp: vm.wxsign.sign.timestamp,
+          nonceStr: vm.wxsign.sign.nonceStr,
+          signature: vm.wxsign.sign.signature,
+          jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
+        });
+        wx.ready(function () {
+          wx.onMenuShareTimeline({
+            title: "干翻大魔王，赢取法拉利458使用权",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+          wx.onMenuShareAppMessage({
+            title: "WAGONS光速超跑圣诞节活动",
+            desc: "干翻大魔王，赢取法拉利458使用权",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+        })
+        wx.error(function(val) {
+          alert(val.errMsg);
+          alert("初始化错误");
+        });
+      })
+      .catch(res => {
+        alert(res);
+      });
   },
   methods: {
     go () {

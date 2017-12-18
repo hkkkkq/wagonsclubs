@@ -32,46 +32,6 @@ export default {
     }
   },
   mounted() {
-    var vm =this
-    this.$ajax(
-      BASE_URL +
-        "/car/weixinShare?ts=" +
-        new Date().getTime() +
-        "&url=" +
-        escape(window.location.href)
-    )
-      .then(res => {
-        this.wxsign = res.data.data
-        wx.config({
-          debug: false,
-          appId: vm.wxsign.sign.appId,
-          timestamp: vm.wxsign.sign.timestamp,
-          nonceStr: vm.wxsign.sign.nonceStr,
-          signature: vm.wxsign.sign.signature,
-          jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
-        });
-        wx.ready(function () {
-          wx.onMenuShareTimeline({
-            title: "干翻大魔王，赢取法拉利458使用权",
-            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
-          });
-          wx.onMenuShareAppMessage({
-            title: "WAGONS光速超跑圣诞节活动",
-            desc: "干翻大魔王，赢取法拉利458使用权",
-            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
-            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
-          });
-        })
-        wx.error(function(val) {
-          alert(val.errMsg);
-          alert("初始化错误");
-        });
-      })
-      .catch(res => {
-        alert(res);
-      });
-
       //openid
     if (this.$route.query.WAG) {
       this.$store.commit("setOpenId", this.$route.query.WAG);
@@ -127,20 +87,6 @@ export default {
       };
       img.src = item;
     });
-    document.getElementById("audio").play();
-    this.$refs.mylife.play();
-    this.$refs.mylife.loop = true;
-    document.getElementById("audio").loop = true
-    document.addEventListener(
-      "WeixinJSBridgeReady",
-      function() {
-        document.getElementById("audio").loop = true
-        document.getElementById("audio").play();
-        this.$refs.mylife.loop = true;
-        this.$refs.mylife.play();
-      },
-      false
-    );
     //请求游戏次数
     this.$ajax({
       url: BASE_URL + "/christmas/timesRestriction",
