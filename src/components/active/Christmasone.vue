@@ -34,10 +34,10 @@ export default {
     } else {
       this.urllink = location.href;
     }
-    // document.getElementById("audio").play();
-    // this.$refs.mylife.play();
-    // this.$refs.mylife.loop = true;
-    // document.getElementById("audio").loop = true
+    document.getElementById("audio").play();
+    this.$refs.mylife.play();
+    this.$refs.mylife.loop = true;
+    document.getElementById("audio").loop = true
     document.addEventListener(
       "WeixinJSBridgeReady",
       function() {

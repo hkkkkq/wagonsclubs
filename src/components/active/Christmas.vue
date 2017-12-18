@@ -2,7 +2,7 @@
 <div class="pre">
   <img @click="cmp3" v-show="mp3" class="mp3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mp3.png">
   <img @click="cmp3" v-show="!mp3" class="mp3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/mp3done.png">
-  <audio id='audio' ref="mylife" src="/static/christmas/lol.mp3"></audio>
+  <audio autoplay loop id='audio' ref="mylife" src="/static/christmas/lol.mp3"></audio>
   <div v-show='loading == true'>
   <img class="loading" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/loading.png">
   <p class="loadingtext">请稍候，游戏资源正在加载中</p>
