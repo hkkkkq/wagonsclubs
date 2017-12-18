@@ -23,6 +23,11 @@ export default {
       }
     }
   },
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
+    }
+  },
   created () {
     if (/iPhone/i.test(navigator.userAgent)) {
       this.urllink = "http://www.wagonsclub.com/wx/christmas?WAG=" + this.WAG;
