@@ -73,13 +73,13 @@ export default {
         this.gamelose = true;
         wx.ready(function () {
           wx.onMenuShareTimeline({
-            title: "我被大魔王干翻，扶我起来，还能再战！",
+            title: "扶我起来还能再战，快来帮我赢取法拉利458！",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
           });
           wx.onMenuShareAppMessage({
             title: "WAGONS光速超跑圣诞节活动",
-            desc: "我被大魔王干翻，扶我起来，还能再战!",
+            desc: "扶我起来还能再战，快来帮我赢取法拉利458！",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
           });
@@ -93,13 +93,13 @@ export default {
         this.gametime = this.endtime - this.starttime;
         wx.ready(function () {
           wx.onMenuShareTimeline({
-            title: "我用了"+(vm.gametime/1000)+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            title: "大魔王已被我干翻，快来帮我抽取法拉利458！",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
           });
           wx.onMenuShareAppMessage({
             title: "WAGONS光速超跑圣诞节活动",
-            desc: "我用了"+(vm.gametime/1000)+"秒将大魔王干翻，救出了圣诞老人，你能超过我吗",
+            desc: "大魔王已被我干翻，快来帮我抽取法拉利458！",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo1.png",
           });

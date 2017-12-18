@@ -12,8 +12,11 @@
     <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-tujia.jpg">
   </div>
   <div>
+    <img src="/static/christmas/four-bg.png">
+  </div>
+  <div>
     <img @click="showqr" class="qr" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-qr.jpg">
-    <img src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bottom.jpg">
+    <img src="/static/christmas/four-bg2.png">
   </div>
   <transition name="fade">
     <div @click="showqr" v-show="qr" class="zz">
@@ -109,9 +112,11 @@ export default {
     width: 100%;
     .qr{
       position: absolute;
-      top: 1.5rem;
-      right: 0.85rem;
+      top: 3.5rem;
+      right: 0;
       width: 2rem;
+      left: 0;
+      margin: auto;
     }
     .tujia{
       @extend .award;

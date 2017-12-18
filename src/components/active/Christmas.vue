@@ -72,7 +72,6 @@ export default {
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/10.png",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/tnt.png",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/presentbj.png",
-      "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/rad.png",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/arrow.png",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/button.png",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/buttonclick.png",
@@ -87,7 +86,6 @@ export default {
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award6.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award7.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bg.jpg",
-      "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bottom.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-qr.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-sub.png",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-tujia.jpg"

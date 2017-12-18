@@ -54,13 +54,13 @@ export default {
         });
         wx.ready(function () {
           wx.onMenuShareTimeline({
-            title: "干翻大魔王，赢取法拉利458使用权",
+            title: "还在等什么，还不快来帮我赢取法拉利458！",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
           });
           wx.onMenuShareAppMessage({
             title: "WAGONS光速超跑圣诞节活动",
-            desc: "干翻大魔王，赢取法拉利458使用权",
+            desc: "还在等什么，还不快来帮我赢取法拉利458！",
             link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
           });
