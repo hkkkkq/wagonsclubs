@@ -112,9 +112,9 @@ export default {
   },
   created() {
     if(this.$route.query.city == 'GuangZhou'){
-      this.city = '广州'
+      this.city = '2'
     }else{
-      this.city = ''
+      this.city = '1'
     }
     if (this.$route.query.wxAppShare == "true") {
       this.$store.commit("wxAppShare");

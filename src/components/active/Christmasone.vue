@@ -14,6 +14,7 @@ export default {
     return{
       count: 0,      
       urllink:'',
+      wxs:{}
     }
   },
   watch: {
@@ -42,13 +43,13 @@ export default {
         "&url=" + vm.urllink
     )
       .then(res => {
-        this.wxsign = res.data.data
+        this.wxs = res.data.data
         wx.config({
           debug: false,
-          appId: vm.wxsign.sign.appId,
-          timestamp: vm.wxsign.sign.timestamp,
-          nonceStr: vm.wxsign.sign.nonceStr,
-          signature: vm.wxsign.sign.signature,
+          appId: vm.wxs.sign.appId,
+          timestamp: vm.wxs.sign.timestamp,
+          nonceStr: vm.wxs.sign.nonceStr,
+          signature: vm.wxs.sign.signature,
           jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
         });
         wx.ready(function () {
