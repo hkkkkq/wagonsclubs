@@ -1,6 +1,6 @@
 <template>
 <div class="one">
-  <div @click="go" class="but"><img src="/static/christmas/gosave.png"></div>
+  <div @click="go" class="but"><img src="/static/christmas/gosave1.png"></div>
   <img :class="{'an1':count === 6}" class="load1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png">
   <img :class="{'an1':count === 6}" class="load2" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png">
   <img :class="{'an1':count === 6}" class="load3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load3.png">
