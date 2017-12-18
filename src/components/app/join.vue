@@ -12,11 +12,11 @@
                 </p>
                 <h1>
                     <span style="color:#999999;float:left">全部权益明细</span>
-                    <span @click="ch(1)" style="color:#009cff;float:right">支持车型一览</span>
+                    <!-- <span @click="ch(1)" style="color:#009cff;float:right">支持车型一览</span> -->
                 </h1>
                 <div class="ff">
                     <span>1</span>
-                    <b>每月3天超跑使用权，每天可在俱乐部指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
+                    <b>每月3天超跑使用权，每天可在俱乐部<em @click="ch(1)" style="color:#009cff">指定车型</em>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
                 </div>
                 <div class="ff">
                     <span>2</span>
@@ -54,7 +54,7 @@
                 </p>
                 <h1>
                     <span style="color:#999999;float:left">全部权益明细</span>
-                    <span @click="ch(2)" style="color:#009cff;float:right">支持车型一览</span>
+                    <!-- <span @click="ch(2)" style="color:#009cff;float:right">支持车型一览</span> -->
                 </h1>
                 <div class="ff">
                     <span>1</span>
@@ -104,7 +104,7 @@
                 </p>
                 <h1>
                     <span style="color:#999999;float:left">全部权益明细</span>
-                    <span @click="ch(3)" style="color:#009cff;float:right">支持车型一览</span>
+                    <!-- <span @click="ch(3)" style="color:#009cff;float:right">支持车型一览</span> -->
                 </h1>
                 <div class="ff">
                     <span>1</span>
