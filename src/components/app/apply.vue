@@ -6,24 +6,24 @@
         <div class="qq"></div>
         <div class="in">
             <p>
-                <span>姓名</span><input v-model="name" placeholder="请填写真实姓名" />
+                <span>真实姓名</span><span class="en">Name</span><input v-model="name" placeholder="请填写真实姓名" />
             </p>
             <p>
-                <span>身份证号</span><input v-model="idCard" placeholder="请填写身份证号" />
+                <span>身份证号</span><span class="en">Id card</span><input v-model="idCard" placeholder="请填写身份证号" />
             </p>
             <p>
-                <span>手机号</span><input readonly v-model="telephone" placeholder="请填写手机号" />
+                <span>手机号</span><span class="en">Phone</span><input readonly v-model="telephone" placeholder="请填写手机号" />
             </p>
             <p @click="sel(1)">
-                <span>婚姻状况</span>
+                <span>婚姻状况</span><span class="en">Marital status</span>
                 <b :class="{'tian':istian1}">{{c1}}</b>
             </p>
             <p @click="sel(2)">
-                <span>职业</span>
+                <span>职业</span><span class="en">Occupation</span>
                 <b :class="{'tian':istian2}">{{c2}}</b>
             </p>
             <p @click="sel(3)" style="border:0px">
-                <span>职务</span>
+                <span>职务</span><span class="en">Position/Time</span>
                 <b :class="{'tian':istian3}">{{c3}}</b>
             </p>
         </div>
@@ -100,8 +100,8 @@ export default {
             istian3: false,
             wh: '',
             c1: '请选择',
-            c2: '请选择',
-            c3: '请选择',
+            c2: '请选择   ',
+            c3: '请选择   ',
             maritalStatus: '',
             l1: false,
             currlist: "",
@@ -256,6 +256,7 @@ export default {
     padding: 0.42rem 0;
     margin: auto;
     font-size: 0;
+    z-index: 1;
     border-top: 1px solid #3d454d;
     >p{
         font-size: 0.24rem;
@@ -299,6 +300,7 @@ export default {
                 position: absolute;
                 top: 0;
                 left: 0;
+                border-radius: 4px;
                 width: 100%;
                 height: 100%;
                 border: 0;
@@ -410,20 +412,26 @@ input::-webkit-input-placeholder {
     color: #666666;
     opacity: 1;
 }
-
+.in .en{
+    color: #fff;
+    opacity: 0.1;
+    width: 1.8rem;
+}
 .in b {
     display: inline-block;
     font-size: 0.26rem;
     color: #636364;
     vertical-align: middle;
-    width: 4.5rem;
+    width: 3rem;
     float: right;
     margin: auto;
     background: url('../../assets/app/applya.png');
     background-size: 0.2rem;
     background-repeat: no-repeat;
-    background-position: 4.15rem 0.02rem;
-    text-indent: 3.2rem;
+    background-position: 2.7rem 0.02rem;
+    // text-indent: 3.2rem;
+    // text-align: right;
+    text-indent: 1.6rem;
     margin-right: 0.2rem;
 }
 
@@ -455,6 +463,8 @@ input::-webkit-input-placeholder {
     color: #ffffff;
     font-size: 0.26rem;
     margin: auto;
+    display: inline-block;
+    width: 1.2rem;
     margin-left: 0.1rem;
 }
 

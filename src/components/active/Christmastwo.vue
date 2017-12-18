@@ -176,7 +176,6 @@ export default {
         });
         wx.error(function(val) {
           alert(val.errMsg);
-          alert("初始化错误");
         });
       })
       .catch(res => {
@@ -188,25 +187,14 @@ export default {
   },
   methods: {
     addscore(n){
-      // alert(1)
       var node = document.createElement('span')
-      // alert(2)
       node.className = 'adds'
-      // alert(3)
       var text = document.createTextNode('+'+n)
-      // alert(4)
       node.appendChild(text)
-      // var node=document.createTextNode();
-      // node.innerHTML = '+'+n
-      // console.log(node)
-      // alert(5)
       document.getElementsByClassName('man')[0].appendChild(node)
-      // alert(6)
       setTimeout(() => {
-      // alert(7)
         document.getElementsByClassName('man')[0].removeChild(node)
       }, 500);
-      // alert(8)
     },
     share() {
       var vm = this;
@@ -221,29 +209,6 @@ export default {
           this.$router.push('/wx/christmas/tmp')
         }, 5000);
       }
-      // if (vm.gamewin) {
-      //   //请求游戏次数
-      //   vm.$router.push("/wx/Christmas/three");
-      //   vm.$ajax({
-      //       url: BASE_URL + "/christmas/shareCondition",
-      //       method: "get",
-      //       headers: { WAG: vm.WAG }
-      //     })
-      //     .then(res => {});
-      // } else {
-      //   vm.$router.push("/wx/Christmas/two");
-      // }
-
-      // alert('分享')
-      //请求游戏次数
-      // vm.$ajax({
-      //   url:BASE_URL+'/christmas/shareCondition',
-      //   method:'get',
-      //   headers: { WAG: vm.WAG }
-      //   })
-      // .then(res=>{
-      //   vm.$router.push('/wx/Christmas/three')
-      // })
     },
     move(event, type) {
       event.preventDefault();
