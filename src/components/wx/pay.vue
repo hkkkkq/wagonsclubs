@@ -33,7 +33,7 @@
                             <span @click="showlongrent" class="longrent">我要长租</span>
                             <div></div>
                             <div @click="changeAddr(1)" class="byself">{{addr1}}</div>
-                            <input v-model="startadd" class="in" type="text" placeholder="请填写取车地址">
+                            <input :readonly='addr1 == "自取"' v-model="startadd" class="in" type="text" placeholder="请填写取车地址">
                         </p>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                             </span>
                             <div></div>
                             <div @click="changeAddr(2)" class="byself">{{addr2}}</div>                                   
-                            <input v-model="endadd" class="in" type="text" placeholder="请填写还车地址">
+                            <input :readonly='addr2 == "自取"' v-model="endadd" class="in" type="text" placeholder="请填写还车地址">
                         </p>
                     </div>
                 </div>
@@ -537,14 +537,14 @@ export default {
         alert("请选择结束时间");
         return false;
       }
-      if (this.endadd == "") {
-        alert("请选择填写还车地址");
-        return false;
-      }
-      if (this.startadd == "") {
-        alert("请选择填写取车地址");
-        return false;
-      }
+      // if (this.endadd == "") {
+      //   alert("请选择填写还车地址");
+      //   return false;
+      // }
+      // if (this.startadd == "") {
+      //   alert("请选择填写取车地址");
+      //   return false;
+      // }
       //付钱的
       var paydata2 = qs.stringify({
         carId: vm.carId,
