@@ -53,8 +53,7 @@ export default {
       BASE_URL +
         "/car/weixinShare?ts=" +
         new Date().getTime() +
-        "&url=" +
-        escape(vm.urllink)
+        "&url=" + vm.urllink
     )
       .then(res => {
         this.wxsign = res.data.data
