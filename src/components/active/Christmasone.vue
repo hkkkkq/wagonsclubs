@@ -34,10 +34,6 @@ export default {
     } else {
       this.urllink = location.href;
     }
-    document.getElementById("audio").play();
-    this.$refs.mylife.play();
-    this.$refs.mylife.loop = true;
-    document.getElementById("audio").loop = true
     document.addEventListener(
       "WeixinJSBridgeReady",
       function() {
@@ -48,6 +44,10 @@ export default {
       },
       false
     );
+    document.getElementById("audio").play();
+    this.$refs.mylife.play();
+    this.$refs.mylife.loop = true;
+    document.getElementById("audio").loop = true
     var vm =this
     this.$ajax(
       BASE_URL +
