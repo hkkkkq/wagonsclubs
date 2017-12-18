@@ -174,9 +174,6 @@ export default {
           signature: vm.wxsign.sign.signature,
           jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
         });
-        wx.error(function(val) {
-          alert(val.errMsg);
-        });
       })
       .catch(res => {
         alert(res);

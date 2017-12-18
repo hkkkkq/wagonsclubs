@@ -64,10 +64,6 @@ export default {
             imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
           });
         })
-        wx.error(function(val) {
-          alert(val.errMsg);
-          alert("初始化错误");
-        });
       })
       .catch(res => {
         alert(res);
@@ -109,7 +105,7 @@ export default {
     z-index: 9999999;
     line-height: 42px;
     left: 0;
-    top: 9rem;
+    top: 5rem;
     right: 0;
     img{
       width: 100%;
