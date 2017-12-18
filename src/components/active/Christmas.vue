@@ -32,6 +32,20 @@ export default {
     }
   },
   mounted() {
+    document.addEventListener(
+      "WeixinJSBridgeReady",
+      function() {
+        document.getElementById("audio").loop = true
+        document.getElementById("audio").play();
+        this.$refs.mylife.loop = true;
+        this.$refs.mylife.play();
+      },
+      false
+    );
+    document.getElementById("audio").play();
+    this.$refs.mylife.play();
+    this.$refs.mylife.loop = true;
+    document.getElementById("audio").loop = true
       //openid
     if (this.$route.query.WAG) {
       this.$store.commit("setOpenId", this.$route.query.WAG);

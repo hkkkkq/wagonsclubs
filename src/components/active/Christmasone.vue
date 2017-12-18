@@ -34,20 +34,6 @@ export default {
     } else {
       this.urllink = location.href;
     }
-    document.addEventListener(
-      "WeixinJSBridgeReady",
-      function() {
-        document.getElementById("audio").loop = true
-        document.getElementById("audio").play();
-        this.$refs.mylife.loop = true;
-        this.$refs.mylife.play();
-      },
-      false
-    );
-    document.getElementById("audio").play();
-    this.$refs.mylife.play();
-    this.$refs.mylife.loop = true;
-    document.getElementById("audio").loop = true
     var vm =this
     this.$ajax(
       BASE_URL +
@@ -58,7 +44,7 @@ export default {
       .then(res => {
         this.wxsign = res.data.data
         wx.config({
-          debug: true,
+          debug: false,
           appId: vm.wxsign.sign.appId,
           timestamp: vm.wxsign.sign.timestamp,
           nonceStr: vm.wxsign.sign.nonceStr,
