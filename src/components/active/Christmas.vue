@@ -118,6 +118,12 @@ export default {
         alert("后台bug1");
       }
     });
+    (function isWeiXin() {
+      var ua = window.navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        _czc.push(["_trackEvent", "圣诞大作战", "圣诞大作战"]);
+        }
+    })()
   },
   watch: {
     count(val) {
