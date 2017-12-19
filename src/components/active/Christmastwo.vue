@@ -201,15 +201,15 @@ export default {
     share() {
       var vm = this;
       if(vm.gamewin){
-        alert("请点击右上角分享至朋友圈哦!5秒后跳自动转至抽奖页面");
+        alert("分享朋友圈，呼唤朋友开走法拉利");
         setTimeout(() => {
           this.$router.push('/wx/christmas/three')
-        }, 5000);
+        }, 4000);
       }else{
-        alert("请点击右上角分享至朋友圈哦!5秒后自动重新开始");
+        alert("分享朋友圈，呼唤朋友开走法拉利");
         setTimeout(() => {
           this.$router.push('/wx/christmas/tmp')
-        }, 5000);
+        }, 4000);
       }
     },
     move(event, type) {
