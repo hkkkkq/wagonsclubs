@@ -83,7 +83,6 @@ export default {
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award3.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award4.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award5.jpg",
-      "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award6.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-award7.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-bg.jpg",
       "http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/four-qr.jpg",
