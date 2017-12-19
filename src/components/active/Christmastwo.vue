@@ -179,13 +179,7 @@ export default {
         alert(res);
       });
       this.$ajax({
-        url:BASE_URL+'/christmas/record',
-        type:'get',
-        headers:{WAG:this.WAG}
-        }).then(res=>{
-        })
-      this.$ajax({
-        url:BASE_URL+'/christmas/stepForward?step=2',
+        url:BASE_URL+'/christmas/stepForward?step=2&ts='+new Date().getTime(),
         headers:{WAG:this.WAG}
       }).then(res=>{
       })

@@ -48,6 +48,11 @@ export default {
         "孙**获得BOTAICA植物园八折券",]
     };
   },
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
+    }
+  },
   mounted() {
     var ua = navigator.userAgent.toLowerCase()
     if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
@@ -59,7 +64,7 @@ export default {
       this.random = Math.floor(Math.random() * 11);
     }, 2000);
     this.$ajax({
-        url:BASE_URL+'/christmas/stepForward?step=3',
+        url:BASE_URL+'/christmas/stepForward?step=3&ts='+new Date().getTime(),
         headers:{WAG:this.WAG}
       }).then(res=>{
       })

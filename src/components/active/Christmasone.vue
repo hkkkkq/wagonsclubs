@@ -35,6 +35,12 @@ export default {
     } else {
       this.urllink = location.href;
     }
+          this.$ajax({
+        url:BASE_URL+'/christmas/record',
+        type:'get',
+        headers:{WAG:this.WAG}
+        }).then(res=>{
+        })
     var vm =this
     this.$ajax(
       BASE_URL +
@@ -70,7 +76,7 @@ export default {
         alert(res);
       });
       this.$ajax({
-        url:BASE_URL+'/christmas/stepForward?step=1',
+        url:BASE_URL+'/christmas/stepForward?step=1&ts='+new Date().getTime(),
         headers:{WAG:this.WAG}
       }).then(res=>{
       })

@@ -61,12 +61,12 @@ export default {
   },
   computed:{
     show() {
-      return this.$store.state.christmas;
+      return this.$store.state.christmas
     }
   },
   created () {
     this.$ajax({
-        url:BASE_URL+'/christmas/stepForward?step=4',
+        url:BASE_URL+'/christmas/stepForward?step=4&ts='+new Date().getTime(),
         headers:{WAG:this.WAG}
       }).then(res=>{
       })
