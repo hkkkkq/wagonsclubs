@@ -58,6 +58,11 @@ export default {
     setInterval(() => {
       this.random = Math.floor(Math.random() * 11);
     }, 2000);
+    this.$ajax({
+        url:BASE_URL+'/christmas/stepForward?step=3',
+        headers:{WAG:this.WAG}
+      }).then(res=>{
+      })
   },
   methods: {
     start() {

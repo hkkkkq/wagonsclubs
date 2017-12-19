@@ -178,6 +178,17 @@ export default {
       .catch(res => {
         alert(res);
       });
+      this.$ajax({
+        url:BASE_URL+'/christmas/record',
+        type:'get',
+        headers:{WAG:this.WAG}
+        }).then(res=>{
+        })
+      this.$ajax({
+        url:BASE_URL+'/christmas/stepForward?step=2',
+        headers:{WAG:this.WAG}
+      }).then(res=>{
+      })
   },
   components: {
     apple: apple

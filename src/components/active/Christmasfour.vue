@@ -65,12 +65,22 @@ export default {
     }
   },
   created () {
+    this.$ajax({
+        url:BASE_URL+'/christmas/stepForward?step=4',
+        headers:{WAG:this.WAG}
+      }).then(res=>{
+      })
     this.id = this.$route.query.presentid
     this.zz = this.$route.query.alert
   },
   methods: {
     showqr(){
-      this.qr == true?this.qr = false:this.qr = true
+      var ua = window.navigator.userAgent.toLowerCase();
+      if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIwNTg0MjE5Mw==#wechat_redirect'
+      }else{
+        this.qr == true?this.qr = false:this.qr = true
+      }
     },
     tojia () {
       window.location.href = 'https://p.tujia.com/qrcode/cpjlbhb?go=h5&ts='+new Date().getTime();

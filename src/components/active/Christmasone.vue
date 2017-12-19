@@ -69,6 +69,11 @@ export default {
       .catch(res => {
         alert(res);
       });
+      this.$ajax({
+        url:BASE_URL+'/christmas/stepForward?step=1',
+        headers:{WAG:this.WAG}
+      }).then(res=>{
+      })
   },
   methods: {
     go () {
@@ -106,7 +111,7 @@ export default {
     z-index: 9999999;
     line-height: 42px;
     left: 0;
-    top: 5rem;
+    top: 4.2rem;
     right: 0;
     img{
       width: 100%;
