@@ -4,7 +4,7 @@
     <img @click="start" v-if="!click" class="button" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/button.png">
     <img v-else class="button" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/buttonclick.png">
     <img class="arrow" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/arrow.png">
-    <img :class="{'an':zhuan}" class="pan" src="/static/christmas/rad2.png">
+    <img :class="{'an':zhuan}" class="pan" src="/static/christmas/rad3.png">
   </div>
   <div class="bordcast">
     <p>
