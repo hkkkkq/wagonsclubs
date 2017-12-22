@@ -468,8 +468,6 @@ img[lazy="loaded"] {
 .nodis b {
   z-index: 1;
   font-size: 0.34rem;
-  position: relative;
-  top: 3px;
 }
 .nodis {
   font-size: 0.2rem;
