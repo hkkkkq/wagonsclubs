@@ -2,7 +2,7 @@
     <div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
         <div class="cr">
             <div class="allzzz"></div>
-            <img :src='bg' class="allzz"></img>
+            <img :src='bg' class="allzz">
         </div>
         <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
             您的浏览器不支持 video 标签。
@@ -29,10 +29,10 @@
             <div class="pr">
                 <span class="level">会员价</span>
                 <span class="price">
-                    <span class="number">{{car.memberRentPrice}}</span>／天</span>
+                    <span class="number">{{car.memberRentPrice}}</span>/天</span>
                 <span class="nodis">
                   <img class="vip" src="../../assets/app/vip.png">
-                    <b>{{car.vipPrice}}</b>／天</span>
+                    <b>{{car.vipPrice}}</b>/天</span>
             </div>
             <p class="des">{{car.carDesc}}</p>
 
