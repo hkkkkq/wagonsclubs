@@ -418,6 +418,7 @@ export default {
   height: 0.3rem;
   position: relative;
   top: 0.05rem;
+  margin-right: 0.16rem;
 }
 .ftel {
   position: relative;
