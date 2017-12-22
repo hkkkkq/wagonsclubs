@@ -471,7 +471,6 @@ img[lazy="loaded"] {
   position: relative;
   top: 3px;
 }
-
 .nodis {
   font-size: 0.2rem;
   display: inline-block;
