@@ -234,7 +234,7 @@ export default {
             params.append('drivingLicenseImage',this.$refs.file4.files[0])
             this.$ajax({
                 method: 'POST',
-                url: BASE_URL + '/regist',
+                url: BASE_URL + '/H5Regist',
                 data: params,
             }).then((res) => {
                 if (res.data.success == true) {
