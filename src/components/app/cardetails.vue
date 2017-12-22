@@ -31,7 +31,8 @@
                 <span class="price">
                     <span class="number">{{car.memberRentPrice}}</span>／天</span>
                 <span class="nodis">
-                    <b>{{car.dailyRentPrice}}</b>/天</span>
+                  <img class="vip" src="../../assets/app/vip.png">
+                    <b>{{car.vipPrice}}</b>／天</span>
             </div>
             <p class="des">{{car.carDesc}}</p>
 
@@ -411,6 +412,13 @@ export default {
 </script>
 
 <style scoped>
+.vip{
+  width: 0.96rem;
+  border-radius: 0.04rem;
+  height: 0.3rem;
+  position: relative;
+  top: 0.05rem;
+}
 .ftel {
   position: relative;
   margin: auto;
@@ -459,17 +467,20 @@ img[lazy="loaded"] {
 }
 .nodis b {
   z-index: 1;
-  font-size: 0.26rem;
+  font-size: 0.34rem;
+  position: relative;
+  top: 3px;
 }
 
 .nodis {
-  font-size: 0.24rem;
-  color: #999999;
+  font-size: 0.2rem;
   display: inline-block;
-  border-bottom: 1px solid #999999;
-  height: 0.1rem;
   z-index: 1;
   margin-left: 0.3rem;
+  color:white;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#f8da8c), to(#dcbb6a));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .ms div {
@@ -665,9 +676,11 @@ video {
 }
 
 .number {
-  font-size: 0.5rem;
+  font-size: 0.44rem;
   z-index: 1;
   color: #fed945;
+  position: relative;
+  top: 3px;
 }
 
 .price {
@@ -699,7 +712,6 @@ video {
   border-radius: 0.04rem;
   padding-left: 0.03rem;
   padding-right: 0.04rem;
-  border: 1px solid;
   z-index: 1;
   font-size: 0.2rem;
   color: #ffffff;
@@ -711,6 +723,7 @@ video {
   line-height: 0.32rem;
   position: relative;
   top: -0.05rem;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .name {
