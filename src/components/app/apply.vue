@@ -12,7 +12,7 @@
                 <span>身份证号</span><span class="en">Id card</span><input v-model="idCard" placeholder="请填写身份证号" />
             </p>
             <p>
-                <span>手机号</span><span class="en">Phone</span><input readonly v-model="telephone" placeholder="请填写手机号" />
+                <span>手机号</span><span class="en">Phone</span><input v-model="telephone" placeholder="请填写手机号" />
             </p>
             <p @click="sel(1)">
                 <span>婚姻状况</span><span class="en">Marital status</span>
