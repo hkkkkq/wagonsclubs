@@ -62,6 +62,9 @@ export default {
   computed:{
     show() {
       return this.$store.state.christmas
+    },
+    WAG() {
+      return this.$store.state.WAG;
     }
   },
   created () {
