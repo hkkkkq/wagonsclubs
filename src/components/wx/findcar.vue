@@ -164,10 +164,13 @@ export default {
             "onMenuShareWeibo"
           ]
         });
-        var locationHref =
-          window.location.origin +
-          window.location.pathname +
-          "?wxAppShare=true";
+        var locationHref
+        if(this.city == 1){
+          locationHref = window.location.origin + window.location.pathname + "?wxAppShare=true&city=BeiJing";
+        }else if (this.city == 2) {
+          locationHref = window.location.origin + window.location.pathname + "?wxAppShare=true&city=GuangZhou";
+        }
+          
         wx.ready(function() {
           wx.onMenuShareTimeline({
             title: "WAGONS光速超跑",
