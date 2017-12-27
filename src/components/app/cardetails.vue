@@ -4,17 +4,19 @@
             <div class="allzzz"></div>
             <img :src='bg' class="allzz">
         </div>
-        <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
-            您的浏览器不支持 video 标签。
-        </video>
         <div class="lunbo">
             <img @click="back" src="../../assets/app/back.png" class="back"></img>
             <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>
             <swiper :options="swiperOption" class="msl" ref="mySwiper">
-                <swiper-slide v-if="car.videoImg" style="position:relative">
-                    <img class="vimg" v-lazy="car.videoImg">
-                    <img @click="pp" class="p11" src="../../assets/app/play.png" />
+                <swiper-slide>
+                  <div class="showvideo">
+                    <div v-if="!playvideo">
+                      <img @click="play" class="playbutton" src="../../assets/app/play.png">
+                      <img class="bgimg" :src="carimgs[0]">
+                    </div>
+                    <video ref="video"  controls="" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
+                  </div>
                 </swiper-slide>
                 <swiper-slide :key="index" v-for='(item,index) in carimgs'>
                     <img v-lazy="item">
@@ -87,7 +89,7 @@ export default {
     return {
       swiperOption: {
         notNextTick: true,
-        autoplay: 3000,
+        autoplay: 0,
         autoplayDisableOnInteraction: false,
         pagination: ".swiper-pagination",
         paginationType: "custom",
@@ -119,13 +121,15 @@ export default {
       memberNick5: "",
       level5: "",
       car: "",
+      carVideoShow:'',
       carimgs: "",
       carId: "",
       at: false,
       mes: "",
       isapp: "",
       bg: "",
-      memberfalseshow: false
+      memberfalseshow: false,
+      playvideo:false
     };
   },
   created() {
@@ -198,6 +202,7 @@ export default {
           this.car = res.data.data.car;
           this.carimgs = res.data.data.carImgShows;
           this.bg = res.data.data.carImgShows[0];
+          this.carVideoShow = res.data.data.carVideoShow;
         } else {
           alert("一定是后台小哥出现了什么问题！！！");
         }
@@ -215,6 +220,10 @@ export default {
     }
   },
   methods: {
+    play(){
+      this.playvideo = true
+      this.$refs.video.play()
+    },
     full(element) {
       if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -411,7 +420,39 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+.showvideo{
+  position: relative;
+  height: 5.8rem;
+  div{
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+    height: 100%;
+    img{
+      position: absolute;
+    }
+    .bgimg{
+      width: 100%;
+      height: 100%;
+    }
+    .playbutton{
+      z-index: 3;
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      margin: auto;
+      position: relative;
+    }
+  }
+  video{
+      position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+}
 .vip{
   width: 0.96rem;
   border-radius: 0.04rem;
@@ -555,11 +596,6 @@ img[lazy="loaded"] {
   background: rgba(0, 0, 0, 0.7);
 }
 
-.vimg {
-  z-index: 1;
-  margin-top: 1rem;
-}
-
 .msl img {
   z-index: 1;
   widows: 100%;
@@ -569,18 +605,7 @@ img[lazy="loaded"] {
 .msl {
   z-index: 1;
   top: -1rem !important;
-  height: 100%;
-}
-
-.p11 {
-  width: 0.9rem !important;
-  height: 0.9rem !important;
-  position: absolute;
-  display: block !important;
-  z-index: 1;
-  margin: auto !important;
-  top: 2.5rem !important;
-  left: 3.2rem;
+  height: 5.7rem;
 }
 
 .back {
@@ -600,13 +625,6 @@ img[lazy="loaded"] {
   width: 0.45rem !important;
   height: 0.45rem !important;
   position: absolute;
-}
-
-video {
-  z-index: 1;
-  display: block;
-  width: 0;
-  height: 0;
 }
 
 .but1 {
