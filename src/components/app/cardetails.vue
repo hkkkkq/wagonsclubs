@@ -5,9 +5,11 @@
             <img :src='bg' class="allzz">
         </div>
         <div class="lunbo">
-            <img @click="back" src="../../assets/app/back.png" class="back" />
-            <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share" />
-            <div class="swiper-pagination"></div>
+            <img v-if="!playvideo" @click="back" src="../../assets/app/back.png" class="back" />
+            <img v-if="isapp && !playvideo" @click="share" src="../../assets/app/share.png" class="share" />
+            <div v-show="!playvideo" class="swiper-pagination"></div>
+            <!-- 占位 -->
+            <h1 v-show="playvideo" style="height:1rem"></h1>
             <swiper :options="swiperOption" class="msl" ref="mySwiper">
                 <swiper-slide v-if="carVideoShow">
                   <div ref='videodiv' class="showvideo">
@@ -15,7 +17,7 @@
                       <img @click="play" class="playbutton" src="../../assets/app/play.png">
                       <img class="bgimg" :src="carimgs[0]">
                     </div>
-                    <video controls ref="video" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
+                    <video @click="videopause" controls ref="video" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
                   </div>
                 </swiper-slide>
                 <swiper-slide :key="index" v-for='(item,index) in carimgs'>
@@ -224,13 +226,20 @@ export default {
     }
   },
   methods: {
+    videopause(){
+      clearInterval(this.set1)
+      this.$refs.video.pause()
+      this.playvideo = false
+    },
     play(){
       this.playvideo = true
       this.$refs.video.play()
       this.set1 = setInterval(()=>{
         if(/active/.test(this.$refs.videodiv.parentElement.className)){
+          this.playvideo = true
           this.$refs.video.play()
         }else{
+          this.playvideo = false
           this.$refs.video.pause()
         }
       },700)
@@ -824,6 +833,7 @@ img[lazy="loaded"] {
   z-index: 2;
   position: relative;
   top: 4.6rem;
+  height: 1rem;
 }
 
 .swiper-pagination-bullets span {
