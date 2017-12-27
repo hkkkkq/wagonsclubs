@@ -96,7 +96,9 @@ export default {
       list: "",
       hasNext: false,
       currpage: 1,
-      lock: true
+      lock: true,
+      set1:'',
+      set2:''
     };
   },
   computed: {
@@ -206,12 +208,16 @@ export default {
       });
   },
   mounted() {
-    setTimeout(() => {
+    this.set1 = setTimeout(() => {
       this.swiper.slideNext();
     }, 10);
-    setInterval(() => {
+    this.set2 = setInterval(() => {
       this.swiper.slideNext();
     }, 4000);
+  },
+  destroyed(){
+    clearInterval(this.set1)
+    clearInterval(this.set2)
   },
   components: {
     pull: Loadmore

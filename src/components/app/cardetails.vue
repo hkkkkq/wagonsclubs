@@ -9,8 +9,8 @@
             <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
             <div class="swiper-pagination"></div>
             <swiper :options="swiperOption" class="msl" ref="mySwiper">
-                <swiper-slide>
-                  <div class="showvideo">
+                <swiper-slide v-if="carVideoShow">
+                  <div ref='videodiv' class="showvideo">
                     <div v-if="!playvideo">
                       <img @click="play" class="playbutton" src="../../assets/app/play.png">
                       <img class="bgimg" :src="carimgs[0]">
@@ -129,7 +129,8 @@ export default {
       isapp: "",
       bg: "",
       memberfalseshow: false,
-      playvideo:false
+      playvideo:false,
+      set1:''
     };
   },
   created() {
@@ -211,6 +212,9 @@ export default {
         alert("一定是你的手机出了什么问题！！！");
       });
   },
+  destroyed(){
+    clearInterval(this.set1)
+  },
   computed: {
     WAG() {
       return this.$store.state.WAG;
@@ -221,6 +225,16 @@ export default {
   },
   methods: {
     play(){
+      this.set1 = setInterval(()=>{
+        if(/active/.test(this.$refs.videodiv.parentElement.className)){
+          this.$refs.video.play()
+        }else{
+          this.$refs.video.pause()
+        }
+      },700)
+      this.$refs.video.addEventListener('ended',() => {
+        this.playvideo = false
+      })
       this.playvideo = true
       this.$refs.video.play()
     },
