@@ -245,6 +245,7 @@ export default {
       },700)
       this.$refs.video.addEventListener('ended',() => {
         this.playvideo = false
+        clearInterval(this.set1)
       })
     },
     full(element) {
