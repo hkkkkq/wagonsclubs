@@ -17,7 +17,7 @@
                       <img @click="play" class="playbutton" src="../../assets/app/play.png">
                       <img class="bgimg" :src="carimgs[0]">
                     </div>
-                    <video @click="videopause" controls ref="video" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
+                    <video v-if="playvideo" @click="videopause" controls ref="video" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
                   </div>
                 </swiper-slide>
                 <swiper-slide :key="index" v-for='(item,index) in carimgs'>
