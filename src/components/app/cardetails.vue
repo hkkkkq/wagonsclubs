@@ -5,8 +5,8 @@
             <img :src='bg' class="allzz">
         </div>
         <div class="lunbo">
-            <img @click="back" src="../../assets/app/back.png" class="back"></img>
-            <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
+            <img @click="back" src="../../assets/app/back.png" class="back" />
+            <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share" />
             <div class="swiper-pagination"></div>
             <swiper :options="swiperOption" class="msl" ref="mySwiper">
                 <swiper-slide v-if="carVideoShow">
@@ -225,6 +225,8 @@ export default {
   },
   methods: {
     play(){
+      this.playvideo = true
+      this.$refs.video.play()
       this.set1 = setInterval(()=>{
         if(/active/.test(this.$refs.videodiv.parentElement.className)){
           this.$refs.video.play()
@@ -235,8 +237,6 @@ export default {
       this.$refs.video.addEventListener('ended',() => {
         this.playvideo = false
       })
-      this.playvideo = true
-      this.$refs.video.play()
     },
     full(element) {
       if (element.requestFullscreen) {
