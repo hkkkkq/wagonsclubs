@@ -10,14 +10,14 @@
             <div v-show="!playvideo" class="swiper-pagination"></div>
             <!-- 占位 -->
             <h1 v-show="playvideo" style="height:1rem"></h1>
-            <swiper :options="swiperOption" class="msl" ref="mySwiper">
+            <swiper v-if="done" :options="swiperOption" class="msl" ref="mySwiper">
                 <swiper-slide v-if="carVideoShow">
                   <div ref='videodiv' class="showvideo">
                     <div v-if="!playvideo">
                       <img @click="play" class="playbutton" src="../../assets/app/play.png">
                       <img class="bgimg" :src="carimgs[0]">
                     </div>
-                    <video v-if="playvideo" @click="videopause" controls ref="video" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
+                    <video v-show="playvideo" @click="videopause" controls ref="video" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
                   </div>
                 </swiper-slide>
                 <swiper-slide :key="index" v-for='(item,index) in carimgs'>
@@ -89,6 +89,7 @@ export default {
   name: "cardetails",
   data() {
     return {
+      done:false,
       swiperOption: {
         notNextTick: true,
         autoplay: 0,
@@ -206,6 +207,13 @@ export default {
           this.carimgs = res.data.data.carImgShows;
           this.bg = res.data.data.carImgShows[0];
           this.carVideoShow = res.data.data.carVideoShow;
+          if(!this.carVideoShow){
+            this.swiperOption.autoplay = 3000
+            this.done = true;
+          }else{
+            this.swiperOption.autoplay = 0
+            this.done = true;
+          }
         } else {
           alert("一定是后台小哥出现了什么问题！！！");
         }
