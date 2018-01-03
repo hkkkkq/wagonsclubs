@@ -6,7 +6,7 @@
         <!-- <div v-if="!wag" class="empty"></div> -->
         <img src="../../assets/zw1.png">
         <img src="../../assets/zw2.png">
-        <img src="../../assets/zw3.jpg">
+        <img src="../../assets/zw3.png">
         <img src="../../assets/zw4.png">
     </div>
 </template>
