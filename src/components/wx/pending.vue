@@ -1,7 +1,7 @@
 <template>
     <div style="position:absolute;width:100%;height:100%">
         <div style="min-height:100%;background:rgb(15, 25, 35)">
-            <p class="fw">尊敬的WAGONS会员，您好！</p>
+            <p class="fw"><img v-if="member.isVip" src="../../assets/app/vip2.png">尊敬的WAGONS会员，您好！</p>
             <img class="f" src="../../assets/app/pending.png">
             <div v-if="member.subtype == 'C'">
                 <p class="pp">我的特权</p>
@@ -216,6 +216,11 @@
                 <p class="clear"></p>
                 <p class="tp">您也可以通过散租的方式享受用车服务</p>
                 <p style="margin-top:0.16rem" class="tp">缴纳少量押金即可驾享顶级超跑，随用随租，还享会员折扣价!</p>
+            </div>
+            <div class="vip" v-if="!member.isVip">
+                <p class="clear"></p>
+                <h2>{{member.vipTitle}}</h2>
+                <h1>{{member.vipDes}}</h1>
                 <p style="width:100%;height:1.2rem"></p>
             </div>
             <transition name="fade">
@@ -254,16 +259,16 @@ export default {
       showyxx:false,
       showzzz:false,
       zhichi:false,
-      member: ""
+      member: "",
     };
   },
   created() {
     // { headers: { "token": "666eff19e5ca4e1bb2d6285a23f721d9", } }
     this.$ajax.get(BASE_URL + "/member/privilege").then(res => {
       this.member = res.data.data.member;
-    });
+    })
   },
-  methods: {
+  methods:{
       showzhichi(n){
           this.zhichi = true;
           if(n == 1){
@@ -323,7 +328,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+.vip{
+    width: 7.1rem;
+    margin: auto;
+    font-size: 0.26rem; 
+    h2{
+        color: #fff;
+        letter-spacing: 0px;
+        margin-top: 0.32rem;
+    }
+    h1{
+        margin-top: 0.18rem;
+        line-height: 0.4rem;
+        color: #999999;
+    }
+}
 .ax {
   z-index: 1;
   width: 0.68rem;
@@ -619,8 +639,15 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
+  vertical-align: bottom;
   top: 1rem;
   text-align: center;
+  img{
+    width: 0.8rem;
+    vertical-align: bottom;
+    height: 0.3rem;
+    margin-right: 0.3rem;
+  }
 }
 
 .f {

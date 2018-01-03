@@ -37,6 +37,7 @@
                 <span class="nodis">
                   <img class="vip" src="../../assets/app/vip.png">
                     <b>{{car.vipPrice}}</b>/天</span>
+                    <img @click="showvip" class="vip1" src="../../assets/app/vip1.png">
             </div>
             <p class="des">{{car.carDesc}}</p>
 
@@ -67,6 +68,7 @@
             </div>
             <img @click="cl" class="ax" src="../../assets/app/xx.png">
         </div>
+        <transition name="fade">
         <div class="al" v-if="memberfalseshow">
             <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
                 <img class="at" src="../../assets/app/memberfalse.png">
@@ -77,6 +79,19 @@
             </div>
             <img @click="cl" class="ax" src="../../assets/app/xx.png">
         </div>
+        </transition>
+        <transition name="fade">
+        <div class="al" v-if="vip">
+            <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
+                <img class="at" src="../../assets/app/viphead.png">
+                <div style="height: 3rem;" class="ms">
+                    在WAGONS任意门店累计消费满10万元（不含车损、押金、油费）或购买任意套餐计划，即可成为WAGONS的VIP会员，用车时尊享VIP会员价。
+                    <div @click="clvip">我知道了</div>
+                </div>
+            </div>
+          <img @click="clvip" class="ax" src="../../assets/app/xx.png">
+        </div>
+        </transition>
     </div>
 </template>
 
@@ -133,7 +148,8 @@ export default {
       bg: "",
       memberfalseshow: false,
       playvideo:false,
-      set1:''
+      set1:'',
+      vip:false
     };
   },
   created() {
@@ -435,6 +451,12 @@ export default {
         vm.ef("err");
       }
     },
+    showvip(){
+      this.vip = true
+    },
+    clvip(){
+      this.vip = false
+    },
     cl(n) {
       if (n == 1) {
         this.memberfalseshow = false;
@@ -453,6 +475,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 .showvideo{
   position: relative;
   height: 5.8rem;
@@ -721,6 +752,12 @@ img[lazy="loaded"] {
   z-index: 1;
   border-bottom: 1px solid rgba(213, 213, 190, 0.1);
   position: relative;
+  .vip1{
+    width: 0.24rem;
+    height: 0.24rem;
+    float: right;
+    margin-top: 0.12rem;
+  }
 }
 
 .number {
