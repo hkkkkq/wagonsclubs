@@ -128,7 +128,7 @@
                   <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
                       <img class="at" src="../../assets/app/memberfalse.png">
                       <div class="ms">
-                          很抱歉，您的会员状态存在问题，暂时无法用车，请与工作人员联系，我们回协助你解决问题
+                          很抱歉，您的会员状态存在问题，暂时无法用车，请与工作人员联系，我们会协助你解决问题
                           <div @click="cl(1)"><img class="ftel" src="../../assets/app/pendingphone.png">联系客服</div>
                       </div>
                   </div>

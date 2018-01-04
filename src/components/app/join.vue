@@ -314,6 +314,7 @@ export default {
 .carddiv {
   background: #273039;
   color: #999999;
+  border-radius: 4px;
   font-size: 0.22rem;
   div {
     display: flex;
