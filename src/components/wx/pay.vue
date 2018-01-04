@@ -88,7 +88,7 @@
                         <b style="color:#fed945">{{String(tokendays) == "NaN"?"--":tokendays}}天</b>
                     </div>
                     <div class='rr noborder'>
-                        <span class="">会员价</span>
+                        <span class="">{{carData.isVip?'VIP':'会员'}}价</span>
                         <b style="color:#fed945">{{carData.memberRentPrice}}元/天</b>
                     </div>
                     <div v-if='(tokendays >= 7)&&(tokendays<30)' class='rr noborder'>
@@ -125,7 +125,7 @@
                     <span class='c'>{{tokendays}}天</span>
                 </div>
                 <div class='bdd'>
-                    <span>会员价</span>
+                    <span>{{carData.isVip?'VIP':'会员'}}价</span>
                     <span class='c'>{{carData.memberRentPrice}}元/天</span>
                 </div>
                 <div v-if='(tokendays >= 7)&&(tokendays<30)' class='bdd'>
@@ -219,6 +219,7 @@ export default {
       this.endadd = res.data.data.storeAdds;
       this.$store.commit("rentdays", res.data.data.takenDates);
     });
+    var ua = navigator.userAgent.toLowerCase()
     if(/iphone/.test(ua)&&(screen.height == 812 && screen.width == 375)){
       this.ipx = true
       }
