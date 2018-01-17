@@ -498,14 +498,18 @@ export default {
     .bgimg{
       width: 100%;
       height: 100%;
+      z-index: 3;
+      position: relative;
+      left: -1rem;
     }
     .playbutton{
-      z-index: 3;
+      z-index: 4;
       width: 1rem;
       height: 1rem;
       display: block;
       margin: auto;
       position: relative;
+      left: 3.25rem;
     }
   }
   video{
