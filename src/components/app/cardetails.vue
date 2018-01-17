@@ -488,8 +488,6 @@ export default {
   position: relative;
   height: 5.8rem;
   div{
-    display: flex;
-    display: -webkit-flex;
     width: 100%;
     height: 100%;
     img{
@@ -500,7 +498,7 @@ export default {
       height: 100%;
       z-index: 3;
       position: relative;
-      left: -1rem;
+      top: -1rem;
     }
     .playbutton{
       z-index: 4;
@@ -509,7 +507,7 @@ export default {
       display: block;
       margin: auto;
       position: relative;
-      left: 3.25rem;
+      top: 2.4rem
     }
   }
   video{
