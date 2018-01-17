@@ -496,7 +496,7 @@ export default {
       position: absolute;
     }
     .bgimg{
-      width: 100%;
+      width: 7.5rem;
       height: 100%;
       z-index: 3;
       position: relative;
