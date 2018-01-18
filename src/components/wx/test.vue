@@ -47,6 +47,9 @@
     </div>
     <input v-model="W" style="border:1px solid;width:80%" type="text" placeholder="输入oppenid，不写则是默认值">
     <input v-model="ip" style="border:1px solid;width:80%" type="text" placeholder="输入电脑ip:端口,必填">
+    <h4 color='red' name='xxx'>chenxiang</h4>
+    <h4 color='blue' name='xxx'>chenxiang</h4>
+    <h4 type='img'>haha</h4>
   </div>
 </template>
 
@@ -122,6 +125,18 @@ export default {
 </script>
 
 <style scoped>
+h4[color=red]{
+  background: red
+}
+h4::before{
+  content:'我是额外内容'
+}
+h4::after{
+  content: attr(name)
+}
+h4[type = img]::after{
+  content: url(../../assets/bj.png)
+}
 a {
   line-height: 30px;
 }
