@@ -1,9 +1,11 @@
-import Christmas from "../components/active/Christmas.vue";
-import Christmasone from "../components/active/Christmasone.vue";
-import Christmastwo from "../components/active/Christmastwo.vue";
-import Christmasthree from "../components/active/Christmasthree.vue";
+const Christmas = resolve => require(['../components/active/Christmas.vue'], resolve);
+const Christmasone = resolve => require(['../components/active/Christmasone.vue'], resolve);
+const Christmastwo = resolve => require(['../components/active/Christmastwo.vue'], resolve);
+const Christmasthree = resolve => require(['../components/active/Christmasthree.vue'], resolve);
+const Christmasfour = resolve => require(['../components/active/Christmasfour.vue'], resolve);
+const Christmastmp = resolve => require(['../components/active/tmp.vue'], resolve);
 var activeRouter = {
-	path: '/Christmas',
+	path: '/wx/christmas',
 	component: Christmas,
 	children:[
 		{
@@ -17,6 +19,14 @@ var activeRouter = {
 		{
 			path: 'three',
 			component: Christmasthree
+		},
+		{
+			path: 'four',
+			component: Christmasfour
+		},
+		{
+			path: 'tmp',
+			component: Christmastmp
 		}
 	]
 }

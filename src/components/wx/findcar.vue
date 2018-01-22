@@ -88,6 +88,7 @@ export default {
         debugger: true,
         onTransitionStart(swiper) {}
       },
+      city:'',
       topStatus: "",
       f5: true,
       f6: true,
@@ -95,7 +96,9 @@ export default {
       list: "",
       hasNext: false,
       currpage: 1,
-      lock: true
+      lock: true,
+      set1:'',
+      set2:''
     };
   },
   computed: {
@@ -110,6 +113,7 @@ export default {
     }
   },
   created() {
+    this.city = this.$route.query.city
     if (this.$route.query.wxAppShare == "true") {
       this.$store.commit("wxAppShare");
     }
@@ -130,8 +134,7 @@ export default {
       }
     });
     this.$ajax(
-      BASE_URL + "/appCar/carsListPaginate?pageIndex=" + this.currpage
-    ).then(res => {
+      BASE_URL + "/appCar/carsListPaginate?city="+this.city+"&pageIndex=" + this.currpage).then(res => {
       this.list = res.data.data.carsList.data;
       this.$store.commit("saveAppList", this.list);
       this.hasNext = res.data.data.carsList.hasNext;
@@ -159,10 +162,13 @@ export default {
             "onMenuShareWeibo"
           ]
         });
-        var locationHref =
-          window.location.origin +
-          window.location.pathname +
-          "?wxAppShare=true";
+        var locationHref
+        if(this.city == 1){
+          locationHref = window.location.origin + window.location.pathname + "?wxAppShare=true&city=BeiJing";
+        }else if (this.city == 2) {
+          locationHref = window.location.origin + window.location.pathname + "?wxAppShare=true&city=GuangZhou";
+        }
+          
         wx.ready(function() {
           wx.onMenuShareTimeline({
             title: "WAGONS光速超跑",
@@ -198,12 +204,16 @@ export default {
       });
   },
   mounted() {
-    setTimeout(() => {
+    this.set1 = setTimeout(() => {
       this.swiper.slideNext();
     }, 10);
-    setInterval(() => {
+    this.set2 = setInterval(() => {
       this.swiper.slideNext();
     }, 4000);
+  },
+  destroyed(){
+    clearInterval(this.set1)
+    clearInterval(this.set2)
   },
   components: {
     pull: Loadmore
@@ -259,7 +269,7 @@ export default {
         if (this.hasNext) {
           this.$ajax(
             BASE_URL +
-              "/appCar/carsListPaginate?pageIndex=" +
+              "/appCar/carsListPaginate?city="+this.city+"&pageIndex=" +
               Number(this.currpage + 1)
           ).then(res => {
             for (let i = 0; i < res.data.data.carsList.data.length; i++) {

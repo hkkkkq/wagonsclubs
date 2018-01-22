@@ -2,19 +2,23 @@
     <div style="font-family: PingFangSC-Medium, sans-serif;" class="all">
         <div class="cr">
             <div class="allzzz"></div>
-            <img :src='bg' class="allzz"></img>
+            <img :src='bg' class="allzz">
         </div>
-        <video poster='poster' ref="video" controls="controls" :src="car.videoUrl">
-            您的浏览器不支持 video 标签。
-        </video>
         <div class="lunbo">
-            <img @click="back" src="../../assets/app/back.png" class="back"></img>
-            <img v-if="isapp" @click="share" src="../../assets/app/share.png" class="share"></img>
-            <div class="swiper-pagination"></div>
-            <swiper :options="swiperOption" class="msl" ref="mySwiper">
-                <swiper-slide v-if="car.videoImg" style="position:relative">
-                    <img class="vimg" v-lazy="car.videoImg">
-                    <img @click="pp" class="p11" src="../../assets/app/play.png" />
+            <img v-if="!playvideo" @click="back" src="../../assets/app/back.png" class="back" />
+            <img v-if="isapp && !playvideo" @click="share" src="../../assets/app/share.png" class="share" />
+            <div v-show="!playvideo" class="swiper-pagination"></div>
+            <!-- 占位 -->
+            <h1 v-show="playvideo" style="height:1rem"></h1>
+            <swiper v-if="done" :options="swiperOption" class="msl" ref="mySwiper">
+                <swiper-slide v-if="carVideoShow">
+                  <div ref='videodiv' class="showvideo">
+                    <div v-if="!playvideo">
+                      <img @click="play" class="playbutton" src="../../assets/app/play.png">
+                      <img class="bgimg" :src="carimgs[0]">
+                    </div>
+                    <video v-show="playvideo" @click="videopause" controls ref="video" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" :src='carVideoShow'></video>
+                  </div>
                 </swiper-slide>
                 <swiper-slide :key="index" v-for='(item,index) in carimgs'>
                     <img v-lazy="item">
@@ -29,9 +33,11 @@
             <div class="pr">
                 <span class="level">会员价</span>
                 <span class="price">
-                    <span class="number">{{car.memberRentPrice}}</span>／天</span>
+                    <span class="number">{{car.memberRentPrice}}</span>/天</span>
                 <span class="nodis">
-                    <b>{{car.dailyRentPrice}}</b>/天</span>
+                  <img class="vip" src="../../assets/app/vip.png">
+                    <b>{{car.vipPrice}}</b>/天</span>
+                    <img @click="showvip" class="vip1" src="../../assets/app/vip1.png">
             </div>
             <p class="des">{{car.carDesc}}</p>
 
@@ -62,6 +68,7 @@
             </div>
             <img @click="cl" class="ax" src="../../assets/app/xx.png">
         </div>
+        <transition name="fade">
         <div class="al" v-if="memberfalseshow">
             <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
                 <img class="at" src="../../assets/app/memberfalse.png">
@@ -72,6 +79,19 @@
             </div>
             <img @click="cl" class="ax" src="../../assets/app/xx.png">
         </div>
+        </transition>
+        <transition name="fade">
+        <div class="al" v-if="vip">
+            <div style="position: absolute;left: 0;right: 0;margin: auto;display: block;bottom: 4.5rem;">
+                <img class="at" src="../../assets/app/viphead.png">
+                <div style="height: 3rem;" class="ms">
+                    在WAGONS任意门店累计消费满10万元（不含车损、押金、油费）或购买任意套餐计划，即可成为WAGONS的VIP会员，用车时尊享VIP会员价。
+                    <div @click="clvip">我知道了</div>
+                </div>
+            </div>
+          <img @click="clvip" class="ax" src="../../assets/app/xx.png">
+        </div>
+        </transition>
     </div>
 </template>
 
@@ -84,9 +104,10 @@ export default {
   name: "cardetails",
   data() {
     return {
+      done:false,
       swiperOption: {
         notNextTick: true,
-        autoplay: 3000,
+        autoplay: 0,
         autoplayDisableOnInteraction: false,
         pagination: ".swiper-pagination",
         paginationType: "custom",
@@ -118,13 +139,17 @@ export default {
       memberNick5: "",
       level5: "",
       car: "",
+      carVideoShow:'',
       carimgs: "",
       carId: "",
       at: false,
       mes: "",
       isapp: "",
       bg: "",
-      memberfalseshow: false
+      memberfalseshow: false,
+      playvideo:false,
+      set1:'',
+      vip:false
     };
   },
   created() {
@@ -197,6 +222,14 @@ export default {
           this.car = res.data.data.car;
           this.carimgs = res.data.data.carImgShows;
           this.bg = res.data.data.carImgShows[0];
+          this.carVideoShow = res.data.data.carVideoShow;
+          if(!this.carVideoShow){
+            this.swiperOption.autoplay = 3000
+            this.done = true;
+          }else{
+            this.swiperOption.autoplay = 0
+            this.done = true;
+          }
         } else {
           alert("一定是后台小哥出现了什么问题！！！");
         }
@@ -204,6 +237,9 @@ export default {
       .catch(() => {
         alert("一定是你的手机出了什么问题！！！");
       });
+  },
+  destroyed(){
+    clearInterval(this.set1)
   },
   computed: {
     WAG() {
@@ -214,6 +250,28 @@ export default {
     }
   },
   methods: {
+    videopause(){
+      clearInterval(this.set1)
+      this.$refs.video.pause()
+      this.playvideo = false
+    },
+    play(){
+      this.playvideo = true
+      this.$refs.video.play()
+      this.set1 = setInterval(()=>{
+        if(/active/.test(this.$refs.videodiv.parentElement.className)){
+          this.playvideo = true
+          this.$refs.video.play()
+        }else{
+          this.playvideo = false
+          this.$refs.video.pause()
+        }
+      },700)
+      this.$refs.video.addEventListener('ended',() => {
+        this.playvideo = false
+        clearInterval(this.set1)
+      })
+    },
     full(element) {
       if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -393,6 +451,12 @@ export default {
         vm.ef("err");
       }
     },
+    showvip(){
+      this.vip = true
+    },
+    clvip(){
+      this.vip = false
+    },
     cl(n) {
       if (n == 1) {
         this.memberfalseshow = false;
@@ -410,7 +474,58 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.showvideo{
+  position: relative;
+  height: 5.8rem;
+  div{
+    width: 100%;
+    height: 100%;
+    img{
+      position: absolute;
+    }
+    .bgimg{
+      width: 7.5rem;
+      height: 100%;
+      z-index: 3;
+      position: relative;
+      top: -1rem;
+    }
+    .playbutton{
+      z-index: 4;
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      margin: auto;
+      position: relative;
+      top: 2.4rem
+    }
+  }
+  video{
+      position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+}
+.vip{
+  width: 0.96rem;
+  border-radius: 0.04rem;
+  height: 0.3rem;
+  position: relative;
+  top: 0.05rem;
+  padding-right: 0.16rem;
+}
 .ftel {
   position: relative;
   margin: auto;
@@ -459,17 +574,17 @@ img[lazy="loaded"] {
 }
 .nodis b {
   z-index: 1;
-  font-size: 0.26rem;
+  font-size: 0.34rem;
 }
-
 .nodis {
-  font-size: 0.24rem;
-  color: #999999;
+  font-size: 0.2rem;
   display: inline-block;
-  border-bottom: 1px solid #999999;
-  height: 0.1rem;
   z-index: 1;
   margin-left: 0.3rem;
+  color:white;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#f8da8c), to(#dcbb6a));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .ms div {
@@ -546,11 +661,6 @@ img[lazy="loaded"] {
   background: rgba(0, 0, 0, 0.7);
 }
 
-.vimg {
-  z-index: 1;
-  margin-top: 1rem;
-}
-
 .msl img {
   z-index: 1;
   widows: 100%;
@@ -560,18 +670,7 @@ img[lazy="loaded"] {
 .msl {
   z-index: 1;
   top: -1rem !important;
-  height: 100%;
-}
-
-.p11 {
-  width: 0.9rem !important;
-  height: 0.9rem !important;
-  position: absolute;
-  display: block !important;
-  z-index: 1;
-  margin: auto !important;
-  top: 2.5rem !important;
-  left: 3.2rem;
+  height: 5.7rem;
 }
 
 .back {
@@ -591,13 +690,6 @@ img[lazy="loaded"] {
   width: 0.45rem !important;
   height: 0.45rem !important;
   position: absolute;
-}
-
-video {
-  z-index: 1;
-  display: block;
-  width: 0;
-  height: 0;
 }
 
 .but1 {
@@ -662,12 +754,20 @@ video {
   z-index: 1;
   border-bottom: 1px solid rgba(213, 213, 190, 0.1);
   position: relative;
+  .vip1{
+    width: 0.24rem;
+    height: 0.24rem;
+    float: right;
+    margin-top: 0.12rem;
+  }
 }
 
 .number {
-  font-size: 0.5rem;
+  font-size: 0.44rem;
   z-index: 1;
   color: #fed945;
+  position: relative;
+  top: 3px;
 }
 
 .price {
@@ -699,7 +799,6 @@ video {
   border-radius: 0.04rem;
   padding-left: 0.03rem;
   padding-right: 0.04rem;
-  border: 1px solid;
   z-index: 1;
   font-size: 0.2rem;
   color: #ffffff;
@@ -711,6 +810,7 @@ video {
   line-height: 0.32rem;
   position: relative;
   top: -0.05rem;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .name {
@@ -781,6 +881,7 @@ video {
   z-index: 2;
   position: relative;
   top: 4.6rem;
+  height: 1rem;
 }
 
 .swiper-pagination-bullets span {

@@ -162,6 +162,36 @@
             width: 0;
             font-size: 0;
         }
+        .adds{
+            animation: adds1 0.5s ease-in 1;
+            -webkit-animation: adds1 0.5s ease-in 1;
+            position: absolute;
+            opacity: 0;
+            top: -1rem;
+            font-family: Quartz Regular;
+            color: #ee494c;left: 1rem;
+            font-size: 0.5rem;
+        }
+        @keyframes adds1 {
+        0% {
+            top: -0.5rem;
+            opacity: 1;
+            }
+        100% {
+            top: -1.5rem;
+            opacity: 0;
+            }
+        }
+        @-webkit-keyframes adds1 {
+        0% {
+            top: -0.5rem;
+            opacity: 1;
+        }
+        100% {
+            top: -1rem;
+            opacity: 0;
+        }
+        }
     </style>
     <script>
         //声明_czc对象:
@@ -184,15 +214,6 @@
         <a href="http://www.quhuanqian.cn/" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">趣还钱</a>&nbsp;&nbsp;
         <a href="https://www.leverfun.com/" target="_blank" style="color:#777777; cursor: pointer;text-decoration: none;">炒饭</a>&nbsp;&nbsp;
     </p>
-    <script>
-        (function isWeiXin() {
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                // alert("sss")
-                _czc.push(["_trackEvent", "微信", "微信中打开"]);
-            }
-        })()
-    </script>
     <script>
         (function() {
             var bp = document.createElement('script');

@@ -1,10 +1,10 @@
 <template>
 <div class="one">
+  <div @click="go" class="but"><img src="/static/christmas/gosave1.png"></div>
   <img :class="{'an1':count === 6}" class="load1" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load1.png">
   <img :class="{'an1':count === 6}" class="load2" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load2.png">
   <img :class="{'an1':count === 6}" class="load3" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load3.png">
   <img :class="{'an1':count === 6}" class="load4" src="http://wagons.oss-cn-qingdao.aliyuncs.com/assets/active/christmas/images/load4.png">
-  <div @click="go" class="but">去营救</div>
 </div>
 </template>
 
@@ -12,7 +12,9 @@
 export default {
   data () {
     return{
-      count: 0,
+      count: 0,      
+      urllink:'',
+      wxs:{}
     }
   },
   watch: {
@@ -22,11 +24,66 @@ export default {
       }
     }
   },
-  mounted () {
+  computed: {
+    WAG() {
+      return this.$store.state.WAG;
+    }
+  },
+  created () {
+    if (/iPhone/i.test(navigator.userAgent)) {
+      this.urllink = "http://www.wagonsclub.com/wx/christmas?WAG=" + this.WAG;
+    } else {
+      this.urllink = location.href;
+    }
+          this.$ajax({
+        url:BASE_URL+'/christmas/record',
+        type:'get',
+        headers:{WAG:this.WAG}
+        }).then(res=>{
+        })
+    var vm =this
+    this.$ajax(
+      BASE_URL +
+        "/car/weixinShare?ts=" +
+        new Date().getTime() +
+        "&url=" + vm.urllink
+    )
+      .then(res => {
+        this.wxs = res.data.data
+        wx.config({
+          debug: false,
+          appId: vm.wxs.sign.appId,
+          timestamp: vm.wxs.sign.timestamp,
+          nonceStr: vm.wxs.sign.nonceStr,
+          signature: vm.wxs.sign.signature,
+          jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
+        });
+        wx.ready(function () {
+          wx.onMenuShareTimeline({
+            title: "还在等什么，还不快来帮我赢取法拉利458！",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+          wx.onMenuShareAppMessage({
+            title: "WAGONS光速超跑圣诞节活动",
+            desc: "还在等什么，还不快来帮我赢取法拉利458！",
+            link: "http://wap.wagonsclub.com/weixin/redirect/ChristmasFighting",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+        })
+      })
+      .catch(res => {
+        alert(res);
+      });
+      this.$ajax({
+        url:BASE_URL+'/christmas/stepForward?step=1&ts='+new Date().getTime(),
+        headers:{WAG:this.WAG}
+      }).then(res=>{
+      })
   },
   methods: {
     go () {
-      this.$router.push('/Christmas/two')
+      this.$router.push('/wx/christmas/two')
     }
   }
 }
@@ -47,23 +104,24 @@ export default {
 }
 .one{
   .but{
-    animation: load5 1s ease-in-out 6.5s infinite;
-    -webkit-animation: load5 1s ease-in-out 6.5s infinite;
+    animation: load5 1s ease-in-out 2.5s infinite;
+    -webkit-animation: load5 1s ease-in-out 2.5s infinite;
     width: 50%;
     height: 1rem;
     opacity: 0;
-    background: orange;
-    color: #222;
     font-size: 24px;
     text-align: center;
     margin: auto;
     border-radius: 100px;
     position: absolute;
-    z-index: 100;
+    z-index: 9999999;
     line-height: 42px;
     left: 0;
+    top: 4.2rem;
     right: 0;
-    bottom: 2rem;
+    img{
+      width: 100%;
+    }
   }
   width: 100%;
   height: 100%;
@@ -82,22 +140,22 @@ to {left: 0.2rem}
 @keyframes load2
 {
 from {top: -5.3rem}
-to {top: 0rem}
+to {top: 0.26rem}
 }
 @-webkit-keyframes load2 
 {
 from {top: -5.3rem}
-to {top: 0rem}
+to {top: 0.26rem}
 }
 @keyframes load3
 {
-from {top: 13.5rem}
-to {top: 5.15rem}
+from {top: 15.5rem}
+to {top: 5.4rem}
 }
 @-webkit-keyframes load3 
 {
-from {top: 13.5rem}
-to {top: 5.15rem}
+from {top: 15.5rem}
+to {top: 5.4rem}
 }
 @keyframes load4
 {
@@ -113,44 +171,45 @@ to {right: 0.3rem}
 
 }
 .load1{
-  animation: load1 1s ease-in 0.5s;
-  -webkit-animation: load1 1s ease-in 0.5s;
+  animation: load1 0.5s ease-in 0.5s;
+  -webkit-animation: load1 0.5s ease-in 0.5s;
   animation-fill-mode: forwards;
   // left: 0.2rem;
   left: -3.5rem;
   position: absolute;
   height:5.3rem;
-  width: 3.36rem;
+  top: 0.26rem;
+  width: 3.3rem;
 }
 .load2{
-  animation: load2 1s ease-in 2s;
-  -webkit-animation: load2 1s ease-in 2s;
+  animation: load2 0.5s ease-in 1s;
+  -webkit-animation: load2 0.5s ease-in 1s;
   animation-fill-mode: forwards;
   right: 0.3rem;
   top:-5.3rem;
   position: absolute;
   height:5.3rem;
-  width: 4.76rem;
+  width: 4.78rem;
 }
 .load3{
-  animation: load3 1s ease-in 3.5s;
-  -webkit-animation: load3 1s ease-in 3.5s;
+  animation: load3 0.5s ease-in 1.5s;
+  -webkit-animation: load3 0.5s ease-in 1.5s;
   animation-fill-mode: forwards;
-  top: 13.15rem;
+  top: 15.15rem;
   left: 0.1rem;
   position: absolute;
-  height:6.9rem; 
-  width: 5rem;
+  height:6.42rem; 
+  width: 4.84rem;
 }
 .load4{
-  animation: load4 1s ease-in 5s;
-  -webkit-animation: load4 1s ease-in 5s;
+  animation: load4 0.5s ease-in 2s;
+  -webkit-animation: load4 0.5s ease-in 2s;
   animation-fill-mode: forwards;
   // bottom: 0.3rem;
-  top: 5.4rem;
+  top: 5.72rem;
   right: -3.6rem;  
   position: absolute;
-  height:6.65rem; 
-  width: 3.46rem;
+  height:6.08rem; 
+  width: 3.49rem;
 }
 </style>

@@ -35,10 +35,14 @@ export default {
         return {
             info: '',
             topStatus: '',
+            city:1
         }
     },
     created() {
-        this.$ajax(BASE_URL + '/activity/list')
+        if(this.$route.query.city == 'GuangZhou'){
+            this.city = 2
+        }
+        this.$ajax(BASE_URL + '/activity/list?city='+this.city)
             .then(res => {
                 if (res.data.success == true) {
                     this.info = res.data.data.list

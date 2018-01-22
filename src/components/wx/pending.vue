@@ -1,7 +1,7 @@
 <template>
     <div style="position:absolute;width:100%;height:100%">
         <div style="min-height:100%;background:rgb(15, 25, 35)">
-            <p class="fw">尊敬的WAGONS会员，您好！</p>
+            <p class="fw"><img v-if="member.isVip" src="../../assets/app/vip2.png">尊敬的WAGONS会员，您好！</p>
             <img class="f" src="../../assets/app/pending.png">
             <div v-if="member.subtype == 'C'">
                 <p class="pp">我的特权</p>
@@ -58,7 +58,7 @@
                             </p>
                             <p class="cp">
                                 <span class="num">1</span>
-                                <span @click="showzhichi(1)" class="des">每月3天超跑使用权，每天可在俱乐部<b class="blue">指定车型</b>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续</span>
+                                <span @click="showzhichi(1)" class="des dess">每月3天超跑使用权，每天可在俱乐部<b class="blue">指定车型</b>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续</span>
                             </p>
                             <p class="cp">
                                 <span class="num">2</span>
@@ -106,7 +106,7 @@
                             </p>
                             <p class="cp">
                                 <span class="num">1</span>
-                                <span @click="showzhichi(2)" class="des">每月3天超跑使用权，每天可在俱乐部<b class="blue">所有车型</b>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span>
+                                <span @click="showzhichi(2)" class="des dess">每月3天超跑使用权，每天可在俱乐部<b class="blue">所有车型</b>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span>
                             </p>
                             <p class="cp">
                                 <span class="num">2</span>
@@ -134,11 +134,11 @@
                             </p>
                             <p class="cp">
                                 <span class="num">8</span>
-                                <span class="des">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span>
+                                <span class="des dess">俱乐部旗下修理厂每年2次免费深度车辆清洗，保养9折优惠</span>
                             </p>
                             <p class="cp">
                                 <span class="num">9</span>
-                                <span class="des">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
+                                <span class="des dess">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
                             </p>
                             <p class="cp">
                                 <span class="num">10</span>
@@ -162,7 +162,7 @@
                             </p>
                             <p class="cp">
                                 <span class="num">1</span>
-                                <span @click="showzhichi(3)" class="des">每月5天超跑使用权，每天可在俱乐部<b class="blue">所有车型</b>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span>
+                                <span @click="showzhichi(3)" class="des dess">每月5天超跑使用权，每天可在俱乐部<b class="blue">所有车型</b>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</span>
                             </p>
                             <p class="cp">
                                 <span class="num">2</span>
@@ -190,11 +190,11 @@
                             </p>
                             <p class="cp">
                                 <span class="num">8</span>
-                                <span class="des">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span>
+                                <span class="des dess">俱乐部旗下修理厂每年4次免费深度车辆清洗，保养8折优惠</span>
                             </p>
                             <p class="cp">
                                 <span class="num">9</span>
-                                <span class="des">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
+                                <span class="des dess">免费参与俱乐部组织的各类培训试驾、演唱会、观影、酒会派对、体育棋牌等活动</span>
                             </p>
                             <p class="cp">
                                 <span class="num">10</span>
@@ -202,7 +202,7 @@
                             </p>
                             <p class="cp">
                                 <span class="num">11</span>
-                                <span class="des">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span>
+                                <span class="des dess">在与WAGONS合作的顶级会所、健身房、高尔夫球场、餐厅、酒吧消费享专属礼遇</span>
                             </p>
                         </div>
                     </div>
@@ -216,6 +216,11 @@
                 <p class="clear"></p>
                 <p class="tp">您也可以通过散租的方式享受用车服务</p>
                 <p style="margin-top:0.16rem" class="tp">缴纳少量押金即可驾享顶级超跑，随用随租，还享会员折扣价!</p>
+            </div>
+            <div class="vip" v-if="!member.isVip">
+                <p class="clear"></p>
+                <h2>{{member.vipTitle}}</h2>
+                <h1>{{member.vipDes}}</h1>
                 <p style="width:100%;height:1.2rem"></p>
             </div>
             <transition name="fade">
@@ -254,16 +259,16 @@ export default {
       showyxx:false,
       showzzz:false,
       zhichi:false,
-      member: ""
+      member: "",
     };
   },
   created() {
     // { headers: { "token": "666eff19e5ca4e1bb2d6285a23f721d9", } }
     this.$ajax.get(BASE_URL + "/member/privilege").then(res => {
       this.member = res.data.data.member;
-    });
+    })
   },
-  methods: {
+  methods:{
       showzhichi(n){
           this.zhichi = true;
           if(n == 1){
@@ -323,7 +328,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+.vip{
+    width: 7.1rem;
+    margin: auto;
+    font-size: 0.26rem; 
+    h2{
+        color: #fff;
+        letter-spacing: 0px;
+        margin-top: 0.32rem;
+    }
+    h1{
+        margin-top: 0.18rem;
+        line-height: 0.4rem;
+        color: #999999;
+    }
+}
 .ax {
   z-index: 1;
   width: 0.68rem;
@@ -485,15 +505,15 @@ export default {
 }
 
 .pauto3 {
-  height: 9rem !important;
+  height: 11rem !important;
 }
 
 .pauto2 {
-  height: 8.3rem !important;
+  height: 10rem !important;
 }
 
 .pauto1 {
-  height: 7rem !important;
+  height: 7.7rem !important;
 }
 
 .pull {
@@ -539,7 +559,9 @@ export default {
   font-size: 0;
   margin: 0.28rem 0;
 }
-
+.dess{
+    line-height: 0.4rem
+}
 .des {
   display: inline-block;
   color: #999999;
@@ -617,8 +639,15 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
+  vertical-align: bottom;
   top: 1rem;
   text-align: center;
+  img{
+    width: 0.8rem;
+    vertical-align: bottom;
+    height: 0.3rem;
+    margin-right: 0.3rem;
+  }
 }
 
 .f {

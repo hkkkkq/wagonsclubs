@@ -2,6 +2,7 @@
     <div style="font-family: PingFangSC-Medium, sans-serif;background:#0f1923">
         <img class="banner" src="../../assets/app/joinbanner.png">
         <p class="uv">开始用车之前，您需要通过申请方式加入WAGONS，成功后即可自由选择购买优惠套餐，或采用单次散租的方式开始您的超跑自驾之旅。</p>
+        <p @click='gotel' class="uv1">婚庆静展，高端接驾，广告合作等商务用车需求请点此与工作人员联系</p>
         <div class="cc">
             <p>套餐</p>
             <div class="qq">
@@ -11,11 +12,11 @@
                 </p>
                 <h1>
                     <span style="color:#999999;float:left">全部权益明细</span>
-                    <span @click="ch(1)" style="color:#009cff;float:right">支持车型一览</span>
+                    <!-- <span @click="ch(1)" style="color:#009cff;float:right">支持车型一览</span> -->
                 </h1>
                 <div class="ff">
                     <span>1</span>
-                    <b>每月3天超跑使用权，每天可在俱乐部指定车型中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
+                    <b>每月3天超跑使用权，每天可在俱乐部<em @click="ch(1)" style="color:#009cff">指定车型</em>中任选1台自驾，本月未使用完的天数可累计到下月，本年度未使用完的天数可在下一年度继续使用</b>
                 </div>
                 <div class="ff">
                     <span>2</span>
@@ -53,7 +54,7 @@
                 </p>
                 <h1>
                     <span style="color:#999999;float:left">全部权益明细</span>
-                    <span @click="ch(2)" style="color:#009cff;float:right">支持车型一览</span>
+                    <!-- <span @click="ch(2)" style="color:#009cff;float:right">支持车型一览</span> -->
                 </h1>
                 <div class="ff">
                     <span>1</span>
@@ -103,7 +104,7 @@
                 </p>
                 <h1>
                     <span style="color:#999999;float:left">全部权益明细</span>
-                    <span @click="ch(3)" style="color:#009cff;float:right">支持车型一览</span>
+                    <!-- <span @click="ch(3)" style="color:#009cff;float:right">支持车型一览</span> -->
                 </h1>
                 <div class="ff">
                     <span>1</span>
@@ -215,6 +216,62 @@ export default {
     };
   },
   created() {
+    //微信分享
+    this.$ajax(
+      BASE_URL +
+        "/car/weixinShare?url=" +
+        escape(location.href) +
+        "&t=" +
+        new Date().toDateString()
+    )
+      .then(res => {
+        wx.config({
+          debug: false,
+          appId: res.data.data.sign.appId,
+          timestamp: res.data.data.sign.timestamp,
+          nonceStr: res.data.data.sign.nonceStr,
+          signature: res.data.data.sign.signature,
+          jsApiList: [
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo"
+          ]
+        });
+        var locationHref = window.location.origin + window.location.pathname + "?wechat=true";
+        wx.ready(function() {
+          wx.onMenuShareTimeline({
+            title: "WAGONS光速超跑",
+            link: locationHref,
+            imgUrl:
+              "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
+          });
+          wx.onMenuShareAppMessage({
+            title: "WAGONS光速超跑",
+            desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
+            link: locationHref,
+            imgUrl:
+              "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
+          });
+          wx.onMenuShareQQ({
+            title: "WAGONS光速超跑",
+            desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
+            link: locationHref,
+            imgUrl:
+              "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
+          });
+          wx.onMenuShareWeibo({
+            title: "WAGONS光速超跑",
+            desc: "WAGONS诚邀您驾享豪华超跑，体验至尊五星用车服务",
+            link: locationHref,
+            imgUrl:
+              "http://wap.wagonsclub.com/source/images/wagons_share_logo.jpg"
+          });
+        });
+      })
+      .catch(err => {
+        alert(err);
+      });
     window.scrollTo(0, 0);
     if (/from_wagons/.test(navigator.userAgent.toLowerCase())) {
       this.isapp = true
@@ -257,6 +314,7 @@ export default {
 .carddiv {
   background: #273039;
   color: #999999;
+  border-radius: 4px;
   font-size: 0.22rem;
   div {
     display: flex;
@@ -381,6 +439,15 @@ export default {
   left: 0.4rem;
   line-height: 0.4rem;
 }
+.uv1 {
+  font-size: 0.24rem;
+  color: #009cff;
+  width: 6.6rem;
+  position: absolute;
+  top: 2rem;
+  left: 0.4rem;
+  line-height: 0.4rem;
+}
 
 .rad {
   display: inline-block;
@@ -466,7 +533,7 @@ export default {
 
 .banner {
   width: 100%;
-  height: 2.4rem;
+  height: 3.4rem;
   display: block;
 }
 
