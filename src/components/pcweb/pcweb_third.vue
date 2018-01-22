@@ -33,8 +33,7 @@
           </div>
           <div style="border:0px" class="vf">
             <h1>会员申请方式</h1>
-            <h2>1.缴纳会费</h2>
-            <h2>2.选择合作伙伴投资产品：私募，公募</h2>
+            <h2>— 缴纳会费</h2>
           </div>
         </div>
         <div v-if='show == "us"'>
