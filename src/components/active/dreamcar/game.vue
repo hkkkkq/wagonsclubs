@@ -107,25 +107,17 @@ export default {
 			this.declaration = this.userinfo.declaration
 			this.nickName = this.userinfo.nickName
 			if(this.userinfo.pic){
+				this.imageUrl = this.userinfo.pic
 				this.src = this.userinfo.pic
 			}else{
-				this.imageUrl = ''
+				this.imageUrl = this.userinfo.pic
 			}
 			this.cell = this.userinfo.cell
-			// var img = new Image
-			// img.onload = function(e){
-			// 	console.log(e)
-			// 	// vm.userinfo.pic = e
-			// }
-			// img.crossOrigin = '*'
-			// img.src = this.userinfo.pic;
 		})
-		// alert(this.WAG)
 	},
 	methods:{
 		changeimg () {
 			var vm = this;
-			// alert("文件大小:" + this.$refs.file1.files[0].size / 1024 + "KB");
 			var file = this.$refs.file1.files[0];
 			var reader = new FileReader();
 			reader.onloadstart = function(e) {
@@ -155,18 +147,15 @@ export default {
 			this.$refs.cropper.getCropBlob((data)=>{
 				var name = new Date().getTime() + Math.random() + '.jpeg'
 	            this.params.append('image',data,name)
-				// this.pic = new Object(data)
-				// console.log(this.pic)
-				// console.log(data)
+				this.imageUrl = ''
 				this.changed = false
      		})
 		},
 		toproductpic () {
-			if(this.nickName == ''){alert('请输入昵称');return;}
-			if(this.declaration == ''){alert('请输入参赛宣言');return;}
-			if(this.cell == ''){alert('请输入联系方式');return;}
+			if(this.nickName == null){alert('请输入昵称');return;}
+			if(this.declaration == null){alert('请输入参赛宣言');return;}
+			if(this.cell == null || this.cell.length > 11){alert('请输入正确联系方式');return;}
 			if(this.src == '/static/img/game-2.jpg'){alert('请上传图片');return;}
-			// var params = new FormData();
 			this.params.append('cell',this.cell)
             this.params.append('openId',this.WAG)
             this.params.append('nickName',this.nickName)
@@ -176,15 +165,11 @@ export default {
 				url:BASE_URL + '/sign',
 				method:'POST',
 				data:this.params
-				// data:qs.stringify({
-				// 	cell:this.cell,
-				// 	openId:this.WAG,
-				// 	nickName:this.nickName,
-				// 	declaration:this.declaration,
-				// })
 			}).then((res)=>{
 				alert(res.data.message)
-				this.$router.push('/dreamcar/productpic?openId=' + this.WAG)
+				if(res.data.success == true){
+					this.$router.push('/dreamcar/productpic?openId=' + this.WAG)
+				}
 			}).catch((err)=>{
 				alert('错误代号001')
 			})

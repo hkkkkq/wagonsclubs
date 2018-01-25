@@ -108,6 +108,7 @@ export default {
 	},
 	methods:{
 		getimg(){
+			document.body.scrollTop = 0;
 			this.zz = true;
 			var vm = this
 			html2canvas(document.getElementsByClassName('wrap')[0],{useCORS:true}).then(function(canvas) {
