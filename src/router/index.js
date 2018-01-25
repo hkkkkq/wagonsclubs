@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import activeRouter from './active.js';
+import DCrouter from './dreamcar.js';
 const VueAwesomeSwiper = require('vue-awesome-swiper');
 // import test from '../components/test/test.vue' //直接加载方式，组件写在公共js里，如果这种方式过多会是的文件提过大，首次加载变慢
 // import page from '../components/test/page.vue'
@@ -67,6 +68,8 @@ Vue.use(Router);
 export default new Router({
     mode: 'history',
     routes: [
+        //梦想战车
+        DCrouter,
         //活动
         activeRouter,
         //重写pc首页
