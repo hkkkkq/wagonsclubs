@@ -96,6 +96,7 @@ export default {
 	},
 	created () {
 		this.openId = this.$route.query.openId
+		// alert(this.WAG)
 		this.$ajax({
 			url: BASE_URL + '/competitor',
 			method: 'get',
@@ -154,6 +155,7 @@ export default {
 	img{
 		width: 70%;
     	margin: auto;
+		-webkit-touch-callout: default;
 	}
 	p{
 		text-align: center;
