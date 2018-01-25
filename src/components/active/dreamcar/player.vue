@@ -11,7 +11,7 @@
 		  </div>
 		  <p>
 			  <span style="float:left">{{item.nickName}}</span>
-			  <span style="float:right">{{item.no}}</span>
+			  <span style="float:right">{{item.no}}号选手</span>
 		  </p>
 		  <p>
 			  <span>
@@ -55,6 +55,7 @@ export default {
 					alert(res.data.message)
 				}else{
 					this.zaned = true
+					this.item.praise = this.item.praise + 1
 				}
 			})
 		}

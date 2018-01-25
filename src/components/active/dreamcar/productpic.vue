@@ -120,7 +120,7 @@ export default {
 			this.zztext = false;
 		},
 		GoBack () {
-			this.$router.go(-1)
+			this.$router.push('/dreamcar/game')
 		},
 		GoIndex () {
 			this.$router.push('/dreamcar/vote')
