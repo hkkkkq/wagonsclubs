@@ -96,23 +96,13 @@ export default {
 	},
 	created () {
 		this.openId = this.$route.query.openId
-		// alert(this.openId)
-		// alert(this.WAG)
 		this.$ajax({
 			url: BASE_URL + '/competitor',
 			method: 'get',
-			// headers:{WAG:this.WAG}
 			headers:{WAG:this.openId}
 		}).then((res)=>{
 			var vm = this
 			this.userinfo = res.data.data.competitor
-			// var img = new Image
-			// img.onload = function(e){
-			// 	console.log(e)
-			// 	// vm.userinfo.pic = e
-			// }
-			// img.crossOrigin = '*'
-			// img.src = this.userinfo.pic;
 		})
 	},
 	methods:{

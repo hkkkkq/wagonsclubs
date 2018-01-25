@@ -74,8 +74,8 @@ export default {
 				canScale: false,
 				autoCrop: true,
 				// 只有自动截图开启 宽度高度才生效
-				autoCropWidth: 126,
-				autoCropHeight: 81,
+				autoCropWidth: 252,
+				autoCropHeight: 162,
 				// 开启宽度和高度比例
 				fixed: true,
 				fixedNumber: [14, 9]
@@ -109,7 +109,7 @@ export default {
 			if(this.userinfo.pic){
 				this.src = this.userinfo.pic
 			}else{
-				this.imageUrl = 'null'
+				this.imageUrl = ''
 			}
 			this.cell = this.userinfo.cell
 			// var img = new Image
