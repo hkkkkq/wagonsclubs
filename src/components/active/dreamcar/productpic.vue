@@ -35,7 +35,7 @@
 					<p>二维码为我投票</p>
 				</div>
 				<div>
-					<img src="../../../assets/dingyuehao1.png">
+					<img style="width:2rem;margin-top: 0.2rem;" src="../../../assets/dingyuehao1.png">
 				</div>
 			</div>
 			<p style="position: absolute;bottom: -0.2rem;">
@@ -167,6 +167,8 @@ export default {
 	width: 100%;
 	background: #000;
 	display: flex;
+	position: absolute;
+	bottom: 0.3rem;
 	display: -webkit-flex;
 	.but{
 		text-align: center;
@@ -188,8 +190,10 @@ export default {
 		background: url('../../../assets/active/dreamcar/productpic-1.png');
 		background-size: 100% 5.1rem;
 		background-repeat: no-repeat;
+		position: absolute;
+		left: 0;
+		right: 0;
 		background-position-y: 7.9rem;
-		// background: #000;
 		.blackbg{
 			background: #000;
 			width: 6.8rem;
