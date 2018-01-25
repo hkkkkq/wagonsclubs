@@ -4,16 +4,12 @@
 		  <p style="height:1px"></p>
 		  <img style="width:2.63rem;height:0.53rem;margin:0.4rem auto; display: block;" src="../../../assets/active/dreamcar/DClogo.png">
 		  <wrapdiv style="display:flex;margin-top: 5rem;" pheight=1.15 pwidth="6.15">
-			  <input placeholder="请输入选手昵称／编号" class="inp">
+			  <input v-model="text" placeholder="请输入选手昵称／编号" class="inp">
 			  <span class="bor"></span>
-			  <img class="search" src="../../../assets/active/dreamcar/search.png">
+			  <img @click="search" class="search" src="../../../assets/active/dreamcar/search.png">
 		  </wrapdiv>
 	  </div>
 	  <player v-for="(item,index) in userList" :index='index' :item=item :key="index" ></player>
-	  <!-- <player></player>
-	  <player></player>
-	  <player></player>
-	  <player></player> -->
 	  <div style="height:1.9rem"></div>
 	  <div class="foot">
 		  <wrapdiv @click.native="toCollect" style="background:#1a3fff" pwidth=2 pheight=0.7><span class="text1">我要参赛</span></wrapdiv>
@@ -32,7 +28,8 @@ export default {
 	},
 	data () {
 		return{
-			userList:''
+			userList:'',
+			text:''
 		}
 	},
 	computed:{
@@ -56,6 +53,14 @@ export default {
 		},
 		toDescription () {
 			this.$router.push('/dreamcar/description')
+		},
+		search () {
+			var tmp = document.getElementsByClassName(this.text)[0] || document.getElementById(this.text)
+			if(tmp === null || tmp === undefined){
+				alert('请输入正确的编号或昵称')
+			}else{
+				tmp.scrollIntoView()
+			}
 		}
 	}
 }

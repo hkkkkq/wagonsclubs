@@ -59,6 +59,7 @@ export default {
 		return{
 			src:'/static/img/game-2.jpg',
 			pic: new Blob(),
+			image:'',
 			changed:false,
 			params:new FormData(),
 			declaration:'',
@@ -145,8 +146,7 @@ export default {
 				this.changed = false
      		})
 			this.$refs.cropper.getCropBlob((data)=>{
-				var name = new Date().getTime() + Math.random() + '.jpeg'
-	            this.params.append('image',data,name)
+				this.image = data
 				this.imageUrl = ''
 				this.changed = false
      		})
@@ -161,12 +161,15 @@ export default {
             this.params.append('nickName',this.nickName)
             this.params.append('declaration',this.declaration)
             this.params.append('imageUrl',this.imageUrl)
+				var name = new Date().getTime() + Math.random() + '.jpeg'
+	            this.params.append('image',this.image,name)
 			this.$ajax({
-				url:BASE_URL + '/sign',
+				url:BASE_URL + '/sign?ts=' + new Date().getTime(),
 				method:'POST',
 				data:this.params
 			}).then((res)=>{
 				alert(res.data.message)
+				this.params = new FormData()
 				if(res.data.success == true){
 					this.$router.push('/dreamcar/productpic?openId=' + this.WAG)
 				}
@@ -206,7 +209,8 @@ export default {
 		border: 0;
 		border-radius: 4px;
 		color: #fff;
-		width: 1rem;
+		width: 1.2rem;
+		height: 0.5rem;
 		right: 0.3rem;
 		top: 0.3rem;
 	}

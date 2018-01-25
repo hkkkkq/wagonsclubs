@@ -1,5 +1,5 @@
 <template>
-  <div :id='"player"+(index+1)' class="player">
+  <div :class='item.nickName' :id='item.no' class="player">
 	  <div id=2 class="rank">
 		  <img src="../../../assets/active/dreamcar/rank.png">
 		  <span>{{index + 1}}</span>
