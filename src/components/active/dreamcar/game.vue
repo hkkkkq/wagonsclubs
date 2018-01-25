@@ -106,7 +106,9 @@ export default {
 			this.userinfo = res.data.data.competitor
 			this.declaration = this.userinfo.declaration
 			this.nickName = this.userinfo.nickName
-			this.src = this.userinfo.pic
+			if(this.userinfo.pic){
+				this.src = this.userinfo.pic
+			}
 			this.cell = this.userinfo.cell
 			this.imageUrl = this.userinfo.pic
 			// var img = new Image
