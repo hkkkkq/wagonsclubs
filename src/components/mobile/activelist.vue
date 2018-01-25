@@ -30,6 +30,10 @@ export default {
                 require("../../assets/njd12_02.jpg"),
                 require("../../assets/njd13_02.jpg"),
                 require("../../assets/njd14_02.jpg"),
+                require("../../assets/njd15_02.jpg"),
+                require("../../assets/njd16_02.jpg"),
+                require("../../assets/njd17_02.jpg"),
+                require("../../assets/njd18_02.jpg"),
             ]
         }
     },
@@ -123,10 +127,22 @@ export default {
                         location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
                         break;
                     case 11:
-                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        location.href = 'http://mp.weixin.qq.com/s/dZh5y5WBLWOAe8mWI9hLtw'
                         break;
                     case 12:
-                        location.href = 'http://mp.weixin.qq.com/s/54ppUt-SQF8LtUXiHfk-Qg'
+                        location.href = 'http://mp.weixin.qq.com/s/3XHmg88gHx2jZ2AYnjj4GQ'
+                        break;
+                    case 13:
+                        location.href = 'http://mp.weixin.qq.com/s/z2cJJ-E7QSH0PRatuozUWw'
+                        break;
+                    case 14:
+                        location.href = 'http://mp.weixin.qq.com/s/z2cJJ-E7QSH0PRatuozUWw'
+                        break;
+                    case 15:
+                        location.href = 'http://mp.weixin.qq.com/s/z2cJJ-E7QSH0PRatuozUWw'
+                        break;
+                    case 16:
+                        location.href = 'http://mp.weixin.qq.com/s/HM0JhE84tS7KkTkwa0CwiQ'
                         break;
                 }
             }
