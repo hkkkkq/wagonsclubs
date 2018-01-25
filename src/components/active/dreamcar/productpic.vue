@@ -67,7 +67,7 @@
 	<div @click="closezz()" v-show="zz" class="zz">
 		<img class="canvasimg">
 		<p>
-			{{zztext?'长按图片保存至本地，分享朋友圈':'请稍候，图片正在加载中'}}
+			{{zztext?'长按保存图片，然后发一条朋友圈😝':'请稍候，图片正在加载中'}}
 		</p>
 	</div>
 	</transition>
@@ -161,6 +161,8 @@ export default {
 	p{
 		text-align: center;
     	margin: auto;
+		font-size: 0.3rem;
+		color: #ffffff;
 	}
 }
 .bottom{

@@ -235,6 +235,7 @@ export default {
 			font-size: 0;
 			border: 0;
 			z-index: 10;
+			opacity: 0;
 		}
 	}
 	.text{
