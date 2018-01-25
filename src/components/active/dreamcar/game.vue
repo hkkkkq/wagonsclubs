@@ -108,9 +108,10 @@ export default {
 			this.nickName = this.userinfo.nickName
 			if(this.userinfo.pic){
 				this.src = this.userinfo.pic
+			}else{
+				this.imageUrl = 'null'
 			}
 			this.cell = this.userinfo.cell
-			this.imageUrl = this.userinfo.pic
 			// var img = new Image
 			// img.onload = function(e){
 			// 	console.log(e)
@@ -124,7 +125,7 @@ export default {
 	methods:{
 		changeimg () {
 			var vm = this;
-			alert("文件大小:" + this.$refs.file1.files[0].size / 1024 + "KB");
+			// alert("文件大小:" + this.$refs.file1.files[0].size / 1024 + "KB");
 			var file = this.$refs.file1.files[0];
 			var reader = new FileReader();
 			reader.onloadstart = function(e) {
