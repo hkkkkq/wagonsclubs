@@ -46,6 +46,39 @@ export default {
 		}).then((res)=>{
 			this.userList = res.data.data.competitors
 		})
+    this.$ajax(
+      BASE_URL +
+        "/car/weixinShare?ts=" +
+        new Date().getTime() +
+        "&url=" + vm.urllink
+    )
+      .then(res => {
+        this.wxs = res.data.data
+        wx.config({
+          debug: false,
+          appId: vm.wxs.sign.appId,
+          timestamp: vm.wxs.sign.timestamp,
+          nonceStr: vm.wxs.sign.nonceStr,
+          signature: vm.wxs.sign.signature,
+          jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
+        });
+        wx.ready(function () {
+          wx.onMenuShareTimeline({
+            title: "开走法拉利，搞定丈母娘",
+            link: "wap.wagonsclub.com/weixin/redirect/dream_car",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+          wx.onMenuShareAppMessage({
+            title: "开走法拉利，搞定丈母娘",
+            desc: "还在等什么，还不快来开走法拉利",
+            link: "wap.wagonsclub.com/weixin/redirect/dream_car",
+            imgUrl:"http://www.wagonsclub.com/static/christmas/sharelogo2.png",
+          });
+        })
+      })
+      .catch(res => {
+        alert(res);
+      });
 	},
 	methods:{
 		toCollect () {
