@@ -104,6 +104,13 @@ export default {
     };
   },
   mounted() {
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aa1247311366cf3c40ae04b3fe674da1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
     window.scroll(0, 0);
     let i = this.$route.path;
     if (i == "/first") {
