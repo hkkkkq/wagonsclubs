@@ -116,6 +116,13 @@ export default {
     this.city = this.$route.query.city
     if (this.$route.query.wxAppShare == "true") {
       this.$store.commit("wxAppShare");
+          var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aa1247311366cf3c40ae04b3fe674da1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
     }
     if (this.$route.query.WAG) {
       this.$store.commit("setOpenId", this.$route.query.WAG);
