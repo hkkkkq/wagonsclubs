@@ -46,6 +46,7 @@ export default {
 		}).then((res)=>{
 			this.userList = res.data.data.competitors
 		})
+		var urllink = location.href
     this.$ajax(
       BASE_URL +
         "/car/weixinShare?ts=" +
