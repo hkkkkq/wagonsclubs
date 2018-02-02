@@ -38,6 +38,7 @@ export default {
     	}
 	},
 	created () {
+		var vm = this
 		this.$ajax({
 			url:BASE_URL + '/competitors',
 			headers:{
