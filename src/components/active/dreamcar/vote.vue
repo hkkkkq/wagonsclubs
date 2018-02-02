@@ -48,11 +48,12 @@ export default {
 			this.userList = res.data.data.competitors
 		})
 		var urllink = window.location.href
+		console.log(urllink)
     this.$ajax(
       BASE_URL +
         "/car/weixinShare?ts=" +
         new Date().getTime() +
-        "&url=" + vm.urllink
+        "&url=" + urllink
     )
       .then(res => {
         this.wxs = res.data.data
