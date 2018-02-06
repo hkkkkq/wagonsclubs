@@ -37,6 +37,9 @@ export default {
           method: "GET",
           headers: { WAG: this.WAG }
         }).then(res => {
+          if( res.data.success == 'false'){
+            alert(res.data.message)
+          }
           if (res.data.code == -100) {
             this.$router.push("/app/join");
           }

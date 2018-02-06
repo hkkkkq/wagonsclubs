@@ -78,7 +78,7 @@ import VueCropper from "vue-cropper"
 export default {
   data() {
     return {
-      ip:'192.168.10.81:8080',
+      ip:'192.168.10.142:8080',
       env: "",
       W: "oEUUVvzs3UIbfgkUO56S0H3O-sNI",
       src: "",
